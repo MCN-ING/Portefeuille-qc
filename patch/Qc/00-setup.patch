@@ -39,7 +39,7 @@ index 4cfa156..30dc17d 100644
  					"-lc++",
  				);
 -				PRODUCT_BUNDLE_IDENTIFIER = ca.bc.gov.BCWallet;
-+				PRODUCT_BUNDLE_IDENTIFIER = ca.qc.gouv.portefeuilleqc;
++				PRODUCT_BUNDLE_IDENTIFIER = ca.qc.gouv.portefeuillemobileqc;
  				PRODUCT_NAME = AriesBifold;
 -				PROVISIONING_PROFILE_SPECIFIER = "BC Secure Wallet";
 +				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -61,7 +61,7 @@ index 4cfa156..30dc17d 100644
  					"-lc++",
  				);
 -				PRODUCT_BUNDLE_IDENTIFIER = ca.bc.gov.BCWallet;
-+				PRODUCT_BUNDLE_IDENTIFIER = ca.qc.gouv.portefeuilleqc;
++				PRODUCT_BUNDLE_IDENTIFIER = ca.qc.gouv.portefeuillemobileqc;
  				PRODUCT_NAME = AriesBifold;
 -				PROVISIONING_PROFILE_SPECIFIER = "BC Secure Wallet";
 +				PROVISIONING_PROFILE_SPECIFIER = PortefeuilleQcProvisioning;
