@@ -181,11 +181,6 @@ export const TextTheme: ITextTheme = {
     fontWeight: 'bold',
     color: ColorPallet.grayscale.darkGrey,
   },
-  popupModalText: {
-    fontSize: 18,
-    fontWeight: 'normal',
-    color: ColorPallet.grayscale.darkGrey,
-  },
 }
 
 export const Inputs: IInputs = StyleSheet.create({
