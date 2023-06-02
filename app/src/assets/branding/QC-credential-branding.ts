@@ -8,7 +8,7 @@ type CaptureBaseOverlay = types.oca.CaptureBaseOverlay
 type CharacterEncodingOverlay = types.oca.CharacterEncodingOverlay
 
 export enum CREDENTIALS {
-  ANIG_TEST = "Ep31SvFAetugFPe5CGzJxt:2:Attestation numérique d'identité gouvernemental (EXP):1.0",
+  ANIG_TEST = "Ep31SvFAetugFPe5CGzJxt:2:Attestation numérique d'identité gouvernemental (EXP):1.1",
   CQEN_DEMO = 'FUKLxsjrYSHgScLbHuPTo4:2:CQENDroitAccesVirtuel:0.1',
   ANIG_L = 'Ep31SvFAetugFPe5CGzJxt:2:ANIG:1.1',
   ADRESSE_L = 'Ep31SvFAetugFPe5CGzJxt:2:Adresse:1.1',
@@ -19,15 +19,8 @@ const ANIGCaptureBase: CaptureBaseOverlay = {
   type: 'spec/overlays/character_encoding/1.0',
   captureBase: '',
   attributeCharacterEncoding: {
-    Nom: 'utf-8',
-    Prénom: 'utf-8',
-    'Date de naissance': 'utf-8',
-    'Nom du parent 1': 'utf-8',
-    'Nom du parent 2': 'utf-8',
-    "Date d'émission": 'utf-8',
-    "Date d'expiration": 'utf-8',
-    "Niveau d'identification": 'utf-8',
-    Photo: 'base64',
+    'credentialSubject.lastName': 'utf-8',
+    'credentialSubject.firstNames': 'utf-8',
   },
 } as CharacterEncodingOverlay
 
@@ -74,12 +67,8 @@ const ANIGLabelOverlayFr: LabelOverlay = {
   captureBase: '',
   language: 'fr',
   attributeLabels: {
-    Nom: 'Nom',
-    Prénom: 'Prénom',
-    'Date de naissance': 'Date de naissance',
-    'Nom du parent 1': 'Nom du parent 1',
-    'Nom du parent 2': 'Nom du parent 2',
-    Photo: 'Photo',
+    'credentialSubject.lastName': 'Nom',
+    'credentialSubject.firstNames': 'Prénom',
   },
 } as LabelOverlay
 
@@ -88,12 +77,8 @@ const ANIGLabelOverlayEn: LabelOverlay = {
   captureBase: '',
   language: 'en',
   attributeLabels: {
-    Nom: 'Last Name',
-    Prénom: 'First Name',
-    'Date de naissance': 'Date of Birth',
-    'Nom du parent 1': 'Parent 1 Name',
-    'Nom du parent 2': 'Parent 2 Name',
-    Photo: 'Photo',
+    'credentialSubject.lastName': 'Last Name',
+    'credentialSubject.firstNames': 'First Name',
   },
 } as LabelOverlay
 
@@ -180,19 +165,6 @@ const PHOTO_LLabelOverlayEn: LabelOverlay = {
     picture: 'Photo',
   },
 } as LabelOverlay
-
-const ANIGFormatOverlay: FormatOverlay = {
-  type: 'spec/overlays/format/1.0',
-  captureBase: '',
-  attributeFormats: {
-    Nom: 'YY-MM-DD',
-    Prénom: 'YY-MM-DD',
-    'Date de naissance': 'YY-MM-DD',
-    'Nom du parent 1': 'P[A-Z0-9]{1}',
-    'Nom du parent 2': '[A-Z0-9]{9}',
-    Photo: 'image/jpeg',
-  },
-} as FormatOverlay
 
 const CQENFormatOverlay: FormatOverlay = {
   captureBase: '',
@@ -281,15 +253,8 @@ const ANIGBundle = {
     captureBase: '',
     type: 'spec/capture_base/1.0',
     attributes: {
-      Nom: 'Text',
-      Prénom: 'Text',
-      'Date de naissance': 'Date',
-      'Nom du parent 1': 'Text',
-      'Nom du parent 2': 'Text',
-      "Date d'émission": 'Date',
-      "Date d'expiration": 'Date',
-      "Niveau d'identification": 'Text',
-      Photo: 'Binary',
+      'credentialSubject.lastName': 'Text',
+      'credentialSubject.firstNames': 'Text',
     },
   } as CaptureBaseOverlay,
 
@@ -307,7 +272,6 @@ const ANIGBundle = {
       issuerName: 'Ministry of Cybersecurity and Digital',
     } as MetaOverlay,
     ANIGCardOverlay,
-    ANIGFormatOverlay,
     ANIGLabelOverlayFr,
     ANIGLabelOverlayEn,
     ANIGCaptureBase,
