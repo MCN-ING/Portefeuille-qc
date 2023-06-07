@@ -1,0 +1,117 @@
+diff --git a/packages/legacy/core/App/contexts/configuration.tsx b/packages/legacy/core/App/contexts/configuration.tsx
+index 0b14696..a90e799 100644
+--- a/packages/legacy/core/App/contexts/configuration.tsx
++++ b/packages/legacy/core/App/contexts/configuration.tsx
+@@ -23,6 +23,7 @@ export interface ConfigurationContext {
+   pages: typeof OnboardingPages
+   splash: React.FC
+   terms: React.FC
++  historic: React.FC
+   homeContentView: React.FC
+   credentialListHeaderRight: React.FC
+   credentialListOptions: React.FC
+diff --git a/packages/legacy/core/App/defaultConfiguration.ts b/packages/legacy/core/App/defaultConfiguration.ts
+index a7824e5..35d74f1 100644
+--- a/packages/legacy/core/App/defaultConfiguration.ts
++++ b/packages/legacy/core/App/defaultConfiguration.ts
+@@ -20,6 +20,7 @@ export const defaultConfiguration: ConfigurationContext = {
+   pages: OnboardingPages,
+   splash: Splash,
+   terms: Terms,
++  historic: () => null,
+   developer: Developer,
+   homeContentView: HomeContentView,
+   credentialListHeaderRight: () => null,
+diff --git a/packages/legacy/core/App/localization/en/index.ts b/packages/legacy/core/App/localization/en/index.ts
+index 7901f5a..c0341a0 100644
+--- a/packages/legacy/core/App/localization/en/index.ts
++++ b/packages/legacy/core/App/localization/en/index.ts
+@@ -448,6 +448,7 @@ const translation = {
+     "Splash": "Splash",
+     "Onboarding": "Onboarding",
+     "Terms": "Terms & Conditions",
++    "Historic": "Historic",
+     "CreatePIN": "Create a PIN",
+     "EnterPIN": "Enter PIN",
+     "Home": "Home",
+diff --git a/packages/legacy/core/App/localization/fr/index.ts b/packages/legacy/core/App/localization/fr/index.ts
+index 2f31f2a..785d484 100644
+--- a/packages/legacy/core/App/localization/fr/index.ts
++++ b/packages/legacy/core/App/localization/fr/index.ts
+@@ -437,6 +437,7 @@ const translation = {
+         "Splash": "Page de garde",
+         "Onboarding": "Inscription",
+         "Terms": "Conditions d'utilisation",
++        "Historic": "Historique",
+         "CreatePIN": "Créer un NIP à 6 chiffres",
+         "EnterPIN": "Saisir le NIP",
+         "Home": "Accueil",
+diff --git a/packages/legacy/core/App/localization/pt-br/index.ts b/packages/legacy/core/App/localization/pt-br/index.ts
+index 38adfe3..39d654d 100644
+--- a/packages/legacy/core/App/localization/pt-br/index.ts
++++ b/packages/legacy/core/App/localization/pt-br/index.ts
+@@ -420,6 +420,7 @@ const translation = {
+     "Splash": "Splash",
+     "Onboarding": "Onboarding",
+     "Terms": "Termos & Condições",
++    "Historic": "Histórico",
+     "CreatePIN": "Criar um PIN",
+     "EnterPIN": "Digitar o PIN",
+     "Home": "Home",
+diff --git a/packages/legacy/core/App/navigators/SettingStack.tsx b/packages/legacy/core/App/navigators/SettingStack.tsx
+index 82b2af2..b61ccdb 100644
+--- a/packages/legacy/core/App/navigators/SettingStack.tsx
++++ b/packages/legacy/core/App/navigators/SettingStack.tsx
+@@ -24,7 +24,7 @@ const SettingStack: React.FC = () => {
+   const theme = useTheme()
+   const [biometryUpdatePending, setBiometryUpdatePending] = useState<boolean>(false)
+   const { t } = useTranslation()
+-  const { pages, terms, developer } = useConfiguration()
++  const { pages, terms, developer, historic } = useConfiguration()
+   const defaultStackOptions = createDefaultStackOptions(theme)
+   const OnboardingTheme = theme.OnboardingTheme
+   const carousel = createCarouselStyle(OnboardingTheme)
+@@ -80,6 +80,11 @@ const SettingStack: React.FC = () => {
+         component={terms}
+         options={{ title: t('Screens.Terms'), headerBackTestID: testIdWithKey('Back') }}
+       />
++      <Stack.Screen
++        name={Screens.Historic}
++        component={historic}
++        options={{ title: t('Screens.Historic'), headerBackTestID: testIdWithKey('Back') }}
++      />
+       <Stack.Screen
+         name={Screens.Developer}
+         component={developer}
+diff --git a/packages/legacy/core/App/types/navigators.ts b/packages/legacy/core/App/types/navigators.ts
+index c900eb1..3a4f6fa 100644
+--- a/packages/legacy/core/App/types/navigators.ts
++++ b/packages/legacy/core/App/types/navigators.ts
+@@ -6,6 +6,7 @@ export enum Screens {
+   Splash = 'Splash',
+   Onboarding = 'Onboarding',
+   Terms = 'Terms',
++  Historic = 'Historic',
+   CreatePIN = 'Create a PIN',
+   EnterPIN = 'Enter PIN',
+   Home = 'Home',
+@@ -120,6 +121,7 @@ export type SettingStackParams = {
+   [Screens.CreatePIN]: undefined
+   [Screens.RecreatePIN]: undefined
+   [Screens.Terms]: undefined
++  [Screens.Historic]: undefined
+   [Screens.Onboarding]: undefined
+   [Screens.Developer]: undefined
+ }
+diff --git a/packages/legacy/core/__tests__/contexts/configuration.ts b/packages/legacy/core/__tests__/contexts/configuration.ts
+index e53efba..0eb1270 100644
+--- a/packages/legacy/core/__tests__/contexts/configuration.ts
++++ b/packages/legacy/core/__tests__/contexts/configuration.ts
+@@ -8,6 +8,7 @@ const configurationContext: ConfigurationContext = {
+   pages: () => [],
+   terms: () => null,
+   splash: () => null,
++  historic: () => null,
+   homeContentView: () => null,
+   credentialListHeaderRight: () => null,
+   credentialListOptions: () => null,
