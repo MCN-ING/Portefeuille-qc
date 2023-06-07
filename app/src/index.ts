@@ -31,7 +31,8 @@ const localization = merge({}, translationResources, {
   fr: { translation: fr },
 })
 
-const selectedLedgers = indyLedgers.filter((item: any) => !item.id.startsWith('Indicio'))
+// const selectedLedgers = indyLedgers.filter((item: any) => !item.id.startsWith('Indicio'))
+const selectedLedgers = indyLedgers.filter((item: any) => item.id.startsWith('CANdyDevNetwork'))
 
 const configuration: ConfigurationContext = {
   ...defaultConfiguration,
