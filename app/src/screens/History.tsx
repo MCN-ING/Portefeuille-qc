@@ -11,16 +11,14 @@ const History: React.FC = () => {
   const { records: proofRecords } = useProofs()
   const { records: connectionRecords } = useConnections()
 
-  const [history, setHistory] = useState<{ timestamp: Date; record: records }[]>([])
+  const [history, setHistory] = useState<records[]>([])
+  // const [sortSide, setSortSide] = useState<'asc' | 'desc'>('asc')
 
   const createHistory = (records: records[]) => {
-    const h = records.map((record) => {
-      return {
-        timestamp: record.createdAt,
-        record,
-      }
-    })
-    setHistory(h)
+    const sortedRecords = records.sort(
+      (a, b) => Date.parse(a.createdAt.toDateString()) - Date.parse(b.createdAt.toDateString())
+    )
+    setHistory(sortedRecords)
   }
 
   useEffect(() => {
