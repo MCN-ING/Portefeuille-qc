@@ -1,9 +1,17 @@
 import { useTheme } from 'aries-bifold'
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-const ActivitySortBy = ({ setSortType, sortType }: any) => {
+import { sortTypeOptions } from '../constants'
+import { sortType } from '../types'
+
+type Props = {
+  setSortType: Dispatch<SetStateAction<sortType>>
+  sortType: sortType
+}
+
+const ActivitySortBy = ({ setSortType, sortType }: Props) => {
   const theme = useTheme()
   const { t } = useTranslation()
 
@@ -52,13 +60,17 @@ const ActivitySortBy = ({ setSortType, sortType }: any) => {
         }}
       >
         <Text style={theme.TextTheme.modalTitle}>{t('Activity.sortBy')}</Text>
-        <TouchableOpacity style={styles.button} onPress={() => setSortType('asc')}>
+        <TouchableOpacity style={styles.button} onPress={() => setSortType(sortTypeOptions.desc)}>
           <Text style={theme.TextTheme.modalNormal}>{t('Activity.newToOld')}</Text>
-          <View style={styles.pastille}>{sortType === 'asc' && <View style={styles.innerPastille} />}</View>
+          <View style={styles.pastille}>
+            {sortType === sortTypeOptions.desc && <View style={styles.innerPastille} />}
+          </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => setSortType('desc')}>
+        <TouchableOpacity style={styles.button} onPress={() => setSortType(sortTypeOptions.asc)}>
           <Text style={theme.TextTheme.modalNormal}>{t('Activity.oldToNew')}</Text>
-          <View style={styles.pastille}>{sortType === 'desc' && <View style={styles.innerPastille} />}</View>
+          <View style={styles.pastille}>
+            {sortType === sortTypeOptions.asc && <View style={styles.innerPastille} />}
+          </View>
         </TouchableOpacity>
       </View>
     </View>

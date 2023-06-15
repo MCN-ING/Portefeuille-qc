@@ -4,7 +4,8 @@ import { View, Text } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
 import HistoryHeader from '../components/HistoryHeader'
-import { HistoryActionstype, lookBack, records } from '../constants'
+import { filterTypeOptions, lookBackOptions, sortTypeOptions } from '../constants'
+import { historyActionsType, lookBack, records, sortType } from '../types'
 
 const History: React.FC = () => {
   const { records: credentialRecords } = useCredentials()
@@ -12,12 +13,12 @@ const History: React.FC = () => {
   const { records: connectionRecords } = useConnections()
 
   const [history, setHistory] = useState<records[]>([])
-  const [sortType, setSortType] = useState<'asc' | 'desc'>('asc')
-  const [recordsLookBack, setRecordsLookBack] = useState<lookBack>('all')
-  const [recordsType, setRecordsType] = useState<HistoryActionstype[]>([
-    'CredentialRecord',
-    'ProofRecord',
-    'ConnectionRecord',
+  const [sortType, setSortType] = useState<sortType>(sortTypeOptions.desc)
+  const [recordsLookBack, setRecordsLookBack] = useState<lookBack>(lookBackOptions.all)
+  const [recordsType, setRecordsType] = useState<historyActionsType[]>([
+    filterTypeOptions.connection,
+    filterTypeOptions.credential,
+    filterTypeOptions.proof,
   ])
 
   const sortRecords = (records: records[]) => {
@@ -29,13 +30,13 @@ const History: React.FC = () => {
 
   const filterLookBackRecords = (records: records[]) => {
     switch (recordsLookBack) {
-      case 'day':
+      case lookBackOptions.day:
         return records.filter((record) => Date.parse(record.createdAt.toDateString()) === Date.now())
-      case 'week':
+      case lookBackOptions.week:
         return records.filter((record) => Date.parse(record.createdAt.toDateString()) >= Date.now() - 604800000)
-      case 'month':
+      case lookBackOptions.month:
         return records.filter((record) => Date.parse(record.createdAt.toDateString()) >= Date.now() - 2629800000)
-      case 'year':
+      case lookBackOptions.year:
         return records.filter((record) => Date.parse(record.createdAt.toDateString()) >= Date.now() - 31557600000)
       default:
         return records

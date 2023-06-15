@@ -1,5 +1,3 @@
-import { CredentialExchangeRecord, ProofExchangeRecord, ConnectionRecord } from '@aries-framework/core'
-
 export const PINValidationRules = {
   only_numbers: true,
   min_length: 6,
@@ -12,6 +10,10 @@ export const PINValidationRules = {
 }
 export const hitSlop = { top: 44, bottom: 44, left: 44, right: 44 }
 
-export type records = CredentialExchangeRecord | ProofExchangeRecord | ConnectionRecord
-export type lookBack = 'day' | 'week' | 'month' | 'year' | 'all'
-export type HistoryActionstype = 'CredentialRecord' | 'ProofRecord' | 'ConnectionRecord'
+export const lookBackOptions = { day: 'day', week: 'week', month: 'month', year: 'year', all: 'all' }
+export const sortTypeOptions = { asc: 'asc', desc: 'desc' }
+export const filterTypeOptions = {
+  credential: 'CredentialRecord',
+  proof: 'ProofRecord',
+  connection: 'ConnectionRecord',
+}

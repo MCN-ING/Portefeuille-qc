@@ -1,21 +1,21 @@
 import { useTheme } from 'aries-bifold'
-import React, { useState } from 'react'
+import React, { useState, Dispatch, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, Text, StyleSheet, Modal, TouchableWithoutFeedback, Animated } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { HistoryActionstype, lookBack } from '../constants'
+import { historyActionsType, lookBack, sortType } from '../types'
 
 import ActivityFilters from './ActivityFilters'
 import ActivitySortBy from './ActivitySortBy'
 
 type Props = {
-  setSortType: React.Dispatch<React.SetStateAction<'asc' | 'desc'>>
-  sortType: 'asc' | 'desc'
-  setRecordsType: React.Dispatch<React.SetStateAction<HistoryActionstype[]>>
-  recordsType: HistoryActionstype[]
-  setRecordsLookBack: React.Dispatch<React.SetStateAction<lookBack>>
+  setSortType: Dispatch<SetStateAction<sortType>>
+  sortType: sortType
+  setRecordsType: Dispatch<SetStateAction<historyActionsType[]>>
+  recordsType: historyActionsType[]
+  setRecordsLookBack: Dispatch<SetStateAction<lookBack>>
   recordsLookBack: lookBack
 }
 

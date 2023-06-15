@@ -1,10 +1,20 @@
 import { useTheme } from 'aries-bifold'
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
-const ActivityFilters = ({ setRecordsType, recordsType = [], setRecordsLookBack, recordsLookBack }: any) => {
+import { filterTypeOptions, lookBackOptions } from '../constants'
+import { HistoryActionstype, lookBack } from '../types'
+
+type Props = {
+  setRecordsType: Dispatch<SetStateAction<HistoryActionstype[]>>
+  recordsType: HistoryActionstype[]
+  setRecordsLookBack: Dispatch<SetStateAction<lookBack>>
+  recordsLookBack: lookBack
+}
+
+const ActivityFilters = ({ setRecordsType, recordsType = [], setRecordsLookBack, recordsLookBack }: Props) => {
   const theme = useTheme()
   const { t } = useTranslation()
 
@@ -56,6 +66,23 @@ const ActivityFilters = ({ setRecordsType, recordsType = [], setRecordsLookBack,
       borderRadius: 4,
       backgroundColor: theme.ColorPallet.grayscale.darkGrey,
     },
+    lookBackSection: {
+      borderTopColor: theme.ColorPallet.grayscale.lightGrey,
+      borderTopWidth: 1,
+      borderStyle: 'solid',
+      paddingVertical: 15,
+      flexDirection: 'column',
+      width: '100%',
+    },
+    lookBackButton: {
+      paddingHorizontal: 15,
+      paddingVertical: 5,
+      margin: 8,
+      borderColor: theme.ColorPallet.grayscale.darkGrey,
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderRadius: 5,
+    },
   })
 
   const handleRecordsType = (type: string) => {
@@ -76,56 +103,49 @@ const ActivityFilters = ({ setRecordsType, recordsType = [], setRecordsLookBack,
         }}
       >
         <Text style={theme.TextTheme.modalTitle}>Types</Text>
-        <TouchableOpacity style={styles.button} onPress={() => handleRecordsType('CredentialRecord')}>
+        <TouchableOpacity style={styles.button} onPress={() => handleRecordsType(filterTypeOptions.credential)}>
           <Text style={theme.TextTheme.modalNormal}>{t('Activity.credentials')}</Text>
           <View style={styles.checkbox}>
-            {recordsType.includes('CredentialRecord') && <View style={styles.innerCheckbox} />}
+            {recordsType.includes(filterTypeOptions.credential) && <View style={styles.innerCheckbox} />}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => handleRecordsType('ProofRecord')}>
+        <TouchableOpacity style={styles.button} onPress={() => handleRecordsType(filterTypeOptions.proof)}>
           <Text style={theme.TextTheme.modalNormal}>{t('Activity.proofs')}</Text>
           <View style={styles.checkbox}>
-            {recordsType.includes('ProofRecord') && <View style={styles.innerCheckbox} />}
+            {recordsType.includes(filterTypeOptions.proof) && <View style={styles.innerCheckbox} />}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => handleRecordsType('ConnectionRecord')}>
+        <TouchableOpacity style={styles.button} onPress={() => handleRecordsType(filterTypeOptions.connection)}>
           <Text style={theme.TextTheme.modalNormal}>{t('Activity.connections')}</Text>
           <View style={styles.checkbox}>
-            {recordsType.includes('ConnectionRecord') && <View style={styles.innerCheckbox} />}
+            {recordsType.includes(filterTypeOptions.connection) && <View style={styles.innerCheckbox} />}
           </View>
         </TouchableOpacity>
       </View>
-      <View
-        style={{
-          borderTopColor: theme.ColorPallet.grayscale.lightGrey,
-          borderTopWidth: 1,
-          borderStyle: 'solid',
-          paddingVertical: 15,
-          flexDirection: 'column',
-          width: '100%',
-        }}
-      >
+      <View style={styles.lookBackSection}>
         <Text style={theme.TextTheme.modalTitle}>{t('Activity.lookBack')}</Text>
         <FlatList
-          data={['all', 'year', 'month', 'week', 'day']}
+          data={[
+            lookBackOptions.all,
+            lookBackOptions.year,
+            lookBackOptions.month,
+            lookBackOptions.week,
+            lookBackOptions.day,
+          ]}
           style={{ width: '100%', maxHeight: 60 }}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => setRecordsLookBack(item)}>
               <View
-                style={{
-                  paddingHorizontal: 15,
-                  paddingVertical: 5,
-                  margin: 8,
-                  borderColor: theme.ColorPallet.grayscale.darkGrey,
-                  borderWidth: 1,
-                  borderStyle: 'solid',
-                  borderRadius: 5,
-                  backgroundColor:
-                    recordsLookBack === item
-                      ? theme.ColorPallet.brand.primary
-                      : theme.ColorPallet.brand.primaryBackground,
-                }}
+                style={[
+                  styles.lookBackButton,
+                  {
+                    backgroundColor:
+                      recordsLookBack === item
+                        ? theme.ColorPallet.brand.primary
+                        : theme.ColorPallet.brand.primaryBackground,
+                  },
+                ]}
               >
                 <Text
                   style={[
