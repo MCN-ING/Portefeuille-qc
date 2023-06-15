@@ -362,6 +362,7 @@ const translation = {
   RootStack: {
     Contacts: 'Contacts',
     Settings: 'Paramètres',
+    "SkipA11y": "Passer l'introduction du portefeuille QC",
   },
   QRScanner: {
     PermissionToUseCamera: "Permission d'utiliser l'appareil photo",

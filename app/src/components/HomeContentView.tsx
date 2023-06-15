@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, View, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import WebDisplay from '../screens/WebDisplay'
 import { useNotifications } from '../hooks/notifications'
 import { BCState } from '../store'
 
@@ -24,7 +24,6 @@ const HomeContentView: React.FC<HomeContentViewProps> = ({ children }) => {
   const { HomeTheme, ColorPallet } = useTheme()
   const { t } = useTranslation()
   const [surveyVisible, setSurveyVisible] = useState(false)
-  const [store] = useStore<BCState>()
 
   const styles = StyleSheet.create({
     container: {
