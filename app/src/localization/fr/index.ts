@@ -107,9 +107,9 @@ const translation = {
     Issuer: 'Service C.-B.',
     Name: 'Personne',
     Description:
-      "Ajoutez vos justificatifs d’identités à votre portefeuille pour prouver vos informations personnelles en ligne et accéder aux services en ligne.\n\nVous aurez besoin de l'application BC Service Card configurée sur cet appareil mobile.",
-    LinkDescription: "Obtenez l'application BC Services Card",
-    GetCredential: "Obtenez l'application BC Services Card",
+      "Ajoutez vos justificatifs d’identités à votre portefeuille pour prouver vos informations personnelles en ligne et accéder aux services en ligne.\n\nVous aurez besoin de l'application QC Service Card configurée sur cet appareil mobile.",
+    LinkDescription: "Obtenez l'application QC Services Card",
+    GetCredential: "Obtenez l'application QC Services Card",
     Decline: 'Obtenez ceci plus tard',
     PageTitle: 'Justificatifs d’identité',
   },
@@ -362,6 +362,7 @@ const translation = {
   RootStack: {
     Contacts: 'Contacts',
     Settings: 'Paramètres',
+    SkipA11y: "Sauter l'introduction au portefeuille QC",
   },
   QRScanner: {
     PermissionToUseCamera: "Permission d'utiliser l'appareil photo",
