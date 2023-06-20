@@ -332,6 +332,7 @@ const translation = {
     PermissionToUseCamera: 'Permission to use camera',
     WeNeedYourPermissionToUseYourCamera: 'We need your permission to use your camera',
     Ok: 'Ok',
+    "SkipA11y": "Skip introduction to BC Wallet",
   },
   Record: {
     Hide: 'Hide',

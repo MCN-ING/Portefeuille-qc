@@ -11,8 +11,7 @@ import { useAgent } from '@aries-framework/react-hooks'
 import { agentDependencies } from '@aries-framework/react-native'
 import Bugsnag from '@bugsnag/react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useNavigation } from '@react-navigation/core'
-import { CommonActions } from '@react-navigation/native'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 import {
   LocalStorageKeys,
   DispatchAction,

@@ -19,7 +19,7 @@ PODS:
   - indy-sdk-react-native (0.2.2):
     - React
   - libevent (2.1.12)
-  - Permission-Camera (3.6.1):
+  - Permission-Camera (3.8.0):
     - RNPermissions
   - RCT-Folly (2021.06.28.00-v2):
     - boost
@@ -258,7 +258,7 @@ PODS:
     - React-Core
   - react-native-splash-screen (3.3.0):
     - React-Core
-  - react-native-tcp-socket (6.0.3):
+  - react-native-tcp-socket (6.0.6):
     - CocoaAsyncSocket
     - React-Core
   - react-native-version-check (3.4.7):
@@ -347,9 +347,9 @@ PODS:
     - React-Core
   - RNKeychain (7.0.0):
     - React-Core
-  - RNLocalize (2.2.4):
+  - RNLocalize (2.2.6):
     - React-Core
-  - RNPermissions (3.6.1):
+  - RNPermissions (3.8.0):
     - React-Core
   - RNReanimated (2.2.4):
     - DoubleConversion
@@ -592,7 +592,7 @@ SPEC CHECKSUMS:
   hermes-engine: bf7577d12ac6ccf53ab8b5af3c6ccf0dd8458c5c
   indy-sdk-react-native: 52c3fdd11b673d11cdae5c28fa79a184084c6688
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  Permission-Camera: bf6791b17c7f614b6826019fcfdcc286d3a107f6
+  Permission-Camera: e6d142d7d8b714afe0a83e5e6ae17eb949f1e3e9
   RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
   RCTRequired: 405e24508a0feed1771d48caebb85c581db53122
   RCTTypeSafety: 0654998ea6afd3dccecbf6bb379d7c10d1361a72
@@ -636,8 +636,8 @@ SPEC CHECKSUMS:
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNInAppBrowser: e36d6935517101ccba0e875bac8ad7b0cb655364
   RNKeychain: f75b8c8b2f17d3b2aa1f25b4a0ac5b83d947ff8f
-  RNLocalize: 0df7970cfc60389f00eb62fd7c097dc75af3fb4f
-  RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
+  RNLocalize: d4b8af4e442d4bcca54e68fc687a2129b4d71a81
+  RNPermissions: 215c54462104b3925b412b0fb3c9c497b21c358b
   RNReanimated: 65583befd5706cc9c86ae9a081786181ced37b93
   RNScreens: 0591543e343c7444ea1756b6265d81a4295922c9
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f

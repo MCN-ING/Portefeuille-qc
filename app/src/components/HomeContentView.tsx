@@ -1,6 +1,6 @@
 import { CredentialState } from '@aries-framework/core'
 import { useCredentialByState } from '@aries-framework/react-hooks'
-import { useStore, Button, ButtonType, testIdWithKey, useTheme } from 'aries-bifold'
+import { Button, ButtonType, testIdWithKey, useTheme } from 'aries-bifold'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, View, Text } from 'react-native'
