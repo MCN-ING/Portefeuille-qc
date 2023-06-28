@@ -1,6 +1,5 @@
 import {
   Agent,
-  AutoAcceptCredential,
   ConsoleLogger,
   HttpOutboundTransport,
   LogLevel,
@@ -11,8 +10,7 @@ import { useAgent } from '@aries-framework/react-hooks'
 import { agentDependencies } from '@aries-framework/react-native'
 import Bugsnag from '@bugsnag/react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useNavigation } from '@react-navigation/core'
-import { CommonActions } from '@react-navigation/native'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 import {
   LocalStorageKeys,
   DispatchAction,
@@ -21,6 +19,7 @@ import {
   OnboardingState,
   LoginAttemptState,
   PreferencesState,
+  MigrationState,
   ToursState,
   useAuth,
   useTheme,
@@ -29,6 +28,10 @@ import {
   InfoBox,
   InfoBoxType,
   testIdWithKey,
+  didMigrateToAskar,
+  migrateToAskar,
+  getAgentModules,
+  createLinkSecretIfRequired,
 } from 'aries-bifold'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -219,6 +222,16 @@ const Splash: React.FC = () => {
           })
         }
 
+        const migrationData = await AsyncStorage.getItem(LocalStorageKeys.Migration)
+        if (migrationData) {
+          const dataAsJSON = JSON.parse(migrationData) as MigrationState
+
+          dispatch({
+            type: DispatchAction.MIGRATION_UPDATED,
+            payload: [dataAsJSON],
+          })
+        }
+
         const toursData = await AsyncStorage.getItem(LocalStorageKeys.Tours)
         if (toursData) {
           const dataAsJSON = JSON.parse(toursData) as ToursState
@@ -303,17 +316,20 @@ const Splash: React.FC = () => {
         const options = {
           config: {
             label: 'QC Wallet',
-            mediatorConnectionsInvite: Config.MEDIATOR_URL,
-            mediatorPickupStrategy: MediatorPickupStrategy.Implicit,
-            walletConfig: { id: credentials.id, key: credentials.key },
-            autoAcceptConnections: true,
-            autoAcceptCredentials: AutoAcceptCredential.ContentApproved,
+            walletConfig: {
+              id: credentials.id,
+              key: credentials.key,
+            },
             logger: new ConsoleLogger(LogLevel.trace),
-            indyLedgers,
-            connectToIndyLedgersOnStartup: false,
+            mediatorPickupStrategy: MediatorPickupStrategy.Implicit,
             autoUpdateStorageOnStartup: true,
+            autoAcceptConnections: true,
           },
           dependencies: agentDependencies,
+          modules: getAgentModules({
+            indyNetworks: indyLedgers,
+            mediatorInvitationUrl: Config.MEDIATOR_URL,
+          }),
         }
 
         const newAgent = new Agent(options)
@@ -323,11 +339,24 @@ const Splash: React.FC = () => {
         newAgent.registerOutboundTransport(wsTransport)
         newAgent.registerOutboundTransport(httpTransport)
 
+        // If we haven't migrated to Aries Askar yet, we need to do this before we initialize the agent.
+        if (!didMigrateToAskar(store.migration)) {
+          newAgent.config.logger.debug('Agent not updated to Aries Askar, updating...')
+
+          await migrateToAskar(credentials.id, credentials.key, newAgent)
+
+          newAgent.config.logger.debug('Successfully finished updating agent to Aries Askar')
+          // Store that we migrated to askar.
+          dispatch({
+            type: DispatchAction.DID_MIGRATE_TO_ASKAR,
+          })
+        }
+
         setStep(6)
         await newAgent.initialize()
 
         setStep(7)
-        await newAgent.ledger.connectToPools()
+        await createLinkSecretIfRequired(newAgent)
 
         setStep(8)
         setAgent(newAgent)
