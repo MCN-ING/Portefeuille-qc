@@ -4544,6 +4544,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node-fetch@npm:*":
+  version: 3.0.2
+  resolution: "@types/node-fetch@npm:3.0.2"
+  dependencies:
+    node-fetch: "*"
+  checksum: b9f97bc4219c37f70299133b36389719cf4adacad46cea80df70f77d4a9f6999ea5be18a1ab90b34239b684cae032adeec10756cce8d2ae81c17f5e4c56fd4e9
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:16.9.6":
   version: 16.9.6
   resolution: "@types/node@npm:16.9.6"
@@ -4633,6 +4642,15 @@ __metadata:
     "@types/react": "*"
     "@types/react-native": ^0.70
   checksum: e954807f7229a84ba6aa15c6952a987e0b45406e501131c0d73fdaa3fe634301d466e22eec8bb23d9c509eb39043fae9cad4ca685b125dc4d6d603dc46b789f7
+  languageName: node
+  linkType: hard
+
+"@types/react-native-version-check@npm:^3.4.5":
+  version: 3.4.5
+  resolution: "@types/react-native-version-check@npm:3.4.5"
+  dependencies:
+    "@types/node-fetch": "*"
+  checksum: 4bd239804fa7f172e612dbd81bb224352e7908a0f96f3529c73b9483ab48b9ebd3ad6d1a2d6da5e3584ef3e66a05ab9cd7d3933efbee28669ccec47d29307c19
   languageName: node
   linkType: hard
 
@@ -5695,9 +5713,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aries-bifold@link:../bifold-core::locator=bc-wallet-mobile-app%40workspace%3Aapp":
+"aries-bifold@link:../bifold-core::locator=qc-wallet-mobile-app%40workspace%3Aapp":
   version: 0.0.0-use.local
-  resolution: "aries-bifold@link:../bifold-core::locator=bc-wallet-mobile-app%40workspace%3Aapp"
+  resolution: "aries-bifold@link:../bifold-core::locator=qc-wallet-mobile-app%40workspace%3Aapp"
   languageName: node
   linkType: soft
 
@@ -6029,6 +6047,13 @@ __metadata:
   version: 1.0.1
   resolution: "arrify@npm:1.0.1"
   checksum: 745075dd4a4624ff0225c331dacb99be501a515d39bcb7c84d24660314a6ec28e68131b137e6f7e16318170842ce97538cd298fc4cd6b2cc798e0b957f2747e7
+  languageName: node
+  linkType: hard
+
+"arrify@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "arrify@npm:2.0.1"
+  checksum: 067c4c1afd182806a82e4c1cb8acee16ab8b5284fbca1ce29408e6e91281c36bb5b612f6ddfbd40a0f7a7e0c75bf2696eb94c027f6e328d6e9c52465c98e4209
   languageName: node
   linkType: hard
 
@@ -6757,121 +6782,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bc-wallet-mobile-app@workspace:app":
-  version: 0.0.0-use.local
-  resolution: "bc-wallet-mobile-app@workspace:app"
-  dependencies:
-    "@aries-framework/anoncreds": ^0.4.0
-    "@aries-framework/anoncreds-rs": ^0.4.0
-    "@aries-framework/askar": ^0.4.0
-    "@aries-framework/core": ^0.4.0
-    "@aries-framework/indy-sdk-to-askar-migration": 0.4.0
-    "@aries-framework/indy-vdr": ^0.4.0
-    "@aries-framework/react-hooks": ^0.4.2
-    "@aries-framework/react-native": ^0.4.0
-    "@babel/core": 7.15.5
-    "@babel/runtime": 7.15.4
-    "@commitlint/cli": ^11.0.0
-    "@formatjs/intl-datetimeformat": 4.2.4
-    "@formatjs/intl-displaynames": 5.2.4
-    "@formatjs/intl-getcanonicallocales": 1.7.3
-    "@formatjs/intl-listformat": 6.3.4
-    "@formatjs/intl-locale": 2.4.38
-    "@formatjs/intl-numberformat": 7.2.4
-    "@formatjs/intl-pluralrules": 4.1.4
-    "@formatjs/intl-relativetimeformat": 9.3.1
-    "@hyperledger/anoncreds-react-native": ^0.1.0
-    "@hyperledger/aries-askar-react-native": ^0.1.0
-    "@hyperledger/indy-vdr-react-native": ^0.1.0
-    "@react-native-async-storage/async-storage": 1.15.11
-    "@react-native-community/eslint-config": ^2.0.0
-    "@react-native-community/masked-view": 0.1.11
-    "@react-native-community/netinfo": 9.3.0
-    "@react-navigation/bottom-tabs": 6.0.9
-    "@react-navigation/devtools": 6.0.8
-    "@react-navigation/native": 6.0.6
-    "@react-navigation/stack": 6.0.11
-    "@storybook/addon-actions": ^5.3.21
-    "@storybook/addon-knobs": ^5.3.21
-    "@storybook/addon-links": ^5.3.21
-    "@storybook/addon-ondevice-actions": ^5.3.23
-    "@storybook/addon-ondevice-knobs": ^5.3.26
-    "@storybook/react-native": ^5.3.25
-    "@storybook/react-native-server": ^5.3.23
-    "@testing-library/jest-native": ^4.0.13
-    "@testing-library/react-native": ^9.0.0
-    "@types/jest": ^27.4.0
-    "@types/lodash.flatten": ^4.4.6
-    "@types/lodash.merge": ^4.6.7
-    "@types/lodash.startcase": ^4.4.6
-    "@types/react": 16.14.15
-    "@types/react-native": 0.63.53
-    "@types/react-native-vector-icons": ^6.4.12
-    "@types/react-test-renderer": ^16.9.5
-    "@typescript-eslint/eslint-plugin": ^4.20.0
-    "@typescript-eslint/parser": ^4.33.0
-    aries-bifold: "link:../bifold-core"
-    axios: 0.21.4
-    babel-jest: ^27.5.1
-    babel-plugin-module-resolver: 4.1.0
-    commitlint: ^11.0.0
-    copyfiles: ^2.4.1
-    eslint: ^7.14.0
-    eslint-import-resolver-typescript: ^2.5.0
-    eslint-plugin-import: ^2.25.2
-    eslint-plugin-prettier: ^3.3.1
-    husky: ^7.0.0
-    i18next: 21.4.0
-    jest: ^27.5.1
-    lint-staged: ^11.2.6
-    lodash.flatten: 4.4.0
-    lodash.merge: ^4.6.2
-    lodash.startcase: 4.4.0
-    metro-react-native-babel-preset: 0.66.2
-    mockdate: ^3.0.5
-    moment: ^2.29.4
-    prettier: ^2.1.2
-    query-string: 7.0.1
-    react: 17.0.2
-    react-dom: ^17.0.2
-    react-i18next: 11.13.0
-    react-native: 0.66.5
-    react-native-animated-pagination-dots: 0.1.72
-    react-native-argon2: 2.0.1
-    react-native-bouncy-checkbox: ^3.0.5
-    react-native-camera: 3.44.3
-    react-native-collapsible: 1.6.0
-    react-native-config: 1.4.4
-    react-native-confirmation-code-field: 7.3.0
-    react-native-device-info: 8.4.9
-    react-native-encrypted-storage: 4.0.2
-    react-native-fs: 2.18.0
-    react-native-gesture-handler: 1.10.3
-    react-native-get-random-values: 1.7.0
-    react-native-gifted-chat: 0.16.3
-    react-native-inappbrowser-reborn: ^3.7.0
-    react-native-keychain: ^7.0.0
-    react-native-localize: ^2.2.4
-    react-native-permissions: ^3.6.1
-    react-native-qrcode-svg: 6.1.1
-    react-native-reanimated: 2.2.4
-    react-native-safe-area-context: 3.3.2
-    react-native-scalable-image: ^1.1.0
-    react-native-screens: 3.7.2
-    react-native-splash-screen: 3.3.0
-    react-native-svg: 12.1.1
-    react-native-svg-transformer: 0.14.3
-    react-native-tcp-socket: ^6.0.3
-    react-native-toast-message: 2.0.1
-    react-native-uuid: 2.0.1
-    react-native-vector-icons: 8.1.0
-    react-native-webview: 11.23.0
-    react-test-renderer: ^17.0.2
-    typescript: 4.4.3
-    uuid: 8.3.2
-  languageName: unknown
-  linkType: soft
-
 "bc-wallet-mobile@workspace:.":
   version: 0.0.0-use.local
   resolution: "bc-wallet-mobile@workspace:."
@@ -7195,6 +7105,13 @@ __metadata:
   dependencies:
     node-int64: ^0.4.0
   checksum: 9ba4dc58ce86300c862bffc3ae91f00b2a03b01ee07f3564beeeaf82aa243b8b03ba53f123b0b842c190d4399b94697970c8e7cf7b1ea44b61aa28c3526a4449
+  languageName: node
+  linkType: hard
+
+"buffer-equal-constant-time@npm:1.0.1":
+  version: 1.0.1
+  resolution: "buffer-equal-constant-time@npm:1.0.1"
+  checksum: 80bb945f5d782a56f374b292770901065bad21420e34936ecbe949e57724b4a13874f735850dd1cc61f078773c4fb5493a41391e7bda40d1fa388d6bd80daaab
   languageName: node
   linkType: hard
 
@@ -8704,6 +8621,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"data-uri-to-buffer@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "data-uri-to-buffer@npm:4.0.1"
+  checksum: 0d0790b67ffec5302f204c2ccca4494f70b4e2d940fea3d36b09f0bb2b8539c2e86690429eb1f1dc4bcc9e4df0644193073e63d9ee48ac9fce79ec1506e4aa4c
+  languageName: node
+  linkType: hard
+
 "data-urls@npm:^2.0.0":
   version: 2.0.0
   resolution: "data-urls@npm:2.0.0"
@@ -9317,6 +9241,15 @@ __metadata:
   version: 0.2.0
   resolution: "eastasianwidth@npm:0.2.0"
   checksum: 7d00d7cd8e49b9afa762a813faac332dee781932d6f2c848dc348939c4253f1d4564341b7af1d041853bc3f32c2ef141b58e0a4d9862c17a7f08f68df1e0f1ed
+  languageName: node
+  linkType: hard
+
+"ecdsa-sig-formatter@npm:1.0.11, ecdsa-sig-formatter@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "ecdsa-sig-formatter@npm:1.0.11"
+  dependencies:
+    safe-buffer: ^5.0.1
+  checksum: 207f9ab1c2669b8e65540bce29506134613dd5f122cccf1e6a560f4d63f2732d427d938f8481df175505aad94583bcb32c688737bb39a6df0625f903d6d93c03
   languageName: node
   linkType: hard
 
@@ -10360,6 +10293,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"extend@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "extend@npm:3.0.2"
+  checksum: a50a8309ca65ea5d426382ff09f33586527882cf532931cb08ca786ea3146c0553310bda688710ff61d7668eba9f96b923fe1420cdf56a2c3eaf30fcab87b515
+  languageName: node
+  linkType: hard
+
 "external-editor@npm:^3.0.3":
   version: 3.1.0
   resolution: "external-editor@npm:3.1.0"
@@ -10456,7 +10396,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-text-encoding@npm:^1.0.3":
+"fast-text-encoding@npm:^1.0.0, fast-text-encoding@npm:^1.0.3":
   version: 1.0.6
   resolution: "fast-text-encoding@npm:1.0.6"
   checksum: 9d58f694314b3283e785bf61954902536da228607ad246905e30256f9ab8331f780ac987e7222c9f5eafd04168d07e12b8054c85cedb76a2c05af0e82387a903
@@ -10528,6 +10468,16 @@ __metadata:
     domexception:
       optional: true
   checksum: 22d4487ce78ea4e52b432b0057d8d42922d5d93c0374b0bc2692cebdcb11bf8fac4f6d141b31f1633db1e9212effd38385adbd765a2c7412a621307058499214
+  languageName: node
+  linkType: hard
+
+"fetch-blob@npm:^3.1.2, fetch-blob@npm:^3.1.4":
+  version: 3.2.0
+  resolution: "fetch-blob@npm:3.2.0"
+  dependencies:
+    node-domexception: ^1.0.0
+    web-streams-polyfill: ^3.0.3
+  checksum: f19bc28a2a0b9626e69fd7cf3a05798706db7f6c7548da657cbf5026a570945f5eeaedff52007ea35c8bcd3d237c58a20bf1543bc568ab2422411d762dd3d5bf
   languageName: node
   linkType: hard
 
@@ -10896,6 +10846,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"formdata-polyfill@npm:^4.0.10":
+  version: 4.0.10
+  resolution: "formdata-polyfill@npm:4.0.10"
+  dependencies:
+    fetch-blob: ^3.1.2
+  checksum: 82a34df292afadd82b43d4a740ce387bc08541e0a534358425193017bf9fb3567875dc5f69564984b1da979979b70703aa73dee715a17b6c229752ae736dd9db
+  languageName: node
+  linkType: hard
+
 "forwarded@npm:0.2.0":
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
@@ -11137,6 +11096,28 @@ __metadata:
     strip-ansi: ^3.0.1
     wide-align: ^1.1.0
   checksum: a89b53cee65579b46832e050b5f3a79a832cc422c190de79c6b8e2e15296ab92faddde6ddf2d376875cbba2b043efa99b9e1ed8124e7365f61b04e3cee9d40ee
+  languageName: node
+  linkType: hard
+
+"gaxios@npm:^5.0.0, gaxios@npm:^5.0.1":
+  version: 5.1.2
+  resolution: "gaxios@npm:5.1.2"
+  dependencies:
+    extend: ^3.0.2
+    https-proxy-agent: ^5.0.0
+    is-stream: ^2.0.0
+    node-fetch: ^2.6.9
+  checksum: 0d5a929805e1d6fac22a7259538d1730f4dc853b024cc7193c08c3fbee52b1e9d2c423a5a56807acc45682bb856c37a91f737e0c4e43db2f785c7aec85ab7d44
+  languageName: node
+  linkType: hard
+
+"gcp-metadata@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "gcp-metadata@npm:5.2.0"
+  dependencies:
+    gaxios: ^5.0.0
+    json-bigint: ^1.0.0
+  checksum: 4e7ed589c814bb79cbf052b0eda1d5e219fbee030f4772eca27ec1e6e1faa85ba0ef3b17ea5c3fd51a54fc5429c924b4edbb260ac147701f211fb9807b893544
   languageName: node
   linkType: hard
 
@@ -11456,6 +11437,58 @@ __metadata:
   languageName: node
   linkType: hard
 
+"google-auth-library@npm:^8.0.2":
+  version: 8.8.0
+  resolution: "google-auth-library@npm:8.8.0"
+  dependencies:
+    arrify: ^2.0.0
+    base64-js: ^1.3.0
+    ecdsa-sig-formatter: ^1.0.11
+    fast-text-encoding: ^1.0.0
+    gaxios: ^5.0.0
+    gcp-metadata: ^5.2.0
+    gtoken: ^6.1.0
+    jws: ^4.0.0
+    lru-cache: ^6.0.0
+  checksum: 4552805466679e258febc4c0621d401d510df267f2f105957b8925b79c1454d9a2e5d53af211dd90a1848658f608babac7f5bc2f3c536c441ba32ba3641d335d
+  languageName: node
+  linkType: hard
+
+"google-p12-pem@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "google-p12-pem@npm:4.0.1"
+  dependencies:
+    node-forge: ^1.3.1
+  bin:
+    gp12-pem: build/src/bin/gp12-pem.js
+  checksum: 59a5026331ea67455672e83770da29f09d979f02e06cb2227ea5916f8cca437887c2d3869f2602a686dc84437886ae9d2ac010780803cbe8e5f161c2d02d8efd
+  languageName: node
+  linkType: hard
+
+"googleapis-common@npm:^6.0.0":
+  version: 6.0.4
+  resolution: "googleapis-common@npm:6.0.4"
+  dependencies:
+    extend: ^3.0.2
+    gaxios: ^5.0.1
+    google-auth-library: ^8.0.2
+    qs: ^6.7.0
+    url-template: ^2.0.8
+    uuid: ^9.0.0
+  checksum: 718db6b533bdbfaef8f50df8ad9c7cf5a145a346dde16601e7380c5a845920c0801fa84b915e82998f9c4fc1ca77022b585fa5e94c3a40ec35600def7b9d94fe
+  languageName: node
+  linkType: hard
+
+"googleapis@npm:^113.0.0":
+  version: 113.0.0
+  resolution: "googleapis@npm:113.0.0"
+  dependencies:
+    google-auth-library: ^8.0.2
+    googleapis-common: ^6.0.0
+  checksum: 858b02db85f6d4d00c353d625c25a7ec34289efc6f3db0eedf4292c4e54f1551c89554c1d447872359e7a18363ad7ad8146a63b64d26b83d5d6051e56998479f
+  languageName: node
+  linkType: hard
+
 "gopd@npm:^1.0.1":
   version: 1.0.1
   resolution: "gopd@npm:1.0.1"
@@ -11476,6 +11509,17 @@ __metadata:
   version: 1.3.0
   resolution: "growly@npm:1.3.0"
   checksum: 53cdecd4c16d7d9154a9061a9ccb87d602e957502ca69b529d7d1b2436c2c0b700ec544fc6b3e4cd115d59b81e62e44ce86bd0521403b579d3a2a97d7ce72a44
+  languageName: node
+  linkType: hard
+
+"gtoken@npm:^6.1.0":
+  version: 6.1.2
+  resolution: "gtoken@npm:6.1.2"
+  dependencies:
+    gaxios: ^5.0.1
+    google-p12-pem: ^4.0.0
+    jws: ^4.0.0
+  checksum: cf3210afe2ccee8feaa06f0c7eb942e217244a8563a1d0a71aa3095eea545015896741c1d48654d8de35b7b07579f93e25e5dfe817f06b7e753646b67f7a4ecf
   languageName: node
   linkType: hard
 
@@ -13834,6 +13878,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-bigint@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "json-bigint@npm:1.0.0"
+  dependencies:
+    bignumber.js: ^9.0.0
+  checksum: c67bb93ccb3c291e60eb4b62931403e378906aab113ec1c2a8dd0f9a7f065ad6fd9713d627b732abefae2e244ac9ce1721c7a3142b2979532f12b258634ce6f6
+  languageName: node
+  linkType: hard
+
 "json-parse-better-errors@npm:^1.0.1, json-parse-better-errors@npm:^1.0.2":
   version: 1.0.2
   resolution: "json-parse-better-errors@npm:1.0.2"
@@ -13965,6 +14018,27 @@ __metadata:
     array-includes: ^3.1.5
     object.assign: ^4.1.3
   checksum: a2ed78cac49a0f0c4be8b1eafe3c5257a1411341d8e7f1ac740debae003de04e5f6372bfcfbd9d082e954ffd99aac85bcda85b7c6bc11609992483f4cdc0f745
+  languageName: node
+  linkType: hard
+
+"jwa@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "jwa@npm:2.0.0"
+  dependencies:
+    buffer-equal-constant-time: 1.0.1
+    ecdsa-sig-formatter: 1.0.11
+    safe-buffer: ^5.0.1
+  checksum: 8f00b71ad5fe94cb55006d0d19202f8f56889109caada2f7eeb63ca81755769ce87f4f48101967f398462e3b8ae4faebfbd5a0269cb755dead5d63c77ba4d2f1
+  languageName: node
+  linkType: hard
+
+"jws@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "jws@npm:4.0.0"
+  dependencies:
+    jwa: ^2.0.0
+    safe-buffer: ^5.0.1
+  checksum: d68d07aa6d1b8cb35c363a9bd2b48f15064d342a5d9dc18a250dbbce8dc06bd7e4792516c50baa16b8d14f61167c19e851fd7f66b59ecc68b7f6a013759765f7
   languageName: node
   linkType: hard
 
@@ -15615,6 +15689,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-domexception@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "node-domexception@npm:1.0.0"
+  checksum: ee1d37dd2a4eb26a8a92cd6b64dfc29caec72bff5e1ed9aba80c294f57a31ba4895a60fd48347cf17dd6e766da0ae87d75657dfd1f384ebfa60462c2283f5c7f
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:*":
+  version: 3.3.1
+  resolution: "node-fetch@npm:3.3.1"
+  dependencies:
+    data-uri-to-buffer: ^4.0.0
+    fetch-blob: ^3.1.4
+    formdata-polyfill: ^4.0.10
+  checksum: 62145fd3ba4770a76110bc31fdc0054ab2f5442b5ce96e9c4b39fc9e94a3d305560eec76e1165d9259eab866e02a8eecf9301062bb5dfc9f08a4d08b69d223dd
+  languageName: node
+  linkType: hard
+
 "node-fetch@npm:3.0.0-beta.9":
   version: 3.0.0-beta.9
   resolution: "node-fetch@npm:3.0.0-beta.9"
@@ -15625,7 +15717,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.2.0, node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.11, node-fetch@npm:^2.6.7":
+"node-fetch@npm:^2.2.0, node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.11, node-fetch@npm:^2.6.7, node-fetch@npm:^2.6.9":
   version: 2.6.11
   resolution: "node-fetch@npm:2.6.11"
   dependencies:
@@ -15636,6 +15728,13 @@ __metadata:
     encoding:
       optional: true
   checksum: 249d0666a9497553384d46b5ab296ba223521ac88fed4d8a17d6ee6c2efb0fc890f3e8091cafe7f9fba8151a5b8d925db2671543b3409a56c3cd522b468b47b3
+  languageName: node
+  linkType: hard
+
+"node-forge@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "node-forge@npm:1.3.1"
+  checksum: 08fb072d3d670599c89a1704b3e9c649ff1b998256737f0e06fbd1a5bf41cae4457ccaee32d95052d80bbafd9ffe01284e078c8071f0267dc9744e51c5ed42a9
   languageName: node
   linkType: hard
 
@@ -17162,6 +17261,123 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qc-wallet-mobile-app@workspace:app":
+  version: 0.0.0-use.local
+  resolution: "qc-wallet-mobile-app@workspace:app"
+  dependencies:
+    "@aries-framework/anoncreds": ^0.4.0
+    "@aries-framework/anoncreds-rs": ^0.4.0
+    "@aries-framework/askar": ^0.4.0
+    "@aries-framework/core": ^0.4.0
+    "@aries-framework/indy-sdk-to-askar-migration": 0.4.0
+    "@aries-framework/indy-vdr": ^0.4.0
+    "@aries-framework/react-hooks": ^0.4.2
+    "@aries-framework/react-native": ^0.4.0
+    "@babel/core": 7.15.5
+    "@babel/runtime": 7.15.4
+    "@commitlint/cli": ^11.0.0
+    "@formatjs/intl-datetimeformat": 4.2.4
+    "@formatjs/intl-displaynames": 5.2.4
+    "@formatjs/intl-getcanonicallocales": 1.7.3
+    "@formatjs/intl-listformat": 6.3.4
+    "@formatjs/intl-locale": 2.4.38
+    "@formatjs/intl-numberformat": 7.2.4
+    "@formatjs/intl-pluralrules": 4.1.4
+    "@formatjs/intl-relativetimeformat": 9.3.1
+    "@hyperledger/anoncreds-react-native": ^0.1.0
+    "@hyperledger/aries-askar-react-native": ^0.1.0
+    "@hyperledger/indy-vdr-react-native": ^0.1.0
+    "@react-native-async-storage/async-storage": 1.15.11
+    "@react-native-community/eslint-config": ^2.0.0
+    "@react-native-community/masked-view": 0.1.11
+    "@react-native-community/netinfo": 9.3.0
+    "@react-navigation/bottom-tabs": 6.0.9
+    "@react-navigation/devtools": 6.0.8
+    "@react-navigation/native": 6.0.6
+    "@react-navigation/stack": 6.0.11
+    "@storybook/addon-actions": ^5.3.21
+    "@storybook/addon-knobs": ^5.3.21
+    "@storybook/addon-links": ^5.3.21
+    "@storybook/addon-ondevice-actions": ^5.3.23
+    "@storybook/addon-ondevice-knobs": ^5.3.26
+    "@storybook/react-native": ^5.3.25
+    "@storybook/react-native-server": ^5.3.23
+    "@testing-library/jest-native": ^4.0.13
+    "@testing-library/react-native": ^9.0.0
+    "@types/jest": ^27.4.0
+    "@types/lodash.flatten": ^4.4.6
+    "@types/lodash.merge": ^4.6.7
+    "@types/lodash.startcase": ^4.4.6
+    "@types/react": 16.14.15
+    "@types/react-native": 0.63.53
+    "@types/react-native-vector-icons": ^6.4.12
+    "@types/react-native-version-check": ^3.4.5
+    "@types/react-test-renderer": ^16.9.5
+    "@typescript-eslint/eslint-plugin": ^4.20.0
+    "@typescript-eslint/parser": ^4.33.0
+    aries-bifold: "link:../bifold-core"
+    axios: 0.21.4
+    babel-jest: ^27.5.1
+    babel-plugin-module-resolver: 4.1.0
+    commitlint: ^11.0.0
+    copyfiles: ^2.4.1
+    eslint: ^7.14.0
+    eslint-import-resolver-typescript: ^2.5.0
+    eslint-plugin-import: ^2.25.2
+    eslint-plugin-prettier: ^3.3.1
+    googleapis: ^113.0.0
+    husky: ^7.0.0
+    i18next: 21.4.0
+    jest: ^27.5.1
+    lint-staged: ^11.2.6
+    lodash.flatten: 4.4.0
+    lodash.merge: ^4.6.2
+    lodash.startcase: 4.4.0
+    metro-react-native-babel-preset: 0.66.2
+    mockdate: ^3.0.5
+    moment: ^2.29.4
+    prettier: ^2.1.2
+    query-string: 7.0.1
+    react: 17.0.2
+    react-dom: ^17.0.2
+    react-i18next: 11.13.0
+    react-native: 0.66.5
+    react-native-animated-pagination-dots: 0.1.72
+    react-native-argon2: 2.0.1
+    react-native-bouncy-checkbox: ^3.0.5
+    react-native-camera: 3.44.3
+    react-native-collapsible: 1.6.0
+    react-native-config: 1.4.4
+    react-native-confirmation-code-field: 7.3.0
+    react-native-device-info: 8.4.9
+    react-native-encrypted-storage: 4.0.2
+    react-native-fs: 2.18.0
+    react-native-gesture-handler: 1.10.3
+    react-native-get-random-values: 1.7.0
+    react-native-gifted-chat: 0.16.3
+    react-native-inappbrowser-reborn: ^3.7.0
+    react-native-keychain: ^7.0.0
+    react-native-localize: ^2.2.4
+    react-native-permissions: ^3.6.1
+    react-native-qrcode-svg: 6.1.1
+    react-native-reanimated: 2.2.4
+    react-native-safe-area-context: 3.3.2
+    react-native-scalable-image: ^1.1.0
+    react-native-screens: 3.7.2
+    react-native-splash-screen: 3.3.0
+    react-native-svg: 12.1.1
+    react-native-svg-transformer: 0.14.3
+    react-native-tcp-socket: ^6.0.3
+    react-native-toast-message: 2.0.1
+    react-native-uuid: 2.0.1
+    react-native-vector-icons: 8.1.0
+    react-native-webview: 11.23.0
+    react-test-renderer: ^17.0.2
+    typescript: 4.4.3
+    uuid: 8.3.2
+  languageName: unknown
+  linkType: soft
+
 "qrcode@npm:^1.4.4, qrcode@npm:^1.5.1":
   version: 1.5.3
   resolution: "qrcode@npm:1.5.3"
@@ -17185,7 +17401,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.11.0, qs@npm:^6.6.0":
+"qs@npm:^6.11.0, qs@npm:^6.6.0, qs@npm:^6.7.0":
   version: 6.11.2
   resolution: "qs@npm:6.11.2"
   dependencies:
@@ -21272,6 +21488,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"url-template@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "url-template@npm:2.0.8"
+  checksum: 4183fccd74e3591e4154134d4443dccecba9c455c15c7df774f1f1e3fa340fd9bffb903b5beec347196d15ce49c34edf6dec0634a95d170ad6e78c0467d6e13e
+  languageName: node
+  linkType: hard
+
 "url@npm:^0.11.0":
   version: 0.11.1
   resolution: "url@npm:0.11.1"
@@ -21590,6 +21813,13 @@ __metadata:
     cross-fetch: ^3.1.5
     did-resolver: ^4.0.0
   checksum: 2bdd48a28b3480cb7a0859abc025f6af960fdd3bd3267a001fd574fc46825d3c0608ae5629fdadf487f7a4dfaad066e1cb58ef4dcc19d54627e0d5e66c4e5af2
+  languageName: node
+  linkType: hard
+
+"web-streams-polyfill@npm:^3.0.3":
+  version: 3.2.1
+  resolution: "web-streams-polyfill@npm:3.2.1"
+  checksum: b119c78574b6d65935e35098c2afdcd752b84268e18746606af149e3c424e15621b6f1ff0b42b2676dc012fc4f0d313f964b41a4b5031e525faa03997457da02
   languageName: node
   linkType: hard
 
