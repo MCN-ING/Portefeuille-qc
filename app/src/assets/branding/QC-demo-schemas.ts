@@ -132,9 +132,9 @@ export const DEMO_ADDRESS_Bundle = {
       captureBase: '',
       language: 'fr',
       attributeLabels: {
-        street_address: 'Adresse de la rue',
+        street_address: 'Adresse',
         locality: 'Ville',
-        region: 'Région',
+        region: 'Province',
         postal_code: 'Code postal',
         country: 'Pays',
       },
@@ -144,7 +144,7 @@ export const DEMO_ADDRESS_Bundle = {
       captureBase: '',
       language: 'en',
       attributeLabels: {
-        street_address: 'Street Address',
+        street_address: 'Address',
         locality: 'Locality',
         region: 'Region',
         postal_code: 'Postal Code',
