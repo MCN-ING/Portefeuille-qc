@@ -9,6 +9,8 @@ import {
 import merge from 'lodash.merge'
 import { ReducerAction } from 'react'
 
+import qcLedgers from '../configs/ledgers'
+
 import bundle from './assets/branding/QC-credential-branding'
 import AddCredentialButton from './components/AddCredentialButton'
 import AddCredentialSlider from './components/AddCredentialSlider'
@@ -30,7 +32,9 @@ const localization = merge({}, translationResources, {
   en: { translation: en },
   fr: { translation: fr },
 })
-const selectedLedgers = indyLedgers.filter((ledger) => ledger.indyNamespace !== 'indicio')
+
+const ledgers = [...indyLedgers, ...qcLedgers]
+const selectedLedgers = ledgers.filter((ledger) => ledger.indyNamespace !== 'indicio')
 const configuration: ConfigurationContext = {
   ...defaultConfiguration,
   pages,
