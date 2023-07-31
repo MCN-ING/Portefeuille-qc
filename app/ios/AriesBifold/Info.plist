@@ -83,5 +83,10 @@
 				</array>
 			</dict>
 		</array>
+		<key>bugsnag</key>
+		<dict>
+			<key>apiKey</key>
+			<string>$(BUGSNAG_API_KEY)</string>
+		</dict>
 	</dict>
 </plist>
