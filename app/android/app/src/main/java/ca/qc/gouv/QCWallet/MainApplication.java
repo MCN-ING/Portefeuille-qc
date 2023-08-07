@@ -11,6 +11,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import com.bugsee.library.Bugsee;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -44,6 +45,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    Bugsee.launch(this, "ab3f91e9-4d4c-45e1-b3ec-437eeaac7e27");
     SoLoader.init(this, /* native exopackage */ false);
   }
 }

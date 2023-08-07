@@ -35,6 +35,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, View, Text, Image } from 'react-native'
+import Bugsee from 'react-native-bugsee'
 import { Config } from 'react-native-config'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -171,7 +172,8 @@ const Splash: React.FC = () => {
       if (data) {
         return JSON.parse(data)
       }
-    } catch {
+    } catch (e: unknown) {
+      Bugsee.logException(e as Error)
       return
     }
   }
@@ -304,6 +306,7 @@ const Splash: React.FC = () => {
           })
         )
       } catch (e: unknown) {
+        Bugsee.logException(e as Error)
         setInitErrorType(InitErrorTypes.Onboarding)
         setInitError(e as Error)
       }
@@ -383,6 +386,7 @@ const Splash: React.FC = () => {
           })
         )
       } catch (e: unknown) {
+        Bugsee.logException(e as Error)
         setInitErrorType(InitErrorTypes.Agent)
         setInitError(e as Error)
       }

@@ -6213,6 +6213,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:1.3.4":
+  version: 1.3.4
+  resolution: "axios@npm:1.3.4"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: 7440edefcf8498bc3cdf39de00443e8101f249972c83b739c6e880d9d669fea9486372dbe8739e88b3bf8bb1ad15f6106693f206f078f4516fe8fd47b1c3093c
+  languageName: node
+  linkType: hard
+
 "b64-lite@npm:^1.3.1, b64-lite@npm:^1.4.0":
   version: 1.4.0
   resolution: "b64-lite@npm:1.4.0"
@@ -7157,6 +7168,20 @@ __metadata:
     base64-js: ^1.3.1
     ieee754: ^1.2.1
   checksum: 5ad23293d9a731e4318e420025800b42bf0d264004c0286c8cc010af7a270c7a0f6522e84f54b9ad65cbd6db20b8badbfd8d2ebf4f80fa03dab093b89e68c3f9
+  languageName: node
+  linkType: hard
+
+"bugsee-sourcemaps@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "bugsee-sourcemaps@npm:2.0.1"
+  dependencies:
+    axios: 1.3.4
+    jszip: 3.10.1
+    meow: 9.0.0
+    tmp: 0.2.1
+  bin:
+    bugsee-sourcemaps: cli.js
+  checksum: 5218f2703570ed61977225c0728d33fb2b1f3c9f1187bd404e6d0d4f33f52d0e8ca50e989a8506de2f396102b2d4ee14aa550c4179fe411b6c71fb565278fa70
   languageName: node
   linkType: hard
 
@@ -10760,7 +10785,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.14.0":
+"follow-redirects@npm:^1.14.0, follow-redirects@npm:^1.15.0":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
   peerDependenciesMeta:
@@ -10836,6 +10861,17 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: b019e8d35c8afc14a2bd8a7a92fa4f525a4726b6d5a9740e8d2623c30e308fbb58dc8469f90415a856698933c8479b01646a9dff33c87cc4e76d72aedbbf860d
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
   languageName: node
   linkType: hard
 
@@ -12050,6 +12086,13 @@ __metadata:
   bin:
     image-size: bin/image-size.js
   checksum: cfd01d7672d584a4dd09d29bcf593c4bec3c9bb63769a51f735bd10673a7ddce7445da79771ea70b582a114b35bb4c148366b027ee9d1071c1a051aead54c788
+  languageName: node
+  linkType: hard
+
+"immediate@npm:~3.0.5":
+  version: 3.0.6
+  resolution: "immediate@npm:3.0.6"
+  checksum: f9b3486477555997657f70318cc8d3416159f208bec4cca3ff3442fd266bc23f50f0c9bd8547e1371a6b5e82b821ec9a7044a4f7b944798b25aa3cc6d5e63e62
   languageName: node
   linkType: hard
 
@@ -14021,6 +14064,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jszip@npm:3.10.1":
+  version: 3.10.1
+  resolution: "jszip@npm:3.10.1"
+  dependencies:
+    lie: ~3.3.0
+    pako: ~1.0.2
+    readable-stream: ~2.3.6
+    setimmediate: ^1.0.5
+  checksum: abc77bfbe33e691d4d1ac9c74c8851b5761fba6a6986630864f98d876f3fcc2d36817dfc183779f32c00157b5d53a016796677298272a714ae096dfe6b1c8b60
+  languageName: node
+  linkType: hard
+
 "jwa@npm:^2.0.0":
   version: 2.0.0
   resolution: "jwa@npm:2.0.0"
@@ -14199,6 +14254,15 @@ __metadata:
   version: 1.10.36
   resolution: "libphonenumber-js@npm:1.10.36"
   checksum: e5a52e13add03db3cb8c0b7401f4cc5a4167a78965954a6e61b64bf412aacd5424e37ea6ab6ef9f77fc8994e7812bd758585f78b8fb871ca75e2c6b6507982fb
+  languageName: node
+  linkType: hard
+
+"lie@npm:~3.3.0":
+  version: 3.3.0
+  resolution: "lie@npm:3.3.0"
+  dependencies:
+    immediate: ~3.0.5
+  checksum: 33102302cf19766f97919a6a98d481e01393288b17a6aa1f030a3542031df42736edde8dab29ffdbf90bebeffc48c761eb1d064dc77592ca3ba3556f9fe6d2a8
   languageName: node
   linkType: hard
 
@@ -14799,6 +14863,26 @@ __metadata:
   version: 0.3.1
   resolution: "memorystream@npm:0.3.1"
   checksum: f18b42440d24d09516d01466c06adf797df7873f0d40aa7db02e5fb9ed83074e5e65412d0720901d7069363465f82dc4f8bcb44f0cde271567a61426ce6ca2e9
+  languageName: node
+  linkType: hard
+
+"meow@npm:9.0.0":
+  version: 9.0.0
+  resolution: "meow@npm:9.0.0"
+  dependencies:
+    "@types/minimist": ^1.2.0
+    camelcase-keys: ^6.2.2
+    decamelize: ^1.2.0
+    decamelize-keys: ^1.1.0
+    hard-rejection: ^2.1.0
+    minimist-options: 4.1.0
+    normalize-package-data: ^3.0.0
+    read-pkg-up: ^7.0.1
+    redent: ^3.0.0
+    trim-newlines: ^3.0.0
+    type-fest: ^0.18.0
+    yargs-parser: ^20.2.3
+  checksum: 99799c47247f4daeee178e3124f6ef6f84bde2ba3f37652865d5d8f8b8adcf9eedfc551dd043e2455cd8206545fd848e269c0c5ab6b594680a0ad4d3617c9639
   languageName: node
   linkType: hard
 
@@ -16437,7 +16521,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pako@npm:~1.0.5":
+"pako@npm:~1.0.2, pako@npm:~1.0.5":
   version: 1.0.11
   resolution: "pako@npm:1.0.11"
   checksum: 1be2bfa1f807608c7538afa15d6f25baa523c30ec870a3228a89579e474a4d992f4293859524e46d5d87fd30fa17c5edf34dbef0671251d9749820b488660b16
@@ -17172,6 +17256,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
+  languageName: node
+  linkType: hard
+
 "prr@npm:~1.0.1":
   version: 1.0.1
   resolution: "prr@npm:1.0.1"
@@ -17333,6 +17424,7 @@ __metadata:
     axios: 0.21.4
     babel-jest: ^27.5.1
     babel-plugin-module-resolver: 4.1.0
+    bugsee-sourcemaps: ^2.0.1
     commitlint: ^11.0.0
     copyfiles: ^2.4.1
     eslint: ^7.14.0
@@ -17359,6 +17451,7 @@ __metadata:
     react-native-animated-pagination-dots: 0.1.72
     react-native-argon2: 2.0.1
     react-native-bouncy-checkbox: ^3.0.5
+    react-native-bugsee: ^3.1.3
     react-native-camera: 3.44.3
     react-native-collapsible: 1.6.0
     react-native-config: 1.4.4
@@ -17850,6 +17943,13 @@ __metadata:
     react: ">= 16.x.x"
     react-native: ">= 0.55.x"
   checksum: f30d18971ebbaafdd17046d87e324ddf5142ac283280d95a7ccb023bf960ddaaa251922b521e56a30d32b2f9b2e313ea1dd71bdd38814fd0106523f2cb164b06
+  languageName: node
+  linkType: hard
+
+"react-native-bugsee@npm:^3.1.3":
+  version: 3.1.3
+  resolution: "react-native-bugsee@npm:3.1.3"
+  checksum: 40939429f03cc44b82dba965d1b1e66d407eb6b44f141b8ceb52428b10d4a89ad4f8b0038d4bc68b0a03370b8bf7d54dca2843942b829be9ec2b48ca4ccee836
   languageName: node
   linkType: hard
 
@@ -20918,6 +21018,15 @@ __metadata:
   version: 1.6.0
   resolution: "tinycolor2@npm:1.6.0"
   checksum: 6df4d07fceeedc0a878d7bac47e2cd47c1ceeb1078340a9eb8a295bc0651e17c750f73d47b3028d829f30b85c15e0572c0fd4142083e4c21a30a597e47f47230
+  languageName: node
+  linkType: hard
+
+"tmp@npm:0.2.1":
+  version: 0.2.1
+  resolution: "tmp@npm:0.2.1"
+  dependencies:
+    rimraf: ^3.0.0
+  checksum: 8b1214654182575124498c87ca986ac53dc76ff36e8f0e0b67139a8d221eaecfdec108c0e6ec54d76f49f1f72ab9325500b246f562b926f85bcdfca8bf35df9e
   languageName: node
   linkType: hard
 
