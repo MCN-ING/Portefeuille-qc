@@ -38,18 +38,19 @@ const App = () => {
     initStoredLanguage().then()
   }, [])
 
+  useEffect(() => {
+    Bugsee.initialize()
+    const bugseeOptions = new Bugsee.AndroidLaunchOptions()
+    bugseeOptions.shakeToReport = true
+    bugseeOptions.notificationBarTrigger = false
+    Bugsee.launch('ab3f91e9-4d4c-45e1-b3ec-437eeaac7e27', bugseeOptions)
+  }, [])
+
   const [agent] = useState<Agent | undefined>(undefined)
   const [surveyVisible, setSurveyVisible] = useState(false)
   const { t } = useTranslation()
   const { navigate } = useNavigation()
   const toggleSurveyVisibility = () => setSurveyVisible(!surveyVisible)
-
-  const bugseeOptions = new Bugsee.AndroidLaunchOptions()
-
-  bugseeOptions.shakeToReport = true
-  bugseeOptions.notificationBarTrigger = false
-
-  Bugsee.launch('ab3f91e9-4d4c-45e1-b3ec-437eeaac7e27', bugseeOptions)
 
   const helpLink = 'https://www2.gov.bc.ca/gov/content/governments/government-id/bc-wallet/help'
 
