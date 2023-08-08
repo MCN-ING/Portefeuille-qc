@@ -19,7 +19,6 @@ import '@formatjs/intl-relativetimeformat/locale-data/en' // locale-data for en
 import '@formatjs/intl-datetimeformat/polyfill'
 import '@formatjs/intl-datetimeformat/locale-data/en' // locale-data for en
 import '@formatjs/intl-datetimeformat/add-all-tz' // Add ALL tz data
-
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { AppRegistry } from 'react-native'

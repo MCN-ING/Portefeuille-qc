@@ -12,6 +12,8 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import com.bugsee.library.Bugsee;
+import com.facebook.react.modules.network.OkHttpClientProvider;
+import com.bugsee.BugseeReactPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -41,6 +43,10 @@ public class MainApplication extends Application implements ReactApplication {
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
   }
+  public MainApplication() {
+    super();
+    OkHttpClientProvider.setOkHttpClientFactory(BugseeReactPackage.getDefaultHttpFactory());    // <--- Add this line
+}
 
   @Override
   public void onCreate() {
