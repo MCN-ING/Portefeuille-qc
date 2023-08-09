@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
+import * as Sentry from '@sentry/react-native'
 import {
   Stacks,
   Screens,
@@ -27,6 +28,20 @@ import Toast from 'react-native-toast-message'
 import qcwallet from './src'
 import { homeTourSteps } from './src/components/tours/HomeTourSteps'
 import { initialState, reducer } from './src/store'
+
+Sentry.init({
+  dsn: 'https://2abcd9d4aca23c668d1a91aa84a8218b@o4505670645121024.ingest.sentry.io/4505675166908416',
+  // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+  // We recommend adjusting this value in production.
+  tracesSampleRate: 1.0,
+  attachScreenshot: true,
+  attachViewHierarchy: true,
+})
+Sentry.addBreadcrumb({
+  category: 'auth',
+  message: 'Authenticated user ',
+  level: 'info',
+})
 
 const { theme, localization, configuration } = qcwallet
 
@@ -130,4 +145,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Sentry.wrap(App)
