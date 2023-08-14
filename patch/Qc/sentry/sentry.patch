@@ -1,0 +1,112 @@
+diff --git a/app/App.tsx b/app/App.tsx
+index 3f7389e..e406b51 100644
+--- a/app/App.tsx
++++ b/app/App.tsx
+@@ -1,4 +1,5 @@
+ import { useNavigation } from '@react-navigation/native'
++import * as Sentry from '@sentry/react-native'
+ import {
+   Stacks,
+   Screens,
+@@ -21,6 +22,7 @@ import {
+ import React, { useEffect, useState, useMemo } from 'react'
+ import { useTranslation } from 'react-i18next'
+ import { Linking, StatusBar } from 'react-native'
++import { Config } from 'react-native-config'
+ import SplashScreen from 'react-native-splash-screen'
+ import Toast from 'react-native-toast-message'
+ 
+@@ -28,6 +30,20 @@ import qcwallet from './src'
+ import { homeTourSteps } from './src/components/tours/HomeTourSteps'
+ import { initialState, reducer } from './src/store'
+ 
++Sentry.init({
++  dsn: `${Config.SENTRY_TOKEN}`,
++  // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
++  // We recommend adjusting this value in production.
++  tracesSampleRate: 1.0,
++  attachScreenshot: true,
++  attachViewHierarchy: true,
++})
++Sentry.addBreadcrumb({
++  category: 'auth',
++  message: 'Authenticated user ',
++  level: 'info',
++})
++
+ const { theme, localization, configuration } = qcwallet
+ 
+ initLanguages(localization)
+diff --git a/app/ios/AriesBifold.xcodeproj/project.pbxproj b/app/ios/AriesBifold.xcodeproj/project.pbxproj
+index 61114f7..6e698a8 100644
+--- a/app/ios/AriesBifold.xcodeproj/project.pbxproj
++++ b/app/ios/AriesBifold.xcodeproj/project.pbxproj
+@@ -655,7 +655,7 @@
+ 				COPY_PHASE_STRIP = NO;
+ 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+ 				ENABLE_TESTABILITY = YES;
+-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
++				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
+ 				GCC_C_LANGUAGE_STANDARD = gnu99;
+ 				GCC_DYNAMIC_NO_PIC = NO;
+ 				GCC_NO_COMMON_BLOCKS = YES;
+@@ -719,7 +719,7 @@
+ 				COPY_PHASE_STRIP = YES;
+ 				ENABLE_NS_ASSERTIONS = NO;
+ 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
++				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
+ 				GCC_C_LANGUAGE_STANDARD = gnu99;
+ 				GCC_NO_COMMON_BLOCKS = YES;
+ 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+diff --git a/app/package.json b/app/package.json
+index 6ef137f..2e27367 100644
+--- a/app/package.json
++++ b/app/package.json
+@@ -65,6 +65,7 @@
+     "@react-navigation/devtools": "6.0.8",
+     "@react-navigation/native": "6.0.6",
+     "@react-navigation/stack": "6.0.11",
++    "@sentry/react-native": "^5.9.0",
+     "aries-bifold": "link:../bifold-core",
+     "axios": "0.21.4",
+     "googleapis": "^113.0.0",
+diff --git a/app/src/screens/Splash.tsx b/app/src/screens/Splash.tsx
+index 134a666..f052009 100644
+--- a/app/src/screens/Splash.tsx
++++ b/app/src/screens/Splash.tsx
+@@ -10,6 +10,7 @@ import { useAgent } from '@aries-framework/react-hooks'
+ import { agentDependencies } from '@aries-framework/react-native'
+ import AsyncStorage from '@react-native-async-storage/async-storage'
+ import { CommonActions, useNavigation } from '@react-navigation/native'
++import * as Sentry from '@sentry/react-native'
+ import {
+   LocalStorageKeys,
+   DispatchAction,
+@@ -171,7 +172,8 @@ const Splash: React.FC = () => {
+       if (data) {
+         return JSON.parse(data)
+       }
+-    } catch {
++    } catch (e: unknown) {
++      Sentry.captureException(e as Error)
+       return
+     }
+   }
+@@ -305,6 +307,7 @@ const Splash: React.FC = () => {
+         )
+       } catch (e: unknown) {
+         setInitErrorType(InitErrorTypes.Onboarding)
++        Sentry.captureException(e as Error)
+         setInitError(e as Error)
+       }
+     }
+@@ -384,6 +387,7 @@ const Splash: React.FC = () => {
+         )
+       } catch (e: unknown) {
+         setInitErrorType(InitErrorTypes.Agent)
++        Sentry.captureException(e as Error)
+         setInitError(e as Error)
+       }
+     }
+
