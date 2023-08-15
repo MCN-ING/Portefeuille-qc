@@ -1,5 +1,5 @@
 diff --git a/app/App.tsx b/app/App.tsx
-index 3f7389e..e406b51 100644
+index 3f7389e..7f2f25d 100644
 --- a/app/App.tsx
 +++ b/app/App.tsx
 @@ -1,4 +1,5 @@
@@ -37,6 +37,12 @@ index 3f7389e..e406b51 100644
  const { theme, localization, configuration } = qcwallet
  
  initLanguages(localization)
+@@ -130,4 +146,4 @@ const App = () => {
+   )
+ }
+ 
+-export default App
++export default Sentry.wrap(App)
 diff --git a/app/ios/AriesBifold.xcodeproj/project.pbxproj b/app/ios/AriesBifold.xcodeproj/project.pbxproj
 index 61114f7..6e698a8 100644
 --- a/app/ios/AriesBifold.xcodeproj/project.pbxproj
@@ -59,6 +65,65 @@ index 61114f7..6e698a8 100644
  				GCC_C_LANGUAGE_STANDARD = gnu99;
  				GCC_NO_COMMON_BLOCKS = YES;
  				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+diff --git a/app/ios/Podfile.lock b/app/ios/Podfile.lock
+index dc4cf7f..42cffdb 100644
+--- a/app/ios/Podfile.lock
++++ b/app/ios/Podfile.lock
+@@ -389,10 +389,16 @@ PODS:
+   - RNScreens (3.7.2):
+     - React-Core
+     - React-RCTImage
++  - RNSentry (5.9.0):
++    - React-Core
++    - Sentry/HybridSDK (= 8.9.4)
+   - RNSVG (12.1.1):
+     - React
+   - RNVectorIcons (8.1.0):
+     - React-Core
++  - Sentry/HybridSDK (8.9.4):
++    - SentryPrivate (= 8.9.4)
++  - SentryPrivate (8.9.4)
+   - Yoga (1.14.0)
+ 
+ DEPENDENCIES:
+@@ -455,6 +461,7 @@ DEPENDENCIES:
+   - RNPermissions (from `../node_modules/react-native-permissions`)
+   - RNReanimated (from `../node_modules/react-native-reanimated`)
+   - RNScreens (from `../node_modules/react-native-screens`)
++  - "RNSentry (from `../node_modules/@sentry/react-native`)"
+   - RNSVG (from `../node_modules/react-native-svg`)
+   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+@@ -466,6 +473,8 @@ SPEC REPOS:
+     - fmt
+     - hermes-engine
+     - libevent
++    - Sentry
++    - SentryPrivate
+ 
+ EXTERNAL SOURCES:
+   anoncreds:
+@@ -578,6 +587,8 @@ EXTERNAL SOURCES:
+     :path: "../node_modules/react-native-reanimated"
+   RNScreens:
+     :path: "../node_modules/react-native-screens"
++  RNSentry:
++    :path: "../node_modules/@sentry/react-native"
+   RNSVG:
+     :path: "../node_modules/react-native-svg"
+   RNVectorIcons:
+@@ -646,8 +657,11 @@ SPEC CHECKSUMS:
+   RNPermissions: 215c54462104b3925b412b0fb3c9c497b21c358b
+   RNReanimated: 65583befd5706cc9c86ae9a081786181ced37b93
+   RNScreens: 0591543e343c7444ea1756b6265d81a4295922c9
++  RNSentry: c167b3da6aa7f3cf85d909caae905d043a062b6c
+   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
+   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
++  Sentry: 56c76eed917f7dffd46db50906afbf5c9aa2673a
++  SentryPrivate: f3be34b5deb9fe676fdfb1f1ad5cdb1b740c5688
+   Yoga: b316a990bb6d115afa1b436b5626ac7c61717d17
+ 
+ PODFILE CHECKSUM: 4266f539fd5c242abd4005c88814b151329c70f6
 diff --git a/app/package.json b/app/package.json
 index 6ef137f..2e27367 100644
 --- a/app/package.json
@@ -109,4 +174,3 @@ index 134a666..f052009 100644
          setInitError(e as Error)
        }
      }
-
