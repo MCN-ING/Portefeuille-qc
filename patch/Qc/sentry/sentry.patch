@@ -1,3 +1,23 @@
+diff --git a/.github/workflows/main.yaml b/.github/workflows/main.yaml
+index 3721252..7158372 100644
+--- a/.github/workflows/main.yaml
++++ b/.github/workflows/main.yaml
+@@ -127,6 +127,7 @@ jobs:
+         if: env.MEDIATOR_URL != null
+         working-directory: app
+         env:
++          SENTRY_TOKEN: ${{ secrets.SENTRY_TOKEN }}
+           MEDIATOR_URL: ${{ secrets.MEDIATOR_URL }}
+         run: |
+           echo "MEDIATOR_URL=${MEDIATOR_URL}" >.env
+@@ -240,6 +241,7 @@ jobs:
+         if: env.MEDIATOR_URL != null
+         working-directory: app
+         env:
++          SENTRY_TOKEN: ${{ secrets.SENTRY_TOKEN }}
+           MEDIATOR_URL: ${{ secrets.MEDIATOR_URL }}
+         run: |
+           echo "MEDIATOR_URL=${MEDIATOR_URL}" >.env
 diff --git a/app/App.tsx b/app/App.tsx
 index 3f7389e..7f2f25d 100644
 --- a/app/App.tsx
