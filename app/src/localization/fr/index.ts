@@ -244,7 +244,7 @@ const translation = {
       },
       AppAccess: {
         title: "Droit d'accès à l'application",
-        body: '  Le gouvernement du Québec se préoccupe de la protection de votre vie privée et des renseignements personnels et confidentiels contenus dans cette application. À cet effet, vous avez la responsabilité de consulter la * Politique de confidentialité * pour connaître les pratiques du gouvernement du Québec à cet égard.',
+        body: 'Le gouvernement du Québec se préoccupe de la protection de votre vie privée et des renseignements personnels et confidentiels contenus dans cette application. À cet effet, vous avez la responsabilité de consulter la * Politique de confidentialité * pour connaître les pratiques du gouvernement du Québec à cet égard.',
         subsection: {
           title: 'Limitation de la responsabilité',
           body:
@@ -415,7 +415,7 @@ const translation = {
     ConnectionInvitation: "Demande d'invitation à la connexion",
     ScanQR: 'Balayer le code QR',
     ScanQRComment: 'avec votre portefeuille numérique pour établir une connexion.',
-    MakingConnection: 'Connexion en cours…...',
+    MakingConnection: 'Connexion en cours...',
     ConnectionCompleted: 'Connexion établie!!',
     Toggle: "Activer la fonctionnalité d'invitation à la connexion",
     UseConnectionInviterCapability: "Utiliser la fonctionnalité d'invitation à la connexion ?",
