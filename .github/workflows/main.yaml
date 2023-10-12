@@ -250,18 +250,6 @@ jobs:
       - name: Setup NodeJS
         uses: ./.github/workflows/actions/setup-node
 
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: "zulu"
-          java-version: 11
-          cache: "gradle"
-          server-id: github
-          settings-path: ${{ github.workspace }}
-
-      - name: Update ledgers
-        uses: ./.github/workflows/actions/update-ledgers
-
       - name: Install dependencies
         working-directory: ./
         run: |
@@ -284,8 +272,18 @@ jobs:
           echo "MCN_MEDIATOR_URL=${MCN_MEDIATOR_URL}" >>.env
           echo "OCA_URL=${OCA_URL}" >>.env
 
+      - name: Android debug build
+        if: github.ref_name != 'main' || needs.check-android-secrets.outputs.isReleaseBuild != 'true'
+        working-directory: app/android
+        env:
+          VERSION_CODE: ${{ env.appBuildNumber }}
+          VERSION_NAME: ${{ env.appBuildVersion }}
+
+        run: |
+          ./gradlew buildDebug
+
       - name: Create release keystore
-        #if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
+        if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
         working-directory: app/android/app
         env:
           PLAY_STORE_JKS_BASE64: ${{ secrets.PLAY_STORE_JKS_BASE64 }}
@@ -296,17 +294,9 @@ jobs:
           keytool -list -v -keystore release.keystore -alias ${PLAY_STORE_JKS_ALIAS} -storepass:env PLAY_STORE_JKS_PASSWD | \
           grep "SHA1"
 
-      #      - name: Android debug build
-      #        if: github.ref_name != 'main' || needs.check-android-secrets.outputs.isReleaseBuild != 'true'
-      #        working-directory: app/android
-      #        env:
-      #          VERSION_CODE: ${{ env.appBuildNumber }}
-      #          VERSION_NAME: ${{ env.appBuildVersion }}
-      #        run: |
-      #          ./gradlew --no-daemon bundleRelease
 
       - name: Android release build
-        #if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
+        if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
         working-directory: app/android
         env:
           PLAY_STORE_JKS_ALIAS: ${{ secrets.PLAY_STORE_JKS_ALIAS }}
@@ -314,26 +304,10 @@ jobs:
           VERSION_CODE: ${{ env.appBuildNumber }}
           VERSION_NAME: ${{ env.appBuildVersion }}
         run: |
+          cp ../node_modules/react-native-vector-icons/Fonts/* ./app/src/main/assets/fonts/ && \
           ( cd ../ && npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle  --verbose ) && \
-          ./gradlew bundleRelease && \
-          ./gradlew assembleRelease && \
-          find . -type f -name '*.apk'
+          ./gradlew bundleRelease
 
-      #      - name: Publish to GitHub Packages Registry
-      #        run: mvn deploy:deploy-file -s $GITHUB_WORKSPACE/settings.xml -DgroupId=com.github.bcgov -DartifactId=bc-wallet -Dclassifier=android -DrepositoryId=github -Durl=https://maven.pkg.github.com/$GITHUB_REPOSITORY -Dversion=${{ env.appBuildVersion }}.${{ env.appBuildNumber }} -DgeneratePom=false -Dpackaging=aab -Dfile=app/android/app/build/outputs/bundle/release/app-release.aab
-      #        env:
-      #          GITHUB_TOKEN: ${{ github.token }}
-      - name: List Artifacts
-        #if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
-        run: |
-          find . -type f -name '*.apk'
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: android
-          path: |
-            app/android/app/build/outputs/bundle/release/app-release.aab
-            app/android/app/build/outputs/apk/release/app-release.apk
       - name: Upload Android artifact
         if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
         uses: actions/upload-artifact@v3
