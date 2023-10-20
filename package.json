@@ -13,7 +13,7 @@
   "workspaces": {
     "packages": [
       "app",
-      "bifold/packages/legacy/core"
+      "bifold-core"
     ]
   },
   "repository": {

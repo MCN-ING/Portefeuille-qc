@@ -7390,9 +7390,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aries-bifold@workspace:^, aries-bifold@workspace:bifold/packages/legacy/core":
+"aries-bifold@workspace:^, aries-bifold@workspace:bifold-core":
   version: 0.0.0-use.local
-  resolution: "aries-bifold@workspace:bifold/packages/legacy/core"
+  resolution: "aries-bifold@workspace:bifold-core"
   dependencies:
     "@aries-framework/anoncreds": ^0.4.0
     "@aries-framework/anoncreds-rs": ^0.4.0
