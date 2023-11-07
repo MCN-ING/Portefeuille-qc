@@ -106,11 +106,14 @@ jobs:
           path: app/ios/xbuild/Build
           key: ${{ runner.os }}-dd-xcode
 
+      - name: Setup Python 3.11.5
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.5
+
       - name: Install dependencies
         working-directory: ./
         run: |
-          rm bifold/package.json && \
-          rm bifold/yarn.lock && \
           yarn install --immutable && \
           git status
 
