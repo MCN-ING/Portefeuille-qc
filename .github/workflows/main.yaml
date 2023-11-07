@@ -95,7 +95,7 @@ jobs:
             app/ios/Pods
             ~/Library/Caches/CocoaPods
             ~/.cocoapods
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock ') }}
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pods-
 
@@ -109,6 +109,8 @@ jobs:
       - name: Install dependencies
         working-directory: ./
         run: |
+          rm bifold/package.json && \
+          rm bifold/yarn.lock && \
           yarn install --immutable && \
           git status
 
