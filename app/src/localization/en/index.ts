@@ -516,6 +516,7 @@ const translation = {
     ScanHelp: 'Scan Help',
     ScanNow: 'Scan Now',
     WhatToScan: 'What QR Codes can be scanned?',
+    ScanOnySpecial: 'Only special QR codes can be scanned by the Wallet.',
     ScanOnlySpecial2:
       'These are presented by participating services or people to receive a credential offer, request for information or to connect.',
     ScanOnlySpecial3:
