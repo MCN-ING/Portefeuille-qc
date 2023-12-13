@@ -467,7 +467,6 @@ const translation = {
     ScanHelp: 'Aide à la numérisation',
     ScanNow: 'Numériser maintenant',
     WhatToScan: 'Quels codes QR peuvent être scannés ?',
-    ScanOnySpecial: 'Seuls certains codes QR spéciaux peuvent être scannés par le portefeuille.',
     ScanOnlySpecial2:
       "Ces codes QR sont présentés par des services ou des personnes qui souhaitent recevoir une offre d'attestation, une demande d'informations ou pour se connecter.",
     ScanOnlySpecial3:
