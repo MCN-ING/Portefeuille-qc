@@ -264,14 +264,9 @@ jobs:
           server-id: github
           settings-path: ${{ github.workspace }}
 
-      - name: Update ledgers
-        uses: ./.github/workflows/actions/update-ledgers
-
       - name: Install dependencies
         working-directory: ./
         run: |
-          rm bifold/package.json && \
-          rm bifold/yarn.lock && \
           yarn install --immutable && \
           git status
 
