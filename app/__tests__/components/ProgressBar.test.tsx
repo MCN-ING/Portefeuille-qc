@@ -1,4 +1,4 @@
-/*import { render } from '@testing-library/react-native'
+import { render } from '@testing-library/react-native'
 import React from 'react'
 
 import ProgressBar from '../../src/components/ProgressBar'
@@ -8,4 +8,4 @@ describe('ProgressBar Component', () => {
     const tree = render(<ProgressBar progressPercent={0} />)
     expect(tree).toMatchSnapshot()
   })
-})*/
+})
