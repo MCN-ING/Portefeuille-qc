@@ -15,6 +15,12 @@ const translation = {
     "Message2025": "There was a problem reported by BCSC. (PT-BR)",
     "Title2026": "Oops! Something went wrong (PT-BR)",
     "Message2026": "The app has encountered a problem. Try restarting the app. (PT-BR)",
+    "Title2027": "Unable to parse invitation (PT-BR)",
+    "Message2027": "There was a problem parsing the attestation connection invitation. (PT-BR)",
+    "Title2028": "Unable to receive invitation (PT-BR)",
+    "Message2028": "There was a problem receiving the attestation invitation to connect. (PT-BR)",
+    "Title2029": "Unable to handle attestation proof (PT-BR)",
+    "Message2029": "There was a problem while handling an attestation proof request. (PT-BR)",
     "NoMessage": "No Message (PT-BR)",
   },
   "CameraDisclosure": {
@@ -40,22 +46,25 @@ const translation = {
     "AddFirstCredential": "Add your first credential (PT-BR)"
   },
   "Onboarding": {
-    "Welcome": "Welcome (PT-BR)",
-    "WelcomeParagraph1": "BC Wallet lets you receive, store and use digital credentials. (PT-BR)",
-    "WelcomeParagraph2": "It is highly secure, and helps protect your privacy online. (PT-BR)",
-    "WelcomeParagraph3": "BC Wallet is currently in its early stages and the technology is being explored. Most people will not have a use for BC Wallet yet, because very few digital credentials are available. (PT-BR)",
-    "StoredSecurelyTitle": "Digital credentials, stored securely (PT-BR)",
-    "StoredSecurelyBody": "BC Wallet holds digital credentials—the digital versions of things like licenses, identities and permits.\n\nThey are stored securely, only on this device. (PT-BR)",
-    "UsingCredentialsTitle": "Receiving and using credentials (PT-BR)",
-    "UsingCredentialsBody": "To receive and use credentials you use the “Scan” feature in the app to scan a special QR code.\n\nInformation is sent and received over a private, encrypted connection. (PT-BR)",
-    "PrivacyConfidentiality": "Privacy and confidentiality (PT-BR)",
-    "PrivacyParagraph": "You approve every use of information from your BC Wallet. You also only share what is needed for a situation.\n\nThe Government of British Columbia is not told when you use your digital credentials. (PT-BR)",
+    "DifferentWalletHeading": "A different smart wallet (PT-BR)",
+    "DifferentWalletParagraph": "Unlike other digital wallets, BC Wallet helps you prove who you are in-person or online by storing and using digital credentials issued by participating services.\n\nInteract with confidence with individuals and organisations you trust. (PT-BR)",
+    "DigitalCredentialsHeading": "Digital credentials (PT-BR)",
+    "DigitalCredentialsParagraph": "Digital credentials are the electronic equivalent of physical credentials such as certifications and permits offered by participating services.\n\nServices are simplified and expedited as organisations and individuals can confirm who you are with trusted information from digital credentials. (PT-BR)",
+    "PrivateConfidentialHeading": "Private and confidential (PT-BR)",
+    "PrivateConfidentialParagraph": "Your privacy is important.\n\nThe B.C. government doesn't know when you use digital credentials, unless you're interacting with them. No analytics are recorded.\n\nYou approve every use of your digital credentials, and only provide the information that’s needed. (PT-BR)",
     "GetStarted": "Get Started (PT-BR)",
-    "SkipA11y": "Skip introduction to BC Wallet (PT-BR)",
+  },
+  "Preface": {
+    "Paragraph1": "Most people will not have a need for BC Wallet because very few digital credentials are currently available. (PT-BR)",
+    "Link1": "See where you can use BC Wallet (PT-BR)",
+    "Paragraph2": "If BC Wallet isn't what you're looking for but you're curious, check out our (PT-BR)",
+    "Link2": "BC Wallet showcase (PT-BR)",
   },
   "Screens": {
-    "Onboarding": "QC Wallet (PT-BR)",
+    "Onboarding": "BC Wallet (PT-BR)",
+    "Terms": "Terms of Use (PT-BR)",
     "Settings": "Menu (PT-BR)",
+    "Preface": "BC Wallet",
   },
   "PersonCredentialNotification": {
     "Title": "Get your Person credential (PT-BR)",
@@ -72,6 +81,12 @@ const translation = {
     "Decline": "Get this later (PT-BR)",
     "PageTitle": "Person Credential (PT-BR)",
     "Onboarding": "QC Wallet (PT-BR)",
+    "ServicesCardInstalled": "Step 1: BC Services Card app installed (PT-BR)",
+    "InstallServicesCard": "Step 1: Install the BC Services Card app (FR",
+    "InstallApp": "Install the app (PT-BR)",
+    "AppOnOtherDevice": "I have it on another device (PT-BR)",
+    "CreatePersonCred": "Step 2: Create your Person credential (PT-BR)",
+    "StartProcess": "Start the process (PT-BR)"
   },
   "NetInfo": {
     "NoInternetConnectionTitle": "No internet connection (PT-BR)",
@@ -102,6 +117,7 @@ const translation = {
   "Settings": {
     "Help": "Help (PT-BR)",
     "MoreInformation": "More Information (PT-BR)",
+    "PlayWithBCWallet": "Play with BC Wallet (PT-BR)",
     "HelpUsingBCWallet": "Help using BC Wallet (PT-BR)",
     "GiveFeedback": "Give feedback (PT-BR)",
     "ReportAProblem": "Report a problem (PT-BR)",
@@ -166,7 +182,26 @@ const translation = {
     "Title": "Notifications (PT-BR)",
     "PushNotifications": "Push Notifications (PT-BR)",
     "Continue": "Continue (PT-BR)",
-  }
+  },
+  "AddCredentialSlider": {
+    "Choose": "Choose (PT-BR)",
+    "ScanQRCode": "Scan a QR code (PT-BR)",
+  },
+  "Scan": {
+    "ScanOnySpecial": "Only special QR codes can be scanned by BC Wallet. (PT-BR)",
+    "ScanOnlySpecial3": "BC Wallet currently doesn't support adding digital credential by scanning or taking photos of physical ones. (PT-BR)",
+    "WhereToUseLink": "See where you can use BC Wallet (PT-BR)",
+    "BadQRCodeDescription": "Ths QR code scanned doesn't work with BC Wallet. BC Wallet only works with participating services.\n\nIt currently can't add digital credentials by taking photos of physical ones. (PT-BR)"
+  },
+  "RemoteLogging": {
+    "ScreenTitle": "Remote Logging (PT-BR)",
+    "Paragraph1": "Only turn on remote logging if you are in a debugging session or if you are asked and agree to do so. This action will send logs to Technical Support at the the Government of British Columbia. (PT-BR)",
+    "Paragraph2": "Logs are automatically deleted after three days. They are kept and used only for debugging, as outlined in our (PT-BR)",
+    "Paragraph3": "Provide the debug session id {sessionId} to technical support. (PT-BR)",
+    "CheckBoxTitle": "I understand and wish to enable remote logging (PT-BR)",
+    "IAgree": "I Agree (PT-BR)",
+    "ButtonTitle": "Turn on remote logging (PT-BR)",
+  },
 }
 
 export default translation

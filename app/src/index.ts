@@ -51,6 +51,7 @@ const configuration: ConfigurationContext = {
   OCABundleResolver: new RemoteOCABundleResolver(Config.OCA_URL ?? '', {
     brandingOverlayType: BrandingOverlayType.Branding10,
   }),
+  proofTemplateBaseUrl: Config.PROOF_TEMPLATE_URL,
   record: Record,
   PINSecurity: { rules: PINValidationRules, displayHelper: true },
   indyLedgers: selectedLedgers,
