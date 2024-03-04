@@ -11,12 +11,14 @@ on:
     branches: [main]
     paths:
       - app/**
+      - bifold
       - .yarn/**
       - .github/workflows/**
   pull_request:
     branches: [main]
     paths:
       - app/**
+      - bifold
       - .yarn/**
       - .github/workflows/**
       - .gitmodules
@@ -26,60 +28,34 @@ on:
       - .yarn/**
 
 jobs:
-  check-secrets:
+  check-android-secrets:
     runs-on: ubuntu-22.04
+    outputs:
+      isReleaseBuild: ${{ steps.isReleaseBuild.outputs.defined }}
     steps:
-      - name: Check secrets
-        shell: bash
-        run: |
-          required_env_vars=(
-            "CERTIFICATE"
-            "KEYCHIAN_PASSWD"
-            "PROVISIONING_PROFILE"
-            "PLAY_STORE_JKS_BASE64"
-            "PLAY_STORE_JKS_ALIAS"
-            "PLAY_STORE_JKS_PASSWD"
-          )
-          for var in "${required_env_vars[@]}"; do
-            if [ -z "${!var}" ]; then
-              echo "error: $var is not set."
-              exit 1
-            fi
-          done
+      - id: isReleaseBuild
+        if: env.PLAY_STORE_JKS_BASE64 != null && env.PLAY_STORE_JKS_ALIAS != null && env.PLAY_STORE_JKS_PASSWD != null
+        run: echo "::set-output name=defined::true"
         env:
-          CERTIFICATE: ${{ secrets.APPLE_APP_STORE_BUILD_CERTIFICATE_BASE64 }}
-          KEYCHIAN_PASSWD: ${{ secrets.APPLE_APP_STORE_BUILD_CERTIFICATE_PASSWD }}
-          PROVISIONING_PROFILE: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
           PLAY_STORE_JKS_BASE64: ${{ secrets.PLAY_STORE_JKS_BASE64 }}
           PLAY_STORE_JKS_ALIAS: ${{ secrets.PLAY_STORE_JKS_ALIAS }}
           PLAY_STORE_JKS_PASSWD: ${{ secrets.PLAY_STORE_JKS_PASSWD }}
 
-  check-vars:
+  check-ios-secrets:
     runs-on: ubuntu-22.04
+    outputs:
+      isReleaseBuild: ${{ steps.isReleaseBuild.outputs.defined }}
     steps:
-      - name: Check variables
-        shell: bash
-        run: |
-          required_env_vars=(
-            "OCA_URL"
-            "PROOF_TEMPLATE_URL"
-            "ATTESTATION_INVITE_URL"
-            "MEDIATOR_USE_PUSH_NOTIFICATIONS"
-          )
-          for var in "${required_env_vars[@]}"; do
-            if [ -z "${!var}" ]; then
-              echo "error: $var is not set."
-              exit 1
-            fi
-          done
+      - id: isReleaseBuild
+        if: env.CERTIFICATE != null && env.KEYCHIAN_PASSWD != null && env.PROVISIONING_PROFILE != null
+        run: echo "::set-output name=defined::true"
         env:
-          OCA_URL: ${{ vars.OCA_URL }}
-          PROOF_TEMPLATE_URL: ${{ vars.PROOF_TEMPLATE_URL }}
-          ATTESTATION_INVITE_URL: ${{ vars.ATTESTATION_INVITE_URL }}
-          MEDIATOR_USE_PUSH_NOTIFICATIONS: ${{ vars.MEDIATOR_USE_PUSH_NOTIFICATIONS }}
+          CERTIFICATE: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          KEYCHIAN_PASSWD: ${{ secrets.KEYCHIAN_PASSWD }}
+          PROVISIONING_PROFILE: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
 
   build-ios:
-    needs: [check-secrets, check-vars]
+    needs: [check-ios-secrets]
     runs-on: macos-latest
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/app/Gemfile
@@ -163,28 +139,18 @@ jobs:
           CQEN_MEDIATOR_URL: ${{ secrets.CQEN_MEDIATOR_URL }}
           MCN_MEDIATOR_URL: ${{ secrets.MCN_MEDIATOR_URL }}
           OCA_URL: ${{ vars.OCA_URL }}
-          PROOF_TEMPLATE_URL: ${{ vars.PROOF_TEMPLATE_URL }}
-          REMOTE_LOGGING_URL: ${{ secrets.REMOTE_LOGGING_URL }}
-          ATTESTATION_INVITE_URL: ${{ vars.ATTESTATION_INVITE_URL }}
         run: |
           echo "CQEN_MEDIATOR_URL=${CQEN_MEDIATOR_URL}" >.env
           echo "MCN_MEDIATOR_URL=${MCN_MEDIATOR_URL}" >>.env
           echo "OCA_URL=${OCA_URL}" >>.env
-          echo "PROOF_TEMPLATE_URL=${PROOF_TEMPLATE_URL}" >>.env
-          echo "REMOTE_LOGGING_URL=${REMOTE_LOGGING_URL}" >>.env
-          echo "ATTESTATION_INVITE_URL=${ATTESTATION_INVITE_URL}" >>.env
 
-      - name: Update APS environment
+      - name: Set Push Notification Capability
+        working-directory: app/ios/AriesBifold
+        env:
+          MEDIATOR_USE_PUSH_NOTIFICATIONS: false
+          MEDIATOR_LABEL: Mediator
         run: |
-          sed -i '' 's/development/production/g' app/ios/AriesBifold/AriesBifold.entitlements
-          cat app/ios/AriesBifold/AriesBifold.entitlements
-
-      - name: Create prod signing credentials
-        uses: ./.github/workflows/actions/create-ios-sig-creds
-        with:
-          certificate: ${{ secrets.APPLE_APP_STORE_BUILD_CERTIFICATE_BASE64 }}
-          certificate_password: ${{ secrets.APPLE_APP_STORE_BUILD_CERTIFICATE_PASSWD }}
-          provisioning_profile: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          mv DEVELOPMENT.AriesBifold.entitlements AriesBifold.entitlements
 
       # https://docs.github.com/en/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Create Provisioning Profile
@@ -209,8 +175,8 @@ jobs:
           xcodebuild \
           -workspace AriesBifold.xcworkspace \
           -scheme AriesBifold \
-          -allowProvisioningUpdates \
           -configuration Release \
+          -derivedDataPath xbuild \
           -xcconfig ../../release.xcconfig \
           -archivePath AriesBifold.xcarchive \
           -sdk iphoneos \
@@ -269,17 +235,17 @@ jobs:
           retention-days: 7
 
   build-android:
-    needs: [check-secrets, check-vars]
+    needs: [check-android-secrets]
     runs-on: ubuntu-22.04
     permissions:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
+      - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init --recursive
 
       - name: Setup NodeJS
         uses: ./.github/workflows/actions/setup-node
@@ -308,18 +274,13 @@ jobs:
           CQEN_MEDIATOR_URL: ${{ secrets.CQEN_MEDIATOR_URL }}
           MCN_MEDIATOR_URL: ${{ secrets.MCN_MEDIATOR_URL }}
           OCA_URL: ${{ vars.OCA_URL }}
-          PROOF_TEMPLATE_URL: ${{ vars.PROOF_TEMPLATE_URL }}
-          REMOTE_LOGGING_URL: ${{ secrets.REMOTE_LOGGING_URL }}
-          ATTESTATION_INVITE_URL: ${{ vars.ATTESTATION_INVITE_URL }}
         run: |
           echo "CQEN_MEDIATOR_URL=${CQEN_MEDIATOR_URL}" >.env
           echo "MCN_MEDIATOR_URL=${MCN_MEDIATOR_URL}" >>.env
           echo "OCA_URL=${OCA_URL}" >>.env
-          echo "PROOF_TEMPLATE_URL=${PROOF_TEMPLATE_URL}" >>.env
-          echo "REMOTE_LOGGING_URL=${REMOTE_LOGGING_URL}" >>.env
-          echo "ATTESTATION_INVITE_URL=${ATTESTATION_INVITE_URL}" >>.env
 
       - name: Create release keystore
+        #if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
         working-directory: app/android/app
         env:
           PLAY_STORE_JKS_BASE64: ${{ secrets.PLAY_STORE_JKS_BASE64 }}
@@ -340,6 +301,7 @@ jobs:
       #          ./gradlew --no-daemon bundleRelease
 
       - name: Android release build
+        #if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
         working-directory: app/android
         env:
           PLAY_STORE_JKS_ALIAS: ${{ secrets.PLAY_STORE_JKS_ALIAS }}
@@ -356,11 +318,10 @@ jobs:
       #        run: mvn deploy:deploy-file -s $GITHUB_WORKSPACE/settings.xml -DgroupId=com.github.bcgov -DartifactId=bc-wallet -Dclassifier=android -DrepositoryId=github -Durl=https://maven.pkg.github.com/$GITHUB_REPOSITORY -Dversion=${{ env.appBuildVersion }}.${{ env.appBuildNumber }} -DgeneratePom=false -Dpackaging=aab -Dfile=app/android/app/build/outputs/bundle/release/app-release.aab
       #        env:
       #          GITHUB_TOKEN: ${{ github.token }}
-
       - name: List Artifacts
+        #if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
         run: |
           find . -type f -name '*.apk'
-
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -368,9 +329,8 @@ jobs:
           path: |
             app/android/app/build/outputs/bundle/release/app-release.aab
             app/android/app/build/outputs/apk/release/app-release.apk
-
       - name: Upload Android artifact
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'main' && needs.check-android-secrets.outputs.isReleaseBuild == 'true'
         uses: actions/upload-artifact@v3
         with:
           name: android-artifact
@@ -485,7 +445,7 @@ jobs:
             report-project: "ios-multi-device-full"
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
       - name: run-aath-agents
         if: ${{ matrix.mobile-platform=='-p iOS' }}
@@ -497,7 +457,6 @@ jobs:
         if: ${{ matrix.mobile-platform=='-p Android' }}
         uses: ./.github/workflows/actions/run-aath-agents
         with:
-          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
           USE_NGROK: "-n"
 
       # - name: run-lambdatest-connect-tunnel
@@ -509,7 +468,7 @@ jobs:
       #     tunnelName: "PortefeuilleQC-Tunnel-${{ github.run_number }}"
 
       - name: Fetch mobile test harness repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         with:
           repository: MCN-ING/aries-mobile-test-harness
           path: aries-mobile-test-harness
