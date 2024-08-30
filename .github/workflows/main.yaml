@@ -37,7 +37,7 @@ jobs:
             "KEYCHIAN_PASSWD"
             "PROVISIONING_PROFILE"
             "PLAY_STORE_JKS_BASE64"
-            "PLAY_STORE_JSK_ALIAS"
+            "PLAY_STORE_JKS_ALIAS"
             "PLAY_STORE_JKS_PASSWD"
           )
           for var in "${required_env_vars[@]}"; do
