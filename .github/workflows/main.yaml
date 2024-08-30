@@ -167,7 +167,6 @@ jobs:
       - name: Update APS environment
         working-directory: app/ios/AriesBifold
         run: |
-          mv DEVELOPMENT.AriesBifold.entitlements AriesBifold.entitlements
           sed -i '' 's/development/production/g' AriesBifold.entitlements
           cat AriesBifold.entitlements
 
