@@ -1,5 +1,5 @@
 CODE_SIGN_STYLE=Manual
 DEVELOPMENT_TEAM=2RST8749NS
 PRODUCT_BUNDLE_IDENTIFIER=ca.qc.gouv.portefeuillemobileqc
-PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]=Portefeuille Numerique Qc (Ne pas supprimer)
+PROVISIONING_PROFILE_SPECIFIER=8a0a0d9c-2a9a-4def-adf7-e8bd91a814ab
 CODE_SIGN_IDENTITY=iPhone Distribution: Ministere de la Cybersecurite et du Numerique (2RST8749NS)
