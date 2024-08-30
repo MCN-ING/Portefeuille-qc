@@ -165,9 +165,11 @@ jobs:
           echo "OCA_URL=${OCA_URL}" >>.env
 
       - name: Update APS environment
+        working-directory: app/ios/AriesBifold
         run: |
-          sed -i '' 's/development/production/g' app/ios/AriesBifold/AriesBifold.entitlements
-          cat app/ios/AriesBifold/AriesBifold.entitlements
+          mv DEVELOPMENT.AriesBifold.entitlements AriesBifold.entitlements
+          sed -i '' 's/development/production/g' AriesBifold.entitlements
+          cat AriesBifold.entitlements
 
       - name: Create prod signing credentials
         uses: ./.github/workflows/actions/create-ios-sig-creds
