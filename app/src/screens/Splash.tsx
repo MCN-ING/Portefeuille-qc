@@ -168,10 +168,11 @@ const Splash = () => {
       flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center',
-      backgroundColor: ColorPallet.brand.secondaryBackground,
+      backgroundColor: ColorPallet.brand.primary,
     },
     img: {
-      width: '51.5%',
+      width: '70.5%',
+      height: '70.5%',
       resizeMode: 'contain',
     },
     progressContainer: {
@@ -182,6 +183,9 @@ const Splash = () => {
       width: '60%',
       minHeight: 37,
     },
+    logoAndProgressContainer: {
+      marginTop: '90%',
+    },
     stepTextContainer: {
       marginTop: 10,
       justifyContent: 'center',
@@ -190,10 +194,12 @@ const Splash = () => {
     stepText: {
       fontFamily: 'BCSans-Regular',
       fontSize: 16,
-      color: '#a8abae',
+      color: '#ffffff',
     },
     errorBoxContainer: {
+      paddingTop: 50,
       paddingHorizontal: 20,
+      position: 'absolute',
     },
     logoContainer: {
       flex: 1,
@@ -201,7 +207,7 @@ const Splash = () => {
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
-      marginBottom: '10%',
+      marginTop: '90%',
     },
   })
 
@@ -491,24 +497,20 @@ const Splash = () => {
 
   return (
     <SafeAreaView style={styles.splashContainer}>
-      <View style={{ flex: 2, width: '100%' }}>
-        {initError ? (
-          <View style={styles.errorBoxContainer}>
-            <InfoBox
-              notificationType={InfoBoxType.Error}
-              title={t('Error.Title2026')}
-              description={t('Error.Message2026')}
-              message={initError?.message || t('Error.Unknown')}
-              onCallToActionLabel={t('Init.Retry')}
-              onCallToActionPressed={handleErrorCallToActionPressed}
-            />
-          </View>
-        ) : (
-          <TipCarousel />
-        )}
-      </View>
+      {initError ? (
+        <View style={styles.errorBoxContainer}>
+          <InfoBox
+            notificationType={InfoBoxType.Error}
+            title={t('Error.Title2026')}
+            description={t('Error.Message2026')}
+            message={initError?.message || t('Error.Unknown')}
+            onCallToActionLabel={t('Init.Retry')}
+            onCallToActionPressed={handleErrorCallToActionPressed}
+          />
+        </View>
+      ) : null}
       <View style={styles.logoContainer}>
-        <Image source={require('../assets/img/Quebec.png')} style={styles.img} />
+        <Image source={require('../assets/img/QUEBEC_w3_blanc.png')} style={styles.img} />
       </View>
       <View style={styles.progressContainer} testID={testIdWithKey('LoadingActivityIndicator')}>
         <View style={{ flex: 1, width: '100%', alignContent: 'center' }}>
@@ -519,6 +521,9 @@ const Splash = () => {
             <Text style={styles.stepText}>{stepText}</Text>
           </View>
         </View>
+      </View>
+      <View style={{ flex: 2, width: '100%', height: '100%', position: 'absolute', marginTop: '80%' }}>
+        <TipCarousel />
       </View>
     </SafeAreaView>
   )
