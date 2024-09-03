@@ -2,4 +2,4 @@ CODE_SIGN_STYLE=Manual
 DEVELOPMENT_TEAM=2RST8749NS
 PRODUCT_BUNDLE_IDENTIFIER=ca.qc.gouv.portefeuillemobileqc
 PROVISIONING_PROFILE_SPECIFIER=d17832aa-855e-476a-8741-4cf396a65204
-CODE_SIGN_IDENTITY=Apple Distribution: Ministere de la Cybersecurite et du Numerique (2RST8749NS)
+CODE_SIGN_IDENTITY=iPhone Distribution
