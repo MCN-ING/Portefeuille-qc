@@ -35,7 +35,7 @@ import { CommonActions, useNavigation } from '@react-navigation/native'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import { Config } from 'react-native-config'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -176,18 +176,28 @@ const Splash = () => {
       resizeMode: 'contain',
     },
     progressContainer: {
-      flex: 2,
+      flex: 1,
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'space-between',
+
       width: '60%',
-      minHeight: 37,
+    },
+    tipCarouselContainer: {
+      flex: 1,
+      justifyContent: 'center',
     },
     logoAndProgressContainer: {
-      marginTop: '90%',
+      marginTop: '15%',
+      alignItems: 'center',
+      maxHeight: 600,
+    },
+    progressAndTextContainer: {
+      flex: 1,
+      width: '100%',
+      alignContent: 'center',
     },
     stepTextContainer: {
-      marginTop: 10,
+      paddingTop: 15,
       justifyContent: 'center',
       alignItems: 'center',
     },
@@ -207,7 +217,7 @@ const Splash = () => {
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
-      marginTop: '90%',
+      marginTop: '80%',
     },
   })
 
@@ -497,7 +507,7 @@ const Splash = () => {
 
   return (
     <SafeAreaView style={styles.splashContainer}>
-      {initError ? (
+      {initError && (
         <View style={styles.errorBoxContainer}>
           <InfoBox
             notificationType={InfoBoxType.Error}
@@ -508,22 +518,26 @@ const Splash = () => {
             onCallToActionPressed={handleErrorCallToActionPressed}
           />
         </View>
-      ) : null}
-      <View style={styles.logoContainer}>
-        <Image source={require('../assets/img/QUEBEC_w3_blanc.png')} style={styles.img} />
-      </View>
-      <View style={styles.progressContainer} testID={testIdWithKey('LoadingActivityIndicator')}>
-        <View style={{ flex: 1, width: '100%', alignContent: 'center' }}>
-          <View>
-            <ProgressBar progressPercent={progressPercent} />
+      )}
+      <View>
+        <View style={styles.logoAndProgressContainer}>
+          <View style={styles.logoContainer}>
+            {<Image source={require('../assets/img/QUEBEC_w3_blanc.png')} style={styles.img} />}
           </View>
-          <View style={styles.stepTextContainer}>
-            <Text style={styles.stepText}>{stepText}</Text>
+          <View style={styles.progressContainer} testID={testIdWithKey('LoadingActivityIndicator')}>
+            <View style={styles.progressAndTextContainer}>
+              <View>
+                <ProgressBar progressPercent={progressPercent} />
+              </View>
+              <View style={styles.stepTextContainer}>
+                <Text style={styles.stepText}>{stepText}</Text>
+              </View>
+            </View>
           </View>
         </View>
-      </View>
-      <View style={{ flex: 2, width: '100%', height: '100%', position: 'absolute', marginTop: '80%' }}>
-        <TipCarousel />
+        <View style={styles.tipCarouselContainer}>
+          <View>{<TipCarousel />}</View>
+        </View>
       </View>
     </SafeAreaView>
   )
