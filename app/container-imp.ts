@@ -28,6 +28,8 @@ import ledgers from './config/ledgers'
 import AddCredentialButton from './src/components/AddCredentialButton'
 import AddCredentialSlider from './src/components/AddCredentialSlider'
 import EmptyList from './src/components/EmptyList'
+import { useNotifications } from './src/hooks/notifications'
+import DefaultNotification from './src/screens/DefaultNotification'
 import Developer from './src/screens/Developer'
 import { pages } from './src/screens/OnboardingPages'
 import Splash from './src/screens/Splash'
@@ -113,6 +115,24 @@ export class AppContainer implements Container {
 
     const resolver = new RemoteOCABundleResolver(Config.OCA_URL ?? '', {
       brandingOverlayType: BrandingOverlayType.Branding10,
+    })
+    this._container.registerInstance(TOKENS.NOTIFICATIONS, {
+      useNotifications,
+      customNotificationConfig: {
+        component: DefaultNotification,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onCloseAction: (dispatch?: React.Dispatch<ReducerAction<any>>) => {
+          if (dispatch) {
+            {
+              DispatchAction.STATE_DISPATCH
+            }
+          }
+        },
+        pageTitle: 'PersonCredential.PageTitle',
+        title: 'PersonCredentialNotification.Title',
+        description: 'PersonCredentialNotification.Description',
+        buttonTitle: 'PersonCredentialNotification.ButtonTitle',
+      },
     })
     this._container.registerInstance(TOKENS.UTIL_OCA_RESOLVER, resolver)
     this._container.registerInstance(TOKENS.UTIL_PROOF_TEMPLATE, getProofRequestTemplates)
