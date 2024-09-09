@@ -26,6 +26,7 @@ import {
   createLinkSecretIfRequired,
   TOKENS,
   useServices,
+  Stacks,
 } from '@hyperledger/aries-bifold-core'
 import { RemoteOCABundleResolver } from '@hyperledger/aries-oca/build/legacy'
 import { GetCredentialDefinitionRequest, GetSchemaRequest } from '@hyperledger/indy-vdr-shared'
@@ -461,13 +462,13 @@ const Splash = () => {
         setStep(8)
         setAgent(newAgent)
 
-        /*setStep(9)
+        setStep(9)
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
             routes: [{ name: Stacks.TabStack }],
           })
-        )*/
+        )
       } catch (e: unknown) {
         setInitErrorType(InitErrorTypes.Agent)
         setInitError(e as Error)
