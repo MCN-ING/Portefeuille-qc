@@ -219,6 +219,16 @@ const translation = {
     CreatePersonCred: "Étape 2: Créez votre attestation d'identité numérique gouvernemantale",
     StartProcess: 'Start the process (FR)',
   },
+  DefaultNotification: {
+    Title: 'Demander son ANIG',
+    Description:
+      "L'attestation numérique d'identité gouvernemental (ANIG) est une attestation qui vous permettra de vous identifier, en ligne et en personne, en partageant le minimum d'information nécessaire.",
+    SAGConnexion: 'Étape 1 - Connexion au SAG',
+    SAGConnexionDescription: 'Lorem ipsum dolor amet lorem ipsum dolor set amet lorem ipsum.',
+    ANIGAccept: "Étape 2 - Accepter l'offre d'attestation",
+    ANIGAcceptDescription: 'Lorem ipsum dolor amet lorem ipsum dolor set amet lorem ipsum.',
+    ButtonTitle: 'Recevoir mon attestation',
+  },
   StatusMessages: {
     InitAgent: "Initialisation de l'agent ...",
   },
