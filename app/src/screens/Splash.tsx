@@ -35,11 +35,11 @@ import { CommonActions, useNavigation } from '@react-navigation/native'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, View, Image } from 'react-native'
 import { Config } from 'react-native-config'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import ProgressBar from '../components/ProgressBar'
+import Progress from '../components/Progress'
 import TipCarousel from '../components/TipCarousel'
 import { BCState, BCDispatchAction, BCLocalStorageKeys } from '../store'
 
@@ -172,8 +172,6 @@ const Splash = () => {
     progressContainer: {
       flex: 1,
       opacity: opacity,
-      flexDirection: 'column',
-      alignItems: 'center',
       width: '60%',
     },
     tipCarouselContainer: {
@@ -514,12 +512,7 @@ const Splash = () => {
             {<Image source={require('../assets/img/QUEBEC_w3_blanc.png')} style={styles.img} />}
           </View>
           <View style={styles.progressContainer} testID={testIdWithKey('LoadingActivityIndicator')}>
-            <View style={styles.progressAndTextContainer}>
-              <ProgressBar progressPercent={progressPercent} />
-              <View style={styles.stepTextContainer}>
-                <Text style={styles.stepText}>{stepText}</Text>
-              </View>
-            </View>
+            <Progress progressPercent={progressPercent} progressText={stepText} textStyle={styles.stepText} />
           </View>
         </View>
         <View style={styles.tipCarouselContainer}>
