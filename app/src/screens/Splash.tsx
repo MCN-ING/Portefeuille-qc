@@ -42,7 +42,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import LogoQuebecBlanc from '../assets/img/LogoQuebecBlanc.svg'
 import ProgressBar from '../components/ProgressBar'
 import TipCarousel from '../components/TipCarousel'
-import { SplashLargeScreenWidthPercentage, SplashSmallScreenWidthPercentage } from '../constants'
+import { SplashSmallScreenWidthPercentage } from '../constants'
 import { BCState, BCDispatchAction, BCLocalStorageKeys } from '../store'
 
 import { TermsVersion } from './Terms'
@@ -142,8 +142,6 @@ const Splash = () => {
 
   const { width } = useWindowDimensions()
 
-  const imgWidth = width > 600 ? `${SplashLargeScreenWidthPercentage}%` : `${SplashSmallScreenWidthPercentage}%`
-
   const steps: string[] = [
     t('Init.Starting'),
     t('Init.FetchingPreferences'),
@@ -184,7 +182,7 @@ const Splash = () => {
     },
     tipCarouselContainer: {
       flex: 1,
-      width: width > 600 ? imgWidth : '100%',
+      width: width > 600 ? `${SplashSmallScreenWidthPercentage}%` : '100%',
       height: '100%',
       justifyContent: width > 600 ? 'flex-end' : 'center',
       opacity: opacity,
@@ -196,7 +194,7 @@ const Splash = () => {
       alignItems: 'center',
     },
     innerLogoAndProgressContainer: {
-      width: imgWidth,
+      width: `${SplashSmallScreenWidthPercentage}%`,
       maxHeight: width > 600 ? 200 : 120,
       justifyContent: 'center',
       alignItems: 'center',
