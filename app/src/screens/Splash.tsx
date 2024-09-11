@@ -35,12 +35,14 @@ import { CommonActions, useNavigation } from '@react-navigation/native'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, useWindowDimensions } from 'react-native'
 import { Config } from 'react-native-config'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import LogoQuebecBlanc from '../assets/img/LogoQuebecBlanc.svg'
 import Progress from '../components/Progress'
 import TipCarousel from '../components/TipCarousel'
+import { SplashSmallScreenWidthPercentage } from '../constants'
 import { BCState, BCDispatchAction, BCLocalStorageKeys } from '../store'
 
 import { TermsVersion } from './Terms'
@@ -138,6 +140,8 @@ const Splash = () => {
     TOKENS.CACHE_SCHEMAS,
   ])
 
+  const { width } = useWindowDimensions()
+
   const steps: string[] = [
     t('Init.Starting'),
     t('Init.FetchingPreferences'),
@@ -165,52 +169,58 @@ const Splash = () => {
       backgroundColor: ColorPallet.brand.primary,
     },
     img: {
-      width: '70.5%',
-      height: '70.5%',
+      width: '100%',
       resizeMode: 'contain',
     },
     progressContainer: {
       flex: 1,
       opacity: opacity,
-      width: '60%',
+      paddingHorizontal: 40,
+      width: '100%',
     },
     tipCarouselContainer: {
       flex: 1,
+      width: width > 600 ? `${SplashSmallScreenWidthPercentage}%` : '100%',
+      height: '100%',
+      justifyContent: width > 600 ? 'flex-end' : 'center',
       opacity: opacity,
     },
     logoAndProgressContainer: {
-      flex: 2,
-      alignItems: 'center',
-    },
-    progressAndTextContainer: {
       flex: 1,
-      width: '100%',
-      alignContent: 'center',
-    },
-    stepTextContainer: {
-      paddingTop: 15,
       width: '100%',
       justifyContent: 'center',
       alignItems: 'center',
+    },
+    innerLogoAndProgressContainer: {
+      width: `${SplashSmallScreenWidthPercentage}%`,
+      maxHeight: width > 600 ? 200 : 120,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    progressAndTextContainer: {
+      width: '100%',
+      paddingHorizontal: 40,
+      alignContent: 'center',
+    },
+    stepTextContainer: {
+      minHeight: 50,
     },
     stepText: {
       fontFamily: 'BCSans-Regular',
       fontSize: 16,
       color: '#ffffff',
+      fontWeight: '500',
     },
     errorBoxContainer: {
-      paddingTop: 50,
-      top: 0,
-      paddingHorizontal: 20,
-      position: 'absolute',
+      flex: 1,
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     logoContainer: {
-      flex: 1,
-      alignSelf: 'center',
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
-      marginTop: '80%',
     },
   })
 
@@ -494,8 +504,8 @@ const Splash = () => {
 
   return (
     <SafeAreaView style={styles.splashContainer}>
-      {initError && (
-        <View style={styles.errorBoxContainer}>
+      <View style={styles.errorBoxContainer}>
+        {initError && (
           <InfoBox
             notificationType={InfoBoxType.Error}
             title={t('Error.Title2026')}
@@ -504,20 +514,22 @@ const Splash = () => {
             onCallToActionLabel={t('Init.Retry')}
             onCallToActionPressed={handleErrorCallToActionPressed}
           />
-        </View>
-      )}
-      <View>
-        <View style={styles.logoAndProgressContainer}>
+        )}
+      </View>
+      <View style={styles.logoAndProgressContainer}>
+        <View style={styles.innerLogoAndProgressContainer}>
           <View style={styles.logoContainer}>
-            {<Image source={require('../assets/img/QUEBEC_w3_blanc.png')} style={styles.img} />}
+            <LogoQuebecBlanc style={styles.img} width={'100%'} height={'100%'} />
           </View>
           <View style={styles.progressContainer} testID={testIdWithKey('LoadingActivityIndicator')}>
-            <Progress progressPercent={progressPercent} progressText={stepText} textStyle={styles.stepText} />
+            <View style={styles.stepTextContainer}>
+              <Progress progressPercent={progressPercent} progressText={stepText} textStyle={styles.stepText} />
+            </View>
           </View>
         </View>
-        <View style={styles.tipCarouselContainer}>
-          <View>{<TipCarousel />}</View>
-        </View>
+      </View>
+      <View style={styles.tipCarouselContainer}>
+        <View>{<TipCarousel />}</View>
       </View>
     </SafeAreaView>
   )
