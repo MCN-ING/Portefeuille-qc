@@ -12,11 +12,16 @@ const HeaderText = ({ title }: Props) => {
       ...TextTheme.headingTwo,
       color: ColorPallet.notification.infoText,
     },
+    headerBottomLine: {
+      height: 4,
+      width: 48,
+      backgroundColor: ColorPallet.brand.highlight,
+    },
   })
   return (
     <View>
       <Text style={[style.headerText]}>{title}</Text>
-      <View style={{ height: 4, width: 48, backgroundColor: ColorPallet.brand.highlight }} />
+      <View style={style.headerBottomLine} />
     </View>
   )
 }
