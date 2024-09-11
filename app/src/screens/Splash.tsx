@@ -209,7 +209,6 @@ const Splash = () => {
       fontFamily: 'BCSans-Regular',
       fontSize: 16,
       color: '#ffffff',
-      fontWeight: '500',
     },
     errorBoxContainer: {
       flex: 1,

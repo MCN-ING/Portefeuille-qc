@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { View, Animated, LayoutAnimation, I18nManager, Pressable } from 'react-native'
-import EntypoIcons from 'react-native-vector-icons/Entypo'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { toggleAnimation } from '../../animations/toggleAnimation'
 import { AccordionItemProps } from '../../models/AccordionItem'
@@ -51,7 +51,7 @@ const AccordionItem = ({
           {(!isRTL || I18nManager.isRTL) && customTitle()}
           {!customIcon ? (
             <Animated.View style={{ transform: [{ rotate: iconRotation }] }}>
-              <EntypoIcons name={showContent || isOpen ? 'minus' : 'plus'} size={30} />
+              <MaterialCommunityIcons name={showContent || isOpen ? 'minus' : 'plus'} size={30} />
             </Animated.View>
           ) : (
             customIcon()
