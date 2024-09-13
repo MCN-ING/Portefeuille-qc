@@ -31,6 +31,7 @@ import AddCredentialSlider from './src/components/AddCredentialSlider'
 import EmptyList from './src/components/EmptyList'
 import HomeFooter from './src/components/HomeFooter'
 import HomeHeader from './src/components/HomeHeader'
+import NoNewUpdates from './src/components/NoNewUpdates'
 import { PINValidationRules } from './src/constants'
 import TermsStack from './src/navigators/TermsStack'
 import Developer from './src/screens/Developer'
@@ -93,7 +94,7 @@ export class AppContainer implements Container {
     this._container.registerInstance(TOKENS.SCREEN_SPLASH, Splash)
     this._container.registerInstance(TOKENS.COMPONENT_HOME_HEADER, HomeHeader)
     this._container.registerInstance(TOKENS.COMPONENT_HOME_FOOTER, HomeFooter)
-
+    this._container.registerInstance(TOKENS.COMPONENT_HOME_NOTIFICATIONS_EMPTY_LIST, NoNewUpdates)
     this._container.registerInstance(TOKENS.CONFIG, {
       PINSecurity: { rules: PINValidationRules, displayHelper: true },
       settings: [
