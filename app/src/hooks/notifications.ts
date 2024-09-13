@@ -6,8 +6,8 @@ import {
   ProofExchangeRecord,
   ProofState,
 } from '@credo-ts/core'
-import { useCredentialByState, useBasicMessages } from '@credo-ts/react-hooks'
-import { useStore } from '@hyperledger/aries-bifold-core'
+import { useCredentialByState, useProofByState, useBasicMessages, useAgent } from '@credo-ts/react-hooks'
+import { BifoldAgent, useStore } from '@hyperledger/aries-bifold-core'
 import {
   BasicMessageMetadata,
   CredentialMetadata,
@@ -17,17 +17,23 @@ import {
 import { ProofCustomMetadata, ProofMetadata } from '@hyperledger/aries-bifold-verifier'
 import { useEffect, useState } from 'react'
 
+import { attestationCredDefIds } from '../constants'
 import { showPersonCredentialSelector } from '../helpers/BCIDHelper'
+import { isProofRequestingAttestation } from '../services/attestation'
 import { BCState } from '../store'
 
 export const useNotifications = (): Array<BasicMessageRecord | CredentialRecord | ProofExchangeRecord> => {
+  const { agent } = useAgent()
   const [store] = useStore<BCState>()
   const offers = useCredentialByState(CredentialState.OfferReceived)
-  const [nonAttestationProofs] = useState<ProofExchangeRecord[]>([])
+  const proofsRequested = useProofByState(ProofState.RequestReceived)
+  const [nonAttestationProofs, setNonAttestationProofs] = useState<ProofExchangeRecord[]>([])
   const [notifications, setNotifications] = useState([])
   const { records: basicMessages } = useBasicMessages()
+
   const credsReceived = useCredentialByState(CredentialState.CredentialReceived)
   const credsDone = useCredentialByState(CredentialState.Done)
+  const proofsDone = useProofByState([ProofState.Done, ProofState.PresentationReceived])
 
   useEffect(() => {
     // get all unseen messages
@@ -78,6 +84,18 @@ export const useNotifications = (): Array<BasicMessageRecord | CredentialRecord 
     const notificationsWithCustom = [...custom, ...notif]
     setNotifications(notificationsWithCustom as never[])
   }, [offers, credsReceived, credsDone, basicMessages, nonAttestationProofs])
+
+  useEffect(() => {
+    Promise.all(
+      [...proofsRequested, ...proofsDone].map(async (proof: ProofExchangeRecord) => {
+        const isAttestation = await isProofRequestingAttestation(proof, agent as BifoldAgent, attestationCredDefIds)
+        return {
+          value: proof,
+          include: !isAttestation,
+        }
+      })
+    ).then((val) => setNonAttestationProofs(val.filter((v) => v.include).map((data) => data.value)))
+  }, [proofsRequested, proofsDone])
 
   return notifications
 }
