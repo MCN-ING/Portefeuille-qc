@@ -126,7 +126,7 @@ const translation = {
     Credential: 'credential',
   },
   PersonCredentialNotification: {
-    Title: 'Get your Person credential1212',
+    Title: 'Get your Person credential',
     Description: 'Add your Person credential to your wallet and use it to get access to services online.',
     ButtonTitle: 'Start',
   },
