@@ -2,7 +2,7 @@ import { useTheme } from '@hyperledger/aries-bifold-core'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, View } from 'react-native'
 
-const NoNewUpdates = () => {
+const HomeEmptyList = () => {
   const { ColorPallet } = useTheme()
   const { t } = useTranslation()
   const style = StyleSheet.create({
@@ -24,4 +24,4 @@ const NoNewUpdates = () => {
   )
 }
 
-export default NoNewUpdates
+export default HomeEmptyList
