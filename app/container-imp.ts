@@ -138,7 +138,7 @@ export class AppContainer implements Container {
       useNotifications,
       customNotificationConfig: {
         component: DefaultNotification,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
         onCloseAction: (dispatch?: React.Dispatch<ReducerAction<string>>) => {
           if (dispatch) {
             dispatch({
