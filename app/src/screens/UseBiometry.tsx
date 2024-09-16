@@ -56,6 +56,11 @@ const UseBiometry: React.FC = () => {
       minHeight: 200,
       marginBottom: 66,
     },
+    useToUnlockContainer: {
+      flexShrink: 1,
+      marginRight: 10,
+      justifyContent: 'center',
+    },
   })
 
   useEffect(() => {
@@ -165,7 +170,7 @@ const UseBiometry: React.FC = () => {
             marginVertical: 20,
           }}
         >
-          <View style={{ flexShrink: 1, marginRight: 10, justifyContent: 'center' }}>
+          <View style={styles.useToUnlockContainer}>
             <Text style={TextTheme.bold}>{t('Biometry.UseToUnlock')}</Text>
           </View>
           <View style={{ justifyContent: 'center' }}>
