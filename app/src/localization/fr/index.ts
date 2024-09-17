@@ -776,8 +776,8 @@ const translation = {
     PlayWithBCWallet: 'Jouer avec le Portefeuille Québec',
   },
   Tour: {
-    GuideTitle: 'Bienvenue à Aries Bifold',
-    WouldYouLike: "Souhaitez-vous obtenir des conseils sur la façon d'utiliser Aries Bifold?",
+    GuideTitle: 'Bienvenue au Portefeuille numérique',
+    WouldYouLike: "Souhaitez-vous obtenir des conseils sur la façon d'utiliser le Portefeuille numérique?",
     UseAppGuides: 'Utiliser les conseils',
     DoNotUseAppGuides: 'Ne pas utiliser les conseils',
     AddAndShare: 'Ajouter et partager des attestations',
