@@ -22,6 +22,12 @@ import { showPersonCredentialSelector } from '../helpers/BCIDHelper'
 import { isProofRequestingAttestation } from '../services/attestation'
 import { BCState } from '../store'
 
+interface CustomNotification {
+  type: 'CustomNotification'
+  createdAt: Date
+  id: string
+}
+
 export const useNotifications = (): Array<BasicMessageRecord | CredentialRecord | ProofExchangeRecord> => {
   const { agent } = useAgent()
   const [store] = useStore<BCState>()
@@ -65,7 +71,13 @@ export const useNotifications = (): Array<BasicMessageRecord | CredentialRecord 
       (c) => c.metadata.data[AnonCredsCredentialMetadataKey].credentialDefinitionId as string
     )
     const invitationDate = new Date()
-    const custom =
+    /*const custom =
+      showPersonCredentialSelector(credentialDefinitionIDs) &&
+      !store.dismissPersonCredentialOffer.personCredentialOfferDismissed
+        ? [{ type: 'CustomNotification', createdAt: invitationDate, id: 'custom' }]
+        : []*/
+
+    const custom: CustomNotification[] =
       showPersonCredentialSelector(credentialDefinitionIDs) &&
       !store.dismissPersonCredentialOffer.personCredentialOfferDismissed
         ? [{ type: 'CustomNotification', createdAt: invitationDate, id: 'custom' }]
