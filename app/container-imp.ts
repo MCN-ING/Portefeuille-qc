@@ -20,7 +20,9 @@ import { DefaultScreenOptionsDictionary } from '@hyperledger/aries-bifold-core/A
 import { getProofRequestTemplates } from '@hyperledger/aries-bifold-verifier'
 import { BrandingOverlayType, RemoteOCABundleResolver } from '@hyperledger/aries-oca/build/legacy'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { StackNavigationOptions } from '@react-navigation/stack'
 import { TFunction } from 'react-i18next'
+import { Platform } from 'react-native'
 import { Config } from 'react-native-config'
 import { DependencyContainer } from 'tsyringe'
 
@@ -28,6 +30,10 @@ import ledgers from './config/ledgers'
 import AddCredentialButton from './src/components/AddCredentialButton'
 import AddCredentialSlider from './src/components/AddCredentialSlider'
 import EmptyList from './src/components/EmptyList'
+import HomeEmptyList from './src/components/HomeEmptyList'
+import HomeFooter from './src/components/HomeFooter'
+import HomeHeader from './src/components/HomeHeader'
+import PINCreateHeader from './src/components/PINCreateHeader'
 import { PINValidationRules } from './src/constants'
 import { useNotifications } from './src/hooks/notifications'
 import TermsStack from './src/navigators/TermsStack'
@@ -82,9 +88,27 @@ export class AppContainer implements Container {
 
     const defaultScreenOptionsDict = DefaultScreenOptionsDictionary
 
+    const onboardingScreenOptions: StackNavigationOptions = {
+      headerShown: Platform.OS == 'ios',
+      headerTitle: '',
+      headerStyle: {
+        height: 50,
+      },
+    }
+
     defaultScreenOptionsDict[Screens.Terms] = {
       ...defaultScreenOptionsDict[Screens.Terms],
-      headerShown: false,
+      ...onboardingScreenOptions,
+    }
+
+    defaultScreenOptionsDict[Screens.UseBiometry] = {
+      ...defaultScreenOptionsDict[Screens.UseBiometry],
+      ...onboardingScreenOptions,
+    }
+
+    defaultScreenOptionsDict[Screens.CreatePIN] = {
+      ...defaultScreenOptionsDict[Screens.CreatePIN],
+      ...onboardingScreenOptions,
     }
 
     // Here you can register any component to override components in core package
@@ -93,8 +117,12 @@ export class AppContainer implements Container {
     this._container.registerInstance(TOKENS.SCREEN_ONBOARDING_PAGES, pages)
     this._container.registerInstance(TOKENS.OBJECT_ONBOARDING_CONFIG, defaultScreenOptionsDict)
     this._container.registerInstance(TOKENS.SCREEN_TERMS, { screen: TermsStack, version: TermsVersion })
+    this._container.registerInstance(TOKENS.COMPONENT_PIN_CREATE_HEADER, PINCreateHeader)
     this._container.registerInstance(TOKENS.SCREEN_USE_BIOMETRY, UseBiometry)
     this._container.registerInstance(TOKENS.SCREEN_SPLASH, Splash)
+    this._container.registerInstance(TOKENS.COMPONENT_HOME_HEADER, HomeHeader)
+    this._container.registerInstance(TOKENS.COMPONENT_HOME_FOOTER, HomeFooter)
+    this._container.registerInstance(TOKENS.COMPONENT_HOME_NOTIFICATIONS_EMPTY_LIST, HomeEmptyList)
     this._container.registerInstance(TOKENS.CONFIG, {
       PINSecurity: { rules: PINValidationRules, displayHelper: true },
       settings: [
@@ -122,6 +150,7 @@ export class AppContainer implements Container {
       enableTours: true,
       supportedLanguages: ['en', 'fr'],
       showPreface: false,
+      enableReuseConnections: true,
       disableOnboardingSkip: true,
       showScanHelp: true,
       showScanButton: true,
@@ -196,7 +225,7 @@ export class AppContainer implements Container {
         preferences: { ...initialState.preferences, ...preferences },
         migration: { ...initialState.migration, ...migration },
         tours: { ...initialState.tours, ...tours },
-        onboarding: { ...initialState.onboarding, ...onboarding },
+        onboarding: { ...initialState.onboarding, ...onboarding, didCompleteTutorial: true },
         dismissPersonCredentialOffer: { ...initialState.dismissPersonCredentialOffer, ...personCredOfferDissmissed },
         developer: {
           ...initialState.developer,
