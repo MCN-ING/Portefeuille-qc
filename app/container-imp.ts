@@ -143,6 +143,7 @@ export class AppContainer implements Container {
       enableTours: true,
       supportedLanguages: ['en', 'fr'],
       showPreface: false,
+      enableReuseConnections: true,
       disableOnboardingSkip: true,
       showScanHelp: true,
       showScanButton: true,
