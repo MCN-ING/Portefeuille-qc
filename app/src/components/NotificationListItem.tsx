@@ -29,7 +29,7 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DeviceEventEmitter, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { DeviceEventEmitter, Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
@@ -39,7 +39,7 @@ import FleurLysImg from '../assets/img/FleurLys.svg'
 import MessageImg from '../assets/img/Message.svg'
 import ProofRequestImg from '../assets/img/ProofRequest.svg'
 import RevocationImg from '../assets/img/Revocation.svg'
-import { hitSlop } from '../constants'
+import { customNotificationDate, hitSlop } from '../constants'
 
 const iconSize = 20
 
@@ -135,6 +135,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
     rightAction: {
       padding: 8,
       backgroundColor: ColorPallet.semantic.error,
+      minWidth: 120,
       justifyContent: 'center',
       flex: 1,
       marginVertical: 'auto',
@@ -318,7 +319,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
           resolve({
             title: t(customNotification?.title as string),
             body: t(customNotification?.description as string),
-            eventTime: undefined,
+            eventTime: formatTime(customNotificationDate, { shortMonth: true, includeHour: true }),
           })
           break
         default:
@@ -426,32 +427,32 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   ].includes(notificationType)
 
   const body = (
-    <View style={[styles.container]} testID={testIdWithKey('NotificationListItem')}>
-      {getConnectionImage(connection, notificationType)}
-      <View style={styles.infoContainer}>
-        <Text style={[styles.headerText]} testID={testIdWithKey('HeaderText')}>
-          {details.title}
-        </Text>
-        <Text style={[styles.bodyText]} testID={testIdWithKey('BodyText')}>
-          {details.body}
-        </Text>
-        <Text style={[styles.bodyText, styles.bodyEventTime]} testID={testIdWithKey('BodyEventTime')}>
-          {details.eventTime}
-        </Text>
-      </View>
-      <View style={styles.arrowContainer}>
-        <TouchableOpacity
-          accessibilityLabel={t('Global.View')}
-          accessibilityRole={'button'}
-          testID={testIdWithKey(`View${notificationType}${isReceivedProof ? 'Received' : ''}`)}
-          onPress={action}
-          hitSlop={hitSlop}
-        >
+    <Pressable
+      accessibilityLabel={t('Global.View')}
+      accessibilityRole={'button'}
+      testID={testIdWithKey(`View${notificationType}${isReceivedProof ? 'Received' : ''}`)}
+      onPress={action}
+      hitSlop={hitSlop}
+    >
+      <View style={[styles.container]} testID={testIdWithKey('NotificationListItem')}>
+        {getConnectionImage(connection, notificationType)}
+        <View style={styles.infoContainer}>
+          <Text style={[styles.headerText]} testID={testIdWithKey('HeaderText')}>
+            {details.title}
+          </Text>
+          <Text style={[styles.bodyText]} testID={testIdWithKey('BodyText')}>
+            {details.body}
+          </Text>
+          <Text style={[styles.bodyText, styles.bodyEventTime]} testID={testIdWithKey('BodyEventTime')}>
+            {details.eventTime}
+          </Text>
+        </View>
+        <View style={styles.arrowContainer}>
           <MaterialIcon name={'keyboard-arrow-right'} size={iconSize} />
-        </TouchableOpacity>
+        </View>
+        {commonRemoveModal()}
       </View>
-      {commonRemoveModal()}
-    </View>
+    </Pressable>
   )
 
   const handleDelete = () => {

@@ -223,7 +223,7 @@ const translation = {
   DefaultNotification: {
     PageTitle: 'Accueil',
     Title: "Demander votre attestation numérique d'attestation gouvernementale",
-    Description: 'Ministère de cybersécurité et du numérique',
+    Description: 'Ministère de la Cybersécurité et du Numérique',
     ButtonTitle: 'Démarrer',
   },
   DefaultNotificationPage: {

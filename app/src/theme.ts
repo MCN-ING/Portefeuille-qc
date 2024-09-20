@@ -98,9 +98,9 @@ export const TextTheme: ITextTheme = {
   },
   headingTwo: {
     fontFamily: 'BCSans-Regular',
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: ColorPallet.grayscale.darkGrey,
+    color: ColorPallet.notification.infoText,
   },
   headingThree: {
     fontFamily: 'BCSans-Regular',
