@@ -534,7 +534,7 @@ const translation = {
     ReceivedMessage: 'You received a new message',
     ViewMessage: 'View message',
     SentCredential: 'sent a credential',
-    ReceivedCredential: 'Vous received a new credential',
+    ReceivedCredential: 'You received a new credential',
   },
   Notifications: {
     Dismiss: 'Delete',
