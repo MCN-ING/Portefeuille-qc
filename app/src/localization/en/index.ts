@@ -517,6 +517,11 @@ const translation = {
     SentMessage: 'sent a message',
     ReceivedMessage: 'You received a new message',
     ViewMessage: 'View message',
+    SentCredential: 'sent a credential',
+    ReceivedCredential: 'Vous received a new credential',
+  },
+  Notifications: {
+    Dismiss: 'Delete',
   },
   Scan: {
     SuccessfullyAcceptedConnection: 'Successfully Accepted Connection',

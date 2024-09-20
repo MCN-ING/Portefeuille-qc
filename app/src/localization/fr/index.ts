@@ -463,6 +463,11 @@ const translation = {
     SentMessage: 'a envoyé un message',
     ReceivedMessage: 'Vous avez reçu un nouveau message',
     ViewMessage: 'Voir le message',
+    SentCredential: "a envoyé une offre d'attestation",
+    ReceivedCredential: 'Vous avez reçu une nouvelle attestation',
+  },
+  Notifications: {
+    Dismiss: 'Supprimer',
   },
   PrivacyPolicy: {
     Title: 'Politique de confidentialité',
