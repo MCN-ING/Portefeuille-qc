@@ -95,7 +95,14 @@ export const useNotifications = (): Array<BasicMessageRecord | CredentialRecord 
 
     const notificationsWithCustom = [...custom, ...notif]
     setNotifications(notificationsWithCustom as never[])
-  }, [offers, credsReceived, credsDone, basicMessages, nonAttestationProofs])
+  }, [
+    offers,
+    credsReceived,
+    credsDone,
+    basicMessages,
+    nonAttestationProofs,
+    store.dismissPersonCredentialOffer.personCredentialOfferDismissed,
+  ])
 
   useEffect(() => {
     Promise.all(
