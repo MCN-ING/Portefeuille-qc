@@ -36,6 +36,7 @@ import Developer from './src/screens/Developer'
 import { pages } from './src/screens/OnboardingPages'
 import Splash from './src/screens/Splash'
 import { TermsVersion } from './src/screens/Terms'
+import UseBiometry from './src/screens/UseBiometry'
 import {
   BCDispatchAction,
   BCLocalStorageKeys,
@@ -92,6 +93,7 @@ export class AppContainer implements Container {
     this._container.registerInstance(TOKENS.SCREEN_ONBOARDING_PAGES, pages)
     this._container.registerInstance(TOKENS.OBJECT_ONBOARDING_CONFIG, defaultScreenOptionsDict)
     this._container.registerInstance(TOKENS.SCREEN_TERMS, { screen: TermsStack, version: TermsVersion })
+    this._container.registerInstance(TOKENS.SCREEN_USE_BIOMETRY, UseBiometry)
     this._container.registerInstance(TOKENS.SCREEN_SPLASH, Splash)
     this._container.registerInstance(TOKENS.CONFIG, {
       PINSecurity: { rules: PINValidationRules, displayHelper: true },
