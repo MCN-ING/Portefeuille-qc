@@ -149,7 +149,7 @@ const translation = {
     StartProcess: 'Start the process',
   },
   DefaultNotification: {
-    PageTitle: 'Accueil (EN)',
+    PageTitle: 'Home',
     Title: "Demander votre attestation numérique d'attestation gouvernementale(EN)",
     Description: 'Ministère de cybersécurité et du numérique.(EN)',
     ButtonTitle: 'Démarrer(EN)',
