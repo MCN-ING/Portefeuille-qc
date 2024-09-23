@@ -64,10 +64,13 @@ const DefaultNotification: React.FC<DefaultProps> = () => {
   })
 
   return (
-    <SafeAreaView edges={['left', 'right', 'bottom']}>
+    <SafeAreaView edges={['left', 'right', 'bottom']} style={styles.pageContainer}>
       <ScrollView style={styles.container}>
         <View style={styles.section}>
           <HeaderText title={t('DefaultNotificationPage.Title')} />
+          <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
+          <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
+          <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
           <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
         </View>
         <View style={styles.section}>
