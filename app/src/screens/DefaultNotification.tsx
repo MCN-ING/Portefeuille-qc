@@ -5,8 +5,11 @@ import {
   testIdWithKey,
   Screens,
   NotificationStackParams,
+  TabStacks,
 } from '@hyperledger/aries-bifold-core'
-import { StackScreenProps } from '@react-navigation/stack'
+import { HomeStackParams } from '@hyperledger/aries-bifold-core/App/types/navigators'
+import { useNavigation } from '@react-navigation/native'
+import { StackScreenProps, StackNavigationProp } from '@react-navigation/stack'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -18,15 +21,14 @@ type DefaultProps = StackScreenProps<NotificationStackParams, Screens.CustomNoti
 const DefaultNotification: React.FC<DefaultProps> = () => {
   const { ColorPallet, TextTheme } = useTheme()
   const { t } = useTranslation()
+  const { navigate } = useNavigation<StackNavigationProp<HomeStackParams>>()
 
   const styles = StyleSheet.create({
     container: {
-      height: '100%',
+      height: '77%',
       padding: 20,
-      backgroundColor: ColorPallet.brand.primaryBackground,
-    },
-    pageContainer: {
       marginBottom: 20,
+      backgroundColor: ColorPallet.brand.primaryBackground,
     },
     textHeaderTitle: {
       ...TextTheme.headingThree,
@@ -39,13 +41,12 @@ const DefaultNotification: React.FC<DefaultProps> = () => {
       color: TextTheme.bold.color,
     },
     button: {
-      margin: 15,
-      marginTop: 24,
-      marginBottom: 20,
+      margin: 20,
+      marginTop: 10,
+      marginBottom: 10,
     },
     section: {
       paddingVertical: 12,
-      paddingHorizontal: 10,
     },
     sectionDescription: {
       ...TextTheme.normal,
@@ -64,13 +65,10 @@ const DefaultNotification: React.FC<DefaultProps> = () => {
   })
 
   return (
-    <SafeAreaView edges={['left', 'right', 'bottom']} style={styles.pageContainer}>
+    <SafeAreaView edges={['left', 'right', 'bottom']}>
       <ScrollView style={styles.container}>
         <View style={styles.section}>
           <HeaderText title={t('DefaultNotificationPage.Title')} />
-          <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
-          <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
-          <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
           <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
         </View>
         <View style={styles.section}>
@@ -81,15 +79,24 @@ const DefaultNotification: React.FC<DefaultProps> = () => {
           <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.ANIGRequest')}</Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.ANIGAcceptDescription')}</Text>
         </View>
-        <View style={styles.button}>
-          <Button
-            buttonType={ButtonType.Primary}
-            testID={testIdWithKey('StartProcess')}
-            accessibilityLabel={t('DefaultNotificationPage.ButtonTitle')}
-            title={t('DefaultNotificationPage.ButtonTitle')}
-          ></Button>
-        </View>
       </ScrollView>
+      <View style={styles.button}>
+        <Button
+          buttonType={ButtonType.Primary}
+          testID={testIdWithKey('StartProcess')}
+          accessibilityLabel={t('DefaultNotificationPage.ButtonTitle')}
+          title={t('DefaultNotificationPage.ButtonTitle')}
+        ></Button>
+      </View>
+      <View style={styles.button}>
+        <Button
+          buttonType={ButtonType.Secondary}
+          testID={testIdWithKey('StartProcess')}
+          accessibilityLabel={t('DefaultNotificationPage.ButtonHome')}
+          title={t('DefaultNotificationPage.ButtonHome')}
+          onPress={() => navigate(TabStacks.HomeStack as never, { screen: Screens.Home } as never)}
+        ></Button>
+      </View>
     </SafeAreaView>
   )
 }
