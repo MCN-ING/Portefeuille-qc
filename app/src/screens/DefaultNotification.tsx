@@ -48,6 +48,10 @@ const DefaultNotification: React.FC<DefaultProps> = () => {
     section: {
       paddingVertical: 12,
     },
+    sectionBottom: {
+      paddingVertical: 12,
+      marginBottom: 12,
+    },
     sectionDescription: {
       ...TextTheme.normal,
       color: TextTheme.normal.color,
@@ -75,7 +79,7 @@ const DefaultNotification: React.FC<DefaultProps> = () => {
           <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.SAGConnexion')}</Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.SAGConnexionDescription')}</Text>
         </View>
-        <View style={styles.section}>
+        <View style={styles.sectionBottom}>
           <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.ANIGRequest')}</Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.ANIGAcceptDescription')}</Text>
         </View>
