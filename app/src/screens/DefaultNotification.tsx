@@ -49,7 +49,6 @@ const DefaultNotification: React.FC<DefaultProps> = () => {
       paddingVertical: 12,
     },
     sectionBottom: {
-      paddingVertical: 12,
       marginBottom: 12,
     },
     sectionDescription: {
@@ -79,7 +78,7 @@ const DefaultNotification: React.FC<DefaultProps> = () => {
           <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.SAGConnexion')}</Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.SAGConnexionDescription')}</Text>
         </View>
-        <View style={styles.sectionBottom}>
+        <View style={[styles.sectionBottom, styles.section]}>
           <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.ANIGRequest')}</Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.ANIGAcceptDescription')}</Text>
         </View>
