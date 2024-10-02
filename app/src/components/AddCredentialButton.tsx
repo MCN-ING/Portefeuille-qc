@@ -1,11 +1,11 @@
-import { testIdWithKey, Button, ButtonType } from '@hyperledger/aries-bifold-core'
+import { testIdWithKey, Button, ButtonType, CredentialListFooterProps } from '@hyperledger/aries-bifold-core'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, DeviceEventEmitter, StyleSheet } from 'react-native'
 
 import { BCWalletEventTypes } from '../events/eventTypes'
 
-const AddCredentialButton = () => {
+const AddCredentialButton: React.FC<CredentialListFooterProps> = ({ credentialsCount }) => {
   const { t } = useTranslation()
 
   const activateSlider = useCallback(() => {
@@ -19,7 +19,7 @@ const AddCredentialButton = () => {
     },
   })
 
-  return (
+  return credentialsCount > 0 ? (
     <View style={styles.container}>
       <Button
         title={t('Credentials.AddCredential')}
@@ -28,7 +28,7 @@ const AddCredentialButton = () => {
         onPress={activateSlider}
       />
     </View>
-  )
+  ) : null
 }
 
 export default AddCredentialButton
