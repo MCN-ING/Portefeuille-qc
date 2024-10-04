@@ -661,7 +661,7 @@ const translation = {
     Home: 'Accueil',
     Activities: 'Activités',
     Credentials: 'Attestations',
-    More: 'Plus',
+    OptionsPlus: "Plus d'options",
   },
   RootStack: {
     Contacts: 'Contacts',
@@ -712,6 +712,7 @@ const translation = {
     Home: 'Accueil',
     Scan: 'Lire un code QR',
     Credentials: 'Attestations',
+    OptionsPlus: "Plus d'options",
     CredentialDetails: 'Détails des attestations',
     Notifications: 'Notifications',
     CredentialOffer: "Proposition d'attestation",
