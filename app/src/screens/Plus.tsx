@@ -17,10 +17,16 @@ const Plus: React.FC = () => {
 
   const styles = StyleSheet.create({
     container: {
-      height: '77%',
+      flex: 1,
       padding: 20,
       marginBottom: 20,
       backgroundColor: ColorPallet.brand.primaryBackground,
+    },
+    innerContainer: {
+      flex: 1,
+    },
+    mainSection: {
+      flex: 5,
     },
     textHeaderTitle: {
       ...TextTheme.headingThree,
@@ -43,25 +49,28 @@ const Plus: React.FC = () => {
     section: {
       paddingVertical: 12,
     },
-    sectionJoin: {
-      paddingVertical: 12,
+    scroll: {
+      flexGrow: 1,
     },
     sectionRow: {
       flexDirection: 'row',
-      alignItems: 'center', // Aligne les éléments verticalement
-      height: 40, // Hauteur du conteneur (si nécessaire)
+      alignItems: 'center',
     },
     sectionDoubleRow: {
       paddingTop: 10,
       flexDirection: 'row',
       alignItems: 'flex-start', // Aligne l'image et le texte en haut
-
       height: 100, // Hauteur du conteneur (si nécessaire)
+    },
+    sectionCopyright: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      ...TextTheme.headingOne,
+      margin: 10,
     },
     phoneImage: {
       width: 24, // Ajustez la largeur de l'image
       height: 24, // Ajustez la hauteur de l'image
-      // marginRight: 10, // Espace entre l'image et le texte
     },
     sectionDescription: {
       ...TextTheme.normal,
@@ -70,61 +79,75 @@ const Plus: React.FC = () => {
       textDecorationLine: 'none',
       marginLeft: 10,
     },
+    sectionCopyrightText: {
+      ...TextTheme.caption,
+      color: TextTheme.normal.color,
+      textAlign: 'left',
+      textDecorationLine: 'none',
+      marginLeft: 10,
+    },
   })
 
   return (
-    <SafeAreaView edges={['left', 'right', 'bottom']}>
-      <ScrollView style={styles.container}>
-        <View style={styles.button}>
-          <Button
-            buttonType={ButtonType.Secondary}
-            testID={testIdWithKey('AppParams')}
-            accessibilityLabel={t('OptionsPlus.ButtonParamsApp')}
-            title={t('OptionsPlus.ButtonParamsApp')}
-            onPress={() => navigate(TabStacks.HomeStack as never, { screen: Screens.Home } as never)}
-          ></Button>
-        </View>
-        <View style={styles.button}>
-          <Button
-            buttonType={ButtonType.Secondary}
-            testID={testIdWithKey('HelpCenter')}
-            accessibilityLabel={t('OptionsPlus.ButtonHelpCenter')}
-            title={t('ptionsPlus.ButtonHelpCenter')}
-            onPress={() => navigate(TabStacks.HomeStack as never, { screen: Screens.Home } as never)}
-          ></Button>
-        </View>
-        <View style={styles.button}>
-          <Button
-            buttonType={ButtonType.Secondary}
-            testID={testIdWithKey('StartProcess')}
-            accessibilityLabel={t('OptionsPlus.ButtonAbout')}
-            title={t('ptionsPlus.ButtonAbout')}
-            onPress={() => navigate(TabStacks.HomeStack as never, { screen: Screens.Home } as never)}
-          ></Button>
-        </View>
-        <View style={styles.sectionJoin}>
-          <Text style={styles.textHeaderTitle}> {t('OptionsPlus.TitleSupport')}</Text>
-          <Text style={styles.sectionDescription}> {t('OptionsPlus.DetailSupport')}</Text>
-        </View>
-        <View style={styles.sectionJoin}>
-          <Text style={styles.textSectionTitle}> {t('OptionsPlus.JoinUsTitle')}</Text>
-        </View>
-        <View style={styles.sectionRow}>
-          <CalendarImg />
-          <Text style={styles.sectionDescription}> {t('OptionsPlus.DaysOpen')}</Text>
-        </View>
-        <View style={styles.sectionRow}>
-          <ClockImg />
-          <Text style={styles.sectionDescription}> {t('OptionsPlus.OpeningHours')}</Text>
-        </View>
-        <View style={styles.sectionDoubleRow}>
-          <PhoneImg style={styles.phoneImage} />
-          <Text style={styles.sectionDescription}>
-            {' '}
-            {t('OptionsPlus.PhoneNumber')}
-            {'\n'}
-            {t('OptionsPlus.TollFreeNumber')}
-          </Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <View style={styles.innerContainer}>
+          <View style={styles.mainSection}>
+            <View style={styles.button}>
+              <Button
+                buttonType={ButtonType.Secondary}
+                testID={testIdWithKey('AppParams')}
+                accessibilityLabel={t('OptionsPlus.ButtonParamsApp')}
+                title={t('OptionsPlus.ButtonParamsApp')}
+                onPress={() => navigate(TabStacks.HomeStack as never, { screen: Screens.Home } as never)}
+              />
+            </View>
+            <View style={styles.button}>
+              <Button
+                buttonType={ButtonType.Secondary}
+                testID={testIdWithKey('HelpCenter')}
+                accessibilityLabel={t('OptionsPlus.ButtonHelpCenter')}
+                title={t('OptionsPlus.ButtonHelpCenter')}
+                onPress={() => navigate(TabStacks.HomeStack as never, { screen: Screens.Home } as never)}
+              />
+            </View>
+            <View style={styles.button}>
+              <Button
+                buttonType={ButtonType.Secondary}
+                testID={testIdWithKey('StartProcess')}
+                accessibilityLabel={t('OptionsPlus.ButtonAbout')}
+                title={t('OptionsPlus.ButtonAbout')}
+                onPress={() => navigate(TabStacks.HomeStack as never, { screen: Screens.Home } as never)}
+              />
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.textHeaderTitle}> {t('OptionsPlus.TitleSupport')}</Text>
+              <Text style={styles.sectionDescription}> {t('OptionsPlus.DetailSupport')}</Text>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.textSectionTitle}> {t('OptionsPlus.JoinUsTitle')}</Text>
+            </View>
+            <View style={styles.sectionRow}>
+              <CalendarImg />
+              <Text style={styles.sectionDescription}> {t('OptionsPlus.DaysOpen')}</Text>
+            </View>
+            <View style={styles.sectionRow}>
+              <ClockImg />
+              <Text style={styles.sectionDescription}> {t('OptionsPlus.OpeningHours')}</Text>
+            </View>
+            <View style={styles.sectionDoubleRow}>
+              <PhoneImg style={styles.phoneImage} />
+              <Text style={styles.sectionDescription}>
+                {t('OptionsPlus.PhoneNumber')}
+                {'\n'}
+                {t('OptionsPlus.TollFreeNumber')}
+              </Text>
+            </View>
+          </View>
+          <View style={[styles.sectionCopyright]}>
+            <Text style={styles.sectionCopyrightText}> {t('OptionsPlus.Copyright')}</Text>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
