@@ -54,7 +54,6 @@ export type TabStackParams = {
   [TabStacks.ActivitiesStack]: NavigatorScreenParams<ActivitiesStackParams>
   [TabStacks.CredentialStack]: NavigatorScreenParams<CredentialStackParams>
   [TabStacks.MoreStack]: NavigatorScreenParams<MoreStackParams>
-
 }
 
 export type TermsStackParams = {
@@ -64,7 +63,7 @@ export type TermsStackParams = {
 
 export type PlusStackParams = {
   [Screens.OptionsPlus]: undefined
-  
+}
 export type ActivitiesStackParams = {
   [Screens.Activities]: undefined
 }
