@@ -33,6 +33,7 @@ import { credentialsTourSteps } from './src/components/tours/CredentialsTourStep
 import { homeTourSteps } from './src/components/tours/HomeTourSteps'
 import { proofRequestTourSteps } from './src/components/tours/ProofRequestTourSteps'
 import { initialState, reducer } from './src/store'
+import AppNavigator from './src/navigators/AppNavigator'
 
 const { theme, localization } = qcwallet
 
@@ -82,7 +83,8 @@ const App = () => {
                     overlayColor={'black'}
                     overlayOpacity={0.7}
                   >
-                    <RootStack />
+                    {/*<RootStack />*/}
+                    <AppNavigator />
                   </TourProvider>
                   <Toast topOffset={15} config={toastConfig} />
                 </NetworkProvider>

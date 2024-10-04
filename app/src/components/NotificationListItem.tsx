@@ -43,7 +43,7 @@ import { customNotificationDate, hitSlop } from '../constants'
 
 const iconSize = 20
 
-enum NotificationType {
+export enum NotificationType {
   BasicMessage = 'BasicMessage',
   CredentialOffer = 'Offer',
   ProofRequest = 'ProofRecord',
@@ -402,9 +402,9 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   }
 
   useEffect(() => {
-    const { onPress, onClose } = getActionForNotificationType(notification, notificationType)
-    setAction(() => onPress)
-    setCloseAction(() => onClose)
+      const { onPress, onClose } = getActionForNotificationType(notification, notificationType)
+      setAction(() => onPress)
+      setCloseAction(() => onClose)
   }, [notification])
 
   useEffect(() => {

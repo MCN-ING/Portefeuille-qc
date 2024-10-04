@@ -1,4 +1,5 @@
-import { Screens, Stacks, TOKENS, useServices, useTheme } from '@hyperledger/aries-bifold-core'
+import { TOKENS, useServices, useTheme } from '@hyperledger/aries-bifold-core'
+import { Stacks, Screens } from '../navigators/navigators-override'
 import { HistoryStackParams } from '@hyperledger/aries-bifold-core/App/types/navigators'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -8,7 +9,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 const HomeFooter = () => {
   const { t } = useTranslation()
   const { ColorPallet } = useTheme()
-  const { navigate } = useNavigation<StackNavigationProp<HistoryStackParams>>()
+  const { navigate } = useNavigation<StackNavigationProp<any>>()
   const [{ useNotifications }] = useServices([TOKENS.NOTIFICATIONS])
   const notifications = useNotifications()
 
@@ -35,7 +36,8 @@ const HomeFooter = () => {
       {notifications?.length > 0 && (
         <TouchableOpacity
           style={styles.footerLinkContainer}
-          onPress={() => navigate(Stacks.HistoryStack as never, { screen: Screens.HistoryPage } as never)}
+          //onPress={() => navigate(Stacks.HistoryStack as never, { screen: Screens.HistoryPage } as never)}
+          onPress={() => navigate(Stacks.ActivitiesStack as never, { screen: Screens.ActivityNotifications } as never)}
         >
           <Text style={styles.footerLink}>{t('Home.SeeAll')}</Text>
         </TouchableOpacity>
