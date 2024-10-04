@@ -659,8 +659,9 @@ const translation = {
   },
   TabStack: {
     Home: 'Accueil',
-    Scan: 'Balayer',
+    Activities: 'Activités',
     Credentials: 'Attestations',
+    More: 'Plus',
   },
   RootStack: {
     Contacts: 'Contacts',
@@ -986,6 +987,9 @@ const translation = {
   AddCredentialSlider: {
     Choose: 'Choisir',
     ScanQRCode: 'Lire un code QR',
+  },
+  HelpCenter: {
+    Help: 'Aide',
   },
 }
 
