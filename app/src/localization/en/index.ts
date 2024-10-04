@@ -700,8 +700,9 @@ const translation = {
   },
   TabStack: {
     Home: 'Home',
-    Scan: 'Scan',
+    Activities: 'Activities',
     Credentials: 'Credentials',
+    More: 'More',
   },
   RootStack: {
     Contacts: 'Contacts',
@@ -953,6 +954,9 @@ const translation = {
   AddCredentialSlider: {
     Choose: 'Choose',
     ScanQRCode: 'Scan a QR code',
+  },
+  HelpCenter: {
+    Help: 'Help',
   },
 }
 
