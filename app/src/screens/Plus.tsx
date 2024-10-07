@@ -59,8 +59,8 @@ const Plus: React.FC = () => {
     sectionDoubleRow: {
       paddingTop: 10,
       flexDirection: 'row',
-      alignItems: 'flex-start', // Aligne l'image et le texte en haut
-      height: 100, // Hauteur du conteneur (si nécessaire)
+      alignItems: 'flex-start',
+      height: 100,
     },
     sectionCopyright: {
       flex: 1,
@@ -69,8 +69,8 @@ const Plus: React.FC = () => {
       margin: 10,
     },
     phoneImage: {
-      width: 24, // Ajustez la largeur de l'image
-      height: 24, // Ajustez la hauteur de l'image
+      width: 24,
+      height: 24,
     },
     sectionDescription: {
       ...TextTheme.normal,
@@ -120,7 +120,6 @@ const Plus: React.FC = () => {
                 onPress={() => navigate(TabStacks.HomeStack as never, { screen: Screens.Home } as never)}
               />
             </View>
-
             <View style={styles.section}>
               <Text style={styles.textHeaderTitle}> {t('OptionsPlus.TitleSupport')}</Text>
               <Text style={styles.sectionDescription}> {t('OptionsPlus.DetailSupport')}</Text>
