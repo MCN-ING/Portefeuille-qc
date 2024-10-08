@@ -18,7 +18,7 @@ import {
   credentialCustomMetadata,
 } from '@hyperledger/aries-bifold-core/App/types/metadata'
 import { CustomNotificationRecord } from '@hyperledger/aries-bifold-core/App/types/notification'
-import { ProofMetadata } from '@hyperledger/aries-bifold-verifier'
+import { ProofCustomMetadata, ProofMetadata } from '@hyperledger/aries-bifold-verifier'
 import { useEffect, useState } from 'react'
 
 import { attestationCredDefIds } from '../constants'
@@ -32,11 +32,8 @@ interface CustomNotification {
   id: string
 }
 
-export interface ProofCustomMetadata {
-  details_seen?: boolean
+export interface CustomMetadata extends ProofCustomMetadata {
   seenOnHome?: boolean
-  proof_request_template_id?: string
-  delete_conn_after_seen?: boolean
 }
 
 export type NotificationsInputProps = {
@@ -44,14 +41,15 @@ export type NotificationsInputProps = {
   isHome?: boolean
 }
 
-export type NotificationReturnType = Array<
+export type NotificationType =
   | BasicMessageRecord
   | CredentialRecord
   | ProofExchangeRecord
   | CustomNotificationRecord
   | SdJwtVcRecord
   | W3cCredentialRecord
->
+
+export type NotificationReturnType = Array<NotificationType>
 
 export const useNotifications = ({ openIDUri, isHome = true }: NotificationsInputProps): NotificationReturnType => {
   const { records: basicMessages } = useBasicMessages()
@@ -126,8 +124,8 @@ export const useNotifications = ({ openIDUri, isHome = true }: NotificationsInpu
       return (
         ![ProofState.Done, ProofState.PresentationReceived].includes(proof.state) ||
         (proof.isVerified !== undefined &&
-          !(proof.metadata.data[ProofMetadata.customMetadata] as ProofCustomMetadata)?.details_seen &&
-          (!(proof.metadata.data[ProofMetadata.customMetadata] as ProofCustomMetadata)?.seenOnHome || !isHome))
+          !(proof.metadata.data[ProofMetadata.customMetadata] as CustomMetadata)?.details_seen &&
+          (!(proof.metadata.data[ProofMetadata.customMetadata] as CustomMetadata)?.seenOnHome || !isHome))
       )
     })
 
