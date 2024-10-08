@@ -6,6 +6,8 @@ import {
   CredentialExchangeRecord,
   ProofExchangeRecord,
   ProofState,
+  SdJwtVcRecord,
+  W3cCredentialRecord,
 } from '@credo-ts/core'
 import { useAgent, useConnectionById } from '@credo-ts/react-hooks'
 import {
@@ -54,7 +56,13 @@ export enum NotificationType {
 
 interface NotificationListItemProps {
   notificationType: NotificationType
-  notification: BasicMessageRecord | CredentialExchangeRecord | ProofExchangeRecord | CustomNotificationRecord
+  notification:
+    | BasicMessageRecord
+    | CredentialExchangeRecord
+    | ProofExchangeRecord
+    | CustomNotificationRecord
+    | SdJwtVcRecord
+    | W3cCredentialRecord
   customNotification?: CustomNotification
   openSwipeableId: string | null
   onOpenSwipeable: (id: string | null) => void
@@ -330,7 +338,13 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   }
 
   const getActionForNotificationType = (
-    notification: BasicMessageRecord | CredentialExchangeRecord | ProofExchangeRecord | CustomNotificationRecord,
+    notification:
+      | BasicMessageRecord
+      | CredentialExchangeRecord
+      | ProofExchangeRecord
+      | CustomNotificationRecord
+      | SdJwtVcRecord
+      | W3cCredentialRecord,
     notificationType: NotificationType
   ) => {
     let onPress
@@ -403,9 +417,9 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   }
 
   useEffect(() => {
-      const { onPress, onClose } = getActionForNotificationType(notification, notificationType)
-      setAction(() => onPress)
-      setCloseAction(() => onClose)
+    const { onPress, onClose } = getActionForNotificationType(notification, notificationType)
+    setAction(() => onPress)
+    setCloseAction(() => onClose)
   }, [notification])
 
   useEffect(() => {

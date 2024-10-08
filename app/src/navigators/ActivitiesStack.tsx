@@ -1,27 +1,25 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useTheme } from '@hyperledger/aries-bifold-core';
-import { useDefaultStackOptions } from '@hyperledger/aries-bifold-core/App/navigators/defaultStackOptions';
+import { useTheme } from '@hyperledger/aries-bifold-core'
+import { useDefaultStackOptions } from '@hyperledger/aries-bifold-core/App/navigators/defaultStackOptions'
+import { createStackNavigator } from '@react-navigation/stack'
+import React from 'react'
 
-import ActivityNotifications from '../screens/activities/Activities';
-import { Screens } from './navigators-override';
+import ActivityNotifications from '../screens/activities/Activities'
+
+import { ActivitiesStackParams, Screens } from './navigators'
 
 const ActivitiesStack: React.FC = () => {
-  const StackActivities = createStackNavigator<any>();
-  const theme = useTheme();
-  const defaultStackOptions = useDefaultStackOptions(theme);
+  const StackActivities = createStackNavigator<ActivitiesStackParams>()
+  const theme = useTheme()
+  const defaultStackOptions = useDefaultStackOptions(theme)
 
   return (
     <StackActivities.Navigator
-      initialRouteName={Screens.ActivityNotifications}
+      initialRouteName={Screens.Activities}
       screenOptions={{ ...defaultStackOptions, headerShown: true }}
     >
-      <StackActivities.Screen
-        name={Screens.ActivityNotifications}
-        component={ActivityNotifications}
-      />
+      <StackActivities.Screen name={Screens.Activities} component={ActivityNotifications} />
     </StackActivities.Navigator>
-  );
-};
+  )
+}
 
-export default ActivitiesStack;
+export default ActivitiesStack

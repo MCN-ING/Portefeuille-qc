@@ -1,21 +1,70 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { TOKENS, useServices } from '@hyperledger/aries-bifold-core';
-import { useTranslation } from 'react-i18next';
-import NotificationsList from './NotificationsList';
-import HistoryList from './HistoryList';
-import { defaultTheme } from '../../theme';
-import { useNotifications } from '../../hooks/notifications';
+import { TOKENS, useServices, useTheme } from '@hyperledger/aries-bifold-core'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 
-const { ColorPallet, TextTheme } = defaultTheme;
+import { NotificationReturnType } from '../../hooks/notifications'
+
+import HistoryList from './HistoryList'
+import NotificationsList from './NotificationsList'
 
 const Activities: React.FC = () => {
-  const [openSwipeableId, setOpenSwipeableId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState('Notifications');
-  const [{ customNotificationConfig: customNotification }] = useServices([TOKENS.NOTIFICATIONS]);
-  const { t } = useTranslation();
-  const notifications = useNotifications();
-  const notificationCount = notifications.length;
+  const [openSwipeableId, setOpenSwipeableId] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState('Notifications')
+  const { t } = useTranslation()
+  const { ColorPallet, TextTheme } = useTheme()
+
+  const [{ customNotificationConfig: customNotification, useNotifications }] = useServices([TOKENS.NOTIFICATIONS])
+  const notifications = useNotifications({ openIDUri: undefined })
+  const notificationCount = notifications.length
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 16,
+      backgroundColor: ColorPallet.brand.primaryBackground,
+    },
+    tabHeader: {
+      flexDirection: 'row',
+      borderBottomWidth: 1,
+      borderBottomColor: ColorPallet.grayscale.lightGrey,
+      marginBottom: 16,
+      alignItems: 'center',
+    },
+    tab: {
+      flex: 1,
+      alignItems: 'center',
+      paddingBottom: 8,
+    },
+    activeTab: {
+      borderBottomWidth: 2,
+      borderBottomColor: ColorPallet.brand.primary,
+    },
+    tabText: {
+      fontSize: TextTheme.labelTitle.fontSize,
+      fontWeight: TextTheme.labelTitle.fontWeight,
+      color: ColorPallet.grayscale.darkGrey,
+    },
+    activeTabText: {
+      color: ColorPallet.brand.primary,
+    },
+    tabContent: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    badge: {
+      backgroundColor: ColorPallet.brand.primary,
+      borderRadius: 12,
+      paddingHorizontal: 6,
+      paddingVertical: 2,
+      marginLeft: 8,
+    },
+    badgeText: {
+      color: ColorPallet.brand.text,
+      fontSize: 12,
+      fontWeight: 'bold',
+    },
+  })
 
   return (
     <View style={styles.container}>
@@ -46,60 +95,17 @@ const Activities: React.FC = () => {
       </View>
 
       {activeTab === t('Screens.Notifications') ? (
-        <NotificationsList openSwipeableId={openSwipeableId} handleOpenSwipeable={setOpenSwipeableId} customNotification={customNotification} />
+        <NotificationsList
+          notifications={notifications as NotificationReturnType}
+          customNotification={customNotification}
+          openSwipeableId={openSwipeableId}
+          handleOpenSwipeable={setOpenSwipeableId}
+        />
       ) : (
         <HistoryList />
       )}
     </View>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: ColorPallet.brand.primaryBackground,
-  },
-  tabHeader: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: ColorPallet.grayscale.lightGrey,
-    marginBottom: 16,
-    alignItems: 'center',
-  },
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    paddingBottom: 8,
-  },
-  activeTab: {
-    borderBottomWidth: 2,
-    borderBottomColor: ColorPallet.brand.primary,
-  },
-  tabText: {
-    fontSize: TextTheme.labelTitle.fontSize,
-    fontWeight: TextTheme.labelTitle.fontWeight,
-    color: ColorPallet.grayscale.darkGrey,
-  },
-  activeTabText: {
-    color: ColorPallet.brand.primary,
-  },
-  tabContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  badge: {
-    backgroundColor: ColorPallet.brand.primary,
-    borderRadius: 12,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    marginLeft: 8, 
-  },
-  badgeText: {
-    color: ColorPallet.brand.text,
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
-});
-
-export default Activities;
+export default Activities

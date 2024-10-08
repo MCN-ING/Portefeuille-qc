@@ -1,27 +1,27 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { defaultTheme } from '../../theme';
-
-const { TextTheme } = defaultTheme;
+import { useTheme } from '@hyperledger/aries-bifold-core'
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
 const HistoryList: React.FC = () => {
+  const { TextTheme } = useTheme()
+
+  const styles = StyleSheet.create({
+    historyContent: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 16,
+    },
+    historyText: {
+      fontSize: TextTheme.normal.fontSize,
+      color: TextTheme.normal.color,
+    },
+  })
+
   return (
     <View style={styles.historyContent}>
       <Text style={styles.historyText}>Historique des notifications</Text>
     </View>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({
-  historyContent: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-  },
-  historyText: {
-    fontSize: TextTheme.normal.fontSize,
-    color: TextTheme.normal.color,
-  },
-});
-
-export default HistoryList;
+export default HistoryList
