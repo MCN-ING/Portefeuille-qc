@@ -87,10 +87,7 @@ const getInitialAttestationAuthentification = async (): Promise<AttestationAuthe
       isDismissed: false,
       seenOnHome: false,
     }
-    await AsyncStorage.setItem(
-      BCLocalStorageKeys.AttestationAuthentification,
-      JSON.stringify(attestationAuthentification)
-    )
+    AsyncStorage.setItem(BCLocalStorageKeys.AttestationAuthentification, JSON.stringify(attestationAuthentification))
   }
 
   return attestationAuthentification as AttestationAuthentification

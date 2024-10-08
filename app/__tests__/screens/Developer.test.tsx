@@ -42,6 +42,7 @@ describe('Developer Screen', () => {
 
   test('screen renders correctly', async () => {
     const initialState = await getInitialState()
+
     const tree = render(
       <StoreProvider initialState={initialState} reducer={reducer}>
         <Developer />
