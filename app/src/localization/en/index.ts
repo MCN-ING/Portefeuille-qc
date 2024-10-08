@@ -167,6 +167,20 @@ const translation = {
     ButtonTitle: 'Receive my attestation',
     ButtonHome: 'Return to home page',
   },
+  OptionsPlus: {
+    PageTitle: 'More options',
+    ButtonParamsApp: 'Application Settings',
+    ButtonHelpCenter: 'Help Center',
+    ButtonAbout: 'About',
+    TitleSupport: 'Customer Support',
+    DetailSupport: 'You have a problem with the application or questions, you can contact the team.',
+    JoinUsTitle: 'Contact Us',
+    DaysOpen: 'Monday to Friday',
+    OpeningHours: 'From 8 a.m. to 6 p.m.',
+    PhoneNumber: '1 877 644-4545',
+    TollFreeNumber: '1 800 361-9596 (ATS number for the hearing impaired)',
+    Copyright: '@ Government of Quebec',
+  },
   Screens: {
     Splash: 'Splash',
     Onboarding: 'Introduction',
@@ -176,6 +190,7 @@ const translation = {
     EnterPin: 'Enter Pin',
     Home: 'Home',
     Scan: 'Scan',
+    OptionsPlus: 'More Options',
     Credentials: 'Credentials',
     CredentialDetails: 'Credential Details',
     Notifications: 'Notifications',
@@ -686,8 +701,9 @@ const translation = {
   },
   TabStack: {
     Home: 'Home',
-    Scan: 'Scan',
+    Activities: 'Activities',
     Credentials: 'Credentials',
+    OptionsPlus: 'More Options',
   },
   RootStack: {
     Contacts: 'Contacts',
@@ -939,6 +955,9 @@ const translation = {
   AddCredentialSlider: {
     Choose: 'Choose',
     ScanQRCode: 'Scan a QR code',
+  },
+  HelpCenter: {
+    Help: 'Help',
   },
 }
 

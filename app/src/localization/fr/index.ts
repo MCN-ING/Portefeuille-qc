@@ -238,6 +238,20 @@ const translation = {
     ButtonTitle: 'Recevoir mon attestation',
     ButtonHome: 'Revenir à l’accueil',
   },
+  OptionsPlus: {
+    PageTitle: "Plus d'option",
+    ButtonParamsApp: "Paramètres de l'application",
+    ButtonHelpCenter: "Centre d'aide",
+    ButtonAbout: 'À propos',
+    TitleSupport: 'Soutien à la clientèle',
+    DetailSupport: "Vous avez un problème avec l'application ou des questions, vous pouvez joundre l'équipe.",
+    JoinUsTitle: 'Nous Joindre',
+    DaysOpen: 'Du lundi au vendredi',
+    OpeningHours: 'De 8h à 18h',
+    PhoneNumber: '1 877 644-4545',
+    TollFreeNumber: '1 800 361-9596 (numéro ATS pour malentendants)',
+    Copyright: '@ Gouvernement du Québec',
+  },
   StatusMessages: {
     InitAgent: "Initialisation de l'agent ...",
   },
@@ -645,8 +659,9 @@ const translation = {
   },
   TabStack: {
     Home: 'Accueil',
-    Scan: 'Balayer',
+    Activities: 'Activités',
     Credentials: 'Attestations',
+    OptionsPlus: "Plus d'options",
   },
   RootStack: {
     Contacts: 'Contacts',
@@ -697,6 +712,7 @@ const translation = {
     Home: 'Accueil',
     Scan: 'Lire un code QR',
     Credentials: 'Attestations',
+    OptionsPlus: "Plus d'options",
     CredentialDetails: 'Détails des attestations',
     Notifications: 'Notifications',
     CredentialOffer: "Proposition d'attestation",
@@ -972,6 +988,9 @@ const translation = {
   AddCredentialSlider: {
     Choose: 'Choisir',
     ScanQRCode: 'Lire un code QR',
+  },
+  HelpCenter: {
+    Help: 'Aide',
   },
 }
 

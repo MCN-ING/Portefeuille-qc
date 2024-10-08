@@ -6,7 +6,6 @@ import {
   AuthProvider,
   toastConfig,
   initStoredLanguage,
-  RootStack,
   NetInfo,
   NetworkProvider,
   ErrorModal,
@@ -32,6 +31,7 @@ import { credentialOfferTourSteps } from './src/components/tours/CredentialOffer
 import { credentialsTourSteps } from './src/components/tours/CredentialsTourSteps'
 import { homeTourSteps } from './src/components/tours/HomeTourSteps'
 import { proofRequestTourSteps } from './src/components/tours/ProofRequestTourSteps'
+import RootStack from './src/navigators/RootStack'
 import { initialState, reducer } from './src/store'
 import AppNavigator from './src/navigators/AppNavigator'
 
