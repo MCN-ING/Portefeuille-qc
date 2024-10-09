@@ -16,7 +16,7 @@ const HistoryList: React.FC = () => {
       color: TextTheme.normal.color,
     },
   })
-
+  // TODO: Page d'historique
   return (
     <View style={styles.historyContent}>
       <Text style={styles.historyText}>Historique des notifications</Text>

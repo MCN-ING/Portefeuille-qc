@@ -1,30 +1,15 @@
-import {
-  BasicMessageRecord,
-  CredentialExchangeRecord,
-  ProofExchangeRecord,
-  SdJwtVcRecord,
-  W3cCredentialRecord,
-} from '@credo-ts/core'
 import { useTheme } from '@hyperledger/aries-bifold-core'
-import { CustomNotification, CustomNotificationRecord } from '@hyperledger/aries-bifold-core/App/types/notification'
+import { CustomNotification } from '@hyperledger/aries-bifold-core/App/types/notification'
 import moment from 'moment'
 import React, { useCallback, useEffect, useState } from 'react'
+import { TFunction, useTranslation } from 'react-i18next'
 import { View, StyleSheet, SectionList, Text } from 'react-native'
 
-import NotificationListItem, { NotificationType } from '../../components/NotificationListItem'
-import { NotificationReturnType } from '../../hooks/notifications'
-
-// TODO: Mettre ça dans Notification et l'exporter
-type NotificationRecord =
-  | BasicMessageRecord
-  | CredentialExchangeRecord
-  | ProofExchangeRecord
-  | SdJwtVcRecord
-  | W3cCredentialRecord
-  | CustomNotificationRecord
+import NotificationListItem, { NotificationType as enumNotificationType } from '../../components/NotificationListItem'
+import { NotificationReturnType, NotificationType } from '../../hooks/notifications'
 
 // Function to group notifications by date
-const groupNotificationsByDate = (notifications: NotificationReturnType) => {
+const groupNotificationsByDate = (notifications: NotificationReturnType, t: TFunction<'translation', undefined>) => {
   const groupedNotifications: { [key: string]: NotificationReturnType } = {
     today: [],
     thisWeek: [],
@@ -50,16 +35,16 @@ const groupNotificationsByDate = (notifications: NotificationReturnType) => {
   const sections = []
 
   if (groupedNotifications.today.length > 0) {
-    sections.push({ title: "Aujourd'hui", data: groupedNotifications.today })
+    sections.push({ title: t('Activities.Timing.Today'), data: groupedNotifications.today })
   }
   if (groupedNotifications.thisWeek.length > 0) {
-    sections.push({ title: 'Cette semaine', data: groupedNotifications.thisWeek })
+    sections.push({ title: t('Activities.Timing.ThisWeek'), data: groupedNotifications.thisWeek })
   }
   if (groupedNotifications.lastWeek.length > 0) {
-    sections.push({ title: 'La semaine dernière', data: groupedNotifications.lastWeek })
+    sections.push({ title: t('Activities.Timing.LastWeek'), data: groupedNotifications.lastWeek })
   }
   if (groupedNotifications.older.length > 0) {
-    sections.push({ title: 'Plus ancien', data: groupedNotifications.older })
+    sections.push({ title: t('Activities.Timing.Older'), data: groupedNotifications.older })
   }
 
   return sections
@@ -74,10 +59,11 @@ const NotificationsList: React.FC<{
   handleOpenSwipeable: (id: string | null) => void
 }> = ({ notifications, customNotification, openSwipeableId, handleOpenSwipeable }) => {
   const [setions, setSections] = useState<sectionType[]>([])
+  const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
 
   useEffect(() => {
-    setSections(groupNotificationsByDate(notifications as NotificationReturnType))
+    setSections(groupNotificationsByDate(notifications as NotificationReturnType, t))
   }, [notifications])
 
   const styles = StyleSheet.create({
@@ -110,7 +96,7 @@ const NotificationsList: React.FC<{
   })
 
   const renderItem = useCallback(
-    ({ item }: { item: NotificationRecord }) => {
+    ({ item }: { item: NotificationType }) => {
       let component = null
 
       if (item.type === 'BasicMessageRecord') {
@@ -118,14 +104,14 @@ const NotificationsList: React.FC<{
           <NotificationListItem
             openSwipeableId={openSwipeableId}
             onOpenSwipeable={handleOpenSwipeable}
-            notificationType={NotificationType.BasicMessage}
+            notificationType={enumNotificationType.BasicMessage}
             notification={item}
           />
         )
       } else if (item.type === 'CredentialRecord') {
-        let notificationType = NotificationType.CredentialOffer
+        let notificationType = enumNotificationType.CredentialOffer
         if (item.revocationNotification) {
-          notificationType = NotificationType.Revocation
+          notificationType = enumNotificationType.Revocation
         }
         component = (
           <NotificationListItem
@@ -140,7 +126,7 @@ const NotificationsList: React.FC<{
           <NotificationListItem
             openSwipeableId={openSwipeableId}
             onOpenSwipeable={handleOpenSwipeable}
-            notificationType={NotificationType.Custom}
+            notificationType={enumNotificationType.Custom}
             notification={item}
             customNotification={customNotification}
           />
@@ -150,7 +136,7 @@ const NotificationsList: React.FC<{
           <NotificationListItem
             openSwipeableId={openSwipeableId}
             onOpenSwipeable={handleOpenSwipeable}
-            notificationType={NotificationType.ProofRequest}
+            notificationType={enumNotificationType.ProofRequest}
             notification={item}
           />
         )
@@ -176,10 +162,12 @@ const NotificationsList: React.FC<{
   return (
     <SectionList
       sections={setions}
-      keyExtractor={(item: NotificationRecord) => item.id}
+      keyExtractor={(item: NotificationType) => item.id}
       renderItem={renderItem}
       renderSectionHeader={renderSectionHeader}
-      ListFooterComponent={<Text style={[styles.bodyText, styles.bodyEventTime]}>Il n'y a rien d'autre</Text>}
+      ListFooterComponent={
+        <Text style={[styles.bodyText, styles.bodyEventTime]}>{t('Activities.FooterNothingElse')}</Text>
+      }
     />
   )
 }

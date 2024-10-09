@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 
-import { NotificationReturnType } from '../../hooks/notifications'
+import { NotificationReturnType, NotificationsInputProps } from '../../hooks/notifications'
 
 import HistoryList from './HistoryList'
 import NotificationsList from './NotificationsList'
@@ -15,7 +15,7 @@ const Activities: React.FC = () => {
   const { ColorPallet, TextTheme } = useTheme()
 
   const [{ customNotificationConfig: customNotification, useNotifications }] = useServices([TOKENS.NOTIFICATIONS])
-  const notifications = useNotifications({ openIDUri: undefined })
+  const notifications = useNotifications({ isHome: false } as NotificationsInputProps)
   const notificationCount = notifications.length
 
   const styles = StyleSheet.create({
@@ -90,7 +90,9 @@ const Activities: React.FC = () => {
           style={[styles.tab, activeTab === 'Historique' && styles.activeTab]}
           onPress={() => setActiveTab('Historique')}
         >
-          <Text style={[styles.tabText, activeTab === 'Historique' && styles.activeTabText]}>Historique</Text>
+          <Text style={[styles.tabText, activeTab === 'Historique' && styles.activeTabText]}>
+            {t('Screens.History')}
+          </Text>
         </TouchableOpacity>
       </View>
 
