@@ -50,7 +50,7 @@ const groupNotificationsByDate = (notifications: NotificationReturnType, t: TFun
   return sections
 }
 
-type sectionType = { title: string; data: NotificationReturnType }
+type SectionType = { title: string; data: NotificationReturnType }
 
 const NotificationsList: React.FC<{
   notifications: NotificationReturnType
@@ -58,7 +58,7 @@ const NotificationsList: React.FC<{
   openSwipeableId: string | null
   handleOpenSwipeable: (id: string | null) => void
 }> = ({ notifications, customNotification, openSwipeableId, handleOpenSwipeable }) => {
-  const [setions, setSections] = useState<sectionType[]>([])
+  const [setions, setSections] = useState<SectionType[]>([])
   const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
 
@@ -69,22 +69,20 @@ const NotificationsList: React.FC<{
   const styles = StyleSheet.create({
     separator: {
       borderBottomWidth: 1,
-      borderBottomColor: ColorPallet.grayscale.lightGrey,
+      borderBottomColor: ColorPallet.brand.secondary,
       marginVertical: 8,
     },
     bodyText: {
-      fontSize: TextTheme.labelTitle.fontSize,
-      fontWeight: TextTheme.labelTitle.fontWeight,
-      color: TextTheme.labelTitle.color,
+      ...TextTheme.labelTitle,
     },
     bodyEventTime: {
-      marginVertical: 8,
+      marginTop: 8,
       color: ColorPallet.grayscale.mediumGrey,
       fontSize: 12,
     },
     sectionSeparator: {
       height: 1,
-      backgroundColor: ColorPallet.grayscale.lightGrey,
+      backgroundColor: ColorPallet.brand.secondary,
       marginTop: 4,
     },
     sectionHeaderContainer: {
@@ -92,6 +90,10 @@ const NotificationsList: React.FC<{
     },
     notificationContainer: {
       marginTop: 12,
+    },
+    footerText: {
+      ...TextTheme.labelSubtitle,
+      color: ColorPallet.grayscale.mediumGrey,
     },
   })
 
@@ -152,7 +154,7 @@ const NotificationsList: React.FC<{
     [openSwipeableId, handleOpenSwipeable]
   )
 
-  const renderSectionHeader = ({ section }: { section: sectionType }) => (
+  const renderSectionHeader = ({ section }: { section: SectionType }) => (
     <View style={styles.sectionHeaderContainer}>
       <Text style={[styles.bodyText, styles.bodyEventTime]}>{section.title}</Text>
       <View style={styles.sectionSeparator} />
@@ -165,9 +167,7 @@ const NotificationsList: React.FC<{
       keyExtractor={(item: NotificationType) => item.id}
       renderItem={renderItem}
       renderSectionHeader={renderSectionHeader}
-      ListFooterComponent={
-        <Text style={[styles.bodyText, styles.bodyEventTime]}>{t('Activities.FooterNothingElse')}</Text>
-      }
+      ListFooterComponent={<Text style={[styles.footerText]}>{t('Activities.FooterNothingElse')}</Text>}
     />
   )
 }

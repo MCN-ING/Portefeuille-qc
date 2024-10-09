@@ -8,15 +8,17 @@ import { NotificationReturnType, NotificationsInputProps } from '../../hooks/not
 import HistoryList from './HistoryList'
 import NotificationsList from './NotificationsList'
 
+const NotificationTab = 'Notifications'
+const HistoryTab = 'Historique'
+
 const Activities: React.FC = () => {
   const [openSwipeableId, setOpenSwipeableId] = useState<string | null>(null)
-  const [activeTab, setActiveTab] = useState('Notifications')
+  const [activeTab, setActiveTab] = useState(NotificationTab)
   const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
 
   const [{ customNotificationConfig: customNotification, useNotifications }] = useServices([TOKENS.NOTIFICATIONS])
   const notifications = useNotifications({ isHome: false } as NotificationsInputProps)
-  const notificationCount = notifications.length
 
   const styles = StyleSheet.create({
     container: {
@@ -27,7 +29,8 @@ const Activities: React.FC = () => {
     tabHeader: {
       flexDirection: 'row',
       borderBottomWidth: 1,
-      borderBottomColor: ColorPallet.grayscale.lightGrey,
+      gap: 32,
+      borderBottomColor: ColorPallet.brand.secondary,
       marginBottom: 16,
       alignItems: 'center',
     },
@@ -35,15 +38,16 @@ const Activities: React.FC = () => {
       flex: 1,
       alignItems: 'center',
       paddingBottom: 8,
+      paddingHorizontal: 8,
+      borderBottomWidth: 4,
+      borderBottomColor: 'transparent',
     },
     activeTab: {
-      borderBottomWidth: 2,
+      borderBottomWidth: 4,
       borderBottomColor: ColorPallet.brand.primary,
     },
     tabText: {
-      fontSize: TextTheme.labelTitle.fontSize,
-      fontWeight: TextTheme.labelTitle.fontWeight,
-      color: ColorPallet.grayscale.darkGrey,
+      ...TextTheme.labelTitle,
     },
     activeTabText: {
       color: ColorPallet.brand.primary,
@@ -52,18 +56,6 @@ const Activities: React.FC = () => {
       flexDirection: 'row',
       alignItems: 'center',
     },
-    badge: {
-      backgroundColor: ColorPallet.brand.primary,
-      borderRadius: 12,
-      paddingHorizontal: 6,
-      paddingVertical: 2,
-      marginLeft: 8,
-    },
-    badgeText: {
-      color: ColorPallet.brand.text,
-      fontSize: 12,
-      fontWeight: 'bold',
-    },
   })
 
   return (
@@ -71,32 +63,25 @@ const Activities: React.FC = () => {
       {/* Tab-like Header */}
       <View style={styles.tabHeader}>
         <TouchableOpacity
-          style={[styles.tab, activeTab === t('Screens.Notifications') && styles.activeTab]}
-          onPress={() => setActiveTab(t('Screens.Notifications'))}
+          style={[styles.tab, activeTab === NotificationTab && styles.activeTab]}
+          onPress={() => setActiveTab(NotificationTab)}
         >
           <View style={styles.tabContent}>
-            <Text style={[styles.tabText, activeTab === t('Screens.Notifications') && styles.activeTabText]}>
+            <Text style={[styles.tabText, activeTab === NotificationTab && styles.activeTabText]}>
               {t('Screens.Notifications')}
             </Text>
-            {notificationCount > 0 && (
-              <View style={styles.badge}>
-                <Text style={styles.badgeText}>{notificationCount}</Text>
-              </View>
-            )}
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.tab, activeTab === 'Historique' && styles.activeTab]}
-          onPress={() => setActiveTab('Historique')}
+          style={[styles.tab, activeTab === HistoryTab && styles.activeTab]}
+          onPress={() => setActiveTab(HistoryTab)}
         >
-          <Text style={[styles.tabText, activeTab === 'Historique' && styles.activeTabText]}>
-            {t('Screens.History')}
-          </Text>
+          <Text style={[styles.tabText, activeTab === HistoryTab && styles.activeTabText]}>{t('Screens.History')}</Text>
         </TouchableOpacity>
       </View>
 
-      {activeTab === t('Screens.Notifications') ? (
+      {activeTab === NotificationTab ? (
         <NotificationsList
           notifications={notifications as NotificationReturnType}
           customNotification={customNotification}
