@@ -21,7 +21,7 @@ const PlusStack: React.FC = () => {
         name={Screens.OptionsPlus}
         component={Plus}
         options={{
-          title: t('OptionsPlus.PageTitle'),
+          title: t('Screens.OptionsPlus'),
         }}
       />
       <StackPlus.Screen
