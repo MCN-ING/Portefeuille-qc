@@ -18,7 +18,6 @@ const Plus: React.FC = () => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingHorizontal: 20,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
     innerContainer: {
@@ -50,6 +49,7 @@ const Plus: React.FC = () => {
     },
     scroll: {
       flexGrow: 1,
+      paddingHorizontal: 20,
     },
     sectionRow: {
       flexDirection: 'row',
@@ -88,7 +88,7 @@ const Plus: React.FC = () => {
   })
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.innerContainer}>
           <View style={styles.mainSection}>

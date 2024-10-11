@@ -703,7 +703,7 @@ const translation = {
     Home: 'Home',
     Activities: 'Activities',
     Credentials: 'Credentials',
-    OptionsPlus: 'More Options',
+    OptionsPlus: 'More',
   },
   RootStack: {
     Contacts: 'Contacts',

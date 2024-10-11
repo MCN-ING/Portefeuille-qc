@@ -661,7 +661,7 @@ const translation = {
     Home: 'Accueil',
     Activities: 'Activités',
     Credentials: 'Attestations',
-    OptionsPlus: "Plus d'options",
+    OptionsPlus: 'Plus',
   },
   RootStack: {
     Contacts: 'Contacts',

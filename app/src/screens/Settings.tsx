@@ -43,7 +43,6 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 2,
-      paddingHorizontal: 20,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
     mainSection: {
@@ -69,6 +68,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
     },
     scroll: {
       flexGrow: 1,
+      paddingHorizontal: 20,
     },
     sectionRow: {
       flexDirection: 'row',
@@ -143,7 +143,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   )
   const arrowIcon = <MaterialIcon style={{ paddingLeft: 10 }} name={'keyboard-arrow-right'} size={iconSize} />
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <ScrollView contentContainerStyle={styles.scroll}>
         <SectionHeader title={t('Settings.Preference')} />
         <SectionRow
