@@ -27,8 +27,6 @@ export enum Screens {
   UseBiometry = 'Use Biometry',
   HelpCenter = 'Help Center',
   About = 'About',
-  Tours = 'Tours',
-  UserGuide = 'User Guide',
 }
 
 export enum Stacks {
@@ -80,8 +78,6 @@ export type SettingStackParams = {
 }
 export type HelpCenterStackParams = {
   [Screens.HelpCenter]: undefined
-  [Screens.Tours]: undefined
-  [Screens.UserGuide]: undefined
 }
 export type AboutStackParams = {
   [Screens.About]: undefined
