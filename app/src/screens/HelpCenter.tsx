@@ -1,44 +1,16 @@
-import { useTheme, useStore, testIdWithKey, DispatchAction } from '@hyperledger/aries-bifold-core'
-import { i18n, Locales } from '@hyperledger/aries-bifold-core/App/localization'
-import { StackScreenProps } from '@react-navigation/stack'
-import React, { useRef } from 'react'
+import { useTheme, testIdWithKey } from '@hyperledger/aries-bifold-core'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, StyleSheet, Text, View, Pressable } from 'react-native'
-import { getVersion } from 'react-native-device-info'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
-import { Screens, SettingStackParams } from '../navigators/navigators'
-import { BCState } from '../store'
+import ContactUs from '../components/ContactUs'
 
-import Developer from './Developer'
-
-type SettingsProps = StackScreenProps<SettingStackParams>
-
-const Settings: React.FC<SettingsProps> = ({ navigation }) => {
+const HelpCenter: React.FC = () => {
   const { SettingsTheme, TextTheme, ColorPallet } = useTheme()
-  const [store, dispatch] = useStore<BCState>()
-  const currentLanguage = i18n.t('Language.code', { context: i18n.language as Locales })
-  const developerOptionCount = useRef(0)
   const { t } = useTranslation()
-
-  const touchCountToEnableBiometrics = 9
   const iconSize = 30
-  const nbNotifDays = 30
-
-  const incrementDeveloperMenuCounter = () => {
-    if (developerOptionCount.current >= touchCountToEnableBiometrics) {
-      developerOptionCount.current = 0
-      dispatch({
-        type: DispatchAction.ENABLE_DEVELOPER_MODE,
-        payload: [true],
-      })
-
-      return
-    }
-
-    developerOptionCount.current = developerOptionCount.current + 1
-  }
 
   const styles = StyleSheet.create({
     container: {
@@ -89,7 +61,21 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
       borderBottomColor: ColorPallet.brand.secondary,
       marginTop: 10,
     },
+    sectionCopyright: {
+      flex: 1,
+      justifyContent: 'flex-end',
+      ...TextTheme.headingOne,
+      margin: 10,
+    },
+    sectionCopyrightText: {
+      ...TextTheme.caption,
+      color: TextTheme.normal.color,
+      textAlign: 'left',
+      textDecorationLine: 'none',
+      marginLeft: 10,
+    },
   })
+
   const SectionHeader = ({ title }: { title: string }): JSX.Element => (
     <>
       <View style={[styles.section, styles.sectionHeader]}>
@@ -147,69 +133,92 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        <SectionHeader title={t('Settings.Preference')} />
+        <SectionHeader title="Apprendre l'Application" />
         <SectionRow
-          title={t('Settings.Language')}
+          title="Guide d'utilisation"
           accessibilityLabel={t('Settings.Language')}
           testID={testIdWithKey(t('Settings.Language').toLowerCase())}
-          onPress={() => navigation.navigate(Screens.Language)}
           showRowSeparator
           rowIcon={arrowIcon}
         >
-          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>{currentLanguage}</Text>
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}></Text>
         </SectionRow>
         <View style={[styles.sectionSeparator]}></View>
         <SectionRow
-          title={t('Settings.History')}
+          title="Lorem ipsum"
           accessibilityLabel={t('Settings.History')}
           testID={testIdWithKey(t('Settings.History').toLowerCase())}
-          onPress={() => navigation.navigate(Screens.HistoryPage)}
+          showRowSeparator
           rowIcon={arrowIcon}
         >
-          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>
-            {` ${nbNotifDays} ${t('Settings.Days')}`}
-          </Text>
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}></Text>
         </SectionRow>
-        <SectionHeader title={t('Settings.Security')} />
+        <View style={[styles.sectionSeparator]}></View>
         <SectionRow
-          title={t('Settings.MyPin')}
+          title="Lorem ipsum dolor"
           accessibilityLabel={t('Settings.MyPin')}
           testID={testIdWithKey(t('Settings.MyPin').toLowerCase())}
-          onPress={() => navigation.navigate(Screens.CreatePIN)}
+          rowIcon={arrowIcon}
+        >
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}></Text>
+        </SectionRow>
+        <SectionHeader title="Tutoriel" />
+        <SectionRow
+          title="Tour guidé de l'application"
+          accessibilityLabel={t('Settings.MyPin')}
+          testID={testIdWithKey(t('Settings.MyPin').toLowerCase())}
           showRowSeparator
           rowIcon={arrowIcon}
         >
-          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>{t('Settings.ChangePin')}</Text>
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}></Text>
         </SectionRow>
         <View style={[styles.sectionSeparator]}></View>
         <SectionRow
-          title={t('Settings.Biometrics')}
+          title="Recevoir et partager une attestation"
           accessibilityLabel={t('Settings.Biometrics')}
           testID={testIdWithKey(t('Settings.Biometrics').toLowerCase())}
-          onPress={() => navigation.navigate(Screens.UseBiometry)}
           showRowSeparator
           rowIcon={arrowIcon}
         >
-          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>
-            {store.preferences.useBiometry ? t('Settings.BiometricActive') : t('Settings.BiometricDisabled')}
-          </Text>
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}></Text>
         </SectionRow>
         <View style={[styles.sectionSeparator]}></View>
         <SectionRow
-          title={t('Settings.Version')}
+          title="Aidez nous à améliorer l'application"
           accessibilityLabel={t('Settings.Version')}
           testID={testIdWithKey(t('Settings.Version').toLowerCase())}
-          onPress={() => {
-            incrementDeveloperMenuCounter()
-          }}
+          showRowSeparator
+          rowIcon={arrowIcon}
         >
-          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>{getVersion()} </Text>
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}></Text>
         </SectionRow>
-
-        {store.preferences.developerModeEnabled && <Developer />}
+        <SectionHeader title="Votre opinion" />
+        <SectionRow
+          title="Signaler un problème"
+          accessibilityLabel={t('Settings.MyPin')}
+          testID={testIdWithKey(t('Settings.MyPin').toLowerCase())}
+          showRowSeparator
+          rowIcon={arrowIcon}
+        >
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}></Text>
+        </SectionRow>
+        <View style={[styles.sectionSeparator]}></View>
+        <SectionRow
+          title="Partager votre opinion de l'application"
+          accessibilityLabel={t('Settings.MyPin')}
+          testID={testIdWithKey(t('Settings.MyPin').toLowerCase())}
+          rowIcon={arrowIcon}
+        >
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}></Text>
+        </SectionRow>
+        <View style={[styles.sectionSeparator]}></View>
+        <ContactUs />
+        <View style={[styles.sectionCopyright]}>
+          <Text style={styles.sectionCopyrightText}> {t('OptionsPlus.Copyright')}</Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   )
 }
 
-export default Settings
+export default HelpCenter

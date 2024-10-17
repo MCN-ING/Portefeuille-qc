@@ -25,6 +25,10 @@ export enum Screens {
   Notification = 'Notifications',
   CreatePIN = 'Create a PIN',
   UseBiometry = 'Use Biometry',
+  HelpCenter = 'Help Center',
+  About = 'About',
+  Tours = 'Tours',
+  UserGuide = 'User Guide',
 }
 
 export enum Stacks {
@@ -74,6 +78,14 @@ export type SettingStackParams = {
   [Screens.CreatePIN]: undefined
   [Screens.UseBiometry]: undefined
 }
+export type HelpCenterStackParams = {
+  [Screens.HelpCenter]: undefined
+  [Screens.Tours]: undefined
+  [Screens.UserGuide]: undefined
+}
+export type AboutStackParams = {
+  [Screens.About]: undefined
+}
 
 export type ActivitiesStackParams = {
   [Screens.Activities]: undefined
@@ -82,6 +94,6 @@ export type ActivitiesStackParams = {
 export type OptionsPlusStackParams = {
   [Screens.OptionsPlus]: undefined
   [Stacks.SettingsStack]: NavigatorScreenParams<SettingStackParams>
-  [Stacks.HelpCenterStack]: undefined
-  [Stacks.AboutStack]: undefined
+  [Stacks.HelpCenterStack]: NavigatorScreenParams<HelpCenterStackParams>
+  [Stacks.AboutStack]: NavigatorScreenParams<AboutStackParams>
 }
