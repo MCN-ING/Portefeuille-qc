@@ -75,7 +75,7 @@ export type SettingStackParams = {
   [Screens.Language]: undefined
   [Screens.HistoryPage]: undefined
   [Screens.Notification]: undefined
-  [Screens.CreatePIN]: undefined
+  [Screens.CreatePIN]: { updatePIN?: boolean }
   [Screens.UseBiometry]: undefined
 }
 export type HelpCenterStackParams = {
