@@ -1,12 +1,18 @@
-import { useTheme } from '@hyperledger/aries-bifold-core'
+import { Button, ButtonType, useTheme } from '@hyperledger/aries-bifold-core'
 import { CustomNotification } from '@hyperledger/aries-bifold-core/App/types/notification'
+import { StackNavigationProp } from '@react-navigation/stack'
 import moment from 'moment'
 import React, { useCallback, useEffect, useState } from 'react'
 import { TFunction, useTranslation } from 'react-i18next'
 import { View, StyleSheet, SectionList, Text } from 'react-native'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import NotificationListItem, { NotificationType as enumNotificationType } from '../../components/NotificationListItem'
+import NotificationListItem, { NotificationTypeEnum } from '../../components/NotificationListItem'
 import { NotificationReturnType, NotificationType } from '../../hooks/notifications'
+import { ActivitiesStackParams } from '../../navigators/navigators'
+import { TabTheme } from '../../theme'
+
+export type SelectedNotificationType = { id: string; deleteAction?: () => void }
 
 // Function to group notifications by date
 const groupNotificationsByDate = (notifications: NotificationReturnType, t: TFunction<'translation', undefined>) => {
@@ -57,23 +63,33 @@ const NotificationsList: React.FC<{
   customNotification: CustomNotification | undefined
   openSwipeableId: string | null
   handleOpenSwipeable: (id: string | null) => void
-}> = ({ notifications, customNotification, openSwipeableId, handleOpenSwipeable }) => {
+  navigation: StackNavigationProp<ActivitiesStackParams>
+}> = ({ notifications, customNotification, openSwipeableId, handleOpenSwipeable, navigation }) => {
   const [setions, setSections] = useState<SectionType[]>([])
   const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
+
+  const [selectedNotification, setSelectedNotification] = useState<SelectedNotificationType[] | null>(null)
 
   useEffect(() => {
     setSections(groupNotificationsByDate(notifications as NotificationReturnType, t))
   }, [notifications])
 
+  useEffect(() => {
+    if (selectedNotification != null) {
+      navigation?.getParent()?.setOptions({ tabBarStyle: { display: 'none' } })
+    } else {
+      navigation?.getParent()?.setOptions({ tabBarStyle: { display: 'flex', ...TabTheme.tabBarStyle } })
+    }
+  }, [selectedNotification])
+
   const styles = StyleSheet.create({
     separator: {
       borderBottomWidth: 1,
       borderBottomColor: ColorPallet.brand.secondary,
-      marginVertical: 8,
     },
     bodyText: {
-      ...TextTheme.labelTitle,
+      ...TextTheme.labelSubtitle,
     },
     bodyEventTime: {
       marginTop: 8,
@@ -87,9 +103,10 @@ const NotificationsList: React.FC<{
     },
     sectionHeaderContainer: {
       marginBottom: 12,
+      backgroundColor: ColorPallet.brand.primaryBackground,
     },
     notificationContainer: {
-      marginTop: 12,
+      marginVertical: 16,
     },
     footerText: {
       ...TextTheme.labelSubtitle,
@@ -106,14 +123,31 @@ const NotificationsList: React.FC<{
           <NotificationListItem
             openSwipeableId={openSwipeableId}
             onOpenSwipeable={handleOpenSwipeable}
-            notificationType={enumNotificationType.BasicMessage}
+            notificationType={NotificationTypeEnum.BasicMessage}
             notification={item}
+            activateSelection={selectedNotification != null}
+            selected={
+              (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                0) > 0
+            }
+            setSelected={(item) => {
+              if (
+                (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                  0) > 0
+              ) {
+                setSelectedNotification(
+                  selectedNotification?.filter((selectedNotification) => selectedNotification.id !== item.id) ?? []
+                )
+                return
+              }
+              setSelectedNotification([...(selectedNotification || []), item])
+            }}
           />
         )
       } else if (item.type === 'CredentialRecord') {
-        let notificationType = enumNotificationType.CredentialOffer
+        let notificationType = NotificationTypeEnum.CredentialOffer
         if (item.revocationNotification) {
-          notificationType = enumNotificationType.Revocation
+          notificationType = NotificationTypeEnum.Revocation
         }
         component = (
           <NotificationListItem
@@ -121,6 +155,23 @@ const NotificationsList: React.FC<{
             onOpenSwipeable={handleOpenSwipeable}
             notificationType={notificationType}
             notification={item}
+            activateSelection={selectedNotification != null}
+            selected={
+              (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                0) > 0
+            }
+            setSelected={(item) => {
+              if (
+                (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                  0) > 0
+              ) {
+                setSelectedNotification(
+                  selectedNotification?.filter((selectedNotification) => selectedNotification.id !== item.id) ?? []
+                )
+                return
+              }
+              setSelectedNotification([...(selectedNotification || []), item])
+            }}
           />
         )
       } else if (item.type === 'CustomNotification' && customNotification) {
@@ -128,9 +179,26 @@ const NotificationsList: React.FC<{
           <NotificationListItem
             openSwipeableId={openSwipeableId}
             onOpenSwipeable={handleOpenSwipeable}
-            notificationType={enumNotificationType.Custom}
+            notificationType={NotificationTypeEnum.Custom}
             notification={item}
             customNotification={customNotification}
+            activateSelection={selectedNotification != null}
+            selected={
+              (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                0) > 0
+            }
+            setSelected={(item) => {
+              if (
+                (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                  0) > 0
+              ) {
+                setSelectedNotification(
+                  selectedNotification?.filter((selectedNotification) => selectedNotification.id !== item.id) ?? []
+                )
+                return
+              }
+              setSelectedNotification([...(selectedNotification || []), item])
+            }}
           />
         )
       } else {
@@ -138,20 +206,32 @@ const NotificationsList: React.FC<{
           <NotificationListItem
             openSwipeableId={openSwipeableId}
             onOpenSwipeable={handleOpenSwipeable}
-            notificationType={enumNotificationType.ProofRequest}
+            notificationType={NotificationTypeEnum.ProofRequest}
             notification={item}
+            activateSelection={selectedNotification != null}
+            selected={
+              (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                0) > 0
+            }
+            setSelected={(item) => {
+              if (
+                (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                  0) > 0
+              ) {
+                setSelectedNotification(
+                  selectedNotification?.filter((selectedNotification) => selectedNotification.id !== item.id) ?? []
+                )
+                return
+              }
+              setSelectedNotification([...(selectedNotification || []), item])
+            }}
           />
         )
       }
 
-      return (
-        <View style={styles.notificationContainer}>
-          {component}
-          <View style={styles.separator} />
-        </View>
-      )
+      return <View style={styles.notificationContainer}>{component}</View>
     },
-    [openSwipeableId, handleOpenSwipeable]
+    [openSwipeableId, handleOpenSwipeable, selectedNotification]
   )
 
   const renderSectionHeader = ({ section }: { section: SectionType }) => (
@@ -162,13 +242,52 @@ const NotificationsList: React.FC<{
   )
 
   return (
-    <SectionList
-      sections={setions}
-      keyExtractor={(item: NotificationType) => item.id}
-      renderItem={renderItem}
-      renderSectionHeader={renderSectionHeader}
-      ListFooterComponent={<Text style={[styles.footerText]}>{t('Activities.FooterNothingElse')}</Text>}
-    />
+    <View style={{ flex: 1, zIndex: 1 }}>
+      <SectionList
+        style={{ flex: 1, paddingHorizontal: 16 }}
+        sections={setions}
+        keyExtractor={(item: NotificationType) => item.id}
+        renderItem={renderItem}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        renderSectionHeader={renderSectionHeader}
+        ListFooterComponent={
+          <View style={selectedNotification != null && { paddingBottom: 200 }}>
+            <Text style={[styles.footerText]}>{t('Activities.FooterNothingElse')}</Text>
+          </View>
+        }
+      />
+      {selectedNotification != null && (
+        <View
+          style={{
+            width: '100%',
+            maxHeight: 200,
+            position: 'absolute',
+            shadowOffset: { width: 0, height: -3 },
+            shadowColor: ColorPallet.grayscale.darkGrey,
+            shadowOpacity: 0.1,
+            shadowRadius: 5,
+            bottom: 0,
+            zIndex: 99,
+            backgroundColor: ColorPallet.brand.primaryBackground,
+          }}
+        >
+          <View style={{ margin: 25 }}>
+            <Button
+              title={'Supprimer'}
+              onPress={() => {
+                selectedNotification.forEach((notification) => notification.deleteAction?.())
+                setSelectedNotification(null)
+              }}
+              buttonType={ButtonType.ModalCritical}
+            >
+              <MaterialCommunityIcon name={'trash-can-outline'} size={24} style={{ color: 'white' }} />
+            </Button>
+            <View style={{ height: 24 }} />
+            <Button title={'Annuler'} onPress={() => setSelectedNotification(null)} buttonType={ButtonType.Secondary} />
+          </View>
+        </View>
+      )}
+    </View>
   )
 }
 
