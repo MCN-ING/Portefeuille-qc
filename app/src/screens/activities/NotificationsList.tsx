@@ -14,6 +14,7 @@ import { TabTheme } from '../../theme'
 
 export type SelectedNotificationType = { id: string; deleteAction?: () => void }
 
+const iconSize = 24
 // Function to group notifications by date
 const groupNotificationsByDate = (notifications: NotificationReturnType, t: TFunction<'translation', undefined>) => {
   const groupedNotifications: { [key: string]: NotificationReturnType } = {
@@ -84,6 +85,14 @@ const NotificationsList: React.FC<{
   }, [selectedNotification])
 
   const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      zIndex: 1,
+    },
+    sectionList: {
+      flex: 1,
+      paddingHorizontal: 16,
+    },
     separator: {
       borderBottomWidth: 1,
       borderBottomColor: ColorPallet.brand.secondary,
@@ -111,6 +120,21 @@ const NotificationsList: React.FC<{
     footerText: {
       ...TextTheme.labelSubtitle,
       color: ColorPallet.grayscale.mediumGrey,
+    },
+    selectionMultiActionContainer: {
+      width: '100%',
+      maxHeight: 200,
+      position: 'absolute',
+      shadowOffset: { width: 0, height: -3 },
+      shadowColor: ColorPallet.grayscale.darkGrey,
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      bottom: 0,
+      zIndex: 99,
+      backgroundColor: ColorPallet.brand.primaryBackground,
+    },
+    actionButtonContainer: {
+      margin: 25,
     },
   })
 
@@ -242,9 +266,9 @@ const NotificationsList: React.FC<{
   )
 
   return (
-    <View style={{ flex: 1, zIndex: 1 }}>
+    <View style={styles.container}>
       <SectionList
-        style={{ flex: 1, paddingHorizontal: 16 }}
+        style={styles.sectionList}
         sections={setions}
         keyExtractor={(item: NotificationType) => item.id}
         renderItem={renderItem}
@@ -257,21 +281,8 @@ const NotificationsList: React.FC<{
         }
       />
       {selectedNotification != null && (
-        <View
-          style={{
-            width: '100%',
-            maxHeight: 200,
-            position: 'absolute',
-            shadowOffset: { width: 0, height: -3 },
-            shadowColor: ColorPallet.grayscale.darkGrey,
-            shadowOpacity: 0.1,
-            shadowRadius: 5,
-            bottom: 0,
-            zIndex: 99,
-            backgroundColor: ColorPallet.brand.primaryBackground,
-          }}
-        >
-          <View style={{ margin: 25 }}>
+        <View style={styles.selectionMultiActionContainer}>
+          <View style={styles.actionButtonContainer}>
             <Button
               title={'Supprimer'}
               onPress={() => {
@@ -280,7 +291,7 @@ const NotificationsList: React.FC<{
               }}
               buttonType={ButtonType.ModalCritical}
             >
-              <MaterialCommunityIcon name={'trash-can-outline'} size={24} style={{ color: 'white' }} />
+              <MaterialCommunityIcon name={'trash-can-outline'} size={iconSize} style={{ color: 'white' }} />
             </Button>
             <View style={{ height: 24 }} />
             <Button title={'Annuler'} onPress={() => setSelectedNotification(null)} buttonType={ButtonType.Secondary} />
