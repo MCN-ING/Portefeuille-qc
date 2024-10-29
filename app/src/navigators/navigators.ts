@@ -13,6 +13,7 @@ import {
 } from '@hyperledger/aries-bifold-core/App/types/navigators'
 import { HistoryStackParams } from '@hyperledger/aries-bifold-core/lib/typescript/App/types/navigators'
 import { NavigatorScreenParams } from '@react-navigation/native'
+import { ImageSourcePropType } from 'react-native'
 
 export enum Screens {
   TermsAndConditions = 'TermsAndConditions',
@@ -26,6 +27,7 @@ export enum Screens {
   CreatePIN = 'Create a PIN',
   UseBiometry = 'Use Biometry',
   HelpCenter = 'Help Center',
+  HelpCenterPage = 'Help Center Page',
   About = 'About',
 }
 
@@ -76,8 +78,16 @@ export type SettingStackParams = {
   [Screens.CreatePIN]: { updatePIN?: boolean }
   [Screens.UseBiometry]: undefined
 }
+type ItemSection = {
+  title?: string
+  text?: string
+  visual?: ImageSourcePropType
+  question?: string
+  answer?: string
+}
 export type HelpCenterStackParams = {
   [Screens.HelpCenter]: undefined
+  [Screens.HelpCenterPage]: { SelectedSection: ItemSection[] }
 }
 export type AboutStackParams = {
   [Screens.About]: undefined
