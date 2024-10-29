@@ -4,7 +4,12 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 
-import { NotificationReturnType, NotificationsInputProps } from '../../hooks/notifications'
+import {
+  NotificationReturnType,
+  NotificationsInputProps,
+  useNotifications,
+  useHistoryNotifications,
+} from '../../hooks/notifications'
 import { ActivitiesStackParams } from '../../navigators/navigators'
 
 import HistoryList from './HistoryList'
@@ -23,9 +28,11 @@ const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
   const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
 
-  const [{ customNotificationConfig: customNotification, useNotifications }] = useServices([TOKENS.NOTIFICATIONS])
+  const [{ customNotificationConfig: customNotification }] = useServices([TOKENS.NOTIFICATIONS])
   const notifications = useNotifications({ isHome: false } as NotificationsInputProps)
+  const historyNotifications = useHistoryNotifications()
 
+  const notificationCount = notifications?.length || 0
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -64,6 +71,16 @@ const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
       flexDirection: 'row',
       alignItems: 'center',
     },
+    notificationCountContainer: {
+      backgroundColor: ColorPallet.brand.primary,
+      borderRadius: 12,
+      paddingHorizontal: 8,
+      paddingVertical: 2,
+      marginLeft: 8,
+    },
+    notificationCountText: {
+      color: ColorPallet.brand.text,
+    },
   })
 
   return (
@@ -78,6 +95,9 @@ const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
             <Text style={[styles.tabText, activeTab === NotificationTab && styles.activeTabText]}>
               {t('Screens.Notifications')}
             </Text>
+            <View style={styles.notificationCountContainer}>
+              <Text style={styles.notificationCountText}>{notificationCount}</Text>
+            </View>
           </View>
         </TouchableOpacity>
 
@@ -98,7 +118,12 @@ const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
           navigation={navigation}
         />
       ) : (
-        <HistoryList />
+        <HistoryList
+          historyItems={historyNotifications as NotificationReturnType}
+          customNotification={customNotification}
+          openSwipeableId={openSwipeableId}
+          handleOpenSwipeable={setOpenSwipeableId}
+        />
       )}
     </View>
   )
