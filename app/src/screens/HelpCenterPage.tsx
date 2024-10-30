@@ -77,7 +77,7 @@ const HelpCenterPage: React.FC<HelpCenterProps> = ({ route, navigation }) => {
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <ScrollView contentContainerStyle={styles.scroll}>
         {content.map((item, index) => (
-          <View key={index && item.title}>
+          <View key={index}>
             <InfosDisplay
               title={item?.title}
               detail={item?.text}
