@@ -4,7 +4,9 @@ import {
   BasicMessageRepository,
   ConnectionRecord,
   CredentialExchangeRecord,
+  CredentialRepository,
   ProofExchangeRecord,
+  ProofRepository,
   ProofState,
   SdJwtVcRecord,
   W3cCredentialRecord,
@@ -21,6 +23,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DeviceEventEmitter, Image, StyleSheet } from 'react-native'
+import Toast from 'react-native-toast-message'
 
 import CredentialAddedImg from '../assets/img/CredentialAdded.svg'
 import FleurLysImg from '../assets/img/FleurLys.svg'
@@ -55,6 +58,7 @@ interface NotificationListItemProps {
   selected?: boolean
   setSelected?: ({ id, deleteAction }: { id: string; deleteAction?: () => void }) => void
   activateSelection?: boolean
+  isHistory?: boolean
 }
 
 type DisplayDetails = {
@@ -79,6 +83,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   selected,
   setSelected,
   activateSelection,
+  isHistory = false,
 }) => {
   const navigation = useNavigation<StackNavigationProp<HomeStackParams>>()
   const [store, dispatch] = useStore()
@@ -230,6 +235,71 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
     }
   }
 
+  const removeHistories = async () => {
+    try {
+      // Handle BasicMessage notification type
+      if (notificationType === NotificationTypeEnum.BasicMessage) {
+        if (agent) {
+          const basicMessageRepository = agent.context.dependencyManager.resolve(BasicMessageRepository)
+          await basicMessageRepository.deleteById(agent.context, notification.id)
+        } else {
+          Toast.show({
+            type: 'error',
+            text1: 'Error',
+            text2: 'Agent is unavailable. Cannot delete Basic Message.',
+          })
+          return
+        }
+      }
+      // Handle ProofRequest notification type
+      else if (notificationType === NotificationTypeEnum.ProofRequest) {
+        if (agent) {
+          const proofId = (notification as ProofExchangeRecord).id
+          const proofRepository = agent.context.dependencyManager.resolve(ProofRepository)
+          await proofRepository.deleteById(agent.context, proofId)
+        } else {
+          Toast.show({
+            type: 'error',
+            text1: 'Error',
+            text2: 'Agent is unavailable. Cannot delete Proof Request.',
+          })
+          return
+        }
+      }
+      // Handle CredentialOffer notification type
+      else if (notificationType === NotificationTypeEnum.CredentialOffer) {
+        if (agent) {
+          const credentialId = (notification as CredentialExchangeRecord).id
+          const credentialRepository = agent.context.dependencyManager.resolve(CredentialRepository)
+          await credentialRepository.deleteById(agent.context, credentialId)
+        } else {
+          Toast.show({
+            type: 'error',
+            text1: 'Error',
+            text2: 'Agent is unavailable. Cannot delete Credential Offer.',
+          })
+          return
+        }
+      }
+      // Handle CustomNotification type
+      else if (notificationType === NotificationTypeEnum.Custom) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        customNotification?.onCloseAction(dispatch as any)
+      }
+
+      // Close swipe and update UI
+      handleSwipeClose()
+    } catch (err: unknown) {
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'An error occurred while deleting the notification.',
+      })
+      const error = new BifoldError(t('Error.Title1028'), t('Error.Message1028'), (err as Error)?.message ?? err, 1028)
+      DeviceEventEmitter.emit(EventTypes.ERROR_ADDED, error)
+    }
+  }
+
   const detailsForNotificationType = async (notificationType: NotificationTypeEnum): Promise<DisplayDetails> => {
     return new Promise((resolve) => {
       const theirLabel = getConnectionName(connection, store.preferences.alternateContactNames)
@@ -366,15 +436,20 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
     detailsPromise()
   }, [notificationType, t])
 
-  const removeCurrentNotification = () => {
-    removeNotification()
+  // Function to handle deletion based on isHistory flag
+  const handleDelete = () => {
+    if (isHistory) {
+      removeHistories()
+    } else {
+      removeNotification()
+    }
     handleSwipeClose()
   }
 
   return (
     <EventItem
       action={action}
-      handleDelete={removeCurrentNotification}
+      handleDelete={handleDelete}
       event={{
         id: notification.id,
         title: details.title,

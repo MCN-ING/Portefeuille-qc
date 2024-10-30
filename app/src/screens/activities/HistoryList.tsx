@@ -1,40 +1,92 @@
 import { Button, ButtonType, useTheme } from '@hyperledger/aries-bifold-core'
 import { CustomNotification } from '@hyperledger/aries-bifold-core/App/types/notification'
+import { StackNavigationProp } from '@react-navigation/stack'
 import moment from 'moment'
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { TFunction, useTranslation } from 'react-i18next'
-import { View, Text, SectionList, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, SectionList, Text, TextInput, TouchableOpacity } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import NotificationListItem, { NotificationTypeEnum } from '../../components/NotificationListItem'
 import { NotificationReturnType, NotificationType } from '../../hooks/notifications'
+import { ActivitiesStackParams } from '../../navigators/navigators'
+import { TabTheme } from '../../theme'
 
-export type SelectedHistoryType = { id: string; deleteAction?: () => void }
+export type SelectedNotificationType = { id: string; deleteAction?: () => void }
 
 const iconSize = 24
+// Function to group notifications by date
+const groupNotificationsByDate = (notifications: NotificationReturnType, t: TFunction<'translation', undefined>) => {
+  const groupedNotifications: { [key: string]: NotificationReturnType } = {
+    today: [],
+    thisWeek: [],
+    lastWeek: [],
+    older: [],
+  }
+
+  notifications.forEach((notification) => {
+    const notificationDate = moment(notification.createdAt)
+    const today = moment()
+
+    if (notificationDate.isSame(today, 'day')) {
+      groupedNotifications.today.push(notification)
+    } else if (notificationDate.isSame(today, 'week')) {
+      groupedNotifications.thisWeek.push(notification)
+    } else if (notificationDate.isSame(today.subtract(1, 'week'), 'week')) {
+      groupedNotifications.lastWeek.push(notification)
+    } else {
+      groupedNotifications.older.push(notification)
+    }
+  })
+
+  const sections = []
+
+  if (groupedNotifications.today.length > 0) {
+    sections.push({ title: t('Activities.Timing.Today'), data: groupedNotifications.today })
+  }
+  if (groupedNotifications.thisWeek.length > 0) {
+    sections.push({ title: t('Activities.Timing.ThisWeek'), data: groupedNotifications.thisWeek })
+  }
+  if (groupedNotifications.lastWeek.length > 0) {
+    sections.push({ title: t('Activities.Timing.LastWeek'), data: groupedNotifications.lastWeek })
+  }
+  if (groupedNotifications.older.length > 0) {
+    sections.push({ title: t('Activities.Timing.Older'), data: groupedNotifications.older })
+  }
+
+  return sections
+}
+
+type SectionType = { title: string; data: NotificationReturnType }
 
 const HistoryList: React.FC<{
-  historyItems: NotificationReturnType | undefined
+  historyItems: NotificationReturnType
   customNotification: CustomNotification | undefined
   openSwipeableId: string | null
   handleOpenSwipeable: (id: string | null) => void
-}> = ({ historyItems = [], customNotification, openSwipeableId, handleOpenSwipeable }) => {
+  navigation: StackNavigationProp<ActivitiesStackParams>
+}> = ({ historyItems, customNotification, openSwipeableId, handleOpenSwipeable, navigation }) => {
+  const [setions, setSections] = useState<SectionType[]>([])
   const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
-
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedHistory, setSelectedHistory] = useState<SelectedHistoryType[] | null>(null)
+  const [selectedNotification, setSelectedNotification] = useState<SelectedNotificationType[] | null>(null)
 
-  const filteredItems = useMemo(() => {
-    return historyItems.filter(
-      (item) => 'content' in item && item.content?.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  }, [historyItems, searchQuery])
+  useEffect(() => {
+    const filteredItems = historyItems.filter((item) => {
+      const itemString = JSON.stringify(item).toLowerCase()
+      return itemString.includes(searchQuery.toLowerCase())
+    })
+    setSections(groupNotificationsByDate(filteredItems, t))
+  }, [historyItems, searchQuery, t])
 
-  // Memoize sections to avoid rerenders
-  const sections = useMemo(() => {
-    return groupHistoryByDate(filteredItems, t)
-  }, [filteredItems, t])
+  useEffect(() => {
+    if (selectedNotification != null) {
+      navigation?.getParent()?.setOptions({ tabBarStyle: { display: 'none' } })
+    } else {
+      navigation?.getParent()?.setOptions({ tabBarStyle: { display: 'flex', ...TabTheme.tabBarStyle } })
+    }
+  }, [selectedNotification])
 
   const styles = StyleSheet.create({
     container: {
@@ -112,55 +164,129 @@ const HistoryList: React.FC<{
 
   const renderItem = useCallback(
     ({ item }: { item: NotificationType }) => {
-      let notificationType: NotificationTypeEnum
+      let component = null
 
-      // Assign notification type based on item type
-      switch (item.type) {
-        case 'BasicMessageRecord':
-          notificationType = NotificationTypeEnum.BasicMessage
-          break
-        case 'CredentialRecord':
-          notificationType = item.revocationNotification
-            ? NotificationTypeEnum.Revocation
-            : NotificationTypeEnum.CredentialOffer
-          break
-        case 'ProofRecord':
-          notificationType = NotificationTypeEnum.ProofRequest
-          break
-        case 'CustomNotification':
-          notificationType = NotificationTypeEnum.Custom
-          break
-        default:
-          notificationType = NotificationTypeEnum.BasicMessage // Fallback type
-      }
-
-      // Render NotificationListItem with appropriate type and props
-      return (
-        <View style={styles.notificationContainer}>
+      if (item.type === 'BasicMessageRecord') {
+        component = (
+          <NotificationListItem
+            openSwipeableId={openSwipeableId}
+            onOpenSwipeable={handleOpenSwipeable}
+            notificationType={NotificationTypeEnum.BasicMessage}
+            notification={item}
+            activateSelection={selectedNotification != null}
+            selected={
+              (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                0) > 0
+            }
+            setSelected={(item) => {
+              if (
+                (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                  0) > 0
+              ) {
+                setSelectedNotification(
+                  selectedNotification?.filter((selectedNotification) => selectedNotification.id !== item.id) ?? []
+                )
+                return
+              }
+              setSelectedNotification([...(selectedNotification || []), item])
+            }}
+            isHistory={true}
+          />
+        )
+      } else if (item.type === 'CredentialRecord') {
+        let notificationType = NotificationTypeEnum.CredentialOffer
+        if (item.revocationNotification) {
+          notificationType = NotificationTypeEnum.Revocation
+        }
+        component = (
           <NotificationListItem
             openSwipeableId={openSwipeableId}
             onOpenSwipeable={handleOpenSwipeable}
             notificationType={notificationType}
             notification={item}
-            customNotification={item.type === 'CustomNotification' ? customNotification : undefined}
-            activateSelection={selectedHistory != null}
-            selected={selectedHistory?.some((selectedItem) => selectedItem.id === item.id) ?? false}
-            setSelected={() => {
-              const alreadySelected = selectedHistory?.some((selectedItem) => selectedItem.id === item.id)
-              setSelectedHistory(
-                alreadySelected
-                  ? selectedHistory?.filter((selectedItem) => selectedItem.id !== item.id) ?? null
-                  : [...(selectedHistory || []), { id: item.id, deleteAction: undefined }]
-              )
+            activateSelection={selectedNotification != null}
+            selected={
+              (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                0) > 0
+            }
+            setSelected={(item) => {
+              if (
+                (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                  0) > 0
+              ) {
+                setSelectedNotification(
+                  selectedNotification?.filter((selectedNotification) => selectedNotification.id !== item.id) ?? []
+                )
+                return
+              }
+              setSelectedNotification([...(selectedNotification || []), item])
             }}
+            isHistory={true}
           />
-        </View>
-      )
+        )
+      } else if (item.type === 'CustomNotification' && customNotification) {
+        component = (
+          <NotificationListItem
+            openSwipeableId={openSwipeableId}
+            onOpenSwipeable={handleOpenSwipeable}
+            notificationType={NotificationTypeEnum.Custom}
+            notification={item}
+            customNotification={customNotification}
+            activateSelection={selectedNotification != null}
+            selected={
+              (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                0) > 0
+            }
+            setSelected={(item) => {
+              if (
+                (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                  0) > 0
+              ) {
+                setSelectedNotification(
+                  selectedNotification?.filter((selectedNotification) => selectedNotification.id !== item.id) ?? []
+                )
+                return
+              }
+              setSelectedNotification([...(selectedNotification || []), item])
+            }}
+            isHistory={true}
+          />
+        )
+      } else {
+        component = (
+          <NotificationListItem
+            openSwipeableId={openSwipeableId}
+            onOpenSwipeable={handleOpenSwipeable}
+            notificationType={NotificationTypeEnum.ProofRequest}
+            notification={item}
+            activateSelection={selectedNotification != null}
+            selected={
+              (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                0) > 0
+            }
+            setSelected={(item) => {
+              if (
+                (selectedNotification?.filter((selectedNotification) => selectedNotification.id === item.id)?.length ??
+                  0) > 0
+              ) {
+                setSelectedNotification(
+                  selectedNotification?.filter((selectedNotification) => selectedNotification.id !== item.id) ?? []
+                )
+                return
+              }
+              setSelectedNotification([...(selectedNotification || []), item])
+            }}
+            isHistory={true}
+          />
+        )
+      }
+
+      return <View style={styles.notificationContainer}>{component}</View>
     },
-    [openSwipeableId, handleOpenSwipeable, selectedHistory, customNotification]
+    [openSwipeableId, handleOpenSwipeable, selectedNotification]
   )
 
-  const renderSectionHeader = ({ section }: { section: { title: string; data: NotificationReturnType } }) => (
+  const renderSectionHeader = ({ section }: { section: SectionType }) => (
     <View style={styles.sectionHeaderContainer}>
       <Text style={[styles.bodyText, styles.bodyEventTime]}>{section.title}</Text>
       <View style={styles.sectionSeparator} />
@@ -180,34 +306,35 @@ const HistoryList: React.FC<{
           <MaterialCommunityIcon name="magnify" size={20} color="white" />
         </TouchableOpacity>
       </View>
+
       <SectionList
         style={styles.sectionList}
-        sections={sections}
+        sections={setions}
         keyExtractor={(item: NotificationType) => item.id}
         renderItem={renderItem}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         renderSectionHeader={renderSectionHeader}
         ListFooterComponent={
-          <View style={selectedHistory != null ? { paddingBottom: 200 } : {}}>
+          <View style={selectedNotification != null && { paddingBottom: 200 }}>
             <Text style={[styles.footerText]}>{t('Activities.FooterNothingElse')}</Text>
           </View>
         }
       />
-      {selectedHistory && (
+      {selectedNotification != null && (
         <View style={styles.selectionMultiActionContainer}>
           <View style={styles.actionButtonContainer}>
             <Button
               title={'Supprimer'}
               onPress={() => {
-                selectedHistory.forEach((notification) => notification.deleteAction?.())
-                setSelectedHistory(null)
+                selectedNotification.forEach((notification) => notification.deleteAction?.())
+                setSelectedNotification(null)
               }}
               buttonType={ButtonType.ModalCritical}
             >
               <MaterialCommunityIcon name={'trash-can-outline'} size={iconSize} style={{ color: 'white' }} />
             </Button>
             <View style={{ height: 24 }} />
-            <Button title={'Annuler'} onPress={() => setSelectedHistory(null)} buttonType={ButtonType.Secondary} />
+            <Button title={'Annuler'} onPress={() => setSelectedNotification(null)} buttonType={ButtonType.Secondary} />
           </View>
         </View>
       )}
@@ -216,34 +343,3 @@ const HistoryList: React.FC<{
 }
 
 export default HistoryList
-
-function groupHistoryByDate(historyItems: NotificationReturnType, t: TFunction<'translation', undefined>) {
-  // Explicitly type each array in groupedHistory as NotificationType[]
-  const groupedHistory: {
-    today: NotificationType[]
-    thisWeek: NotificationType[]
-    lastWeek: NotificationType[]
-    older: NotificationType[]
-  } = { today: [], thisWeek: [], lastWeek: [], older: [] }
-
-  const today = moment()
-
-  historyItems.forEach((notification) => {
-    const notificationDate = moment(notification.createdAt)
-    if (notificationDate.isSame(today, 'day')) groupedHistory.today.push(notification)
-    else if (notificationDate.isSame(today, 'week')) groupedHistory.thisWeek.push(notification)
-    else if (notificationDate.isSame(today.subtract(1, 'week'), 'week')) groupedHistory.lastWeek.push(notification)
-    else groupedHistory.older.push(notification)
-  })
-
-  return [
-    ...(groupedHistory.today.length ? [{ title: t('Activities.Timing.Today'), data: groupedHistory.today }] : []),
-    ...(groupedHistory.thisWeek.length
-      ? [{ title: t('Activities.Timing.ThisWeek'), data: groupedHistory.thisWeek }]
-      : []),
-    ...(groupedHistory.lastWeek.length
-      ? [{ title: t('Activities.Timing.LastWeek'), data: groupedHistory.lastWeek }]
-      : []),
-    ...(groupedHistory.older.length ? [{ title: t('Activities.Timing.Older'), data: groupedHistory.older }] : []),
-  ]
-}

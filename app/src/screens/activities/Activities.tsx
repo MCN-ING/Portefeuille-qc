@@ -30,7 +30,7 @@ const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
 
   const [{ customNotificationConfig: customNotification }] = useServices([TOKENS.NOTIFICATIONS])
   const notifications = useNotifications({ isHome: false } as NotificationsInputProps)
-  const historyNotifications = useHistoryNotifications()
+  const historyNotifications = useHistoryNotifications({} as NotificationsInputProps)
 
   const notificationCount = notifications?.length || 0
   const styles = StyleSheet.create({
@@ -123,6 +123,7 @@ const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
           customNotification={customNotification}
           openSwipeableId={openSwipeableId}
           handleOpenSwipeable={setOpenSwipeableId}
+          navigation={navigation}
         />
       )}
     </View>

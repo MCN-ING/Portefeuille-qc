@@ -166,6 +166,7 @@ const NotificationsList: React.FC<{
               }
               setSelectedNotification([...(selectedNotification || []), item])
             }}
+            isHistory={false}
           />
         )
       } else if (item.type === 'CredentialRecord') {
@@ -196,6 +197,7 @@ const NotificationsList: React.FC<{
               }
               setSelectedNotification([...(selectedNotification || []), item])
             }}
+            isHistory={false}
           />
         )
       } else if (item.type === 'CustomNotification' && customNotification) {
@@ -223,6 +225,7 @@ const NotificationsList: React.FC<{
               }
               setSelectedNotification([...(selectedNotification || []), item])
             }}
+            isHistory={false}
           />
         )
       } else {
@@ -249,6 +252,7 @@ const NotificationsList: React.FC<{
               }
               setSelectedNotification([...(selectedNotification || []), item])
             }}
+            isHistory={false}
           />
         )
       }
