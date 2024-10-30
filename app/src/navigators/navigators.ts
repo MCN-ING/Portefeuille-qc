@@ -78,16 +78,21 @@ export type SettingStackParams = {
   [Screens.CreatePIN]: { updatePIN?: boolean }
   [Screens.UseBiometry]: undefined
 }
-type ItemSection = {
+type ContentType = {
   title?: string
   text?: string
   visual?: ImageSourcePropType
   question?: string
   answer?: string
 }
+type ItemSection = {
+  title: string
+  content: ContentType[]
+}
+
 export type HelpCenterStackParams = {
   [Screens.HelpCenter]: undefined
-  [Screens.HelpCenterPage]: { SelectedSection: ItemSection[] }
+  [Screens.HelpCenterPage]: { selectedSection: ItemSection[]; sectionNo: number }
 }
 export type AboutStackParams = {
   [Screens.About]: undefined

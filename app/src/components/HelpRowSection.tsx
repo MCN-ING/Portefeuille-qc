@@ -98,7 +98,9 @@ const HelpRowSection = ({
           <View key={index}>
             <View style={[styles.section]}>
               <Pressable
-                onPress={() => navigation.navigate(Screens.HelpCenterPage, { SelectedSection: item.content })}
+                onPress={() =>
+                  navigation.navigate(Screens.HelpCenterPage, { selectedSection: itemSection, sectionNo: index })
+                }
                 accessible={true}
                 accessibilityLabel={accessibilityLabel}
                 testID={testID}

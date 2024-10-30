@@ -1,6 +1,6 @@
 import { useTheme, testIdWithKey, Button, ButtonType } from '@hyperledger/aries-bifold-core'
 import { NavigationProp, RouteProp } from '@react-navigation/native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ImageSourcePropType, ScrollView, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -8,16 +8,20 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import InfosDisplay from '../components/InfosDisplay'
 import { Screens } from '../navigators/navigators'
 
-type ItemSection = {
+type ItemContent = {
   title?: string
   text?: string
   visual?: ImageSourcePropType
   question?: string
   answer?: string
 }
-
+type ItemSection = {
+  title: string
+  content: ItemContent[]
+}
 type HelpCenterRouteParams = {
-  SelectedSection: ItemSection[]
+  selectedSection: ItemSection[]
+  sectionNo: number
 }
 type HelpCenterStackParams = {
   'Help Center': undefined
@@ -32,7 +36,9 @@ type HelpCenterProps = {
 const HelpCenterPage: React.FC<HelpCenterProps> = ({ route, navigation }) => {
   const { TextTheme, ColorPallet } = useTheme()
   const { t } = useTranslation()
-  const { SelectedSection } = route.params
+  const { selectedSection, sectionNo } = route.params
+  const content = selectedSection[sectionNo].content
+  const sectionTitle = selectedSection[sectionNo].title
 
   const styles = StyleSheet.create({
     container: {
@@ -62,11 +68,16 @@ const HelpCenterPage: React.FC<HelpCenterProps> = ({ route, navigation }) => {
       marginBottom: 20,
     },
   })
+
+  useEffect(() => {
+    navigation.setOptions({ title: sectionTitle })
+  }, [sectionTitle])
+
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {SelectedSection.map((item, index: React.Key | null | undefined) => (
-          <View key={index}>
+        {content.map((item, index) => (
+          <View key={index && item.title}>
             <InfosDisplay
               title={item?.title}
               detail={item?.text}
