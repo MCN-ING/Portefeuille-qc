@@ -11,12 +11,12 @@ export const itemsDataEn = {
               {
                 title: 'Receive a certificate',
                 text: 'Simplified explanation for receiving a certificate',
-                visual: require('../../../assets/img/proof-request-illustration.png'),
+                visual: require('./img/proof-request-illustration.png'),
               },
               {
-                title: 'Share a certificate',
+                title: 'Sharing a Certificate',
                 text: 'Simplified explanation for sharing a certificate',
-                visual: require('../../../assets/img/proof-request-illustration.png'),
+                visual: require('./img/proof-request-illustration.png'),
               },
             ],
           },
@@ -26,7 +26,7 @@ export const itemsDataEn = {
               {
                 title: 'Lorem ipsum',
                 text: "Explication simplifier pour la réception d'une attestation",
-                visual: require('../../../assets/img/proof-request-illustration.png'),
+                visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'Lorem ipsum',
@@ -41,7 +41,7 @@ export const itemsDataEn = {
               {
                 title: 'Lorem ipsum dolor',
                 text: "Explication simplifier pour la réception d'une attestation",
-                visual: require('../../../assets/img/proof-request-illustration.png'),
+                visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'Lorem ipsum dolor',
@@ -53,7 +53,7 @@ export const itemsDataEn = {
         ],
       },
       {
-        title: 'Le portefeuille Numérique',
+        title: 'The Digital Wallet',
         sections: [
           {
             title: 'Section1',
@@ -79,7 +79,7 @@ export const itemsDataEn = {
         ],
       },
       {
-        title: 'Configurer Mon App',
+        title: 'Configure My App',
         sections: [
           {
             title: 'Section1',
@@ -96,7 +96,7 @@ export const itemsDataEn = {
         ],
       },
       {
-        title: 'Autres',
+        title: 'Others',
         sections: [
           {
             title: 'Section1',
@@ -116,11 +116,11 @@ export const itemsDataEn = {
         title: 'FAQs',
         sections: [
           {
-            title: 'Section55',
+            title: 'Section1',
             content: [
               {
-                question: 'Question',
-                answer: 'Answer',
+                question: 'Question1',
+                answer: 'Réponse',
               },
               {
                 question: 'Question2',
@@ -144,12 +144,15 @@ export const itemsDataEn = {
           {
             contact: 'Contacte1',
             details: {
-              Nom: 'contenu',
+              Nom: 'Joindre le ministère',
               daysOpen: 'Monday to Friday',
               openingHours: 'From 8 a.m. to 6 p.m.',
               phone: '1 877 644-4545',
               phoneSec: '1 800 361-9596 (ATS number for the hearing impaired)',
-              Courriel: 'contenu',
+              address: '123 rue Giffard Québec G1R 1R1',
+              courriel: 'contenu',
+              webSite: 'contenu',
+              webSiteLabel: 'Libellé du lien',
             },
           },
         ],

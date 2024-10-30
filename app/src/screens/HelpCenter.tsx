@@ -6,10 +6,10 @@ import { useTranslation } from 'react-i18next'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { itemsDataEn } from '../assets/Index_en'
+import { itemsDataFr } from '../assets/Index_fr'
 import HelpContactUs from '../components/HelpContactUs'
 import HelpRowSection from '../components/HelpRowSection'
-import { itemsDataEn } from '../localization/en/js/Index'
-import { itemsDataFr } from '../localization/fr/js/Index'
 import { HelpCenterStackParams } from '../navigators/navigators'
 
 type HelpCenterProps = StackScreenProps<HelpCenterStackParams>
@@ -19,6 +19,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ navigation }) => {
   const { t } = useTranslation()
   const currentLanguage = i18n.language
   const indexJs = currentLanguage === 'fr' ? itemsDataFr.centreAide.sommaire : itemsDataEn.centreAide.sommaire
+  //const indexJson = currentLanguage === 'fr' ? require("../assets/json/Index_en.json") : require("../assets/json/Index_en.json")
 
   const styles = StyleSheet.create({
     container: {

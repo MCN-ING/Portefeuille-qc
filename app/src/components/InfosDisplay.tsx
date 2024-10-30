@@ -31,6 +31,7 @@ const InfosDisplay: React.FC<InfosDisplayProps> = ({ title, detail, visual, ques
     sectionText: {
       fontWeight: 'normal',
       paddingTop: 16,
+      marginBottom: 14,
     },
     sectionRow: {
       flexDirection: 'row',

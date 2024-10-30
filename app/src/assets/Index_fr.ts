@@ -11,12 +11,12 @@ export const itemsDataFr = {
               {
                 title: 'Recevoir une attestation',
                 text: "Explication simplifier pour la réception d'une attestation",
-                visual: require('../../../assets/img/proof-request-illustration.png'),
+                visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'Partager une attestation',
                 text: "Explication simplifier pour la réception d'une attestation",
-                visual: require('../../../assets/img/proof-request-illustration.png'),
+                visual: require('./img/proof-request-illustration.png'),
               },
             ],
           },
@@ -26,7 +26,7 @@ export const itemsDataFr = {
               {
                 title: 'Lorem ipsum',
                 text: "Explication simplifier pour la réception d'une attestation",
-                visual: require('../../../assets/img/proof-request-illustration.png'),
+                visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'Lorem ipsum',
@@ -41,7 +41,7 @@ export const itemsDataFr = {
               {
                 title: 'Lorem ipsum dolor',
                 text: "Explication simplifier pour la réception d'une attestation",
-                visual: require('../../../assets/img/proof-request-illustration.png'),
+                visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'Lorem ipsum dolor',
@@ -150,6 +150,10 @@ export const itemsDataFr = {
               phone: '1 877 644-4545',
               phoneSec: '1 800 361-9596 (numéro ATS pour malentendants)',
               Courriel: 'contenu',
+              address: '123 rue Giffard Québec G1R 1R1',
+              courriel: 'contenu',
+              webSite: 'contenu',
+              webSiteLabel: 'Libellé du lien',
             },
           },
         ],
