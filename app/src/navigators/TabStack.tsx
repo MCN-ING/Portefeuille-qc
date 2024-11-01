@@ -48,8 +48,8 @@ const TabStack: React.FC = () => {
 
   const tabBarIconContainerStyles = (focused: boolean): ViewStyle => ({
     ...TabTheme.tabBarContainerStyle,
-    borderTopWidth: 4,
-    borderTopColor: focused ? ColorPallet.brand.primary : ColorPallet.brand.primaryBackground,
+    borderTopWidth: 2,
+    borderTopColor: focused ? ColorPallet.brand.primary : 'transparent',
     width: '100%',
     justifyContent: 'center',
   })

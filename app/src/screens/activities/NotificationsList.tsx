@@ -85,7 +85,7 @@ const NotificationsList: React.FC<{
   }, [selectedNotification])
 
   const deleteMultipleNotifications = async () => {
-    for (const notif of selectedNotification ?? []) {
+    for await (const notif of selectedNotification ?? []) {
       await notif.deleteAction?.()
     }
     setSelectedNotification(null)
