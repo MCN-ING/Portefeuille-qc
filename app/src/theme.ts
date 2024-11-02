@@ -680,17 +680,32 @@ const PINEnterTheme = {
 }
 const PINInputTheme = {
   cell: {
-    backgroundColor: ColorPallet.grayscale.lightGrey,
-    borderColor: ColorPallet.grayscale.lightGrey,
+    backgroundColor: ColorPallet.brand.secondaryBackground,
+    borderColor: ColorPallet.brand.secondary,
+    borderWidth: 1,
   },
   focussedCell: {
-    borderColor: '#3399FF',
+    borderColor: 'red',
   },
   cellText: {
     color: ColorPallet.grayscale.darkGrey,
   },
   icon: {
     color: ColorPallet.grayscale.darkGrey,
+  },
+  codeFieldRoot: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  labelAndFieldContainer: {
+    flexDirection: 'row',
+    borderRadius: 5,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    alignItems: 'center',
+    backgroundColor: ColorPallet.brand.secondaryBackground,
+    borderColor: ColorPallet.notification.successText,
+    borderWidth: 1,
   },
 }
 
