@@ -1017,6 +1017,7 @@ const translation = {
   },
   HelpCenter: {
     Help: 'Aide',
+    ButtonHelpCenter: "Revenir au centre d'aide",
   },
   About: {
     Accessibility: 'Accessibilité',

@@ -984,6 +984,7 @@ const translation = {
   },
   HelpCenter: {
     Help: 'Help',
+    ButtonHelpCenter: 'Return to Help Center',
   },
   About: {
     Accessibility: 'Accessibility',
