@@ -685,7 +685,7 @@ const PINInputTheme = {
     borderWidth: 1,
   },
   focussedCell: {
-    borderColor: 'red',
+    borderColor: '#3399FF',
   },
   cellText: {
     color: ColorPallet.grayscale.darkGrey,
