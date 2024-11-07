@@ -1019,6 +1019,41 @@ const translation = {
     TermsOfUse: "Conditions d'utilisation",
     PrivacyPolicy: 'Politique de confidentialité',
   },
+  History: {
+    Initial: {
+      Description: {
+        Header: 'Cette section Historique peut lister lorsque :\n',
+        PointA: 'Vous avez <b>partagé des informations</b> avec un vérificateur',
+        PointAAxs: 'Vous avez partagé des informations avec un vérificateur',
+        PointB: 'Une carte est <b>acceptée, révoquée ou expirée</b>',
+        PointBAxs: 'Une carte est acceptée, révoquée ou expirée',
+        PointC: 'Vous avez mis à jour votre <b>NIP</b>',
+        PointCAxs: 'Vous avez mis à jour votre NIP',
+      },
+    },
+    Button: {
+      DeleteEvent: "Supprimer l'événement",
+    },
+    CardTitle: {
+      CardAccepted: 'Carte acceptée :',
+      CardDeclined: 'Carte refusée :',
+      CardExpired: 'Carte expirée',
+      CardRevoked: 'Carte révoquée',
+      InformationSent: 'Informations envoyées à :',
+      WalletPinUpdated: 'NIP du portefeuille mis à jour',
+    },
+    CardDescription: {
+      CardExpired: '{{cardName}} expirée',
+      CardRevoked: '{{cardName}} révoquée',
+      WalletPinUpdated: 'Nouveau NIP défini',
+    },
+    Detail: {
+      InformationRequested: 'Les informations demandées',
+      Email: 'Adresse courriel',
+      Identifier: 'Identifiant unique',
+    },
+    Today: "Aujourd'hui",
+  },
 }
 
 export default translation
