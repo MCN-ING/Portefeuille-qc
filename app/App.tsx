@@ -4,7 +4,6 @@ import {
   animatedComponents,
   TourProvider,
   AuthProvider,
-  toastConfig,
   initStoredLanguage,
   NetInfo,
   NetworkProvider,
@@ -15,6 +14,7 @@ import {
   ContainerProvider,
   MainContainer,
 } from '@hyperledger/aries-bifold-core'
+import { OpenIDCredentialRecordProvider } from '@hyperledger/aries-bifold-core/App/modules/openid/context/OpenIDCredentialRecordProvider'
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -27,10 +27,12 @@ import { container } from 'tsyringe'
 
 import { AppContainer } from './container-imp'
 import qcwallet from './src'
+import ToastConfig from './src/components/toast/ToastConfig'
 import { credentialOfferTourSteps } from './src/components/tours/CredentialOfferTourSteps'
 import { credentialsTourSteps } from './src/components/tours/CredentialsTourSteps'
 import { homeTourSteps } from './src/components/tours/HomeTourSteps'
 import { proofRequestTourSteps } from './src/components/tours/ProofRequestTourSteps'
+import { toastBottomOffset, toastTopOffset } from './src/constants'
 import RootStack from './src/navigators/RootStack'
 import { BCState, getInitialState, reducer } from './src/store'
 
@@ -71,33 +73,35 @@ const App = () => {
     <ContainerProvider value={qcwContainer}>
       <StoreProvider initialState={initialState} reducer={reducer}>
         <AgentProvider agent={undefined}>
-          <ThemeProvider value={theme}>
-            <AnimatedComponentsProvider value={animatedComponents}>
-              <AuthProvider>
-                <NetworkProvider>
-                  <StatusBar
-                    barStyle="light-content"
-                    hidden={false}
-                    backgroundColor={theme.ColorPallet.brand.primary}
-                    translucent={false}
-                  />
-                  <NetInfo />
-                  <ErrorModal />
-                  <TourProvider
-                    homeTourSteps={homeTourSteps}
-                    credentialsTourSteps={credentialsTourSteps}
-                    credentialOfferTourSteps={credentialOfferTourSteps}
-                    proofRequestTourSteps={proofRequestTourSteps}
-                    overlayColor={'black'}
-                    overlayOpacity={0.7}
-                  >
-                    <RootStack />
-                  </TourProvider>
-                  <Toast topOffset={15} config={toastConfig} />
-                </NetworkProvider>
-              </AuthProvider>
-            </AnimatedComponentsProvider>
-          </ThemeProvider>
+          <OpenIDCredentialRecordProvider>
+            <ThemeProvider value={theme}>
+              <AnimatedComponentsProvider value={animatedComponents}>
+                <AuthProvider>
+                  <NetworkProvider>
+                    <StatusBar
+                      barStyle="light-content"
+                      hidden={false}
+                      backgroundColor={theme.ColorPallet.brand.primary}
+                      translucent={false}
+                    />
+                    <NetInfo />
+                    <ErrorModal />
+                    <TourProvider
+                      homeTourSteps={homeTourSteps}
+                      credentialsTourSteps={credentialsTourSteps}
+                      credentialOfferTourSteps={credentialOfferTourSteps}
+                      proofRequestTourSteps={proofRequestTourSteps}
+                      overlayColor={'black'}
+                      overlayOpacity={0.7}
+                    >
+                      <RootStack />
+                    </TourProvider>
+                    <Toast topOffset={toastTopOffset} bottomOffset={toastBottomOffset} config={ToastConfig} />
+                  </NetworkProvider>
+                </AuthProvider>
+              </AnimatedComponentsProvider>
+            </ThemeProvider>
+          </OpenIDCredentialRecordProvider>
         </AgentProvider>
       </StoreProvider>
     </ContainerProvider>

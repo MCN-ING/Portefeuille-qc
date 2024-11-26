@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import Toast from 'react-native-toast-message'
 
-import { NotificationReturnType, NotificationsInputProps } from '../../hooks/notifications'
 import { ActivitiesStackParams } from '../../navigators/navigators'
 
 import HistoryList from './HistoryList'
@@ -184,8 +183,6 @@ const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
 
       {activeTab === NotificationTab ? (
         <NotificationsList
-          notifications={notifications as NotificationReturnType}
-          customNotification={customNotification}
           openSwipeableId={openSwipeableId}
           handleOpenSwipeable={setOpenSwipeableId}
           navigation={navigation}

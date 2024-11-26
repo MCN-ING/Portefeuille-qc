@@ -1,3 +1,5 @@
+import { TabTheme } from './theme'
+
 export const PINValidationRules = {
   only_numbers: true,
   min_length: 6,
@@ -10,6 +12,9 @@ export const PINValidationRules = {
 }
 export const hitSlop = { top: 44, bottom: 44, left: 44, right: 44 }
 
+export const toastTopOffset = TabTheme.tabBarStyle.height + 20
+export const toastBottomOffset = TabTheme.tabBarStyle.height + 10
+
 export const attestationCredDefIds = [
   'NXp6XcGeCR2MviWuY51Dva:3:CL:33557:bcwallet',
   'NXp6XcGeCR2MviWuY51Dva:3:CL:33557:bcwallet_dev_v2',
@@ -20,3 +25,5 @@ export const attestationCredDefIds = [
 
 export const SplashLargeScreenWidthPercentage = 51.5
 export const SplashSmallScreenWidthPercentage = 67.5
+
+export const urlGestionDeCompteSag = 'https://authentification.quebec.ca/acces/verification/'

@@ -7,16 +7,16 @@ import {
   ReducerAction,
   loadLoginAttempt,
   LocalStorageKeys,
-  PreferencesState,
   MigrationState,
   ToursState,
   OnboardingState,
   DispatchAction,
-  Stacks,
   Screens,
-  testIdWithKey,
 } from '@hyperledger/aries-bifold-core'
+import { Locales } from '@hyperledger/aries-bifold-core/App/localization'
 import { DefaultScreenOptionsDictionary } from '@hyperledger/aries-bifold-core/App/navigators/defaultStackOptions'
+import { Config as BifoldConfig } from '@hyperledger/aries-bifold-core/App/types/config'
+import { InlineErrorPosition } from '@hyperledger/aries-bifold-core/App/types/error'
 import { getProofRequestTemplates } from '@hyperledger/aries-bifold-verifier'
 import { BrandingOverlayType, RemoteOCABundleResolver } from '@hyperledger/aries-oca/build/legacy'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -52,17 +52,59 @@ import {
   AttestationAuthentification,
   IASEnvironment,
   getInitialState,
+  QCPreferences,
 } from './src/store'
 
 export interface AppState {
   showSurvey: boolean
 }
 
+const defaultConfig: BifoldConfig = {
+  PINSecurity: { rules: PINValidationRules, displayHelper: true },
+  settings: [],
+  /* settings: [
+    {
+      header: {
+        title: this.t('Settings.MoreInformation'),
+        icon: { name: 'info' },
+      },
+      data: [
+        {
+          title: this.t('Settings.TermsOfUse'),
+          accessibilityLabel: this.t('Settings.TermsOfUse'),
+          testID: testIdWithKey('TermsOfUse'),
+          onPress: () => this.navigate(Stacks.SettingStack as never, { screen: Screens.Terms } as never),
+        },
+        {
+          title: this.t('Settings.IntroductionToTheApp'),
+          accessibilityLabel: this.t('Settings.IntroductionToTheApp'),
+          testID: testIdWithKey('IntroductionToTheApp'),
+          onPress: () => this.navigate(Stacks.SettingStack as never, { screen: Screens.Onboarding } as never),
+        },
+      ],
+    },
+  ], */
+  enableTours: true,
+  enableChat: false,
+  supportedLanguages: [Locales.en, Locales.fr],
+  showPreface: false,
+  enableReuseConnections: true,
+  disableOnboardingSkip: true,
+  showScanHelp: true,
+  showScanButton: true,
+  showDetailsInfo: true,
+  contactDetailsOptions: {
+    showConnectedTime: false,
+    enableEditContactName: false,
+    enableCredentialList: true,
+  },
+}
+
 export class AppContainer implements Container {
-  private _container: DependencyContainer
-  private log?: BaseLogger
-  private t: TFunction<'translation', undefined>
-  private navigate: (stack: never, params: never) => void
+  private readonly _container: DependencyContainer
+  private readonly log?: BaseLogger
+  private readonly t: TFunction<'translation', undefined>
+  private readonly navigate: (stack: never, params: never) => void
 
   public constructor(
     bifoldContainer: Container,
@@ -126,44 +168,13 @@ export class AppContainer implements Container {
     this._container.registerInstance(TOKENS.COMPONENT_HOME_FOOTER, HomeFooter)
     this._container.registerInstance(TOKENS.COMPONENT_HOME_NOTIFICATIONS_EMPTY_LIST, HomeEmptyList)
     this._container.registerInstance(TOKENS.NOTIFICATIONS_LIST_ITEM, NotificationListItem)
-    this._container.registerInstance(TOKENS.CONFIG, {
-      PINSecurity: { rules: PINValidationRules, displayHelper: true },
-      settings: [
-        {
-          header: {
-            title: this.t('Settings.MoreInformation'),
-            icon: { name: 'info' },
-          },
-          data: [
-            {
-              title: this.t('Settings.TermsOfUse'),
-              accessibilityLabel: this.t('Settings.TermsOfUse'),
-              testID: testIdWithKey('TermsOfUse'),
-              onPress: () => this.navigate(Stacks.SettingStack as never, { screen: Screens.Terms } as never),
-            },
-            {
-              title: this.t('Settings.IntroductionToTheApp'),
-              accessibilityLabel: this.t('Settings.IntroductionToTheApp'),
-              testID: testIdWithKey('IntroductionToTheApp'),
-              onPress: () => this.navigate(Stacks.SettingStack as never, { screen: Screens.Onboarding } as never),
-            },
-          ],
-        },
-      ],
-      enableTours: true,
-      supportedLanguages: ['en', 'fr'],
-      showPreface: false,
-      enableReuseConnections: true,
-      disableOnboardingSkip: true,
-      showScanHelp: true,
-      showScanButton: true,
-      showDetailsInfo: true,
-    })
+    this._container.registerInstance(TOKENS.CONFIG, defaultConfig)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_FOOTER, AddCredentialButton)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_HEADER_RIGHT, HelpCenterButton)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_OPTIONS, AddCredentialSlider)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_EMPTY_LIST, EmptyList)
     this._container.registerInstance(TOKENS.SCREEN_DEVELOPER, Developer)
+    this._container.registerInstance(TOKENS.INLINE_ERRORS, { enabled: true, position: InlineErrorPosition.Below })
 
     const resolver = new RemoteOCABundleResolver(Config.OCA_URL ?? '', {
       brandingOverlayType: BrandingOverlayType.Branding10,
@@ -214,7 +225,7 @@ export class AppContainer implements Container {
             loginAttempt = data
           }
         }),
-        loadState<PreferencesState>(LocalStorageKeys.Preferences, (val) => (preferences = val)),
+        loadState<QCPreferences>(LocalStorageKeys.Preferences, (val) => (preferences = val)),
         loadState<MigrationState>(LocalStorageKeys.Migration, (val) => (migration = val)),
         loadState<ToursState>(LocalStorageKeys.Tours, (val) => (tours = val)),
         loadState<OnboardingState>(LocalStorageKeys.Onboarding, (val) => (onboarding = val)),
@@ -246,7 +257,7 @@ export class AppContainer implements Container {
   }
 
   public resolve<K extends keyof TokenMapping>(token: K): TokenMapping[K] {
-    return this._container.resolve(token) as TokenMapping[K]
+    return this._container.resolve(token)
   }
   public resolveAll<K extends keyof TokenMapping, T extends K[]>(
     tokens: [...T]

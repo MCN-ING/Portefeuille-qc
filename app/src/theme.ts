@@ -10,9 +10,11 @@ import {
   ITheme,
   IAssets,
 } from '@hyperledger/aries-bifold-core'
+import { IInlineInputMessage } from '@hyperledger/aries-bifold-core/App/theme'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
+import EmptyIcon from './assets/img/icons/empty_icon.svg'
 import Logo from './assets/img/logo-with-text.svg'
 
 export const borderRadius = 4
@@ -80,6 +82,8 @@ const BrandColors: IBrandColors = {
   headerText: GrayscaleColors.white,
   buttonText: GrayscaleColors.white,
   tabBarInactive: GrayscaleColors.white,
+  inlineError: NotificationColors.errorText,
+  inlineWarning: NotificationColors.warnText,
 }
 
 export const ColorPallet: IColorPallet = {
@@ -196,6 +200,16 @@ export const TextTheme: ITextTheme = {
     fontSize: 21,
     fontWeight: 'normal',
     color: ColorPallet.grayscale.darkGrey,
+  },
+  inlineErrorText: {
+    fontSize: 16,
+    fontWeight: 'normal',
+    color: ColorPallet.brand.inlineError,
+  },
+  inlineWarningText: {
+    fontSize: 16,
+    fontWeight: 'normal',
+    color: ColorPallet.brand.inlineWarning,
   },
 }
 
@@ -680,8 +694,9 @@ const PINEnterTheme = {
 }
 const PINInputTheme = {
   cell: {
-    backgroundColor: ColorPallet.grayscale.lightGrey,
-    borderColor: ColorPallet.grayscale.lightGrey,
+    backgroundColor: ColorPallet.brand.secondaryBackground,
+    borderColor: ColorPallet.brand.secondary,
+    borderWidth: 1,
   },
   focussedCell: {
     borderColor: '#3399FF',
@@ -691,6 +706,20 @@ const PINInputTheme = {
   },
   icon: {
     color: ColorPallet.grayscale.darkGrey,
+  },
+  codeFieldRoot: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  labelAndFieldContainer: {
+    flexDirection: 'row',
+    borderRadius: 5,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    alignItems: 'center',
+    backgroundColor: ColorPallet.brand.secondaryBackground,
+    borderColor: ColorPallet.notification.successText,
+    borderWidth: 1,
   },
 }
 
@@ -713,6 +742,13 @@ export const Assets: IAssets = {
   },
 }
 
+const InputInlineMessage: IInlineInputMessage = {
+  inlineErrorText: { ...TextTheme.inlineErrorText },
+  InlineErrorIcon: EmptyIcon,
+  inlineWarningText: { ...TextTheme.inlineWarningText },
+  InlineWarningIcon: EmptyIcon,
+}
+
 export const defaultTheme: ITheme = {
   ColorPallet,
   TextTheme,
@@ -733,4 +769,5 @@ export const defaultTheme: ITheme = {
   PINEnterTheme,
   PINInputTheme,
   Assets,
+  InputInlineMessage,
 }
