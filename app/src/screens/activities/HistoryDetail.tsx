@@ -14,7 +14,7 @@ type HistoryDetailRouteProp = RouteProp<ActivitiesStackParams, Screens.HistoryDe
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: ColorPallet.brand.primaryBackground,
   },
   scrollContent: {
     padding: 16,

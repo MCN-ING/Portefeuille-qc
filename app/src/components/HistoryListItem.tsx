@@ -2,8 +2,6 @@ import { useAgent } from '@credo-ts/react-hooks'
 import { TOKENS, useServices } from '@hyperledger/aries-bifold-core'
 import { CustomRecord, HistoryCardType } from '@hyperledger/aries-bifold-core/App/modules/history/types'
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import Toast from 'react-native-toast-message'
 
 import CredentialAddedImg from '../assets/img/CredentialAdded.svg'
 import FleurLysImg from '../assets/img/FleurLys.svg'
@@ -49,7 +47,6 @@ const HistoryListItem: React.FC<Props> = ({
   onDelete,
   onViewDetails,
 }) => {
-  const { t } = useTranslation()
   const [details, setDetails] = useState<DisplayDetails>({
     title: undefined,
     body: undefined,
@@ -95,21 +92,10 @@ const HistoryListItem: React.FC<Props> = ({
   const removeHistoryItem = async () => {
     const historyManager = agent ? loadHistory(agent) : undefined
     if (!historyManager) return
-    try {
-      const record = await historyManager.findGenericRecordById(item.content.id || '')
-      if (record) {
-        await historyManager.removeGenericRecord(record)
-        onDelete(item.content.id ?? '')
-        Toast.show({
-          type: 'success',
-          text1: t('Global.Success'),
-        })
-      }
-    } catch (error) {
-      Toast.show({
-        type: 'error',
-        text1: t('Global.Failure'),
-      })
+    const record = await historyManager.findGenericRecordById(item.content.id || '')
+    if (record) {
+      await historyManager.removeGenericRecord(record)
+      onDelete(item.content.id ?? '')
     }
   }
 
@@ -135,6 +121,7 @@ const HistoryListItem: React.FC<Props> = ({
       onOpenSwipeable={onOpenSwipeable}
       setSelected={setSelected}
       activateSelection={activateSelection}
+      deleteMessage={'Activities.HistoryDeleted'}
     />
   )
 }

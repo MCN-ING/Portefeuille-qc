@@ -1,15 +1,19 @@
-import { Button, ButtonType, useTheme } from '@hyperledger/aries-bifold-core'
-import { CustomRecord, HistoryRecord } from '@hyperledger/aries-bifold-core/App/modules/history/types'
+import { useAgent } from '@credo-ts/react-hooks'
+import { Button, ButtonType, ToastType, TOKENS, useServices, useStore, useTheme } from '@hyperledger/aries-bifold-core'
+import { CustomRecord, HistoryRecord, RecordType } from '@hyperledger/aries-bifold-core/App/modules/history/types'
 import { useFocusEffect } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import moment from 'moment'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { View, StyleSheet, SectionList, Text } from 'react-native'
+import { View, StyleSheet, SectionList, Text, ActivityIndicator } from 'react-native'
+import Toast, { ToastShowParams } from 'react-native-toast-message'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import HistoryListItem from '../../components/HistoryListItem'
+import { useToast } from '../../hooks/toast'
 import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
+import { BCDispatchAction, BCState } from '../../store'
 import { TabTheme } from '../../theme'
 
 export type SelectedHistoryType = { id: string; deleteAction?: () => void }
@@ -63,16 +67,26 @@ const groupHistoryByDate = (historyItems: CustomRecord[], t: (key: string) => st
 }
 
 const HistoryList: React.FC<{
-  historyRecords: CustomRecord[]
   openSwipeableId: string | null
   handleOpenSwipeable: (id: string | null) => void
   navigation: StackNavigationProp<ActivitiesStackParams>
-}> = ({ historyRecords, openSwipeableId, handleOpenSwipeable, navigation }) => {
+}> = ({ openSwipeableId, handleOpenSwipeable, navigation }) => {
   const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
+  const [historyRecords] = useState<CustomRecord[]>([])
   const [filteredRecords, setFilteredRecords] = useState<CustomRecord[]>(historyRecords)
   const [sections, setSections] = useState<{ title: string; data: CustomRecord[] }[]>([])
   const [selectedHistory, setSelectedHistory] = useState<SelectedHistoryType[] | null>(null)
+
+  const [toastEnabled, setToastEnabled] = useState(false)
+  const [toastOptions, setToastOptions] = useState<ToastShowParams>({})
+  useToast({ enabled: toastEnabled, options: toastOptions })
+
+  const hasCanceledRef = useRef(false)
+  const [, dispatch] = useStore<BCState>()
+  const { agent } = useAgent()
+  const [loadHistory] = useServices([TOKENS.FN_LOAD_HISTORY])
+  const [isLoading, setIsLoading] = useState(true)
 
   // Refresh data when screen gains focus
   useFocusEffect(
@@ -80,6 +94,35 @@ const HistoryList: React.FC<{
       setFilteredRecords(historyRecords)
     }, [historyRecords])
   )
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      setIsLoading(true)
+      if (!agent) {
+        return
+      }
+
+      try {
+        const historyManager = loadHistory(agent)
+
+        if (historyManager) {
+          const records = await historyManager.getHistoryItems({ type: RecordType.HistoryRecord })
+          records.sort((a, b) => Number(b.content.createdAt) - Number(a.content.createdAt))
+          setFilteredRecords(records)
+        }
+      } catch (error) {
+        Toast.show({
+          type: 'error',
+          text1: t('Error'),
+          text2: t('Activities.FetchError'),
+        })
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchHistory()
+  }, [agent])
 
   useEffect(() => {
     setSections(groupHistoryByDate(filteredRecords, t))
@@ -145,6 +188,17 @@ const HistoryList: React.FC<{
     actionButtonContainer: {
       margin: 25,
     },
+    loaderContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: ColorPallet.brand.primaryBackground,
+    },
+    loaderText: {
+      marginTop: 16,
+      color: ColorPallet.grayscale.darkGrey,
+      fontSize: 16,
+    },
   })
 
   const handleDelete = (id: string) => {
@@ -179,9 +233,60 @@ const HistoryList: React.FC<{
     [selectedHistory, openSwipeableId, handleOpenSwipeable]
   )
 
+  if (isLoading) {
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator size="large" color={ColorPallet.brand.primary} />
+        <Text style={styles.loaderText}>{t('Global.Loading')}</Text>
+      </View>
+    )
+  }
+
+  const deleteMultipleHistory = async () => {
+    for await (const history of selectedHistory ?? []) {
+      await history.deleteAction?.()
+    }
+  }
+
+  const handleMultipleDelete = () => {
+    const selected = selectedHistory ?? []
+    if (selected.length > 0) {
+      setToastOptions({
+        type: ToastType.Info,
+        text1: t('Activities.HistoryDeleted', { count: selected.length }),
+        onShow: () => {
+          dispatch({
+            type: BCDispatchAction.HISTORY_TEMPORARILY_DELETED_IDS,
+            payload: [...selected.map((s) => s.id)],
+          })
+        },
+        onHide: async () => {
+          if (!hasCanceledRef.current) {
+            deleteMultipleHistory()
+          }
+          hasCanceledRef.current = false
+          setToastEnabled(false)
+        },
+        props: {
+          onCancel: () => {
+            hasCanceledRef.current = true
+            dispatch({
+              type: BCDispatchAction.HISTORY_TEMPORARILY_DELETED_IDS,
+              payload: [],
+            })
+          },
+        },
+        position: 'bottom',
+      })
+      setToastEnabled(true)
+    }
+    setSelectedHistory(null)
+  }
+
   const renderSectionHeader = ({ section }: { section: { title: string } }) => (
     <View style={styles.sectionHeaderContainer}>
-      <Text style={[styles.bodyText, styles.sectionSeparator]}>{section.title}</Text>
+      <Text style={[styles.bodyText, styles.bodyEventTime]}>{section.title}</Text>
+      <View style={styles.sectionSeparator} />
     </View>
   )
 
@@ -203,14 +308,7 @@ const HistoryList: React.FC<{
       {selectedHistory != null && (
         <View style={styles.selectionMultiActionContainer}>
           <View style={styles.actionButtonContainer}>
-            <Button
-              title={t('Global.Remove')}
-              onPress={() => {
-                selectedHistory.forEach((history) => history.deleteAction?.())
-                setSelectedHistory(null)
-              }}
-              buttonType={ButtonType.ModalCritical}
-            >
+            <Button title={t('Global.Remove')} onPress={handleMultipleDelete} buttonType={ButtonType.ModalCritical}>
               <MaterialCommunityIcon name={'trash-can-outline'} size={iconSize} style={{ color: 'white' }} />
             </Button>
             <View style={{ height: 24 }} />

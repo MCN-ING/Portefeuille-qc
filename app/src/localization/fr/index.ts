@@ -493,6 +493,8 @@ const translation = {
     FooterNothingElse: "Il n'y a rien d'autre",
     NotificationsDeleted_one: '{{ count }} notification supprimée.',
     NotificationsDeleted_other: '{{ count }} notifications supprimées.',
+    HistoryDeleted_one: '{{ count }} historique supprimé.',
+    HistoryDeleted_other: '{{ count }} historiques supprimés.',
   },
   PrivacyPolicy: {
     Title: 'Politique de confidentialité',
