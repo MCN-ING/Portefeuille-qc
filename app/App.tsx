@@ -27,6 +27,7 @@ import { container } from 'tsyringe'
 
 import { AppContainer } from './container-imp'
 import qcwallet from './src'
+import HelpListSlider from './src/components/Help/HelpListSlider'
 import ToastConfig from './src/components/toast/ToastConfig'
 import { credentialOfferTourSteps } from './src/components/tours/CredentialOfferTourSteps'
 import { credentialsTourSteps } from './src/components/tours/CredentialsTourSteps'
@@ -94,6 +95,7 @@ const App = () => {
                       overlayColor={'black'}
                       overlayOpacity={0.7}
                     >
+                      <HelpListSlider />
                       <RootStack />
                     </TourProvider>
                     <Toast topOffset={toastTopOffset} bottomOffset={toastBottomOffset} config={ToastConfig} />

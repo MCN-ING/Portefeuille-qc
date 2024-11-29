@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { itemsDataEn } from '../assets/Index_en'
 import { itemsDataFr } from '../assets/Index_fr'
-import HelpRowSection from '../components/HelpRowSection'
+import HelpRowSection from '../components/Help/HelpRowSection'
 import { HelpCenterStackParams } from '../navigators/navigators'
 
 type HelpCenterProps = StackScreenProps<HelpCenterStackParams>

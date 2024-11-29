@@ -1,7 +1,9 @@
 import { useTheme } from '@hyperledger/aries-bifold-core'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { DeviceEventEmitter, StyleSheet, Text, TouchableOpacity } from 'react-native'
+
+import { BCWalletEventTypes } from '../../events/eventTypes'
 
 const HelpCenterButton = () => {
   const { t } = useTranslation()
@@ -19,10 +21,12 @@ const HelpCenterButton = () => {
     },
   })
 
-  // TODO: create a function to handle to press to navigate to proper page
+  const activateSlider = useCallback(() => {
+    DeviceEventEmitter.emit(BCWalletEventTypes.ADD_HELP_PRESSED, true)
+  }, [])
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={activateSlider}>
       <Text style={styles.text}>{t('HelpCenter.Help')}</Text>
     </TouchableOpacity>
   )

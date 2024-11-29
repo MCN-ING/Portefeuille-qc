@@ -30,7 +30,7 @@ import ledgers from './config/ledgers'
 import AddCredentialButton from './src/components/AddCredentialButton'
 import AddCredentialSlider from './src/components/AddCredentialSlider'
 import EmptyList from './src/components/EmptyList'
-import HelpCenterButton from './src/components/HelpCenterButton'
+import HelpCenterButton from './src/components/Help/HelpCenterButton'
 import HomeEmptyList from './src/components/HomeEmptyList'
 import HomeFooter from './src/components/HomeFooter'
 import HomeHeader from './src/components/HomeHeader'
@@ -138,6 +138,11 @@ export class AppContainer implements Container {
       headerStyle: {
         height: 50,
       },
+    }
+
+    defaultScreenOptionsDict[Screens.Scan] = {
+      ...defaultScreenOptionsDict[Screens.Scan],
+      ...onboardingScreenOptions,
     }
 
     defaultScreenOptionsDict[Screens.Terms] = {

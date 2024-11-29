@@ -4,7 +4,7 @@ import React from 'react'
 import { StyleSheet, Text, View, Pressable, ImageSourcePropType } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
-import { HelpCenterStackParams, Screens } from '../navigators/navigators'
+import { HelpCenterStackParams, Screens } from '../../navigators/navigators'
 
 type ItemSection = {
   title?: string
