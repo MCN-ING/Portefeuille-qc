@@ -147,7 +147,7 @@ export const useNotifications = ({ openIDUri, isHome = true }: NotificationsInpu
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     )
 
-    notif = notif.filter((n) => !store.notificationsTempDeletedIds.includes((n as NotificationType).id))
+    notif = notif.filter((n) => !store.activities[n.id]?.isTempDeleted)
 
     setNotifications(isHome ? (notif.splice(0, 5) as never[]) : (notif as never[]))
   }, [
@@ -158,7 +158,7 @@ export const useNotifications = ({ openIDUri, isHome = true }: NotificationsInpu
     nonAttestationProofs,
     store.attestationAuthentification.isDismissed,
     store.attestationAuthentification.isSeenOnHome,
-    store.notificationsTempDeletedIds,
+    store.activities,
   ])
 
   useEffect(() => {
