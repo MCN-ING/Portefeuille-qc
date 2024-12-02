@@ -173,13 +173,14 @@ const NotificationsList: React.FC<{
     container: {
       flex: 1,
       zIndex: 1,
+      marginBottom: 16,
     },
     sectionList: {
       flex: 1,
     },
     separator: {
       borderBottomWidth: 1,
-      paddingHorizontal: 16,
+      marginHorizontal: 16,
       borderBottomColor: ColorPallet.brand.secondary,
     },
     bodyText: {

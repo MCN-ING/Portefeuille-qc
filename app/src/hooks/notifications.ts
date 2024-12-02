@@ -10,7 +10,6 @@ import {
 } from '@credo-ts/core'
 import { useCredentialByState, useProofByState, useBasicMessages, useAgent } from '@credo-ts/react-hooks'
 import { BifoldAgent, useStore } from '@hyperledger/aries-bifold-core'
-import { useOpenID } from '@hyperledger/aries-bifold-core/App/modules/openid/hooks/openid'
 import {
   BasicMessageMetadata,
   CredentialMetadata,
@@ -59,16 +58,15 @@ export type NotificationType =
 
 export type NotificationReturnType = Array<NotificationType>
 
-export const useNotifications = ({ openIDUri, isHome = true }: NotificationsInputProps): NotificationReturnType => {
+export const useNotifications = ({ isHome = true }: NotificationsInputProps): NotificationReturnType => {
   const { records: basicMessages } = useBasicMessages()
-  const [notifications, setNotifications] = useState([])
+  const [notifications, setNotifications] = useState<NotificationReturnType>([])
 
   const credsReceived = useCredentialByState(CredentialState.CredentialReceived)
   const credsDone = useCredentialByState(CredentialState.Done)
   const proofsDone = useProofByState([ProofState.Done, ProofState.PresentationReceived])
   const offers = useCredentialByState(CredentialState.OfferReceived)
   const proofsRequested = useProofByState(ProofState.RequestReceived)
-  const openIDCredReceived = useOpenID({ openIDUri })
 
   const { agent } = useAgent()
   const [store] = useStore<BCState>()
@@ -138,12 +136,7 @@ export const useNotifications = ({ openIDUri, isHome = true }: NotificationsInpu
       )
     })
 
-    const openIDCreds: Array<SdJwtVcRecord | W3cCredentialRecord> = []
-    if (openIDCredReceived) {
-      openIDCreds.push(openIDCredReceived)
-    }
-
-    let notif = [...messagesToShow, ...custom, ...receivedOffers, ...proofs, ...revoked, ...openIDCreds].sort(
+    let notif = [...messagesToShow, ...custom, ...receivedOffers, ...proofs, ...revoked].sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     )
 
