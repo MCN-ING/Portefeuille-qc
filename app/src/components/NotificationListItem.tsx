@@ -107,12 +107,6 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
     },
   })
 
-  const handleSwipeClose = () => {
-    if (openSwipeableId === notification.id) {
-      onOpenSwipeable(null) // Close the current swipeable
-    }
-  }
-
   const getConnectionImage = (connection: ConnectionRecord | undefined, notificationType: NotificationTypeEnum) => {
     if (connection?.imageUrl) return <Image source={{ uri: connection.imageUrl }} style={styles.icon} />
     const dimensions = { width: 24, height: 24 }
@@ -337,7 +331,6 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
 
   const removeCurrentNotification = async () => {
     await removeNotification()
-    handleSwipeClose()
   }
 
   return (

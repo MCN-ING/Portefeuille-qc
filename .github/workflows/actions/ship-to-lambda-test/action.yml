@@ -1,0 +1,59 @@
+name: Ship to LambdaTest
+description: Upload an artifact to lambdatest 
+
+inputs:
+  lambda_test_username:
+    description: LambdaTest username
+    required: true
+  lambda_test_access_key:
+    description: LambdaTest access key 
+    required: true
+  lambda_test_name:
+    description: |
+      The name of the artifact shown in LambdaTest 
+    required: true
+  lambda_test_app_file:
+    description: |
+      The name of the app file for LambdaTest 
+    required: true
+  lambda_test_json_resp_file_path:
+    description: |
+      The path to save the response of the upload to LambdaTest
+  lambda_test_app_platform:
+    description: |
+      The app platform (iOS/Android) for LambdaTest
+  artifact_ref:
+    description: |
+      The referene ID / name of the uploaded GitHub artifact
+      stored in GitHub by the upload action. i.e my-artifact
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.artifact_ref }}
+
+    - name: list files
+      shell: bash
+      run: pwd && ls -la
+
+    - name: Upload artifact to LambdaTest
+      shell: bash
+      env:
+        LAMBDA_USERNAME: ${{ inputs.lambda_test_username }}
+        LAMBDA_ACCESS_KEY: ${{ inputs.lambda_test_access_key }}
+        LAMBDA_APP_BUILD: ${{ inputs.lambda_test_name }}
+        LAMBDA_APP_FILE: ${{ inputs.lambda_test_app_file }}
+        LAMBDA_PATH_RES_JSON: ${{ inputs.lambda_test_json_resp_file_path }}
+        LAMBDA_APP_PLATFORM: ${{ inputs.lambda_test_app_platform }}
+      id: upload-app-${LAMBDA_APP_PLATFORM}
+      run: |
+        curl \
+          -u "$LAMBDA_USERNAME:$LAMBDA_ACCESS_KEY" \
+          --location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
+          --form "$LAMBDA_APP_FILE" \
+          --form "name=$LAMBDA_APP_BUILD" > "$LAMBDA_PATH_RES_JSON" 
+          echo "${LAMBDA_APP_PLATFORM}_APP_URL=lt://$(jq -r '.app_id' $LAMBDA_PATH_RES_JSON)" >> "$GITHUB_OUTPUT"
