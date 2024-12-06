@@ -53,6 +53,7 @@ import {
   IASEnvironment,
   getInitialState,
   QCPreferences,
+  ActivityState,
 } from './src/store'
 
 export interface AppState {
@@ -88,6 +89,7 @@ const defaultConfig: BifoldConfig = {
   enableChat: false,
   supportedLanguages: [Locales.en, Locales.fr],
   showPreface: false,
+  showPINExplainer: false,
   enableReuseConnections: true,
   disableOnboardingSkip: true,
   showScanHelp: true,
@@ -174,6 +176,7 @@ export class AppContainer implements Container {
     this._container.registerInstance(TOKENS.COMPONENT_HOME_NOTIFICATIONS_EMPTY_LIST, HomeEmptyList)
     this._container.registerInstance(TOKENS.NOTIFICATIONS_LIST_ITEM, NotificationListItem)
     this._container.registerInstance(TOKENS.CONFIG, defaultConfig)
+    this._container.registerInstance(TOKENS.HISTORY_ENABLED, true)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_FOOTER, AddCredentialButton)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_HEADER_RIGHT, HelpCenterButton)
     this._container.registerInstance(TOKENS.COMPONENT_CRED_LIST_OPTIONS, AddCredentialSlider)
@@ -222,6 +225,7 @@ export class AppContainer implements Container {
       let tours = initialState.tours
       let onboarding = initialState.onboarding
       let attestationAuthentificationDissmissed = initialState.attestationAuthentification
+      let activities = initialState.activities
       let { environment } = initialState.developer
 
       await Promise.all([
@@ -238,6 +242,7 @@ export class AppContainer implements Container {
           BCLocalStorageKeys.AttestationAuthentification,
           (val) => (attestationAuthentificationDissmissed = val)
         ),
+        loadState<ActivityState>(BCLocalStorageKeys.Activities, (val) => (activities = val)),
         loadState<IASEnvironment>(BCLocalStorageKeys.Environment, (val) => (environment = val)),
       ])
       const state: BCState = {
@@ -251,6 +256,7 @@ export class AppContainer implements Container {
           ...initialState.attestationAuthentification,
           ...attestationAuthentificationDissmissed,
         },
+        activities,
         developer: {
           ...initialState.developer,
           environment,

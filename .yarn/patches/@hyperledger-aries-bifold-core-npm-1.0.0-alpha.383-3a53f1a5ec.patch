@@ -21,7 +21,7 @@ index 1c8a86091e207b58a620be00db905b4ba7d06539..b3b630f911d116a0f6ce441c0aae3abe
    const navigation = useNavigation<StackNavigationProp<HomeStackParams>>()
    const [store, dispatch] = useStore()
 diff --git a/App/screens/Home.tsx b/App/screens/Home.tsx
-index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..638c3c8301fe441a8ec07ed74b97cef0235cf8db 100644
+index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..c6e493347c07bf806ba0615ae4d8be519b401129 100644
 --- a/App/screens/Home.tsx
 +++ b/App/screens/Home.tsx
 @@ -40,6 +40,8 @@ const Home: React.FC<HomeProps> = () => {
@@ -33,7 +33,7 @@ index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..638c3c8301fe441a8ec07ed74b97cef0
    const styles = StyleSheet.create({
      flatlist: {
        marginBottom: 35,
-@@ -49,23 +51,46 @@ const Home: React.FC<HomeProps> = () => {
+@@ -49,26 +51,47 @@ const Home: React.FC<HomeProps> = () => {
    const DisplayListItemType = useCallback((item: any): React.ReactNode => {
      let component: React.ReactNode
      if (item.type === 'BasicMessageRecord') {
@@ -43,8 +43,7 @@ index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..638c3c8301fe441a8ec07ed74b97cef0
 +          openSwipeableId={notificationItemId}
 +          onOpenSwipeable={setNotificationItemId}
 +          notificationType={NotificationType.BasicMessage}
-+          notification={item}
-+        />
++          notification={item} />
 +      )
      } else if (item.type === 'CredentialRecord') {
        let notificationType = NotificationType.CredentialOffer
@@ -54,11 +53,10 @@ index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..638c3c8301fe441a8ec07ed74b97cef0
 -      component = <NotificationListItem notificationType={notificationType} notification={item} />
 +      component = (
 +        <NotificationListItem
-+        openSwipeableId={notificationItemId}
-+        onOpenSwipeable={setNotificationItemId}
-+        notificationType={notificationType}
-+        notification={item}
-+        />
++          openSwipeableId={notificationItemId}
++          onOpenSwipeable={setNotificationItemId}
++          notificationType={notificationType}
++          notification={item} />
 +      )
      } else if (item.type === 'CustomNotification' && customNotification) {
        component = (
@@ -82,4 +80,8 @@ index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..638c3c8301fe441a8ec07ed74b97cef0
 +      )
      }
      return component
-   }, [customNotification, NotificationListItem])
+-  }, [customNotification, NotificationListItem])
++  }, [customNotification, NotificationListItem, notificationItemId, setNotificationItemId])
+ 
+   useEffect(() => {
+     const shouldShowTour = enableToursConfig && store.tours.enableTours && !store.tours.seenHomeTour

@@ -10,7 +10,7 @@ import {
   W3cCredentialRecord,
 } from '@credo-ts/core'
 import { useAgent, useConnectionById } from '@credo-ts/react-hooks'
-import { BifoldError, EventTypes, Screens, Stacks, useStore, useTheme } from '@hyperledger/aries-bifold-core'
+import { BifoldError, EventTypes, Screens, Stacks, useStore } from '@hyperledger/aries-bifold-core'
 import { BasicMessageMetadata, basicMessageCustomMetadata } from '@hyperledger/aries-bifold-core/App/types/metadata'
 import { HomeStackParams } from '@hyperledger/aries-bifold-core/App/types/navigators'
 import { CustomNotification, CustomNotificationRecord } from '@hyperledger/aries-bifold-core/App/types/notification'
@@ -27,6 +27,7 @@ import FleurLysImg from '../assets/img/FleurLys.svg'
 import MessageImg from '../assets/img/Message.svg'
 import ProofRequestImg from '../assets/img/ProofRequest.svg'
 import RevocationImg from '../assets/img/Revocation.svg'
+import { BCDispatchAction, BCState } from '../store'
 
 import CustomCheckBox from './CustomCheckBox'
 import EventItem from './EventItem'
@@ -55,6 +56,7 @@ interface NotificationListItemProps {
   selected?: boolean
   setSelected?: ({ id, deleteAction }: { id: string; deleteAction?: () => Promise<void> }) => void
   activateSelection?: boolean
+  isHome?: boolean
 }
 
 type DisplayDetails = {
@@ -79,11 +81,12 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   selected,
   setSelected,
   activateSelection,
+  isHome = true,
 }) => {
   const navigation = useNavigation<StackNavigationProp<HomeStackParams>>()
-  const [store, dispatch] = useStore()
+  const [store, dispatch] = useStore<BCState>()
+  const storeNofication = store.activities[notification.id]
   const { t } = useTranslation()
-  const { ColorPallet, TextTheme } = useTheme()
   const { agent } = useAgent()
   const isNotCustomNotification =
     notification instanceof BasicMessageRecord ||
@@ -98,62 +101,11 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   })
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      backgroundColor: ColorPallet.grayscale.white,
-      zIndex: 9999,
-      gap: 8,
-    },
-    infoContainer: {
-      flex: 2,
-    },
-    arrowContainer: {
-      justifyContent: 'center',
-    },
-    headerText: {
-      ...TextTheme.labelTitle,
-      flexGrow: 1,
-      flex: 1,
-    },
-    bodyText: {
-      ...TextTheme.labelSubtitle,
-      marginVertical: 8,
-    },
-    bodyEventTime: {
-      ...TextTheme.labelSubtitle,
-      color: ColorPallet.grayscale.mediumGrey,
-      fontSize: 12,
-    },
     icon: {
       width: 24,
       height: 24,
     },
-    rightAction: {
-      padding: 8,
-      backgroundColor: ColorPallet.semantic.error,
-      minWidth: 120,
-      justifyContent: 'center',
-      flex: 1,
-      marginVertical: 'auto',
-      alignItems: 'center',
-    },
-    rightActionIcon: {
-      color: ColorPallet.brand.secondary,
-    },
-    rightActionText: {
-      color: ColorPallet.brand.secondary,
-      fontSize: 14,
-      fontWeight: '600',
-    },
   })
-
-  const handleSwipeClose = () => {
-    if (openSwipeableId === notification.id) {
-      onOpenSwipeable(null) // Close the current swipeable
-    }
-  }
 
   const getConnectionImage = (connection: ConnectionRecord | undefined, notificationType: NotificationTypeEnum) => {
     if (connection?.imageUrl) return <Image source={{ uri: connection.imageUrl }} style={styles.icon} />
@@ -187,7 +139,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
 
   const dismissProofRequest = async () => {
     if (agent && notificationType === NotificationTypeEnum.ProofRequest) {
-      markProofAsViewed(agent, notification as ProofExchangeRecord)
+      await markProofAsViewed(agent, notification as ProofExchangeRecord)
     }
   }
 
@@ -214,8 +166,11 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
     customNotification?.onCloseAction(dispatch as any)
   }
 
-  const removeNotification = async () => {
-    if (notificationType === NotificationTypeEnum.ProofRequest) {
+  const removeNotification = useCallback(async () => {
+    if (
+      notificationType === NotificationTypeEnum.ProofRequest &&
+      (notification as ProofExchangeRecord).state !== ProofState.Declined
+    ) {
       if ((notification as ProofExchangeRecord).state === ProofState.Done) {
         await dismissProofRequest()
       } else {
@@ -228,7 +183,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
     } else if (notificationType === NotificationTypeEnum.Custom) {
       await declineCustomNotification()
     }
-  }
+  }, [notificationType, notification])
 
   const detailsForNotificationType = async (notificationType: NotificationTypeEnum): Promise<DisplayDetails> => {
     return new Promise((resolve) => {
@@ -303,6 +258,17 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
       | W3cCredentialRecord,
     notificationType: NotificationTypeEnum
   ) => {
+    dispatch({
+      type: BCDispatchAction.NOTIFICATIONS_UPDATED,
+      payload: [
+        {
+          [notification.id]: {
+            isRead: true,
+            isTempDeleted: false,
+          },
+        },
+      ],
+    })
     switch (notificationType) {
       case NotificationTypeEnum.BasicMessage:
         navigation.getParent()?.navigate(Stacks.ContactStack, {
@@ -368,12 +334,13 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
 
   const removeCurrentNotification = async () => {
     await removeNotification()
-    handleSwipeClose()
   }
 
   return (
     <EventItem
       action={action}
+      isRead={!!storeNofication?.isRead}
+      isHome={isHome}
       handleDelete={removeCurrentNotification}
       event={{
         id: notification.id,
