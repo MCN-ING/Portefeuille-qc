@@ -142,6 +142,12 @@ export class AppContainer implements Container {
       },
     }
 
+    defaultScreenOptionsDict[Screens.Home] = {
+      ...defaultScreenOptionsDict[Screens.Home],
+      headerLeft: undefined,
+      headerRight: HelpCenterButton,
+    }
+
     defaultScreenOptionsDict[Screens.Scan] = {
       ...defaultScreenOptionsDict[Screens.Scan],
       ...onboardingScreenOptions,

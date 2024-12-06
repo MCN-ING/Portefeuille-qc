@@ -7,6 +7,7 @@ export const itemsDataEn = {
         sections: [
           {
             title: 'User Guide',
+            screen: 'Home',
             content: [
               {
                 title: 'Receive a certificate',
@@ -22,6 +23,7 @@ export const itemsDataEn = {
           },
           {
             title: 'Lorem ipsum',
+            screen: 'Home',
             content: [
               {
                 title: 'Lorem ipsum',
@@ -37,6 +39,7 @@ export const itemsDataEn = {
           },
           {
             title: 'Lorem ipsum dolor',
+            screen: 'Home',
             content: [
               {
                 title: 'Lorem ipsum dolor',
@@ -57,6 +60,7 @@ export const itemsDataEn = {
         sections: [
           {
             title: 'Section1',
+            screen: 'Credentials',
             content: [
               {
                 title: 'Titre1',
@@ -70,10 +74,12 @@ export const itemsDataEn = {
           },
           {
             title: 'Section2',
+            screen: 'Credentials',
             content: [],
           },
           {
             title: 'Section3',
+            screen: 'Credentials',
             content: [],
           },
         ],
@@ -83,14 +89,17 @@ export const itemsDataEn = {
         sections: [
           {
             title: 'Section1',
+            screen: 'Others',
             content: [],
           },
           {
             title: 'Section2',
+            screen: 'Others',
             content: [],
           },
           {
             title: 'Section3',
+            screen: 'Others',
             content: [],
           },
         ],
@@ -100,14 +109,17 @@ export const itemsDataEn = {
         sections: [
           {
             title: 'Section1',
+            screen: 'Others',
             content: [],
           },
           {
             title: 'Section2',
+            screen: 'Others',
             content: [],
           },
           {
             title: 'Section3',
+            screen: 'Others',
             content: [],
           },
         ],
@@ -117,6 +129,7 @@ export const itemsDataEn = {
         sections: [
           {
             title: 'Section1',
+            screen: 'Others',
             content: [
               {
                 question: 'Question1',
@@ -130,10 +143,12 @@ export const itemsDataEn = {
           },
           {
             title: 'Section2',
+            screen: 'Others',
             content: [],
           },
           {
             title: 'Section3',
+            screen: 'Others',
             content: [],
           },
         ],

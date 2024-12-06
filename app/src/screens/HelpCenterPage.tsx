@@ -17,6 +17,7 @@ type ItemContent = {
 }
 type ItemSection = {
   title: string
+  screen: string
   content: ItemContent[]
 }
 type HelpCenterRouteParams = {

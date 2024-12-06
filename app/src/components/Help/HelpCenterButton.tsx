@@ -1,4 +1,5 @@
 import { useTheme } from '@hyperledger/aries-bifold-core'
+import { useRoute } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DeviceEventEmitter, StyleSheet, Text, TouchableOpacity } from 'react-native'
@@ -8,6 +9,7 @@ import { BCWalletEventTypes } from '../../events/eventTypes'
 const HelpCenterButton = () => {
   const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
+  const route = useRoute()
 
   const styles = StyleSheet.create({
     container: {
@@ -21,8 +23,13 @@ const HelpCenterButton = () => {
     },
   })
 
+  const paramData = {
+    isActive: true,
+    routeName: route.name,
+  }
+
   const activateSlider = useCallback(() => {
-    DeviceEventEmitter.emit(BCWalletEventTypes.ADD_HELP_PRESSED, true)
+    DeviceEventEmitter.emit(BCWalletEventTypes.ADD_HELP_PRESSED, paramData)
   }, [])
 
   return (

@@ -16,6 +16,7 @@ type ItemSection = {
 
 type ItemSectionType = {
   title: string
+  screen: string
   content: ItemSection[]
 }
 
@@ -94,32 +95,30 @@ const HelpRowSection = ({
         </View>
       )}
       {itemSection.map((item, index) => (
-        <>
-          <View key={index}>
-            <View style={[styles.section]}>
-              <Pressable
-                onPress={() =>
-                  navigation.navigate(Screens.HelpCenterPage, { selectedSection: itemSection, sectionNo: index })
-                }
-                accessible={true}
-                accessibilityLabel={accessibilityLabel}
-                testID={testID}
-              >
-                <View style={styles.sectionRow}>
-                  <Text style={styles.rowTitle}>{item.title}</Text>
-                  <Text style={[TextTheme.headingFour, styles.sectionText]}>{children}</Text>
-                  {showArrowIcon && arrowIcon}
-                </View>
-              </Pressable>
-              {subContent}
-            </View>
-            {showRowSeparator && index < itemSection.length - 1 && (
-              <View style={{ backgroundColor: SettingsTheme.groupBackground }}>
-                <View style={[styles.rowSeparator]}></View>
+        <View key={index}>
+          <View style={[styles.section]}>
+            <Pressable
+              onPress={() =>
+                navigation.navigate(Screens.HelpCenterPage, { selectedSection: itemSection, sectionNo: index })
+              }
+              accessible={true}
+              accessibilityLabel={accessibilityLabel}
+              testID={testID}
+            >
+              <View style={styles.sectionRow}>
+                <Text style={styles.rowTitle}>{item.title}</Text>
+                <Text style={[TextTheme.headingFour, styles.sectionText]}>{children}</Text>
+                {showArrowIcon && arrowIcon}
               </View>
-            )}
+            </Pressable>
+            {subContent}
           </View>
-        </>
+          {showRowSeparator && index < itemSection.length - 1 && (
+            <View style={{ backgroundColor: SettingsTheme.groupBackground }}>
+              <View style={[styles.rowSeparator]}></View>
+            </View>
+          )}
+        </View>
       ))}
       <View style={[styles.sectionSeparator]}></View>
     </>

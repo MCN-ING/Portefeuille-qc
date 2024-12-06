@@ -56,6 +56,7 @@ export type RootStackParams = {
   [BifoldStacks.ProofRequestsStack]: NavigatorScreenParams<ProofRequestsStackParams>
   [BifoldStacks.NotificationStack]: NavigatorScreenParams<NotificationStackParams>
   [BifoldStacks.HistoryStack]: NavigatorScreenParams<HistoryStackParams>
+  [Stacks.HelpCenterStack]: NavigatorScreenParams<HelpCenterStackParams>
 }
 
 export type TabStackParams = {
@@ -87,6 +88,7 @@ type ContentType = {
 }
 type ItemSection = {
   title: string
+  screen: string
   content: ContentType[]
 }
 
