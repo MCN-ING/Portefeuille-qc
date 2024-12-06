@@ -15,7 +15,7 @@ const SettingsStack: React.FC = () => {
   const StackSettings = createStackNavigator<SettingStackParams>()
   const theme = useTheme()
   const defaultStackOptions = useDefaultStackOptions(theme)
-  const [UseBiometry] = useServices([TOKENS.SCREEN_USE_BIOMETRY])
+  const [UseBiometry, ScreenOptionsDictionary] = useServices([TOKENS.SCREEN_USE_BIOMETRY, TOKENS.OBJECT_SCREEN_CONFIG])
   const { t } = useTranslation()
 
   return (
@@ -27,7 +27,13 @@ const SettingsStack: React.FC = () => {
           title: t('RootStack.Settings'),
         }}
       />
-      <StackSettings.Screen name={Screens.Language} component={Language} />
+      <StackSettings.Screen
+        name={Screens.Language}
+        component={Language}
+        options={{
+          ...ScreenOptionsDictionary[Screens.Language],
+        }}
+      />
       <StackSettings.Screen
         name={Screens.HistoryPage}
         component={HistoryPage}
@@ -47,6 +53,7 @@ const SettingsStack: React.FC = () => {
         component={PINCreate}
         options={{
           title: t('Screens.ChangePIN'),
+          ...ScreenOptionsDictionary[Screens.CreatePIN],
         }}
       />
       <StackSettings.Screen
@@ -54,6 +61,7 @@ const SettingsStack: React.FC = () => {
         component={UseBiometry}
         options={{
           title: t('Screens.Biometry'),
+          ...ScreenOptionsDictionary[Screens.UseBiometry],
         }}
       />
     </StackSettings.Navigator>
