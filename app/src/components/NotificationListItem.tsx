@@ -154,11 +154,11 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
   }, [agent, notificationType, notification])
 
   const dismissRevocation = useCallback(async () => {
-    if ((notification as CredentialExchangeRecord)?.revocationNotification) {
-      const metadatas = (notification as CredentialExchangeRecord)?.metadata?.get(CredentialMetadata.customMetadata) as
-        | Record<string, unknown>
-        | undefined
-      ;(notification as CredentialExchangeRecord).metadata.set(CredentialMetadata.customMetadata, {
+    const notificationRecord = notification as CredentialExchangeRecord
+    if (notificationRecord?.revocationNotification) {
+      const metadatas = notificationRecord?.metadata?.get(CredentialMetadata.customMetadata)
+
+      notificationRecord.metadata.set(CredentialMetadata.customMetadata, {
         ...metadatas,
         revoked_seen: true,
       })
