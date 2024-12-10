@@ -102,9 +102,9 @@ export const useNotifications = ({ isHome = true }: NotificationsInputProps): No
 
         const events = await historyManager.getHistoryItems({ type: RecordType.HistoryRecord })
         if (
-          events.filter(
+          events.some(
             (event: CustomRecord) => event.content.type === type && event.content.correspondenceId === credential.id
-          ).length > 0
+          )
         ) {
           return
         }
