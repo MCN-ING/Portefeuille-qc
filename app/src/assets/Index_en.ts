@@ -3,52 +3,96 @@ export const itemsDataEn = {
     version: 'x.x.xxxx',
     sommaire: [
       {
-        title: 'Learn the application',
+        title: 'Configure my app',
         sections: [
           {
-            title: 'User Guide',
-            screen: 'Home',
+            title: 'PIN',
             content: [
               {
-                title: 'Receive a certificate',
-                text: 'Simplified explanation for receiving a certificate',
+                title: 'What is a PIN?',
+                screen: 'Create a PIN',
+                text: 'Simplified explanation of what a PIN is',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
-                title: 'Sharing a Certificate',
-                text: 'Simplified explanation for sharing a certificate',
+                title: 'How does it work?',
+                screen: 'Create a PIN',
+                text: 'Simplified explanation of how a PIN works',
+                visual: require('./img/proof-request-illustration.png'),
+              },
+              {
+                title: 'How to create a secure PIN?',
+                screen: 'Create a PIN',
+                text: 'Explanation of how to create a secure PIN',
+                visual: require('./img/proof-request-illustration.png'),
+              },
+              {
+                title: 'How do I protect my PIN? (tips and best practices)',
+                screen: 'Create a PIN',
+                text: 'Explanation of how to create a secure PIN',
                 visual: require('./img/proof-request-illustration.png'),
               },
             ],
           },
           {
-            title: 'Lorem ipsum',
-            screen: 'Home',
+            title: 'Biometrics',
             content: [
               {
-                title: 'Lorem ipsum',
-                text: "Explication simplifier pour la réception d'une attestation",
+                title: "It's what?",
+                screen: 'Use Biometry',
+                text: 'Explanation of what biometrics is',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
-                title: 'Lorem ipsum',
-                text: "Explication simplifier pour la réception d'une attestation",
+                title: 'How to enable or disable?',
+                screen: 'Use Biometry',
+                text: 'Explication sur comment activer ou dsactiver la biométrie',
                 visual: '',
               },
             ],
           },
           {
-            title: 'Lorem ipsum dolor',
-            screen: 'Home',
+            title: 'Historical',
             content: [
               {
-                title: 'Lorem ipsum dolor',
-                text: "Explication simplifier pour la réception d'une attestation",
+                title: "It's what?",
+                screen: 'Activities',
+                text: 'Simplified explanation of what is history',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
-                title: 'Lorem ipsum dolor',
-                text: "Explication simplifier pour la réception d'une attestation",
+                title: 'Types of events',
+                screen: 'Activities',
+                text: 'Simplified explanation of the type of events',
+                visual: '',
+              },
+              {
+                title: 'Temporality of events',
+                screen: 'Activities',
+                text: 'Simplified explanation of the temporality of events',
+                visual: '',
+              },
+              {
+                title: 'How do I clear my history?',
+                screen: 'Activities',
+                text: 'Explanation of how to clean your history',
+                visual: '',
+              },
+            ],
+          },
+          {
+            title: 'Notification',
+            content: [
+              {
+                title: 'What is a notification?',
+                screen: 'Home, Activities',
+                text: 'Simplified explanation of what a notification is',
+                visual: require('./img/proof-request-illustration.png'),
+              },
+              {
+                title: 'Types of notifications',
+                screen: 'Home, Activities',
+                text: 'Explanation of notification types',
                 visual: '',
               },
             ],
@@ -59,48 +103,74 @@ export const itemsDataEn = {
         title: 'The Digital Wallet',
         sections: [
           {
-            title: 'Section1',
-            screen: 'Credentials',
+            title: 'PNG',
             content: [
               {
-                title: 'Titre1',
-                text: 'Contenu',
+                title: 'What is PNG?',
+                screen: 'Home',
+                text: 'Explanation of what PNG is',
               },
               {
-                title: 'Titre2',
-                text: 'Contenu',
+                title: 'How does it work?',
+                screen: 'Home',
+                text: 'Explanation of how PNG works',
               },
             ],
           },
           {
-            title: 'Section2',
-            screen: 'Credentials',
-            content: [],
+            title: 'Receive a presentation request',
+            content: [
+              {
+                title: 'How to respond to a request for presentation of a certificate?',
+                screen: 'CredentialOffer',
+                text: 'Explanation on responding to a request for presentation of a certificate',
+              },
+              {
+                title: 'What should I present, duration?',
+                screen: 'CredentialOffer',
+                text: 'Explanation of what to submit and the duration of the application',
+              },
+            ],
           },
           {
-            title: 'Section3',
-            screen: 'Credentials',
-            content: [],
+            title: 'Receive a Certificate Offer',
+            content: [
+              {
+                title: 'How do I add the certificate to my PNG?',
+                screen: 'ProofRequest',
+                text: 'Explanation on how to add the certificate to my PNG?',
+              },
+              {
+                title: 'Can I refuse it?',
+                screen: 'ProofRequest',
+                text: 'Explanation of how to refuse the certificate',
+              },
+              {
+                title: 'How to visualize it?',
+                screen: 'ProofRequest',
+                text: 'How to visualize it?',
+              },
+            ],
           },
-        ],
-      },
-      {
-        title: 'Configure My App',
-        sections: [
           {
-            title: 'Section1',
-            screen: 'Others',
-            content: [],
-          },
-          {
-            title: 'Section2',
-            screen: 'Others',
-            content: [],
-          },
-          {
-            title: 'Section3',
-            screen: 'Others',
-            content: [],
+            title: 'Delete a certificate',
+            content: [
+              {
+                title: 'How do I remove the certificate from my PNG?',
+                screen: 'Credentials',
+                text: 'Explanation on how to delete a certificate',
+              },
+              {
+                title: 'Revocation vs. deletion',
+                screen: 'Credentials',
+                text: 'Explain the difference between evoke and suppress',
+              },
+              {
+                title: 'How do I revoke my certificate?',
+                screen: 'Credentials',
+                text: 'Explanation of how to revoke the certificate',
+              },
+            ],
           },
         ],
       },
@@ -108,48 +178,24 @@ export const itemsDataEn = {
         title: 'Others',
         sections: [
           {
-            title: 'Section1',
-            screen: 'Others',
-            content: [],
-          },
-          {
-            title: 'Section2',
-            screen: 'Others',
-            content: [],
-          },
-          {
-            title: 'Section3',
-            screen: 'Others',
-            content: [],
-          },
-        ],
-      },
-      {
-        title: 'FAQs',
-        sections: [
-          {
-            title: 'Section1',
-            screen: 'Others',
+            title: 'Scan a QR code',
             content: [
               {
-                question: 'Question1',
-                answer: 'Réponse',
+                title: 'How to do it?',
+                screen: 'Scan',
+                text: 'Explanation of how to scan a QR code',
               },
               {
-                question: 'Question2',
-                answer: 'Réponse',
+                title: 'What is the QR code in PNG for?',
+                screen: 'Scan',
+                text: 'Explanation of what the QR code is used for in the PNG',
+              },
+              {
+                title: 'Why is the QR code not working?',
+                screen: 'Scan',
+                text: 'Explanation why QR code is not working',
               },
             ],
-          },
-          {
-            title: 'Section2',
-            screen: 'Others',
-            content: [],
-          },
-          {
-            title: 'Section3',
-            screen: 'Others',
-            content: [],
           },
         ],
       },

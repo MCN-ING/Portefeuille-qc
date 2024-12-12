@@ -148,6 +148,22 @@ export class AppContainer implements Container {
       headerRight: HelpCenterButton,
     }
 
+    defaultScreenOptionsDict[Screens.CredentialOffer] = {
+      ...defaultScreenOptionsDict[Screens.CredentialOffer],
+      headerLeft: undefined,
+      headerRight: HelpCenterButton,
+    }
+
+    defaultScreenOptionsDict[Screens.CredentialDetails] = {
+      ...defaultScreenOptionsDict[Screens.CredentialDetails],
+      headerLeft: undefined,
+      headerRight: HelpCenterButton,
+    }
+
+    defaultScreenOptionsDict[Screens.Credentials] = {
+      ...defaultScreenOptionsDict[Screens.Credentials],
+      headerLeft: undefined,
+    }
     defaultScreenOptionsDict[Screens.Language] = {
       ...defaultScreenOptionsDict[Screens.Language],
       headerRight: HelpCenterButton,
@@ -165,7 +181,6 @@ export class AppContainer implements Container {
 
     defaultScreenOptionsDict[Screens.UseBiometry] = {
       ...defaultScreenOptionsDict[Screens.UseBiometry],
-      ...onboardingScreenOptions,
       headerRight: HelpCenterButton,
     }
 

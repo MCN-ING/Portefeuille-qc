@@ -3,17 +3,7 @@ import { i18n } from '@hyperledger/aries-bifold-core/App/localization'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useEffect, useState, useCallback } from 'react'
-import {
-  Animated,
-  DeviceEventEmitter,
-  ImageSourcePropType,
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { Animated, DeviceEventEmitter, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { itemsDataEn } from '../../assets/Index_en'
@@ -22,20 +12,6 @@ import { hitSlop } from '../../constants'
 import { BCWalletEventTypes } from '../../events/eventTypes'
 import { RootStackParams, Screens, Stacks } from '../../navigators/navigators'
 
-type ItemSection = {
-  title?: string
-  text?: string
-  visual?: ImageSourcePropType
-  question?: string
-  answer?: string
-}
-
-type ItemSectionType = {
-  title: string
-  screen: string
-  content: ItemSection[]
-}
-
 const HelpListSlider: React.FC = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>()
   const { ColorPallet, TextTheme } = useTheme()
@@ -43,6 +19,7 @@ const HelpListSlider: React.FC = () => {
   const indexJs = currentLanguage === 'fr' ? itemsDataFr.centreAide.sommaire : itemsDataEn.centreAide.sommaire
   const [addHelpPressed, setAddHelpPressed] = useState<boolean>(false)
   const [localRouteName, setLocalRouteName] = useState<string>('Home')
+
   const [slideAnim] = useState(new Animated.Value(-500))
   const styles = StyleSheet.create({
     centeredView: {
@@ -66,11 +43,14 @@ const HelpListSlider: React.FC = () => {
       fontWeight: 'normal',
       flexWrap: 'wrap',
       paddingBottom: 10,
+      textAlign: 'left',
+      width: '100%',
+      maxWidth: '100%',
     },
     modalView: {
       backgroundColor: ColorPallet.grayscale.white,
       borderBottomStartRadius: 20,
-      borderBottomEndRadius: 20, // Arrondir le bas du modal
+      borderBottomEndRadius: 20,
       shadowColor: '#000',
       padding: 20,
       shadowOffset: {
@@ -80,6 +60,7 @@ const HelpListSlider: React.FC = () => {
       shadowOpacity: 0.25,
       shadowRadius: 4,
       elevation: 5,
+      width: '100%',
     },
     drawerTitleText: {
       ...TextTheme.normal,
@@ -90,28 +71,19 @@ const HelpListSlider: React.FC = () => {
     drawerRow: {
       flexDirection: 'row',
       justifyContent: 'flex-start',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       marginVertical: 12,
+      flexWrap: 'wrap',
     },
     drawerRowItem: {
       color: ColorPallet.grayscale.black,
     },
   })
-
   const paramDataClose = {
     isActive: false,
   }
-
   const deactivateSlider = useCallback(() => {
     DeviceEventEmitter.emit(BCWalletEventTypes.ADD_HELP_PRESSED, paramDataClose)
-  }, [])
-
-  const goToHelpScreen = useCallback((section: ItemSectionType[], index: number) => {
-    deactivateSlider()
-    navigation.navigate(Stacks.HelpCenterStack, {
-      screen: Screens.HelpCenterPage,
-      params: { selectedSection: section, sectionNo: index },
-    })
   }, [])
 
   useEffect(() => {
@@ -129,32 +101,37 @@ const HelpListSlider: React.FC = () => {
 
   useEffect(() => {
     if (addHelpPressed) {
-      // Animer le modal depuis le haut
       Animated.timing(slideAnim, {
-        toValue: 0, // Déplacement vers le bas (0 = position finale)
+        toValue: 0,
         duration: 300,
         useNativeDriver: true,
       }).start()
     } else {
-      // Animer le modal vers le haut (hors de l'écran)
       Animated.timing(slideAnim, {
-        toValue: -500, // Position hors de l'écran
+        toValue: -500,
         duration: 300,
         useNativeDriver: true,
       }).start()
     }
   }, [addHelpPressed])
 
+  function hasTitle(item: { title: string } | { title: string } | { question: string }): item is { title: string } {
+    return (item as { title: string }).title !== undefined
+  }
+  function validateScreen(screen: string, routeName: string) {
+    const tblScreen = screen.split(' ').map((item) => item.trim())
+    for (let i = 0; i < tblScreen.length; i++) {
+      if (tblScreen[i] === routeName) {
+        return true
+      }
+    }
+    return false // Si aucune correspondance n'est trouvée
+  }
   return (
     <Modal transparent={true} visible={addHelpPressed} onRequestClose={deactivateSlider}>
       <TouchableOpacity style={styles.outsideListener} onPress={deactivateSlider} />
       <View style={styles.centeredView}>
-        <Animated.View
-          style={[
-            styles.modalView,
-            { transform: [{ translateY: slideAnim }] }, // Animation de translation du modal
-          ]}
-        >
+        <Animated.View style={[styles.modalView, { transform: [{ translateY: slideAnim }] }]}>
           <TouchableOpacity
             testID="close-modal"
             accessibilityLabel="Close"
@@ -166,25 +143,36 @@ const HelpListSlider: React.FC = () => {
           </TouchableOpacity>
 
           <View style={styles.drawerRow}>
-            <View>
-              {indexJs.map((item, index) => (
-                <View key={`${item.title}-${index}`}>
-                  {item.sections &&
-                    item.sections[0].screen === localRouteName &&
-                    item.sections.map((section, indexSec) => (
-                      <Pressable
-                        key={`${section.title}-${indexSec}`} // Clé unique pour chaque section
-                        onPress={() => goToHelpScreen(item.sections, indexSec)}
-                        accessible={true}
-                      >
-                        <View>
-                          <Text style={styles.rowTitle}>{section.title}</Text>
-                        </View>
-                      </Pressable>
+            {indexJs.map((sectionItem, index) => (
+              <View key={index}>
+                {sectionItem.sections.map((section, indexSect) => (
+                  <View key={indexSect}>
+                    {section.content.map((contentItem, indexContent) => (
+                      <View key={indexContent}>
+                        {validateScreen(contentItem.screen, localRouteName) && (
+                          <Pressable
+                            onPress={() => {
+                              deactivateSlider()
+                              navigation.navigate(Stacks.HelpCenterStack, {
+                                screen: Screens.HelpCenterPage,
+                                params: {
+                                  selectedSection: sectionItem.sections,
+                                  sectionNo: indexSect,
+                                  titleParam: contentItem.title,
+                                },
+                              })
+                            }}
+                            accessible={true}
+                          >
+                            <Text style={styles.rowTitle}>{hasTitle(contentItem) && contentItem.title}</Text>
+                          </Pressable>
+                        )}
+                      </View>
                     ))}
-                </View>
-              ))}
-            </View>
+                  </View>
+                ))}
+              </View>
+            ))}
           </View>
         </Animated.View>
       </View>

@@ -10,6 +10,7 @@ import { Screens } from '../navigators/navigators'
 
 type ItemContent = {
   title?: string
+  screen?: string
   text?: string
   visual?: ImageSourcePropType
   question?: string
@@ -17,12 +18,12 @@ type ItemContent = {
 }
 type ItemSection = {
   title: string
-  screen: string
   content: ItemContent[]
 }
 type HelpCenterRouteParams = {
   selectedSection: ItemSection[]
   sectionNo: number
+  titleParam: string
 }
 type HelpCenterStackParams = {
   'Help Center': undefined
@@ -37,7 +38,7 @@ type HelpCenterProps = {
 const HelpCenterPage: React.FC<HelpCenterProps> = ({ route, navigation }) => {
   const { TextTheme, ColorPallet } = useTheme()
   const { t } = useTranslation()
-  const { selectedSection, sectionNo } = route.params
+  const { selectedSection, sectionNo, titleParam } = route.params
   const content = selectedSection[sectionNo].content
   const sectionTitle = selectedSection[sectionNo].title
 
@@ -73,21 +74,36 @@ const HelpCenterPage: React.FC<HelpCenterProps> = ({ route, navigation }) => {
   useEffect(() => {
     navigation.setOptions({ title: sectionTitle })
   }, [sectionTitle])
-
+  // console.log(titleParam)
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {content.map((item, index) => (
-          <View key={index}>
-            <InfosDisplay
-              title={item?.title}
-              detail={item?.text}
-              visual={item?.visual}
-              question={item?.question}
-              answer={item?.answer}
-            />
-          </View>
-        ))}
+        {titleParam && titleParam.length > 0
+          ? content.map((item, index) => (
+              <View key={index}>
+                {titleParam == item.title && (
+                  <InfosDisplay
+                    title={item?.title}
+                    detail={item?.text}
+                    visual={item?.visual}
+                    question={item?.question}
+                    answer={item?.answer}
+                  />
+                )}
+              </View>
+            ))
+          : content.map((item, index) => (
+              <View key={index}>
+                <InfosDisplay
+                  title={item?.title}
+                  screen={item?.screen}
+                  detail={item?.text}
+                  visual={item?.visual}
+                  question={item?.question}
+                  answer={item?.answer}
+                />
+              </View>
+            ))}
       </ScrollView>
       <View style={styles.button}>
         <Button
