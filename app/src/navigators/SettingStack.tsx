@@ -55,6 +55,7 @@ const SettingsStack: React.FC = () => {
         options={{
           title: t('Screens.ChangePIN'),
           headerRight: HelpCenterButton,
+          gestureEnabled: true,
         }}
       />
       <StackSettings.Screen
