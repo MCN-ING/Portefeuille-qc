@@ -122,12 +122,12 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'How to respond to a request for presentation of a certificate?',
-                screen: 'CredentialOffer',
+                screen: 'Connection',
                 text: 'Explanation on responding to a request for presentation of a certificate',
               },
               {
                 title: 'What should I present, duration?',
-                screen: 'CredentialOffer',
+                screen: 'Connection',
                 text: 'Explanation of what to submit and the duration of the application',
               },
             ],
@@ -137,17 +137,17 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'How do I add the certificate to my PNG?',
-                screen: 'ProofRequest',
+                screen: 'Connection',
                 text: 'Explanation on how to add the certificate to my PNG?',
               },
               {
                 title: 'Can I refuse it?',
-                screen: 'ProofRequest',
+                screen: 'Connection',
                 text: 'Explanation of how to refuse the certificate',
               },
               {
                 title: 'How to visualize it?',
-                screen: 'ProofRequest',
+                screen: 'Connection',
                 text: 'How to visualize it?',
               },
             ],

@@ -122,12 +122,12 @@ export const itemsDataFr = {
             content: [
               {
                 title: "Comment répondre à une demande présentation d'attestation?",
-                screen: 'CredentialOffer',
+                screen: 'Connection',
                 text: "Explication sur répondre à une demande présentation d'attestation",
               },
               {
                 title: 'Que dois-je présenter, durée?',
-                screen: 'CredentialOffer',
+                screen: 'Connection',
                 text: 'Explication sur quoi présenter et la durée de la demande',
               },
             ],
@@ -137,17 +137,17 @@ export const itemsDataFr = {
             content: [
               {
                 title: "Comment ajouter l'attestation à mon PNG?",
-                screen: 'ProofRequest',
+                screen: 'Connection',
                 text: "Explication sur comment ajouter l'attestation à mon PNG?",
               },
               {
                 title: 'Puis-je la refuser?',
-                screen: 'ProofRequest',
+                screen: 'Connection',
                 text: "Explication sur comment refuser l'attestation",
               },
               {
                 title: 'Comment la visualiser?',
-                screen: 'ProofRequest',
+                screen: 'Connection',
                 text: "Explication sur comment refuser l'attestation",
               },
             ],

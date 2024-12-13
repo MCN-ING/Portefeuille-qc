@@ -3,8 +3,7 @@ import { i18n } from '@hyperledger/aries-bifold-core/App/localization'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useEffect, useState, useCallback } from 'react'
-import { Animated, DeviceEventEmitter, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Animated, DeviceEventEmitter, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { itemsDataEn } from '../../assets/Index_en'
 import { itemsDataFr } from '../../assets/Index_fr'
@@ -76,7 +75,7 @@ const HelpListSlider: React.FC = () => {
       flexWrap: 'wrap',
     },
     drawerRowItem: {
-      color: ColorPallet.grayscale.black,
+      color: ColorPallet.brand.primary,
     },
   })
   const paramDataClose = {
@@ -129,20 +128,10 @@ const HelpListSlider: React.FC = () => {
   }
   return (
     <Modal transparent={true} visible={addHelpPressed} onRequestClose={deactivateSlider}>
-      <TouchableOpacity style={styles.outsideListener} onPress={deactivateSlider} />
+      <TouchableOpacity style={styles.outsideListener} onPress={deactivateSlider} hitSlop={hitSlop} />
       <View style={styles.centeredView}>
         <Animated.View style={[styles.modalView, { transform: [{ translateY: slideAnim }] }]}>
-          <TouchableOpacity
-            testID="close-modal"
-            accessibilityLabel="Close"
-            accessibilityRole={'button'}
-            onPress={deactivateSlider}
-            hitSlop={hitSlop}
-          >
-            <Icon name="window-close" size={35} style={styles.drawerRowItem}></Icon>
-          </TouchableOpacity>
-
-          <View style={styles.drawerRow}>
+          <View>
             {indexJs.map((sectionItem, index) => (
               <View key={index}>
                 {sectionItem.sections.map((section, indexSect) => (
@@ -150,7 +139,8 @@ const HelpListSlider: React.FC = () => {
                     {section.content.map((contentItem, indexContent) => (
                       <View key={indexContent}>
                         {validateScreen(contentItem.screen, localRouteName) && (
-                          <Pressable
+                          <TouchableOpacity
+                            style={styles.drawerRow}
                             onPress={() => {
                               deactivateSlider()
                               navigation.navigate(Stacks.HelpCenterStack, {
@@ -164,8 +154,10 @@ const HelpListSlider: React.FC = () => {
                             }}
                             accessible={true}
                           >
-                            <Text style={styles.rowTitle}>{hasTitle(contentItem) && contentItem.title}</Text>
-                          </Pressable>
+                            <Text style={{ ...styles.drawerRowItem, marginLeft: 5 }}>
+                              {hasTitle(contentItem) && contentItem.title}
+                            </Text>
+                          </TouchableOpacity>
                         )}
                       </View>
                     ))}
