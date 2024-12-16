@@ -19,17 +19,23 @@ const HelpListSlider: React.FC = () => {
   const [addHelpPressed, setAddHelpPressed] = useState<boolean>(false)
   const [localRouteName, setLocalRouteName] = useState<string>('Home')
 
-  const [slideAnim] = useState(new Animated.Value(-500))
+  const [slideAnim] = useState(new Animated.Value(200))
   const styles = StyleSheet.create({
     centeredView: {
       position: 'absolute',
-      top: 0,
+      top: 0, // Position initiale du modal
       left: 0,
       right: 0,
       justifyContent: 'flex-start',
+      zIndex: 2,
     },
     outsideListener: {
-      height: '100%',
+      position: 'absolute',
+      top: 400,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 1,
     },
     sectionRow: {
       flexDirection: 'row',
@@ -97,24 +103,23 @@ const HelpListSlider: React.FC = () => {
       handle.remove()
     }
   }, [])
-
   useEffect(() => {
     if (addHelpPressed) {
       Animated.timing(slideAnim, {
-        toValue: 0,
+        toValue: 100,
         duration: 300,
         useNativeDriver: true,
       }).start()
     } else {
       Animated.timing(slideAnim, {
-        toValue: -500,
+        toValue: -200,
         duration: 300,
         useNativeDriver: true,
       }).start()
     }
   }, [addHelpPressed])
 
-  function hasTitle(item: { title: string } | { title: string } | { question: string }): item is { title: string } {
+  function hasTitle(item: { title: string } | { question: string }): item is { title: string } {
     return (item as { title: string }).title !== undefined
   }
   function validateScreen(screen: string, routeName: string) {

@@ -38,7 +38,7 @@ export const itemsDataEn = {
             title: 'Biometrics',
             content: [
               {
-                title: "It's what?",
+                title: 'What is it?',
                 screen: 'Use Biometry',
                 text: 'Explanation of what biometrics is',
                 visual: require('./img/proof-request-illustration.png'),
@@ -52,10 +52,10 @@ export const itemsDataEn = {
             ],
           },
           {
-            title: 'Historical',
+            title: 'Activities',
             content: [
               {
-                title: "It's what?",
+                title: 'What is a history?',
                 screen: 'Activities',
                 text: 'Simplified explanation of what is history',
                 visual: require('./img/proof-request-illustration.png'),
@@ -78,20 +78,15 @@ export const itemsDataEn = {
                 text: 'Explanation of how to clean your history',
                 visual: '',
               },
-            ],
-          },
-          {
-            title: 'Notification',
-            content: [
               {
                 title: 'What is a notification?',
-                screen: 'Home, Activities',
+                screen: 'Home Activities',
                 text: 'Simplified explanation of what a notification is',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'Types of notifications',
-                screen: 'Home, Activities',
+                screen: 'Home Activities',
                 text: 'Explanation of notification types',
                 visual: '',
               },

@@ -91,10 +91,10 @@ const App = (system: Container): React.FC => {
                           overlayColor={'black'}
                           overlayOpacity={0.7}
                         >
-                          <HelpListSlider />
                           <RootStack />
                         </TourProvider>
                         <Toast topOffset={toastTopOffset} bottomOffset={toastBottomOffset} config={ToastConfig} />
+                        <HelpListSlider />
                       </ActivityProvider>
                     </NetworkProvider>
                   </AuthProvider>

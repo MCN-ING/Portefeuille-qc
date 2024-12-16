@@ -52,10 +52,10 @@ export const itemsDataFr = {
             ],
           },
           {
-            title: 'Historique',
+            title: 'Activités',
             content: [
               {
-                title: "C'est quoi?",
+                title: "C'est quoi l'historique?",
                 screen: 'Activities',
                 text: "Explication simplifier sur qu'est-ce que l'historique",
                 visual: require('./img/proof-request-illustration.png'),
@@ -78,11 +78,6 @@ export const itemsDataFr = {
                 text: 'Explication sur comment nettoyer son historique',
                 visual: '',
               },
-            ],
-          },
-          {
-            title: 'Notification',
-            content: [
               {
                 title: "C'est quoi une notification?",
                 screen: 'Home Activities',

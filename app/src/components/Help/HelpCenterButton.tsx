@@ -22,11 +22,11 @@ const HelpCenterButton = () => {
       color: ColorPallet.brand.headerText,
     },
   })
-
   const paramData = {
     isActive: true,
     routeName: route.name,
   }
+
   const activateSlider = useCallback(() => {
     DeviceEventEmitter.emit(BCWalletEventTypes.ADD_HELP_PRESSED, paramData)
   }, [])
