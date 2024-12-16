@@ -23,19 +23,19 @@ const HelpListSlider: React.FC = () => {
   const styles = StyleSheet.create({
     centeredView: {
       position: 'absolute',
-      top: 0, // Position initiale du modal
+      top: '10%', // Position initiale du modal
       left: 0,
       right: 0,
       justifyContent: 'flex-start',
-      zIndex: 2,
+      zIndex: 2, // Toujours au-dessus de la zone de fond
     },
     outsideListener: {
       position: 'absolute',
-      top: 400,
+      top: 0,
       left: 0,
       right: 0,
       bottom: 0,
-      zIndex: 1,
+      zIndex: 1, // Toujours sous le modal
     },
     sectionRow: {
       flexDirection: 'row',
@@ -106,13 +106,13 @@ const HelpListSlider: React.FC = () => {
   useEffect(() => {
     if (addHelpPressed) {
       Animated.timing(slideAnim, {
-        toValue: 100,
+        toValue: 0, // Le modal se déplace vers la position finale (0px du haut)
         duration: 300,
         useNativeDriver: true,
       }).start()
     } else {
       Animated.timing(slideAnim, {
-        toValue: -200,
+        toValue: -200, // Il s'éloigne de 200px vers le haut lorsqu'il est caché
         duration: 300,
         useNativeDriver: true,
       }).start()
@@ -131,6 +131,7 @@ const HelpListSlider: React.FC = () => {
     }
     return false // Si aucune correspondance n'est trouvée
   }
+
   return (
     <Modal transparent={true} visible={addHelpPressed} onRequestClose={deactivateSlider}>
       <TouchableOpacity style={styles.outsideListener} onPress={deactivateSlider} hitSlop={hitSlop} />
