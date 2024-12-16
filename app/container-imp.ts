@@ -154,7 +154,6 @@ export class AppContainer implements Container {
     defaultScreenOptionsDict[Screens.CreatePIN] = {
       ...defaultScreenOptionsDict[Screens.CreatePIN],
       ...onboardingScreenOptions,
-      headerRight: HelpCenterButton,
       gestureEnabled: false,
     }
 
