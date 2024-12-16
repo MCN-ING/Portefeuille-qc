@@ -140,21 +140,15 @@ export class AppContainer implements Container {
       headerRight: HelpCenterButton,
     }
 
-    /*defaultScreenOptionsDict[Screens.Terms] = {
-      ...defaultScreenOptionsDict[Screens.Terms],
-      ...onboardingScreenOptions,
-      headerRight: HelpCenterButton,
-    }
-
     defaultScreenOptionsDict[Screens.UseBiometry] = {
       ...defaultScreenOptionsDict[Screens.UseBiometry],
-      headerRight: HelpCenterButton,
-    }*/
+      ...onboardingScreenOptions,
+    }
 
     defaultScreenOptionsDict[Screens.CreatePIN] = {
       ...defaultScreenOptionsDict[Screens.CreatePIN],
       ...onboardingScreenOptions,
-      gestureEnabled: false,
+      gestureEnabled: true,
     }
 
     // Here you can register any component to override components in core package
