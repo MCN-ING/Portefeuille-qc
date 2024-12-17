@@ -17,8 +17,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ navigation }) => {
   const { TextTheme, ColorPallet } = useTheme()
   const { t } = useTranslation()
   const currentLanguage = i18n.language
-  const indexJs = currentLanguage === 'fr' ? itemsDataFr.centreAide.sommaire : itemsDataEn.centreAide.sommaire
-  //const indexJson = currentLanguage === 'fr' ? require("../assets/json/Index_en.json") : require("../assets/json/Index_en.json")
+  const helpIndex = currentLanguage === 'fr' ? itemsDataFr.centreAide.sommaire : itemsDataEn.centreAide.sommaire
 
   const styles = StyleSheet.create({
     container: {
@@ -47,7 +46,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <ScrollView contentContainerStyle={styles.scroll}>
-        {indexJs.map((item, index) => (
+        {helpIndex.map((item, index) => (
           <View key={index}>
             <HelpRowSection
               showSectionTitle

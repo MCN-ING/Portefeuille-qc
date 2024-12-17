@@ -15,7 +15,7 @@ const HelpListSlider: React.FC = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>()
   const { ColorPallet, TextTheme } = useTheme()
   const currentLanguage = i18n.language
-  const indexJs = currentLanguage === 'fr' ? itemsDataFr.centreAide.sommaire : itemsDataEn.centreAide.sommaire
+  const helpIndex = currentLanguage === 'fr' ? itemsDataFr.centreAide.sommaire : itemsDataEn.centreAide.sommaire
   const [addHelpPressed, setAddHelpPressed] = useState<boolean>(false)
   const [localRouteName, setLocalRouteName] = useState<string>('Home')
 
@@ -134,7 +134,7 @@ const HelpListSlider: React.FC = () => {
       <View style={styles.centeredView}>
         <Animated.View style={[styles.modalView, { opacity: dropdownOpacity }]}>
           <View>
-            {indexJs.map((sectionItem, index) => (
+            {helpIndex.map((sectionItem, index) => (
               <View key={index}>
                 {sectionItem.sections.map((section, indexSect) => (
                   <View key={indexSect}>
