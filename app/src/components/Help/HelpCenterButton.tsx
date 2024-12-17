@@ -1,4 +1,5 @@
 import { useTheme } from '@hyperledger/aries-bifold-core'
+import { useHeaderHeight } from '@react-navigation/elements'
 import { useRoute } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -10,6 +11,7 @@ const HelpCenterButton = () => {
   const { t } = useTranslation()
   const { ColorPallet, TextTheme } = useTheme()
   const route = useRoute()
+  const headerHeight = useHeaderHeight()
 
   const styles = StyleSheet.create({
     container: {
@@ -25,6 +27,7 @@ const HelpCenterButton = () => {
   const paramData = {
     isActive: true,
     routeName: route.name,
+    headerHeight: headerHeight,
   }
 
   const activateSlider = useCallback(() => {

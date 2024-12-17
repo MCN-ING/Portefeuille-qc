@@ -1,5 +1,6 @@
 import { useTheme } from '@hyperledger/aries-bifold-core'
 import { i18n } from '@hyperledger/aries-bifold-core/App/localization'
+//
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useEffect, useState, useCallback, useRef } from 'react'
@@ -18,13 +19,15 @@ const HelpListSlider: React.FC = () => {
   const helpIndex = currentLanguage === 'fr' ? itemsDataFr.centreAide.sommaire : itemsDataEn.centreAide.sommaire
   const [addHelpPressed, setAddHelpPressed] = useState<boolean>(false)
   const [localRouteName, setLocalRouteName] = useState<string>('Home')
+  const [headerHeight, setHeaderHeight] = useState<number>(0)
+  // const headerHeight = useHeaderHeight() ?? '12%'
 
   const dropdownOpacity = useRef(new Animated.Value(0)).current
 
   const styles = StyleSheet.create({
     centeredView: {
       position: 'absolute',
-      top: '12%',
+      top: headerHeight,
       left: 0,
       right: 0,
       justifyContent: 'flex-start',
@@ -94,10 +97,11 @@ const HelpListSlider: React.FC = () => {
 
   useEffect(() => {
     const handle = DeviceEventEmitter.addListener(BCWalletEventTypes.ADD_HELP_PRESSED, (paramData) => {
-      const { isActive, routeName } = paramData
+      const { isActive, routeName, headerHeight } = paramData
       const newVal = isActive === undefined ? !addHelpPressed : isActive
       setAddHelpPressed(newVal)
       setLocalRouteName(routeName)
+      setHeaderHeight(headerHeight)
     })
 
     return () => {
