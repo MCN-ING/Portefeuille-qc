@@ -8,7 +8,7 @@ import { HelpCenterStackParams, Screens } from '../../navigators/navigators'
 
 type ItemSection = {
   title?: string
-  screen: string
+  screen: Array<string>
   text?: string
   visual?: ImageSourcePropType
   question?: string

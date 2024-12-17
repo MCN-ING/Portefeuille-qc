@@ -2,7 +2,7 @@ import { useTheme } from '@hyperledger/aries-bifold-core'
 import { i18n } from '@hyperledger/aries-bifold-core/App/localization'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { Animated, DeviceEventEmitter, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { itemsDataEn } from '../../assets/Index_en'
@@ -19,15 +19,16 @@ const HelpListSlider: React.FC = () => {
   const [addHelpPressed, setAddHelpPressed] = useState<boolean>(false)
   const [localRouteName, setLocalRouteName] = useState<string>('Home')
 
-  const [slideAnim] = useState(new Animated.Value(200))
+  const dropdownOpacity = useRef(new Animated.Value(0)).current
+
   const styles = StyleSheet.create({
     centeredView: {
       position: 'absolute',
-      top: '10%', // Position initiale du modal
+      top: '12%',
       left: 0,
       right: 0,
       justifyContent: 'flex-start',
-      zIndex: 2, // Toujours au-dessus de la zone de fond
+      zIndex: 2,
     },
     outsideListener: {
       position: 'absolute',
@@ -35,7 +36,7 @@ const HelpListSlider: React.FC = () => {
       left: 0,
       right: 0,
       bottom: 0,
-      zIndex: 1, // Toujours sous le modal
+      zIndex: 1,
     },
     sectionRow: {
       flexDirection: 'row',
@@ -105,14 +106,14 @@ const HelpListSlider: React.FC = () => {
   }, [])
   useEffect(() => {
     if (addHelpPressed) {
-      Animated.timing(slideAnim, {
-        toValue: 0, // Le modal se déplace vers la position finale (0px du haut)
+      Animated.timing(dropdownOpacity, {
+        toValue: 1,
         duration: 300,
         useNativeDriver: true,
       }).start()
     } else {
-      Animated.timing(slideAnim, {
-        toValue: -200, // Il s'éloigne de 200px vers le haut lorsqu'il est caché
+      Animated.timing(dropdownOpacity, {
+        toValue: 0,
         duration: 300,
         useNativeDriver: true,
       }).start()
@@ -122,21 +123,16 @@ const HelpListSlider: React.FC = () => {
   function hasTitle(item: { title: string } | { question: string }): item is { title: string } {
     return (item as { title: string }).title !== undefined
   }
-  function validateScreen(screen: string, routeName: string) {
-    const tblScreen = screen.split(' ').map((item) => item.trim())
-    for (let i = 0; i < tblScreen.length; i++) {
-      if (tblScreen[i] === routeName) {
-        return true
-      }
-    }
-    return false // Si aucune correspondance n'est trouvée
+  function validateScreen(screen: Array<string>, routeName: string): boolean {
+    // On vérifie si routeName existe dans le tableau screen
+    return screen.includes(routeName)
   }
 
   return (
     <Modal transparent={true} visible={addHelpPressed} onRequestClose={deactivateSlider}>
       <TouchableOpacity style={styles.outsideListener} onPress={deactivateSlider} hitSlop={hitSlop} />
       <View style={styles.centeredView}>
-        <Animated.View style={[styles.modalView, { transform: [{ translateY: slideAnim }] }]}>
+        <Animated.View style={[styles.modalView, { opacity: dropdownOpacity }]}>
           <View>
             {indexJs.map((sectionItem, index) => (
               <View key={index}>

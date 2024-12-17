@@ -82,7 +82,7 @@ export type SettingStackParams = {
 type ContentType = {
   title?: string
   text?: string
-  screen: string
+  screen: Array<string>
   visual?: ImageSourcePropType
   question?: string
   answer?: string

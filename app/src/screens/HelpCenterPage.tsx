@@ -10,7 +10,7 @@ import { Screens } from '../navigators/navigators'
 
 type ItemContent = {
   title?: string
-  screen?: string
+  screen?: Array<string>
   text?: string
   visual?: ImageSourcePropType
   question?: string

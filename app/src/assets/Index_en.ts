@@ -10,25 +10,25 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'What is a PIN?',
-                screen: 'Create a PIN',
+                screen: ['Create a PIN'],
                 text: 'Simplified explanation of what a PIN is',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'How does it work?',
-                screen: 'Create a PIN',
+                screen: ['Create a PIN'],
                 text: 'Simplified explanation of how a PIN works',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'How to create a secure PIN?',
-                screen: 'Create a PIN',
+                screen: ['Create a PIN'],
                 text: 'Explanation of how to create a secure PIN',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'How do I protect my PIN? (tips and best practices)',
-                screen: 'Create a PIN',
+                screen: ['Create a PIN'],
                 text: 'Explanation of how to create a secure PIN',
                 visual: require('./img/proof-request-illustration.png'),
               },
@@ -39,13 +39,13 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'What is it?',
-                screen: 'Use Biometry',
+                screen: ['Use Biometry'],
                 text: 'Explanation of what biometrics is',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'How to enable or disable?',
-                screen: 'Use Biometry',
+                screen: ['Use Biometry'],
                 text: 'Explication sur comment activer ou dsactiver la biométrie',
                 visual: '',
               },
@@ -56,37 +56,37 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'What is a history?',
-                screen: 'Activities',
+                screen: ['Activities'],
                 text: 'Simplified explanation of what is history',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'Types of events',
-                screen: 'Activities',
+                screen: ['Activities'],
                 text: 'Simplified explanation of the type of events',
                 visual: '',
               },
               {
                 title: 'Temporality of events',
-                screen: 'Activities',
+                screen: ['Activities'],
                 text: 'Simplified explanation of the temporality of events',
                 visual: '',
               },
               {
                 title: 'How do I clear my history?',
-                screen: 'Activities',
+                screen: ['Activities'],
                 text: 'Explanation of how to clean your history',
                 visual: '',
               },
               {
                 title: 'What is a notification?',
-                screen: 'Home Activities',
+                screen: ['Home', 'Activities'],
                 text: 'Simplified explanation of what a notification is',
                 visual: require('./img/proof-request-illustration.png'),
               },
               {
                 title: 'Types of notifications',
-                screen: 'Home Activities',
+                screen: ['Home', 'Activities'],
                 text: 'Explanation of notification types',
                 visual: '',
               },
@@ -102,12 +102,12 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'What is PNG?',
-                screen: 'Home',
+                screen: ['Home'],
                 text: 'Explanation of what PNG is',
               },
               {
                 title: 'How does it work?',
-                screen: 'Home',
+                screen: ['Home'],
                 text: 'Explanation of how PNG works',
               },
             ],
@@ -117,12 +117,12 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'How to respond to a request for presentation of a certificate?',
-                screen: 'Connection',
+                screen: ['Connection'],
                 text: 'Explanation on responding to a request for presentation of a certificate',
               },
               {
                 title: 'What should I present, duration?',
-                screen: 'Connection',
+                screen: ['Connection'],
                 text: 'Explanation of what to submit and the duration of the application',
               },
             ],
@@ -132,17 +132,17 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'How do I add the certificate to my PNG?',
-                screen: 'Connection',
+                screen: ['Connection'],
                 text: 'Explanation on how to add the certificate to my PNG?',
               },
               {
                 title: 'Can I refuse it?',
-                screen: 'Connection',
+                screen: ['Connection'],
                 text: 'Explanation of how to refuse the certificate',
               },
               {
                 title: 'How to visualize it?',
-                screen: 'Connection',
+                screen: ['Connection'],
                 text: 'How to visualize it?',
               },
             ],
@@ -152,17 +152,17 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'How do I remove the certificate from my PNG?',
-                screen: 'Credentials',
+                screen: ['Credentials'],
                 text: 'Explanation on how to delete a certificate',
               },
               {
                 title: 'Revocation vs. deletion',
-                screen: 'Credentials',
+                screen: ['Credentials'],
                 text: 'Explain the difference between evoke and suppress',
               },
               {
                 title: 'How do I revoke my certificate?',
-                screen: 'Credentials',
+                screen: ['Credentials'],
                 text: 'Explanation of how to revoke the certificate',
               },
             ],
@@ -177,17 +177,17 @@ export const itemsDataEn = {
             content: [
               {
                 title: 'How to do it?',
-                screen: 'Scan',
+                screen: ['Scan'],
                 text: 'Explanation of how to scan a QR code',
               },
               {
                 title: 'What is the QR code in PNG for?',
-                screen: 'Scan',
+                screen: ['Scan'],
                 text: 'Explanation of what the QR code is used for in the PNG',
               },
               {
                 title: 'Why is the QR code not working?',
-                screen: 'Scan',
+                screen: ['Scan'],
                 text: 'Explanation why QR code is not working',
               },
             ],
