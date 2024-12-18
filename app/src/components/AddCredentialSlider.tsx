@@ -43,6 +43,8 @@ const AddCredentialSlider: React.FC = () => {
     },
     modalView: {
       backgroundColor: ColorPallet.grayscale.white,
+      borderTopStartRadius: 4,
+      borderTopEndRadius: 4,
       shadowColor: '#000',
       padding: 20,
       shadowOffset: {
@@ -56,19 +58,30 @@ const AddCredentialSlider: React.FC = () => {
     drawerTitleText: {
       ...TextTheme.normal,
       fontWeight: 'bold',
-      marginVertical: 10,
+      marginVertical: 5,
     },
     drawerContentText: {
       ...TextTheme.normal,
+    },
+    drawerCloseIcon: {
+      alignSelf: 'flex-end',
+      position: 'absolute',
+      zIndex: 10,
+      padding: 12,
     },
     drawerRow: {
       flexDirection: 'row',
       justifyContent: 'flex-start',
       alignItems: 'center',
       marginVertical: 12,
+      marginRight: 20,
     },
     drawerRowItem: {
       color: ColorPallet.brand.primary,
+    },
+    drawerRowSeparator: {
+      borderBottomWidth: 0.25,
+      borderBottomColor: ColorPallet.brand.primary,
     },
   })
 
@@ -114,7 +127,7 @@ const AddCredentialSlider: React.FC = () => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TouchableOpacity
-            style={{ alignSelf: 'flex-end' }}
+            style={styles.drawerCloseIcon}
             testID={testIdWithKey('Close')}
             accessibilityLabel={t('Global.Close')}
             accessibilityRole={'button'}
@@ -125,25 +138,27 @@ const AddCredentialSlider: React.FC = () => {
           </TouchableOpacity>
 
           <Text style={styles.drawerTitleText}>{t('AddCredentialSlider.Title')}</Text>
+
           {showGetPersonCredential && (
             <TouchableOpacity
               style={styles.drawerRow}
-              onPress={goToPersonCredentialScreen}
-              testID={testIdWithKey(testIdForAccessabilityLabel(t('BCID.GetDigitalID')))}
-              accessibilityLabel={t('BCID.GetDigitalID')}
+              onPress={goToScanScreen}
+              testID={testIdWithKey(testIdForAccessabilityLabel(t('AddCredentialSlider.ScanQRCode')))}
+              accessibilityLabel={t('AddCredentialSlider.ScanQRCode')}
             >
-              <Icon name="credit-card" size={30} style={styles.drawerRowItem}></Icon>
-              <Text style={{ ...styles.drawerRowItem, marginLeft: 5 }}>{t('BCID.GetDigitalID')}</Text>
+              <Icon name="qrcode" size={30} style={styles.drawerRowItem}></Icon>
+              <Text style={{ ...styles.drawerRowItem, marginLeft: 5 }}>{t('CredentialDetails.ScanQrCode')}</Text>
             </TouchableOpacity>
           )}
+          <View style={[styles.drawerRowSeparator]}></View>
           <TouchableOpacity
             style={styles.drawerRow}
-            onPress={goToScanScreen}
-            testID={testIdWithKey(testIdForAccessabilityLabel(t('AddCredentialSlider.ScanQRCode')))}
-            accessibilityLabel={t('AddCredentialSlider.ScanQRCode')}
+            onPress={goToPersonCredentialScreen}
+            testID={testIdWithKey(testIdForAccessabilityLabel(t('BCID.GetDigitalID')))}
+            accessibilityLabel={t('BCID.GetDigitalID')}
           >
-            <Icon name="qrcode" size={30} style={styles.drawerRowItem}></Icon>
-            <Text style={{ ...styles.drawerRowItem, marginLeft: 5 }}>{t('CredentialDetails.ScanQrCode')}</Text>
+            <Icon name="credit-card" size={30} style={styles.drawerRowItem}></Icon>
+            <Text style={{ ...styles.drawerRowItem, marginLeft: 5 }}>{t('BCID.GetDigitalID')}</Text>
           </TouchableOpacity>
         </View>
       </View>

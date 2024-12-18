@@ -1,7 +1,7 @@
 const translation = {
   BCID: {
     GetID: 'Get BCID',
-    GetDigitalID: 'Get your QC Digital ID',
+    GetDigitalID: 'Add my Digital Government Authentication Certificate',
   },
   Onboarding: {
     SkipA11y: 'Skip',
