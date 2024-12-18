@@ -966,10 +966,12 @@ const translation = {
   AddCredentialSlider: {
     Choose: 'Choose',
     ScanQRCode: 'Scan a QR code',
+    Title: 'Add a Credential',
   },
   HelpCenter: {
     Help: 'Help',
     ButtonHelpCenter: 'Return to Help Center',
+    ConsultHelpCenter: 'Consult the help center',
   },
   About: {
     Accessibility: 'Accessibility',

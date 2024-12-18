@@ -43,8 +43,6 @@ const AddCredentialSlider: React.FC = () => {
     },
     modalView: {
       backgroundColor: ColorPallet.grayscale.white,
-      borderTopStartRadius: 20,
-      borderTopEndRadius: 20,
       shadowColor: '#000',
       padding: 20,
       shadowOffset: {
@@ -58,7 +56,6 @@ const AddCredentialSlider: React.FC = () => {
     drawerTitleText: {
       ...TextTheme.normal,
       fontWeight: 'bold',
-      textAlign: 'center',
       marginVertical: 10,
     },
     drawerContentText: {
@@ -117,6 +114,7 @@ const AddCredentialSlider: React.FC = () => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TouchableOpacity
+            style={{ alignSelf: 'flex-end' }}
             testID={testIdWithKey('Close')}
             accessibilityLabel={t('Global.Close')}
             accessibilityRole={'button'}
@@ -125,7 +123,8 @@ const AddCredentialSlider: React.FC = () => {
           >
             <Icon name="window-close" size={35} style={styles.drawerRowItem}></Icon>
           </TouchableOpacity>
-          <Text style={styles.drawerTitleText}>{t('AddCredentialSlider.Choose')}</Text>
+
+          <Text style={styles.drawerTitleText}>{t('AddCredentialSlider.Title')}</Text>
           {showGetPersonCredential && (
             <TouchableOpacity
               style={styles.drawerRow}

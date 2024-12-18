@@ -999,10 +999,12 @@ const translation = {
   AddCredentialSlider: {
     Choose: 'Choisir',
     ScanQRCode: 'Lire un code QR',
+    Title: 'Ajouter une attestation',
   },
   HelpCenter: {
     Help: 'Aide',
     ButtonHelpCenter: "Revenir au centre d'aide",
+    ConsultHelpCenter: "Consulter le centre d'aide",
   },
   About: {
     Accessibility: 'Accessibilité',
