@@ -1,7 +1,7 @@
 const translation = {
   BCID: {
     GetID: 'Obtenir BCID',
-    GetDigitalID: 'Ajouter mon Attestation numérique d’authentification gouvernementale',
+    GetDigitalID: 'Obtenez votre identité numérique QC.',
   },
   Onboarding: {
     SkipA11y: 'Sauter',
@@ -116,6 +116,8 @@ const translation = {
     OpenSettings: 'Ourvir Paramètres',
   },
   Biometry: {
+    On: 'Biométrie activé',
+    Off: 'Biométrie désactivé',
     Toggle: 'Activer la biométrie',
     EnabledText1:
       'Déverrouillez votre portefeuille avec la biométrie de votre appareil au lieu d’utiliser le NIP du portefeuille.',
@@ -440,7 +442,7 @@ const translation = {
     Revoked: 'Révoqué',
     Choose: 'Choisir',
     GetPersonCred: "Obtenez votre attestation d'identité",
-    ScanQrCode: 'Balayer un code QR',
+    ScanQrCode: 'Lire un code QR',
     CredentialRevokedMessageTitle: 'Cette attestation est révoquée',
     CredentialRevokedMessageBody:
       "Cette attestation peut ne plus fonctionner pour certaines demandes de preuve. Le cas échéant, vous devrez mettre à jour l'attestation avec l'émetteur.",
@@ -998,13 +1000,11 @@ const translation = {
   },
   AddCredentialSlider: {
     Choose: 'Choisir',
-    ScanQRCode: 'Balayer un code QR',
-    Title: 'Ajouter une attestation',
+    ScanQRCode: 'Lire un code QR',
   },
   HelpCenter: {
     Help: 'Aide',
     ButtonHelpCenter: "Revenir au centre d'aide",
-    ConsultHelpCenter: "Consulter le centre d'aide",
   },
   About: {
     Accessibility: 'Accessibilité',

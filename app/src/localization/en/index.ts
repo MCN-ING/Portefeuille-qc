@@ -115,6 +115,8 @@ const translation = {
     OpenSettings: 'Open settings',
   },
   Biometry: {
+    On: 'Biométrics unabled',
+    Off: 'Biométrics disabled',
     Toggle: 'Toggle Biometrics',
     EnabledText1: "  Log in with your phone's biometrics instead of your wallet PIN.",
     EnabledText1Bold:
