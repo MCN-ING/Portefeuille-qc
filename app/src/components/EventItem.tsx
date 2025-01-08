@@ -211,7 +211,7 @@ const EventItem = ({
       setToastEnabled(true)
     }
     return (
-      <TouchableOpacity onPress={onDelete} accessible={true} accessibilityRole="button">
+      <TouchableOpacity onPress={onDelete} accessibilityRole="button">
         <View style={styles.rightAction}>
           <MaterialCommunityIcon name={'trash-can-outline'} size={20} style={styles.rightActionIcon} />
           <Text style={styles.rightActionText}>{t('Notifications.Dismiss')}</Text>

@@ -115,8 +115,8 @@ const translation = {
     OpenSettings: 'Open settings',
   },
   Biometry: {
-    On: 'Biométrics unabled',
-    Off: 'Biométrics disabled',
+    On: 'Biometrics unabled',
+    Off: 'Biometrics disabled',
     Toggle: 'Toggle Biometrics',
     EnabledText1: "  Log in with your phone's biometrics instead of your wallet PIN.",
     EnabledText1Bold:
@@ -974,6 +974,7 @@ const translation = {
     Help: 'Help',
     ButtonHelpCenter: 'Return to Help Center',
     ConsultHelpCenter: 'Consult the help center',
+    OptionsList: 'Click to open the list of options',
   },
   About: {
     Accessibility: 'Accessibility',

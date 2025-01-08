@@ -50,7 +50,6 @@ const AccordionItem = ({
         onPress={() => toggleListItem()}
         testID={testID}
         style={[styles.container, containerStyle]}
-        accessible={true}
         accessibilityRole="button"
         accessibilityState={{ expanded: showContent }}
       >
