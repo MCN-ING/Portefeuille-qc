@@ -134,8 +134,7 @@ const EventItem = ({
 
   const body = (
     <Pressable
-      accessible={true}
-      accessibilityLabel={t('Global.View')}
+      // accessibilityLabel={t('Global.View')}
       accessibilityRole={'button'}
       testID={testIdWithKey(`View${event.id}`)}
       onPress={pressAction}
@@ -144,7 +143,7 @@ const EventItem = ({
         setSelected?.({ id: event.id, deleteAction: handleDelete })
       }}
     >
-      <View style={[styles.container]} testID={testIdWithKey('NotificationListItem')} accessible={true}>
+      <View style={[styles.container]} testID={testIdWithKey('NotificationListItem')}>
         {event.image}
         <View style={styles.infoContainer}>
           <Text style={[styles.headerText]} testID={testIdWithKey('HeaderText')}>
@@ -211,7 +210,7 @@ const EventItem = ({
       setToastEnabled(true)
     }
     return (
-      <TouchableOpacity onPress={onDelete} accessibilityRole="button">
+      <TouchableOpacity onPress={onDelete}>
         <View style={styles.rightAction}>
           <MaterialCommunityIcon name={'trash-can-outline'} size={20} style={styles.rightActionIcon} />
           <Text style={styles.rightActionText}>{t('Notifications.Dismiss')}</Text>
