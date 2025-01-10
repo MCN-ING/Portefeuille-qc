@@ -106,24 +106,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      # - name: Cache pod dependencies
-      #   id: pod-cache
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: |
-      #       app/ios/Pods
-      #       ~/Library/Caches/CocoaPods
-      #       ~/.cocoapods
-      #     key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-pods-
+      - name: Cache pod dependencies
+        id: pod-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            app/ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
 
-      # - name: Restore cached derived data
-      #   id: cache-dd-restore
-      #   uses: actions/cache/restore@v4
-      #   with:
-      #     path: app/ios/xbuild/Build
-      #     key: ${{ runner.os }}-dd-xcode
+      - name: Restore cached derived data
+        id: cache-dd-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: app/ios/xbuild/Build
+          key: ${{ runner.os }}-dd-xcode
 
       - name: Install dependencies
         working-directory: ./
