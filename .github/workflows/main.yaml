@@ -98,9 +98,9 @@ jobs:
           sudo xcode-select -p
 
       - name: Determine Hermes version
-        id: hermes-version
+        working-directory: app/ios
         run: |
-          echo "version=$(node -p "require('./node_modules/react-native/package.json').dependencies['hermes-engine']")" >> $GITHUB_ENV
+          cat Pods/Local\ Podspecs/hermes-engine.podspec.json
         shell: bash
 
       - name: Cached pip dependencies
@@ -140,10 +140,6 @@ jobs:
       - name: Install iOS dependencies
         working-directory: app
         run: |
-          if ! diff ios/Podfile.lock Pods/Local\ Podspecs/hermes-engine.podspec > /dev/null; then
-            echo "Updating hermes-engine pod..."
-            pod update hermes-engine --no-repo-update
-          fi
           yarn run ios:setup && \
           git status && \
           git diff ios/Podfile.lock
