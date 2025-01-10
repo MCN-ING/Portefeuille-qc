@@ -1,7 +1,6 @@
 name: Native Build & Test
 
 env:
-  cacheId: "6" # increment to expire the cache
   appBuildNumber: ${{ github.run_number }}
   appBuildVersion: "0.0.3"
 
@@ -134,7 +133,6 @@ jobs:
       - name: Install iOS dependencies
         working-directory: app
         run: |
-          cat ios/Pods/Local\ Podspecs/hermes-engine.podspec.json \
           yarn run ios:setup && \
           git status && \
           git diff ios/Podfile.lock
