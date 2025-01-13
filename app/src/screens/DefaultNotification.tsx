@@ -79,25 +79,25 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
           <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.ANIGRequest')}</Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.ANIGAcceptDescription')}</Text>
         </View>
+        <View style={styles.button}>
+          <Button
+            buttonType={ButtonType.Primary}
+            testID={testIdWithKey('StartProcess')}
+            accessibilityLabel={t('DefaultNotificationPage.ButtonTitle')}
+            title={t('DefaultNotificationPage.ButtonTitle')}
+            onPress={async () => await Linking.openURL(urlGestionDeCompteSag)}
+          ></Button>
+        </View>
+        <View style={styles.button}>
+          <Button
+            buttonType={ButtonType.Secondary}
+            testID={testIdWithKey('StartProcess')}
+            accessibilityLabel={t('Global.GoBack')}
+            title={t('Global.GoBack')}
+            onPress={() => navigation.goBack()}
+          ></Button>
+        </View>
       </ScrollView>
-      <View style={styles.button}>
-        <Button
-          buttonType={ButtonType.Primary}
-          testID={testIdWithKey('StartProcess')}
-          accessibilityLabel={t('DefaultNotificationPage.ButtonTitle')}
-          title={t('DefaultNotificationPage.ButtonTitle')}
-          onPress={async () => await Linking.openURL(urlGestionDeCompteSag)}
-        ></Button>
-      </View>
-      <View style={styles.button}>
-        <Button
-          buttonType={ButtonType.Secondary}
-          testID={testIdWithKey('StartProcess')}
-          accessibilityLabel={t('Global.GoBack')}
-          title={t('Global.GoBack')}
-          onPress={() => navigation.goBack()}
-        ></Button>
-      </View>
     </SafeAreaView>
   )
 }
