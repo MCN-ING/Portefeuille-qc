@@ -22,7 +22,7 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
 
   const styles = StyleSheet.create({
     container: {
-      height: '77%',
+      height: '100%',
       padding: 20,
       marginBottom: 20,
       backgroundColor: ColorPallet.brand.primaryBackground,
