@@ -23,6 +23,7 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
   const styles = StyleSheet.create({
     container: {
       height: '100%',
+      //flex: 3,
       padding: 20,
       marginBottom: 20,
       backgroundColor: ColorPallet.brand.primaryBackground,
@@ -36,6 +37,9 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
       ...TextTheme.title,
       flexShrink: 1,
       color: TextTheme.bold.color,
+    },
+    buttonContainer: {
+      marginBottom: 30,
     },
     button: {
       margin: 20,
@@ -79,23 +83,25 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
           <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.ANIGRequest')}</Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.ANIGAcceptDescription')}</Text>
         </View>
-        <View style={styles.button}>
-          <Button
-            buttonType={ButtonType.Primary}
-            testID={testIdWithKey('StartProcess')}
-            accessibilityLabel={t('DefaultNotificationPage.ButtonTitle')}
-            title={t('DefaultNotificationPage.ButtonTitle')}
-            onPress={async () => await Linking.openURL(urlGestionDeCompteSag)}
-          ></Button>
-        </View>
-        <View style={styles.button}>
-          <Button
-            buttonType={ButtonType.Secondary}
-            testID={testIdWithKey('StartProcess')}
-            accessibilityLabel={t('Global.GoBack')}
-            title={t('Global.GoBack')}
-            onPress={() => navigation.goBack()}
-          ></Button>
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button
+              buttonType={ButtonType.Primary}
+              testID={testIdWithKey('StartProcess')}
+              accessibilityLabel={t('DefaultNotificationPage.ButtonTitle')}
+              title={t('DefaultNotificationPage.ButtonTitle')}
+              onPress={async () => await Linking.openURL(urlGestionDeCompteSag)}
+            ></Button>
+          </View>
+          <View style={styles.button}>
+            <Button
+              buttonType={ButtonType.Secondary}
+              testID={testIdWithKey('StartProcess')}
+              accessibilityLabel={t('Global.GoBack')}
+              title={t('Global.GoBack')}
+              onPress={() => navigation.goBack()}
+            ></Button>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
