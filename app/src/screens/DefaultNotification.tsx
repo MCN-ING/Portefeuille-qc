@@ -21,11 +21,11 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
   const { t } = useTranslation()
 
   const styles = StyleSheet.create({
+    safeArea: {
+      flex: 1,
+    },
     container: {
-      height: '100%',
-      //flex: 3,
-      padding: 20,
-      marginBottom: 20,
+      padding: 16,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
     textHeaderTitle: {
@@ -69,7 +69,7 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
   })
 
   return (
-    <SafeAreaView edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'bottom']}>
       <ScrollView style={styles.container}>
         <View style={styles.section}>
           <HeaderText title={t('DefaultNotificationPage.Title')} />
