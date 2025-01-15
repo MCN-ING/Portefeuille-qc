@@ -107,7 +107,7 @@ export const iasEnvironments = {
   },
 }
 
-export const defaultEnv = (Config.ENV as IASEnvironmentKeys) ?? 'PRODUCTION'
+export const defaultEnv = (Config.ENVIRONMENT as IASEnvironmentKeys) ?? 'PRODUCTION'
 
 const developerState: Developer = {
   environment: {
