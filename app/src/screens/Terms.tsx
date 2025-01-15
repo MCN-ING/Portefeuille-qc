@@ -109,10 +109,10 @@ const Terms = () => {
         </View>
       )}
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ marginTop: agreedToPreviousTerms ? 20 : 0 }}>
+        <View style={{ marginTop: agreedToPreviousTerms ? 20 : 0, marginBottom: 20 }}>
           <HeaderText title={t('Screens.Terms')} />
         </View>
-        <Text style={[style.title, { marginTop: 20 }]} accessibilityRole="header">
+        <Text style={[style.title]} accessibilityRole="header">
           {t('TermsV2.Consent.title')}
         </Text>
         <Text style={[style.bodyText, { marginTop: 20 }]}>{t('TermsV2.Consent.body')}</Text>
@@ -120,44 +120,34 @@ const Terms = () => {
         <Text style={[style.title, { marginTop: 20 }]} accessibilityRole="header">
           {t('TermsV2.Consent.PersonalUse.title')}
         </Text>
-        <Text style={[style.bodyText, { marginTop: 20, marginBottom: 20 }]}>
-          {t('TermsV2.Consent.PersonalUse.body')}
-        </Text>
+        <Text style={[style.bodyText, { marginVertical: 20 }]}>{t('TermsV2.Consent.PersonalUse.body')}</Text>
 
-        <Text style={[style.title, { marginTop: 20 }]} accessibilityRole="header">
+        <Text style={[style.title]} accessibilityRole="header">
           {t('TermsV2.Consent.PersonalUse.subsection.title')}
         </Text>
-        <Text style={[style.bodyText, { marginTop: 20, marginBottom: 20 }]}>
-          {t('TermsV2.Consent.PersonalUse.subsection.body')}
-        </Text>
+        <Text style={[style.bodyText, { marginVertical: 20 }]}>{t('TermsV2.Consent.PersonalUse.subsection.body')}</Text>
 
-        <Text style={[style.title, { marginTop: 20 }]} accessibilityRole="header">
+        <Text style={[style.title]} accessibilityRole="header">
           {t('TermsV2.Consent.IdentityTheft.title')}
         </Text>
-        <Text style={[style.bodyText, { marginTop: 20, marginBottom: 20 }]}>
-          {t('TermsV2.Consent.IdentityTheft.body')}
-        </Text>
+        <Text style={[style.bodyText, { marginVertical: 20 }]}>{t('TermsV2.Consent.IdentityTheft.body')}</Text>
 
-        <Text style={[style.title, { marginTop: 20 }]} accessibilityRole="header">
+        <Text style={[style.title]} accessibilityRole="header">
           {t('TermsV2.Consent.IdentityTheft.subsection.title')}
         </Text>
-        <Text style={[style.bodyText, { marginTop: 20, marginBottom: 20 }]}>
+        <Text style={[style.bodyText, { marginVertical: 20 }]}>
           {t('TermsV2.Consent.IdentityTheft.subsection.body')}
         </Text>
 
-        <Text style={[style.title, { marginTop: 20 }]} accessibilityRole="header">
+        <Text style={[style.title]} accessibilityRole="header">
           {t('TermsV2.Consent.Privacy.title')}
         </Text>
-        <Text style={[style.bodyText, { marginTop: 20, marginBottom: 20, marginVertical: 20 }]}>
-          {t('TermsV2.Consent.Privacy.body')}
-        </Text>
+        <Text style={[style.bodyText, { marginVertical: 20 }]}>{t('TermsV2.Consent.Privacy.body')}</Text>
 
-        <Text style={[style.title, { marginTop: 20 }]} accessibilityRole="header">
+        <Text style={[style.title]} accessibilityRole="header">
           {t('TermsV2.Consent.Privacy.subsection.title')}
         </Text>
-        <Text style={[style.bodyText, { marginTop: 20, marginBottom: 20, marginVertical: 20 }]}>
-          {t('TermsV2.Consent.Privacy.subsection.body')}
-        </Text>
+        <Text style={[style.bodyText, { marginVertical: 20 }]}>{t('TermsV2.Consent.Privacy.subsection.body')}</Text>
 
         <View style={[style.controlsContainer]}>
           {!(agreesToCurrentTerms && agreedToPreviousTerms && store.authentication.didAuthenticate) && (
