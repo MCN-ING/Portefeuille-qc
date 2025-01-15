@@ -5,6 +5,7 @@ import {
   testIdWithKey,
   Screens,
   NotificationStackParams,
+  useStore,
 } from '@hyperledger/aries-bifold-core'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useTranslation } from 'react-i18next'
@@ -12,19 +13,24 @@ import { Linking, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import HeaderText from '../components/HeaderText'
-import { urlGestionDeCompteSag } from '../constants'
+import { BCState, IASEnvironmentKeys, iasEnvironments } from '../store'
 
 type DefaultProps = StackScreenProps<NotificationStackParams, Screens.CustomNotification>
 
 const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProps) => {
   const { ColorPallet, TextTheme } = useTheme()
   const { t } = useTranslation()
+  const [store] = useStore<BCState>()
+
+  const urlGestionDeCompteSag =
+    iasEnvironments[Object.keys(store.developer.environment)[0] as IASEnvironmentKeys].iasPortalUrl
 
   const styles = StyleSheet.create({
+    safeArea: {
+      flex: 1,
+    },
     container: {
-      height: '77%',
-      padding: 20,
-      marginBottom: 20,
+      padding: 16,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
     textHeaderTitle: {
@@ -36,6 +42,9 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
       ...TextTheme.title,
       flexShrink: 1,
       color: TextTheme.bold.color,
+    },
+    buttonContainer: {
+      marginBottom: 30,
     },
     button: {
       margin: 20,
@@ -65,39 +74,45 @@ const DefaultNotification: React.FC<DefaultProps> = ({ navigation }: DefaultProp
   })
 
   return (
-    <SafeAreaView edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'bottom']}>
       <ScrollView style={styles.container}>
         <View style={styles.section}>
           <HeaderText title={t('DefaultNotificationPage.Title')} />
           <Text style={styles.sectionDescriptionTitle}> {t('DefaultNotificationPage.Description')}</Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.SAGConnexion')}</Text>
+          <Text style={styles.textSectionTitle} accessibilityRole="header">
+            {t('DefaultNotificationPage.SAGConnexion')}
+          </Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.SAGConnexionDescription')}</Text>
         </View>
         <View style={[styles.sectionBottom, styles.section]}>
-          <Text style={styles.textSectionTitle}>{t('DefaultNotificationPage.ANIGRequest')}</Text>
+          <Text style={styles.textSectionTitle} accessibilityRole="header">
+            {t('DefaultNotificationPage.ANIGRequest')}
+          </Text>
           <Text style={styles.sectionDescription}> {t('DefaultNotificationPage.ANIGAcceptDescription')}</Text>
         </View>
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button
+              buttonType={ButtonType.Primary}
+              testID={testIdWithKey('StartProcess')}
+              accessibilityLabel={t('DefaultNotificationPage.ButtonTitle')}
+              title={t('DefaultNotificationPage.ButtonTitle')}
+              onPress={async () => await Linking.openURL(urlGestionDeCompteSag)}
+            ></Button>
+          </View>
+          <View style={styles.button}>
+            <Button
+              buttonType={ButtonType.Secondary}
+              testID={testIdWithKey('StartProcess')}
+              accessibilityLabel={t('Global.GoBack')}
+              title={t('Global.GoBack')}
+              onPress={() => navigation.goBack()}
+            ></Button>
+          </View>
+        </View>
       </ScrollView>
-      <View style={styles.button}>
-        <Button
-          buttonType={ButtonType.Primary}
-          testID={testIdWithKey('StartProcess')}
-          accessibilityLabel={t('DefaultNotificationPage.ButtonTitle')}
-          title={t('DefaultNotificationPage.ButtonTitle')}
-          onPress={async () => await Linking.openURL(urlGestionDeCompteSag)}
-        ></Button>
-      </View>
-      <View style={styles.button}>
-        <Button
-          buttonType={ButtonType.Secondary}
-          testID={testIdWithKey('StartProcess')}
-          accessibilityLabel={t('Global.GoBack')}
-          title={t('Global.GoBack')}
-          onPress={() => navigation.goBack()}
-        ></Button>
-      </View>
     </SafeAreaView>
   )
 }

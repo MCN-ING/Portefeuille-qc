@@ -23,6 +23,8 @@ const Plus = () => {
   const styles = StyleSheet.create({
     container: {
       paddingHorizontal: 16,
+    },
+    innerContainer: {
       marginVertical: 24,
     },
     textHeaderTitle: {
@@ -56,7 +58,7 @@ const Plus = () => {
   return (
     <SafeAreaView edges={['left', 'right']}>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <View>
+        <View style={styles.innerContainer}>
           <View style={styles.button}>
             <Button
               buttonType={ButtonType.Secondary}
@@ -94,7 +96,9 @@ const Plus = () => {
             />
           </View>
           <View style={styles.section}>
-            <Text style={styles.textHeaderTitle}>{t('OptionsPlus.TitleSupport')}</Text>
+            <Text style={styles.textHeaderTitle} accessibilityRole="header">
+              {t('OptionsPlus.TitleSupport')}
+            </Text>
             <Text style={styles.sectionDescription}>{t('OptionsPlus.DetailSupport')}</Text>
           </View>
           <ContactUs />

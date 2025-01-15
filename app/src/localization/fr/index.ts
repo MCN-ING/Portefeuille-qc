@@ -823,6 +823,8 @@ const translation = {
     PlayWithBCWallet: 'Jouer avec le Portefeuille Québec',
     ForcedUpdates: 'Utiliser la mise à jour forcée',
     ToggleForcedUpdates: 'Basculer la mise à jour forcée',
+    ManageEnvironment: "Gérer l'environnement",
+    ToggleManageEnvironment: "Basculer la gestion de l'environnement",
   },
   Tour: {
     GuideTitle: 'Bienvenue au Portefeuille numérique',
@@ -1005,6 +1007,7 @@ const translation = {
   HelpCenter: {
     Help: 'Aide',
     ButtonHelpCenter: "Revenir au centre d'aide",
+    ConsultHelpCenter: "Consulter le centre d'aide",
     OptionsList: 'Cliquez pour ouvrir la liste des options',
   },
   About: {
