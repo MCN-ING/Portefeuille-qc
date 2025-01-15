@@ -11,7 +11,7 @@ import {
 } from '@hyperledger/aries-bifold-core'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
@@ -25,6 +25,7 @@ const Terms = () => {
   const agreedToPreviousTerms = store.onboarding.didAgreeToTerms
   const agreesToCurrentTerms = store.onboarding.didAgreeToTerms === TermsVersion
   const [checked, setChecked] = useState(agreedToPreviousTerms && agreesToCurrentTerms)
+  const [didAuthenticate, setDidAuthenticate] = useState(store.authentication.didAuthenticate)
   const { t } = useTranslation()
   const navigation = useNavigation<StackNavigationProp<AuthenticateStackParams>>()
   const { ColorPallet, TextTheme } = useTheme()
@@ -74,6 +75,10 @@ const Terms = () => {
     },
   })
 
+  useEffect(() => {
+    setDidAuthenticate(store.authentication.didAuthenticate)
+  }, [store.authentication.didAuthenticate])
+
   const onSubmitPressed = useCallback(() => {
     dispatch({
       type: DispatchAction.DID_AGREE_TO_TERMS,
@@ -96,7 +101,7 @@ const Terms = () => {
 
   return (
     <View style={[style.container]}>
-      {!agreedToPreviousTerms && !agreesToCurrentTerms && (
+      {((!agreedToPreviousTerms && !agreesToCurrentTerms) || !didAuthenticate) && (
         <View style={style.progressContainer}>
           <View style={{ marginHorizontal: 50 }}>
             <Progress progressPercent={33.3333} progressText={t('TermsV2.ProgressBarText')} progressFill="primary" />
