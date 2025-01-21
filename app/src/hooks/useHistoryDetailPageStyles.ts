@@ -8,11 +8,15 @@ const useHistoryDetailPageStyles = () => {
     container: {
       flex: 1,
       backgroundColor: ColorPallet.brand.primaryBackground,
+      padding: 20,
     },
     contentContainer: {
-      height: '100%',
-      padding: 20,
+      flex: 1,
+      paddingHorizontal: 20,
       backgroundColor: ColorPallet.brand.primaryBackground,
+    },
+    headerStyle: {
+      paddingTop: 20,
     },
     subTitle: {
       marginBottom: 20,
