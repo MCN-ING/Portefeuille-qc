@@ -838,7 +838,7 @@ const translation = {
       'The guided tour gives you an overview of the possibilities available to you when you access an application interface for the first time.',
     Text2: 'The guided tour is useful when it is a first use of the application, or to refresh your memory.',
     SwitchText: 'Use the instructions for use',
-    On: 'Guided tour unabled',
+    On: 'Guided tour enabled',
     Off: 'Guided tour disabled',
     TourActivateButton: 'Relaunch the advice',
   },
