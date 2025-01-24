@@ -37,12 +37,14 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 import HeaderText from '../components/HeaderText'
 import Progress from '../components/Progress'
-import { CustomModal } from '../components/modals/CustomModal'
+import { CustomModal, CustomModalProps } from '../components/modals/CustomModal'
 
 enum UseBiometryUsage {
   InitialSetup,
   ToggleOnOff,
 }
+
+type SettingsPopup = Pick<CustomModalProps, 'title' | 'description' | 'primary' | 'secondary' | 'onDismissPressed'>
 
 const UseBiometry: React.FC = () => {
   const [store, dispatch] = useStore()
@@ -55,12 +57,7 @@ const UseBiometry: React.FC = () => {
   const [biometryAvailable, setBiometryAvailable] = useState(false)
   const [biometryEnabled, setBiometryEnabled] = useState(store.preferences.useBiometry)
   const [continueEnabled, setContinueEnabled] = useState(true)
-  const [settingsPopupConfig, setSettingsPopupConfig] = useState<null | {
-    title: string
-    description: string
-    primary?: { label: string; action: () => void }
-    secondary?: { label: string; action: () => void }
-  }>(null)
+  const [settingsPopupConfig, setSettingsPopupConfig] = useState<null | SettingsPopup>(null)
   const [canSeeCheckPIN, setCanSeeCheckPIN] = useState<boolean>(false)
   const { ColorPallet, TextTheme } = useTheme()
   const { ButtonLoading } = useAnimatedComponents()
@@ -296,6 +293,7 @@ const UseBiometry: React.FC = () => {
           primary:
             Platform.OS === 'ios' ? { label: t('Global.GoToSettings'), action: onOpenSettingsTouched } : undefined,
           secondary: { label: t('Global.Close'), action: onOpenSettingsDismissed },
+          onDismissPressed: onOpenSettingsDismissed,
         })
         break
       case RESULTS.DENIED:
@@ -307,6 +305,7 @@ const UseBiometry: React.FC = () => {
             description: t('Biometry.SetupBiometricsDesc'),
             primary: { label: t('Global.GoToSettings'), action: onOpenRootSettingsTouch },
             secondary: { label: t('Global.Close'), action: onOpenSettingsDismissed },
+            onDismissPressed: onOpenSettingsDismissed,
           })
           return
         }

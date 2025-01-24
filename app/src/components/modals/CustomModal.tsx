@@ -15,8 +15,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { hitSlop } from '../../constants'
 import HeaderText from '../HeaderText'
 
-interface CustomModalProps {
+export interface CustomModalProps {
   title: string
+  onDismissPressed: () => void
   description?: string
   primary?: {
     label: string
@@ -26,7 +27,6 @@ interface CustomModalProps {
     label: string
     action: () => void
   }
-  onDismissPressed: () => void
 }
 
 export const CustomModal = ({ title, description, primary, secondary, onDismissPressed }: CustomModalProps) => {
