@@ -8,7 +8,7 @@ import { GroupedSharedProofDataItem } from '@hyperledger/aries-bifold-verifier'
 import { StackScreenProps } from '@react-navigation/stack'
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SafeAreaView, View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native'
+import { SafeAreaView, View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import HeaderText from '../../components/HeaderText'
@@ -40,6 +40,25 @@ const ProofHistoryDetails: React.FC<ProofHistoryDetailsProp> = ({ route, navigat
       setIsLoading(false)
     }
   }, [record])
+
+  const confirmDeleteHistory = () => {
+    Alert.alert(
+      t('History.Button.DeleteHistory'),
+      t('History.ConfirmDeleteHistory'),
+      [
+        { text: t('Global.Cancel'), style: 'cancel' },
+        {
+          text: t('Global.Confirm'),
+          style: 'destructive',
+          onPress: async () => {
+            await handleDeleteHistory(item.content.id || '', agent, loadHistory)
+            navigation.goBack()
+          },
+        },
+      ],
+      { cancelable: true }
+    )
+  }
 
   const onSharedProofDataLoad = useCallback((data: GroupedSharedProofDataItem[]) => {
     setSharedProofDataItems(data)
@@ -80,7 +99,7 @@ const ProofHistoryDetails: React.FC<ProofHistoryDetailsProp> = ({ route, navigat
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistory(item.content.id || '', agent, loadHistory, navigation, t)}
+        onPress={confirmDeleteHistory}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >

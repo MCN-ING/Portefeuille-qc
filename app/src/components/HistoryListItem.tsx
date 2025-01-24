@@ -8,9 +8,8 @@ import {
 import { formatTime } from '@hyperledger/aries-bifold-core/App/utils/helpers'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Toast from 'react-native-toast-message'
 
-import { renderCardIcon } from '../utils/historyUtils'
+import { renderCardIcon, handleDeleteHistory } from '../utils/historyUtils'
 
 import CustomCheckBox from './CustomCheckBox'
 import EventItem from './EventItem'
@@ -110,19 +109,8 @@ const HistoryListItem: React.FC<Props> = ({
 
   const removeHistoryItem = async () => {
     if (!historyManager) return
-    try {
-      const record = await historyManager.findGenericRecordById(item.content.id || '')
-      if (record) {
-        await historyManager.removeGenericRecord(record)
-        onDelete(item.content.id ?? '')
-      }
-    } catch (error) {
-      Toast.show({
-        type: 'error',
-        text1: t('Error.FailedToDelete'),
-        text2: t('Error.UnexpectedError'),
-      })
-    }
+    await handleDeleteHistory(item.content.id || '', agent, loadHistory)
+    onDelete(item.content.id ?? '')
   }
 
   return (

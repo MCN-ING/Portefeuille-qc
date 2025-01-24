@@ -1,7 +1,7 @@
 import { Agent } from '@credo-ts/core'
 import { HistoryCardType, IHistoryManager } from '@hyperledger/aries-bifold-core/App/modules/history/types'
-import { NavigationProp } from '@react-navigation/native'
-import { Alert } from 'react-native'
+import { CredentialMetadata } from '@hyperledger/aries-bifold-core/App/types/metadata'
+import { useTranslation } from 'react-i18next'
 import Toast from 'react-native-toast-message'
 
 // SVG Imports
@@ -14,54 +14,50 @@ import FleurLysImg from '../assets/img/FleurLys.svg'
 import MessageImg from '../assets/img/Message.svg'
 import ProofRequestImg from '../assets/img/ProofRequest.svg'
 import RevocationImg from '../assets/img/RevokeIconCircle.svg'
-import { ActivitiesStackParams } from '../navigators/navigators'
 
 /**
- * Handles the deletion of a history event with confirmation.
+ * Handles the deletion of a history event.
  *
  * @param itemId - The identifier of the item to be deleted.
  * @param agent - The agent used to interact with the history manager.
  * @param loadHistory - Function to load the history manager for the given agent.
- * @param navigation - Navigation object to allow returning to the previous screen.
- * @param t - Translation function for localized messages.
  */
 export const handleDeleteHistory = async (
   itemId: string,
   agent: Agent | undefined,
-  loadHistory: (agent: Agent) => IHistoryManager | undefined,
-  navigation: NavigationProp<ActivitiesStackParams>,
-  t: (key: string) => string
-) => {
-  Alert.alert(
-    t('History.Button.DeleteHistory'),
-    t('History.ConfirmDeleteHistory'),
-    [
-      { text: t('Global.Cancel'), style: 'cancel' },
-      {
-        text: t('Global.Confirm'),
-        style: 'destructive',
-        onPress: async () => {
-          try {
-            const historyManager = agent ? loadHistory(agent) : undefined
-            if (historyManager) {
-              const record = await historyManager.findGenericRecordById(itemId || '')
-              if (record) {
-                await historyManager.removeGenericRecord(record)
-                navigation.goBack()
-              }
-            }
-          } catch (error) {
-            Toast.show({
-              type: 'error',
-              text1: t('Error.FailedToDelete'),
-              text2: t('Error.UnexpectedError'),
-            })
+  loadHistory: (agent: Agent) => IHistoryManager | undefined
+): Promise<void> => {
+  const { t } = useTranslation()
+
+  try {
+    const historyManager = agent ? loadHistory(agent) : undefined
+    if (historyManager) {
+      const record = await historyManager.findGenericRecordById(itemId || '')
+      // Delete the history record
+      if (record) {
+        await historyManager.removeGenericRecord(record)
+
+        // Additional cleanup for revocation notifications
+        const notificationRecord = agent ? await agent.credentials.findById(itemId) : undefined
+        if (notificationRecord?.revocationNotification) {
+          const metadata = notificationRecord.metadata?.get(CredentialMetadata.customMetadata)
+          notificationRecord.metadata.set(CredentialMetadata.customMetadata, {
+            ...metadata,
+            revoked_seen: true,
+          })
+          if (agent) {
+            await agent.credentials.update(notificationRecord)
           }
-        },
-      },
-    ],
-    { cancelable: true }
-  )
+        }
+      }
+    }
+  } catch (error) {
+    Toast.show({
+      type: 'error',
+      text1: t('Error.FailedToDelete'),
+      text2: t('Error.UnexpectedError'),
+    })
+  }
 }
 
 /**
