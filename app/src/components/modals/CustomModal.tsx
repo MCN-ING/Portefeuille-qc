@@ -108,15 +108,13 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
                 </View>
               </ScrollView>
               <View style={styles.ActionContainer}>
-                {(primary || secondary) && (
-                  <Button
-                    title={primary?.label ?? secondary?.label ?? t('Global.Okay')}
-                    accessibilityLabel={primary?.label ?? secondary?.label ?? t('Global.Okay')}
-                    testID={testIdWithKey('ModalPrimaryAction')}
-                    buttonType={ButtonType.Primary}
-                    onPress={primary?.action ?? secondary?.action ?? onDismissPressed}
-                  />
-                )}
+                <Button
+                  title={primary?.label ?? secondary?.label ?? t('Global.Close')}
+                  accessibilityLabel={primary?.label ?? secondary?.label ?? t('Global.Close')}
+                  testID={testIdWithKey('ModalPrimaryAction')}
+                  buttonType={ButtonType.Primary}
+                  onPress={primary?.action ?? secondary?.action ?? onDismissPressed}
+                />
               </View>
               {primary && secondary && (
                 <View style={styles.ActionContainer}>
