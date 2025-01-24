@@ -54,6 +54,24 @@ const Tours: React.FC<ToursProps> = ({ navigation }) => {
     })
     setTourEnabled(!tourEnabled)
   }
+  const resetTours = () => {
+    dispatch({
+      type: DispatchAction.UPDATE_SEEN_HOME_TOUR,
+      payload: [false],
+    })
+    dispatch({
+      type: DispatchAction.UPDATE_SEEN_CREDENTIALS_TOUR,
+      payload: [false],
+    })
+    dispatch({
+      type: DispatchAction.UPDATE_SEEN_CREDENTIAL_OFFER_TOUR,
+      payload: [false],
+    })
+    dispatch({
+      type: DispatchAction.UPDATE_SEEN_PROOF_REQUEST_TOUR,
+      payload: [false],
+    })
+  }
 
   return (
     <SafeAreaView edges={['left', 'right', 'bottom']}>
@@ -92,7 +110,10 @@ const Tours: React.FC<ToursProps> = ({ navigation }) => {
               title={t('TourScreen.TourActivateButton')}
               accessibilityLabel={t('TourScreen.TourActivateButton')}
               testID={testIdWithKey('Relancé')}
-              onPress={() => navigation.navigate(Screens.Settings)}
+              onPress={() => {
+                navigation.navigate(Screens.Settings)
+                resetTours()
+              }}
               buttonType={ButtonType.Secondary}
             ></Button>
           )}
