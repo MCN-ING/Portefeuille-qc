@@ -61,6 +61,7 @@ const translation = {
       ErrorMsg: 'Unable to update the app.',
     },
     Loading: 'Loading',
+    GoToSettings: 'Go to Settings',
   },
   Language: {
     code_en: 'English',
@@ -119,6 +120,12 @@ const translation = {
     OpenSettings: 'Open settings',
   },
   Biometry: {
+    BiometryDisabled: 'Biometry disabled',
+    SetupBiometricsDesc:
+      'Pour utiliser la biométrie, vous devez configurez vos empreintes digitales ou la reconnaissance faciale.\n\nVeuillez suivre les instructions fournies par le fabricant de votre appareil pour les configurer.',
+    BiometryBlocked: 'Biometry sharing authorization required',
+    BiometryBlockedDesc:
+      "To use the biometry, you need to share your device's biometric data with the app.\n\nPlease authorize data sharing from your device's app settings.",
     On: 'Biometrics unabled',
     Off: 'Biometrics disabled',
     Toggle: 'Toggle Biometrics',
