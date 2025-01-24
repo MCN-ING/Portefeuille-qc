@@ -1026,7 +1026,7 @@ const translation = {
     CardTitle: {
       CardChanged: 'Card {{operation}}',
       InformationSent: 'Information sent to:',
-      ProofReqUpdated: 'Information sharing {{operation}}',
+      ProofReqUpdated: 'Proof request',
       ContactUpdated: 'Contact {{operation}}',
       WalletPinUpdated: 'Wallet PIN updated',
       BiometricUpdated: 'Biometrics is {{operation}}',
@@ -1035,7 +1035,7 @@ const translation = {
       Default: 'History Event',
     },
     CardDescription: {
-      Default: 'Government Digital Identity Attestation',
+      Proof: 'Proof request {{operation}}',
       CardChanged: 'Card {{cardName}} {{operation}}',
       ContactUpdated: '{{contactName}} has been {{operation}}.',
       WalletPinUpdated: 'New PIN set',
