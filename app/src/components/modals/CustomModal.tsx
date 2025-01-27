@@ -9,6 +9,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { hitSlop } from '../../constants'
@@ -38,9 +39,11 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 20,
+      paddingHorizontal: 20,
+      paddingVertical: 100,
       backgroundColor: ColorPallet.notification.popupOverlay,
       minHeight: height,
+      maxHeight: height,
       minWidth: width,
     },
     container: {
@@ -54,6 +57,9 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
       },
       shadowOpacity: 0.6,
       elevation: 5,
+    },
+    scrollViewStyle: {
+      flexGrow: 0,
     },
     titleContainer: {
       flexDirection: 'row',
@@ -87,11 +93,13 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
                   <Icon name={'clear'} size={30} color={ColorPallet.notification.infoIcon} />
                 </TouchableOpacity>
               </View>
-              <View>
-                <Text style={styles.bodyText} testID={testIdWithKey('BodyText')}>
-                  {description}
-                </Text>
-              </View>
+              <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollViewStyle}>
+                <View onStartShouldSetResponder={() => true}>
+                  <Text style={styles.bodyText} testID={testIdWithKey('BodyText')}>
+                    {description}
+                  </Text>
+                </View>
+              </ScrollView>
               <View style={styles.ActionContainer}>
                 <Button
                   title={primary?.label ?? secondary?.label ?? t('Global.Close')}
