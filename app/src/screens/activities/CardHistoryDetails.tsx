@@ -25,7 +25,7 @@ import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
 import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
 import { ColorPallet } from '../../theme'
-import { handleDeleteHistory } from '../../utils/historyUtils'
+import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 import { startCaseUnicode } from '../../utils/stringUtils'
 
 type CardHistorydDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.CardHistoryDetails>
@@ -98,7 +98,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
   }, [recordId])
 
   const operationDate = itemContent?.createdAt
-    ? formatTime(itemContent?.createdAt, { shortMonth: true, trim: true })
+    ? formatTime(new Date(itemContent?.createdAt), { shortMonth: true, trim: true })
     : t('Record.InvalidDate')
 
   if (isLoading) {
@@ -119,7 +119,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
             <View style={styles.headerStyle}>
               <HeaderText
                 title={t('History.CardDescription.CardChanged', {
-                  cardName: itemContent?.message ? startCaseUnicode(itemContent.message) : '',
+                  cardName: itemContent?.message ? startCaseUnicode(itemContent.correspondenceName || '') : '',
                   operation: operation,
                   interpolation: { escapeValue: false },
                 })}
@@ -141,7 +141,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistory(item.content.id || '', agent, loadHistory, navigation, t)}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >

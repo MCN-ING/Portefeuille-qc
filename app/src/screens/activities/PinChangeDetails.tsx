@@ -11,7 +11,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
 import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
-import { handleDeleteHistory } from '../../utils/historyUtils'
+import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 
 type PinChangeDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.PinChangeDetails>
 
@@ -43,7 +43,7 @@ const PinChangeDetails: React.FC<PinChangeDetailsProp> = ({ route, navigation })
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistory(item.content.id || '', agent, loadHistory, navigation, t)}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >

@@ -15,7 +15,7 @@ import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
 import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
 import { ColorPallet } from '../../theme'
-import { handleDeleteHistory } from '../../utils/historyUtils'
+import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 import { startCaseUnicode } from '../../utils/stringUtils'
 
 type ProofHistoryDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.ProofHistoryDetails>
@@ -80,7 +80,7 @@ const ProofHistoryDetails: React.FC<ProofHistoryDetailsProp> = ({ route, navigat
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistory(item.content.id || '', agent, loadHistory, navigation, t)}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >

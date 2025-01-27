@@ -12,7 +12,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
 import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
-import { handleDeleteHistory } from '../../utils/historyUtils'
+import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 import { startCaseUnicode } from '../../utils/stringUtils'
 
 type ContactHistoryDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.ContactHistoryDetails>
@@ -51,7 +51,7 @@ const ContactHistoryDetails: React.FC<ContactHistoryDetailsProp> = ({ route, nav
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistory(itemContent.id || '', agent, loadHistory, navigation, t)}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >
