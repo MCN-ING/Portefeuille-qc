@@ -1,7 +1,6 @@
 import { Agent } from '@credo-ts/core'
 import { HistoryCardType, IHistoryManager } from '@hyperledger/aries-bifold-core/App/modules/history/types'
 import { CredentialMetadata } from '@hyperledger/aries-bifold-core/App/types/metadata'
-import { useTranslation } from 'react-i18next'
 import Toast from 'react-native-toast-message'
 
 // SVG Imports
@@ -20,25 +19,23 @@ import RevocationImg from '../assets/img/RevokeIconCircle.svg'
  *
  * @param itemId - The identifier of the item to be deleted.
  * @param agent - The agent used to interact with the history manager.
- * @param loadHistory - Function to load the history manager for the given agent.
+ * @param t - Translation function from the `useTranslation` hook to handle localization.
  */
 export const handleDeleteHistory = async (
   itemId: string,
   agent: Agent | undefined,
-  loadHistory: (agent: Agent) => IHistoryManager | undefined
+  loadHistory: (agent: Agent) => IHistoryManager | undefined,
+  t: (key: string, options?: Record<string, unknown>) => string
 ): Promise<void> => {
-  const { t } = useTranslation()
-
   try {
     const historyManager = agent ? loadHistory(agent) : undefined
     if (historyManager) {
       const record = await historyManager.findGenericRecordById(itemId || '')
-      // Delete the history record
       if (record) {
+        const notificationRecord = agent
+          ? await agent.credentials.findById(record.content.correspondenceId as string)
+          : undefined
         await historyManager.removeGenericRecord(record)
-
-        // Additional cleanup for revocation notifications
-        const notificationRecord = agent ? await agent.credentials.findById(itemId) : undefined
         if (notificationRecord?.revocationNotification) {
           const metadata = notificationRecord.metadata?.get(CredentialMetadata.customMetadata)
           notificationRecord.metadata.set(CredentialMetadata.customMetadata, {

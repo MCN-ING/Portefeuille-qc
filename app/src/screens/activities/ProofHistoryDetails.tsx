@@ -51,7 +51,7 @@ const ProofHistoryDetails: React.FC<ProofHistoryDetailsProp> = ({ route, navigat
           text: t('Global.Confirm'),
           style: 'destructive',
           onPress: async () => {
-            await handleDeleteHistory(item.content.id || '', agent, loadHistory)
+            await handleDeleteHistory(item.content.id || '', agent, loadHistory, t)
             navigation.goBack()
           },
         },

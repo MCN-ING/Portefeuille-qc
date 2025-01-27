@@ -109,7 +109,7 @@ const HistoryListItem: React.FC<Props> = ({
 
   const removeHistoryItem = async () => {
     if (!historyManager) return
-    await handleDeleteHistory(item.content.id || '', agent, loadHistory)
+    await handleDeleteHistory(item.content.id || '', agent, loadHistory, t)
     onDelete(item.content.id ?? '')
   }
 

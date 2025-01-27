@@ -107,7 +107,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
           text: t('Global.Confirm'),
           style: 'destructive',
           onPress: async () => {
-            await handleDeleteHistory(item.content.id || '', agent, loadHistory)
+            await handleDeleteHistory(item.content.id || '', agent, loadHistory, t)
             navigation.goBack()
           },
         },
@@ -117,7 +117,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
   }
 
   const operationDate = itemContent?.createdAt
-    ? formatTime(itemContent?.createdAt, { shortMonth: true, trim: true })
+    ? formatTime(new Date(itemContent?.createdAt), { shortMonth: true, trim: true })
     : t('Record.InvalidDate')
 
   if (isLoading) {
