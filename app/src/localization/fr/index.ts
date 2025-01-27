@@ -67,6 +67,8 @@ const translation = {
     code_en: 'Anglais',
     code_fr: 'Français',
     'code_pt-BR': 'Portugais',
+    Checked: 'sélectionné',
+    NotChecked: 'non sélectionné',
   },
   Date: {
     ShortFormat: 'D MMM',
@@ -121,6 +123,8 @@ const translation = {
     OpenSettings: 'Ourvir Paramètres',
   },
   Biometry: {
+    BiometryHintActivate: 'Tapez pour activer',
+    BiometryHintDeactivate: 'Tapez pour désactiver',
     BiometryDisabled: 'Biométrie non activée',
     SetupBiometricsDesc:
       'Pour utiliser la biométrie, vous devez configurez vos empreintes digitales ou la reconnaissance faciale.\n\nVeuillez suivre les instructions fournies par le fabricant de votre appareil pour les configurer.',
@@ -827,6 +831,7 @@ const translation = {
     AppPreferences: "À propos de l'application : Préférences ",
     AboutApp: "À propos de l'application",
     Language: "Langue d'affichage",
+    LanguageHint: 'Tapez pour sélectionner',
     AppSettings: "Paramètres de l'application",
     WhatAreContacts: 'Qu’est-ce qu’un contact?',
     Developer: 'Fonctionnalité développeur',

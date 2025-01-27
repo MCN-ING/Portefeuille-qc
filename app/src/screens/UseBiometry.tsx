@@ -378,8 +378,14 @@ const UseBiometry: React.FC = () => {
             <Pressable
               testID={testIdWithKey('ToggleBiometrics')}
               accessible
+              accessibilityHint={
+                biometryEnabled ? t('Biometry.BiometryHintDeactivate') : t('Biometry.BiometryHintActivate')
+              }
               accessibilityLabel={biometryEnabled ? t('Biometry.On') : t('Biometry.Off')}
-              accessibilityRole={'switch'}
+              accessibilityState={{
+                selected: biometryEnabled,
+              }}
+              accessibilityRole={'togglebutton'}
             >
               <Switch
                 trackColor={{ false: ColorPallet.grayscale.lightGrey, true: ColorPallet.brand.primaryDisabled }}
