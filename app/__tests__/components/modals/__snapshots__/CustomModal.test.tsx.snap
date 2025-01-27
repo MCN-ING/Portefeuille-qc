@@ -48,9 +48,11 @@ exports[`DismissibleCustomModal Component Renders correctly with primary call to
           "backgroundColor": "rgba(0, 0, 0, 0.5)",
           "flex": 1,
           "justifyContent": "center",
+          "maxHeight": 1334,
           "minHeight": 1334,
           "minWidth": 750,
-          "padding": 20,
+          "paddingHorizontal": 20,
+          "paddingVertical": 100,
         }
       }
     >
@@ -190,21 +192,46 @@ exports[`DismissibleCustomModal Component Renders correctly with primary call to
             </Text>
           </View>
         </View>
-        <View>
-          <Text
-            style={
-              {
-                "color": "#FFFFFF",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "paddingVertical": 16,
-              }
+        <RCTScrollView
+          collapsable={false}
+          handlerTag={2}
+          handlerType="NativeViewGestureHandler"
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          showsVerticalScrollIndicator={false}
+          style={
+            {
+              "flexGrow": 0,
             }
-            testID="com.ariesbifold:id/BodyText"
-          >
-            Lorem ipsum sit dolar amet
-          </Text>
-        </View>
+          }
+          waitFor={
+            [
+              {
+                "current": null,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              onStartShouldSetResponder={[Function]}
+            >
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontSize": 18,
+                    "fontWeight": "normal",
+                    "paddingVertical": 16,
+                  }
+                }
+                testID="com.ariesbifold:id/BodyText"
+              >
+                Lorem ipsum sit dolar amet
+              </Text>
+            </View>
+          </View>
+        </RCTScrollView>
         <View
           style={
             {
@@ -335,9 +362,11 @@ exports[`DismissibleCustomModal Component Renders correctly without call to acti
           "backgroundColor": "rgba(0, 0, 0, 0.5)",
           "flex": 1,
           "justifyContent": "center",
+          "maxHeight": 1334,
           "minHeight": 1334,
           "minWidth": 750,
-          "padding": 20,
+          "paddingHorizontal": 20,
+          "paddingVertical": 100,
         }
       }
     >
@@ -477,21 +506,46 @@ exports[`DismissibleCustomModal Component Renders correctly without call to acti
             </Text>
           </View>
         </View>
-        <View>
-          <Text
-            style={
-              {
-                "color": "#FFFFFF",
-                "fontSize": 18,
-                "fontWeight": "normal",
-                "paddingVertical": 16,
-              }
+        <RCTScrollView
+          collapsable={false}
+          handlerTag={1}
+          handlerType="NativeViewGestureHandler"
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          showsVerticalScrollIndicator={false}
+          style={
+            {
+              "flexGrow": 0,
             }
-            testID="com.ariesbifold:id/BodyText"
-          >
-            Lorem ipsum sit dolar amet
-          </Text>
-        </View>
+          }
+          waitFor={
+            [
+              {
+                "current": null,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              onStartShouldSetResponder={[Function]}
+            >
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontSize": 18,
+                    "fontWeight": "normal",
+                    "paddingVertical": 16,
+                  }
+                }
+                testID="com.ariesbifold:id/BodyText"
+              >
+                Lorem ipsum sit dolar amet
+              </Text>
+            </View>
+          </View>
+        </RCTScrollView>
         <View
           style={
             {
