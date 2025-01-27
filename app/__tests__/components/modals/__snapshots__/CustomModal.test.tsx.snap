@@ -77,8 +77,6 @@ exports[`DismissibleCustomModal Component Renders correctly with primary call to
           {
             "backgroundColor": "#000000",
             "elevation": 5,
-            "flex": 1,
-            "maxHeight": "50%",
             "minWidth": 700,
             "padding": 20,
             "shadowColor": "#313132",
@@ -192,40 +190,21 @@ exports[`DismissibleCustomModal Component Renders correctly with primary call to
             </Text>
           </View>
         </View>
-        <RCTScrollView
-          contentContainerStyle={
-            {
-              "flexGrow": 1,
+        <View>
+          <Text
+            style={
+              {
+                "color": "#FFFFFF",
+                "fontSize": 18,
+                "fontWeight": "normal",
+                "paddingVertical": 16,
+              }
             }
-          }
-          showsVerticalScrollIndicator={false}
-          style={
-            {
-              "flex": 1,
-            }
-          }
-        >
-          <View>
-            <View
-              onStartShouldSetResponder={[Function]}
-            >
-              <Text
-                selectable={true}
-                style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "paddingVertical": 16,
-                  }
-                }
-                testID="com.ariesbifold:id/BodyText"
-              >
-                Lorem ipsum sit dolar amet
-              </Text>
-            </View>
-          </View>
-        </RCTScrollView>
+            testID="com.ariesbifold:id/BodyText"
+          >
+            Lorem ipsum sit dolar amet
+          </Text>
+        </View>
         <View
           style={
             {
@@ -385,8 +364,6 @@ exports[`DismissibleCustomModal Component Renders correctly without call to acti
           {
             "backgroundColor": "#000000",
             "elevation": 5,
-            "flex": 1,
-            "maxHeight": "50%",
             "minWidth": 700,
             "padding": 20,
             "shadowColor": "#313132",
@@ -500,40 +477,21 @@ exports[`DismissibleCustomModal Component Renders correctly without call to acti
             </Text>
           </View>
         </View>
-        <RCTScrollView
-          contentContainerStyle={
-            {
-              "flexGrow": 1,
+        <View>
+          <Text
+            style={
+              {
+                "color": "#FFFFFF",
+                "fontSize": 18,
+                "fontWeight": "normal",
+                "paddingVertical": 16,
+              }
             }
-          }
-          showsVerticalScrollIndicator={false}
-          style={
-            {
-              "flex": 1,
-            }
-          }
-        >
-          <View>
-            <View
-              onStartShouldSetResponder={[Function]}
-            >
-              <Text
-                selectable={true}
-                style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontSize": 18,
-                    "fontWeight": "normal",
-                    "paddingVertical": 16,
-                  }
-                }
-                testID="com.ariesbifold:id/BodyText"
-              >
-                Lorem ipsum sit dolar amet
-              </Text>
-            </View>
-          </View>
-        </RCTScrollView>
+            testID="com.ariesbifold:id/BodyText"
+          >
+            Lorem ipsum sit dolar amet
+          </Text>
+        </View>
         <View
           style={
             {

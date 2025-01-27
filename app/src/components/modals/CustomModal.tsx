@@ -2,7 +2,6 @@ import { Button, ButtonType, testIdWithKey, useTheme } from '@hyperledger/aries-
 import { useTranslation } from 'react-i18next'
 import {
   Modal,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -45,10 +44,8 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
       minWidth: width,
     },
     container: {
-      flex: 1,
       padding: 20,
       minWidth: width - 2 * 25,
-      maxHeight: '50%',
       backgroundColor: ColorPallet.brand.primaryBackground,
       shadowColor: ColorPallet.grayscale.darkGrey,
       shadowOffset: {
@@ -61,12 +58,6 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
     titleContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-    },
-    scrollViewContentContainer: {
-      flexGrow: 1,
-    },
-    scrollViewStyle: {
-      flex: 1,
     },
     bodyText: {
       ...TextTheme.normal,
@@ -96,17 +87,11 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
                   <Icon name={'clear'} size={30} color={ColorPallet.notification.infoIcon} />
                 </TouchableOpacity>
               </View>
-              <ScrollView
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.scrollViewContentContainer}
-                style={styles.scrollViewStyle}
-              >
-                <View onStartShouldSetResponder={() => true}>
-                  <Text selectable={true} style={styles.bodyText} testID={testIdWithKey('BodyText')}>
-                    {description}
-                  </Text>
-                </View>
-              </ScrollView>
+              <View>
+                <Text style={styles.bodyText} testID={testIdWithKey('BodyText')}>
+                  {description}
+                </Text>
+              </View>
               <View style={styles.ActionContainer}>
                 <Button
                   title={primary?.label ?? secondary?.label ?? t('Global.Close')}
