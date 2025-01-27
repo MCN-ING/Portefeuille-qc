@@ -4,14 +4,14 @@ import { formatTime } from '@hyperledger/aries-bifold-core/App/utils/helpers'
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { SafeAreaView, View, Text, TouchableOpacity, Alert } from 'react-native'
+import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
 import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
-import { handleDeleteHistory } from '../../utils/historyUtils'
+import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 
 type BiometricChangeDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.BiometricChangeDetails>
 
@@ -29,25 +29,6 @@ const BiometricChangeDetails: React.FC<BiometricChangeDetailsProp> = ({ route, n
 
   const iconSize = 24
 
-  const confirmDeleteHistory = () => {
-    Alert.alert(
-      t('History.Button.DeleteHistory'),
-      t('History.ConfirmDeleteHistory'),
-      [
-        { text: t('Global.Cancel'), style: 'cancel' },
-        {
-          text: t('Global.Confirm'),
-          style: 'destructive',
-          onPress: async () => {
-            await handleDeleteHistory(item.content.id || '', agent, loadHistory, t)
-            navigation.goBack()
-          },
-        },
-      ],
-      { cancelable: true }
-    )
-  }
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={[styles.contentContainer, styles.headerStyle]}>
@@ -62,7 +43,7 @@ const BiometricChangeDetails: React.FC<BiometricChangeDetailsProp> = ({ route, n
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={confirmDeleteHistory}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
         accessibilityLabel={t('History.Button.DeleteHistory')}
         accessibilityRole="button"
       >

@@ -1,6 +1,7 @@
 import { Agent } from '@credo-ts/core'
 import { HistoryCardType, IHistoryManager } from '@hyperledger/aries-bifold-core/App/modules/history/types'
 import { CredentialMetadata } from '@hyperledger/aries-bifold-core/App/types/metadata'
+import { Alert } from 'react-native'
 import Toast from 'react-native-toast-message'
 
 // SVG Imports
@@ -55,6 +56,50 @@ export const handleDeleteHistory = async (
       text2: t('Error.UnexpectedError'),
     })
   }
+}
+
+/**
+ * Handles the deletion of a history event with a confirmation alert.
+ *
+ * @param itemId - The identifier of the item to be deleted.
+ * @param agent - The agent used to interact with the history manager.
+ * @param loadHistory - Function to load the history manager for the given agent.
+ * @param t - Translation function from the `useTranslation` hook to handle localization.
+ * @param navigation - Navigation object to navigate after deletion (optional).
+ */
+export const handleDeleteHistoryWithConfirmation = (
+  itemId: string,
+  agent: Agent | undefined,
+  loadHistory: (agent: Agent) => IHistoryManager | undefined,
+  t: (key: string, options?: Record<string, unknown>) => string,
+  navigation?: { goBack: () => void }
+): void => {
+  Alert.alert(
+    t('History.Button.DeleteHistory'),
+    t('History.ConfirmDeleteHistory'),
+    [
+      { text: t('Global.Cancel'), style: 'cancel' },
+      {
+        text: t('Global.Confirm'),
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            await handleDeleteHistory(itemId, agent, loadHistory, t)
+            if (navigation) {
+              navigation.goBack()
+            }
+          } catch (error) {
+            Toast.show({
+              type: 'error',
+              text1: t('Error.FailedToDelete'),
+              text2: t('Error.UnexpectedError'),
+            })
+          }
+        },
+      },
+    ],
+    { cancelable: true }
+  )
 }
 
 /**

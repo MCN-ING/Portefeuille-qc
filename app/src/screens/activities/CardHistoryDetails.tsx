@@ -18,14 +18,14 @@ import { Attribute, CredentialOverlay } from '@hyperledger/aries-oca/build/legac
 import { StackScreenProps } from '@react-navigation/stack'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SafeAreaView, View, Text, TouchableOpacity, ActivityIndicator, Alert } from 'react-native'
+import { SafeAreaView, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
 import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
 import { ColorPallet } from '../../theme'
-import { handleDeleteHistory } from '../../utils/historyUtils'
+import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 import { startCaseUnicode } from '../../utils/stringUtils'
 
 type CardHistorydDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.CardHistoryDetails>
@@ -97,25 +97,6 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
     }
   }, [recordId])
 
-  const confirmDeleteHistory = () => {
-    Alert.alert(
-      t('History.Button.DeleteHistory'),
-      t('History.ConfirmDeleteHistory'),
-      [
-        { text: t('Global.Cancel'), style: 'cancel' },
-        {
-          text: t('Global.Confirm'),
-          style: 'destructive',
-          onPress: async () => {
-            await handleDeleteHistory(item.content.id || '', agent, loadHistory, t)
-            navigation.goBack()
-          },
-        },
-      ],
-      { cancelable: true }
-    )
-  }
-
   const operationDate = itemContent?.createdAt
     ? formatTime(new Date(itemContent?.createdAt), { shortMonth: true, trim: true })
     : t('Record.InvalidDate')
@@ -160,7 +141,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={confirmDeleteHistory}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >
