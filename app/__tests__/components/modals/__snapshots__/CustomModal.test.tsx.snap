@@ -193,23 +193,11 @@ exports[`DismissibleCustomModal Component Renders correctly with primary call to
           </View>
         </View>
         <RCTScrollView
-          collapsable={false}
-          handlerTag={2}
-          handlerType="NativeViewGestureHandler"
-          onGestureHandlerEvent={[Function]}
-          onGestureHandlerStateChange={[Function]}
           showsVerticalScrollIndicator={false}
           style={
             {
               "flexGrow": 0,
             }
-          }
-          waitFor={
-            [
-              {
-                "current": null,
-              },
-            ]
           }
         >
           <View>
@@ -507,23 +495,11 @@ exports[`DismissibleCustomModal Component Renders correctly without call to acti
           </View>
         </View>
         <RCTScrollView
-          collapsable={false}
-          handlerTag={1}
-          handlerType="NativeViewGestureHandler"
-          onGestureHandlerEvent={[Function]}
-          onGestureHandlerStateChange={[Function]}
           showsVerticalScrollIndicator={false}
           style={
             {
               "flexGrow": 0,
             }
-          }
-          waitFor={
-            [
-              {
-                "current": null,
-              },
-            ]
           }
         >
           <View>

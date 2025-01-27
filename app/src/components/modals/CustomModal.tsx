@@ -2,6 +2,7 @@ import { Button, ButtonType, testIdWithKey, useTheme } from '@hyperledger/aries-
 import { useTranslation } from 'react-i18next'
 import {
   Modal,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -9,7 +10,6 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { hitSlop } from '../../constants'
