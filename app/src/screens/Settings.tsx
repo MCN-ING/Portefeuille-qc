@@ -60,10 +60,10 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
       paddingTop: 8,
       paddingBottom: 8,
     },
-
     section: {
       backgroundColor: SettingsTheme.groupBackground,
-      paddingTop: 24,
+      alignItems: 'center',
+      paddingVertical: 12,
     },
     sectionHeader: {
       flexDirection: 'row',
@@ -80,9 +80,6 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
       flex: 1,
       fontWeight: 'normal',
       flexWrap: 'wrap',
-    },
-    sectionSeparator: {
-      marginBottom: 10,
     },
     rowSeparator: {
       borderBottomWidth: 1,
@@ -117,23 +114,20 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
     subContent,
     rowIcon,
   }: SectionRowProps) => (
-    <TouchableOpacity testID={testID} onPress={onPress} accessibilityRole={accessibilityRole}>
-      <View style={[styles.section]}>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={styles.rowTitle}>{title}</Text>
+    <View style={showRowSeparator && styles.rowSeparator}>
+      <TouchableOpacity testID={testID} onPress={onPress} accessibilityRole={accessibilityRole}>
+        <View style={styles.section}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.rowTitle}>{title}</Text>
 
-          {children}
+            {children}
 
-          {rowIcon}
+            {rowIcon}
+          </View>
+          {subContent}
         </View>
-        {subContent}
-      </View>
-      {showRowSeparator && (
-        <View style={{ backgroundColor: SettingsTheme.groupBackground }}>
-          <View style={[styles.rowSeparator]}></View>
-        </View>
-      )}
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   )
   const arrowIcon = (
     <MaterialIcon name={'keyboard-arrow-right'} size={iconSize} accessible={false} accessibilityLabel="" />
@@ -157,9 +151,21 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           accessibilityRole="button"
           testID={testIdWithKey('Language')}
           onPress={() => navigation.navigate(Screens.Language)}
+          showRowSeparator
           rowIcon={arrowIcon}
         >
           <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>{currentLanguage}</Text>
+        </SectionRow>
+        <SectionRow
+          title={t('Settings.Tours')}
+          accessibilityRole="button"
+          testID={testIdWithKey('Tours')}
+          onPress={() => navigation.navigate(Screens.Tours)}
+          rowIcon={arrowIcon}
+        >
+          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>
+            {store.tours.enableTours ? t('Settings.ToursActive') : t('Settings.ToursDisabled')}
+          </Text>
         </SectionRow>
         <SectionHeader title={t('Settings.Security')} />
         <SectionRow
@@ -176,7 +182,6 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
         >
           <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>{t('Settings.ChangePin')}</Text>
         </SectionRow>
-        <View style={[styles.sectionSeparator]}></View>
         <SectionRow
           title={t('Settings.Biometrics')}
           accessibilityRole="button"
@@ -189,39 +194,23 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
             {store.preferences.useBiometry ? t('Settings.BiometricActive') : t('Settings.BiometricDisabled')}
           </Text>
         </SectionRow>
-        <SectionRow
-          title={t('Settings.Tours')}
-          accessibilityRole="button"
-          testID={testIdWithKey('Tours')}
-          onPress={() => navigation.navigate(Screens.Tours)}
-          showRowSeparator
-          rowIcon={arrowIcon}
-        >
-          <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>
-            {store.tours.enableTours ? t('Settings.ToursActive') : t('Settings.ToursDisabled')}
-          </Text>
-        </SectionRow>
         {store.preferences.useManageEnvironment && (
-          <>
-            <View style={[styles.sectionSeparator]}></View>
-            <SectionRow
-              title={t('Developer.Environment')}
-              accessibilityRole="button"
-              testID={testIdWithKey('Environment')}
-              showRowSeparator={true}
-              onPress={() => {
-                setEnvironmentModalVisible(true)
-              }}
+          <SectionRow
+            title={t('Developer.Environment')}
+            accessibilityRole="button"
+            testID={testIdWithKey('Environment')}
+            showRowSeparator={true}
+            onPress={() => {
+              setEnvironmentModalVisible(true)
+            }}
+          >
+            <Text
+              style={[TextTheme.label, { fontWeight: 'normal', color: ColorPallet.brand.link, alignSelf: 'center' }]}
             >
-              <Text
-                style={[TextTheme.label, { fontWeight: 'normal', color: ColorPallet.brand.link, alignSelf: 'center' }]}
-              >
-                {Object.keys(store.developer.environment)[0]}
-              </Text>
-            </SectionRow>
-          </>
+              {Object.keys(store.developer.environment)[0]}
+            </Text>
+          </SectionRow>
         )}
-        <View style={[styles.sectionSeparator]}></View>
         <SectionRow
           title={t('Settings.Version')}
           testID={testIdWithKey('Version')}
