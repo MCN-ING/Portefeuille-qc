@@ -66,6 +66,8 @@ export type RootStackParams = {
   [Stacks.SettingsStack]: NavigatorScreenParams<SettingStackParams>
   [Stacks.HelpCenterStack]: NavigatorScreenParams<HelpCenterStackParams>
   [Stacks.AboutStack]: NavigatorScreenParams<AboutStackParams>
+  [BifoldScreens.CredentialDetails]: { credentialId: string }
+  [BifoldScreens.OpenIDCredentialDetails]: { credentialId: string }
 }
 
 export type TabStackParams = {
