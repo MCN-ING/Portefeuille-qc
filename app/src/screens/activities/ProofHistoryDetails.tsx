@@ -13,12 +13,12 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
-import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
+import { HistoryStackParams, Screens } from '../../navigators/navigators'
 import { ColorPallet } from '../../theme'
 import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 import { startCaseUnicode } from '../../utils/stringUtils'
 
-type ProofHistoryDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.ProofHistoryDetails>
+type ProofHistoryDetailsProp = StackScreenProps<HistoryStackParams, Screens.ProofHistoryDetails>
 
 const ProofHistoryDetails: React.FC<ProofHistoryDetailsProp> = ({ route, navigation }) => {
   const { TextTheme } = useTheme()
@@ -80,7 +80,7 @@ const ProofHistoryDetails: React.FC<ProofHistoryDetailsProp> = ({ route, navigat
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id ?? '', agent, loadHistory, t, navigation)}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >

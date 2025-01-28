@@ -10,10 +10,10 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
-import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
+import { HistoryStackParams, Screens } from '../../navigators/navigators'
 import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 
-type PinChangeDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.PinChangeDetails>
+type PinChangeDetailsProp = StackScreenProps<HistoryStackParams, Screens.PinChangeDetails>
 
 const PinChangeDetails: React.FC<PinChangeDetailsProp> = ({ route, navigation }) => {
   const { TextTheme } = useTheme()

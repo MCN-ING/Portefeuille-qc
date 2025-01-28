@@ -11,11 +11,11 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
-import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
+import { HistoryStackParams, Screens } from '../../navigators/navigators'
 import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 import { startCaseUnicode } from '../../utils/stringUtils'
 
-type ContactHistoryDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.ContactHistoryDetails>
+type ContactHistoryDetailsProp = StackScreenProps<HistoryStackParams, Screens.ContactHistoryDetails>
 
 const ContactHistoryDetails: React.FC<ContactHistoryDetailsProp> = ({ route, navigation }) => {
   const { TextTheme } = useTheme()
