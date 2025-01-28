@@ -123,7 +123,7 @@ const HistoryListItem: React.FC<Props> = ({
         body: details.body,
         eventTime: details.eventTime,
         image: activateSelection ? (
-          <CustomCheckBox selected={selected} setSelected={() => setSelected} />
+          <CustomCheckBox selected={selected} setSelected={() => setSelected?.({ id: item.content.id ?? '' })} />
         ) : (
           renderCardIcon(item.content.type as HistoryCardType)
         ),
