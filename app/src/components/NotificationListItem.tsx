@@ -224,7 +224,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
             resolve({
               title: t('CredentialOffer.NewCredentialOffer'),
               body: theirLabel,
-              eventTime: cred?.createdAt ? formatTime(cred.createdAt, { shortMonth: true, includeHour: true }) : '',
+              eventTime: cred?.createdAt ? formatTime(cred.createdAt, { chatFormat: true, includeHour: true }) : '',
             })
           })
           break
@@ -235,7 +235,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
             resolve({
               title: t('ProofRequest.NewProofRequest'),
               body: theirLabel,
-              eventTime: proof?.createdAt ? formatTime(proof.createdAt, { shortMonth: true, includeHour: true }) : '',
+              eventTime: proof?.createdAt ? formatTime(proof.createdAt, { chatFormat: true, includeHour: true }) : '',
             })
           })
           break
@@ -248,7 +248,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
               title: t('CredentialDetails.NewRevoked'),
               body: theirLabel,
               eventTime: revocationDate
-                ? formatTime(new Date(revocationDate), { shortMonth: true, includeHour: true })
+                ? formatTime(new Date(revocationDate), { chatFormat: true, includeHour: true })
                 : '',
             })
           })
@@ -258,7 +258,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
           resolve({
             title: t(customNotification?.title as string),
             body: t(customNotification?.description as string),
-            eventTime: formatTime(notification.createdAt, { shortMonth: true, includeHour: true }),
+            eventTime: formatTime(notification.createdAt, { chatFormat: true, includeHour: true }),
           })
           break
         default:

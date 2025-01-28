@@ -97,7 +97,9 @@ const HistoryListItem: React.FC<Props> = ({
     setDetails({
       title: getTitleByType(content.type),
       body: content.correspondenceName ?? '',
-      eventTime: content.createdAt ? formatTime(new Date(content.createdAt), { shortMonth: true, trim: true }) : '',
+      eventTime: content.createdAt
+        ? formatTime(new Date(content.createdAt), { chatFormat: true, includeHour: true })
+        : '',
     })
   }, [item])
 

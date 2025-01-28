@@ -24,7 +24,7 @@ const PinChangeDetails: React.FC<PinChangeDetailsProp> = ({ route, navigation })
   const styles = useHistoryDetailPageStyles()
 
   const modifiedDate = item?.content.createdAt
-    ? formatTime(item.content.createdAt, { shortMonth: true, trim: true })
+    ? formatTime(item.content.createdAt, { chatFormat: true, includeHour: true })
     : t('Record.InvalidDate')
 
   const iconSize = 24

@@ -76,9 +76,9 @@ const translation = {
     MinuteAgo: 'minute ago',
     MinutesAgo: 'minutes ago',
     JustNow: 'just now',
-    ModifiedOn: 'Modified on',
-    AcceptedOn: 'Accepted on',
-    DeclinedOn: 'Declined on',
+    ModifiedOn: 'Modified:',
+    AcceptedOn: 'Accepted:',
+    DeclinedOn: 'Declined:',
     MonthLong: {
       January: 'January',
       February: 'February',
