@@ -1063,7 +1063,7 @@ const translation = {
       PostalCode: 'Postal Code',
     },
     Date: {
-      changedOn: '{{operation}} on',
+      changedOn: '{{operation}}:',
     },
     Operations: {
       Accepted: 'accepted',
