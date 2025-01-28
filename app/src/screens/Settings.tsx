@@ -199,7 +199,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
             title={t('Developer.Environment')}
             accessibilityRole="button"
             testID={testIdWithKey('Environment')}
-            showRowSeparator={true}
+            showRowSeparator
             onPress={() => {
               setEnvironmentModalVisible(true)
             }}
