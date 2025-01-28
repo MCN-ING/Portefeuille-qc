@@ -43,7 +43,7 @@ const PinChangeDetails: React.FC<PinChangeDetailsProp> = ({ route, navigation })
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id ?? '', agent, loadHistory, t, navigation)}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >
