@@ -126,6 +126,14 @@ export class AppContainer implements Container {
     }
     defaultScreenOptionsDict[Screens.CredentialDetails] = {
       ...defaultScreenOptionsDict[Screens.CredentialDetails],
+      headerShown: true,
+      headerLeft: undefined,
+      headerRight: HelpCenterButton,
+    }
+
+    defaultScreenOptionsDict[Screens.OpenIDCredentialDetails] = {
+      ...defaultScreenOptionsDict[Screens.OpenIDCredentialDetails],
+      headerShown: true,
       headerLeft: undefined,
       headerRight: HelpCenterButton,
     }
