@@ -367,7 +367,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
         body: details.body,
         eventTime: details.eventTime,
         image: activateSelection ? (
-          <CustomCheckBox selected={selected} setSelected={() => setSelected} />
+          <CustomCheckBox selected={selected} setSelected={() => setSelected?.({ id: notification.id })} />
         ) : (
           getConnectionImage(connection, notificationType)
         ),
