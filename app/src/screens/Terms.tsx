@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import HeaderText from '../components/HeaderText'
 import Progress from '../components/Progress'
@@ -99,6 +99,8 @@ const Terms = () => {
     }
   }, [dispatch, agreedToPreviousTerms, navigation, store.onboarding.postAuthScreens])
 
+  const continueButtonHint = checked ? t('Terms.HintEnabled') : t('Terms.HintDisabled')
+
   return (
     <View style={[style.container]}>
       {((!agreedToPreviousTerms && !agreesToCurrentTerms) || !didAuthenticate) && (
@@ -160,14 +162,19 @@ const Terms = () => {
                 onPress={() => setChecked(!checked)}
               />
               <View style={[{ paddingTop: 10 }]}>
-                <Button
-                  title={t('Global.Continue')}
+                <TouchableOpacity
                   accessibilityLabel={t('Global.Continue')}
-                  testID={testIdWithKey('Continue')}
-                  disabled={!checked}
-                  onPress={onSubmitPressed}
-                  buttonType={ButtonType.Primary}
-                />
+                  accessibilityHint={continueButtonHint}
+                  accessibilityRole="button"
+                >
+                  <Button
+                    title={t('Global.Continue')}
+                    testID={testIdWithKey('Continue')}
+                    onPress={onSubmitPressed}
+                    disabled={!checked}
+                    buttonType={ButtonType.Primary}
+                  />
+                </TouchableOpacity>
               </View>
             </>
           )}
