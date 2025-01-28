@@ -67,6 +67,8 @@ const translation = {
     code_en: 'English',
     code_fr: 'French',
     'code_pt-BR': 'Portuguese',
+    Checked: 'selected',
+    NotChecked: 'not selected',
   },
   Date: {
     ShortFormat: 'MMM D',
@@ -120,6 +122,8 @@ const translation = {
     OpenSettings: 'Open settings',
   },
   Biometry: {
+    BiometryHintActivate: 'Tap to activate',
+    BiometryHintDeactivate: 'Tap to deactivate',
     BiometryDisabled: 'Biometry disabled',
     SetupBiometricsDesc:
       "To use biometrics, you need to set up your fingerprints or facial recognition.\n\nPlease follow the instructions provided by your device's manufacturer to set them up.",
@@ -819,6 +823,7 @@ const translation = {
     AppPreferences: 'App Preferences',
     AboutApp: 'About App',
     Language: 'Display Language',
+    LanguageHint: 'Tap to select',
     AppSettings: 'App Settings',
     AppGuides: 'App guides',
     Build: 'Build',

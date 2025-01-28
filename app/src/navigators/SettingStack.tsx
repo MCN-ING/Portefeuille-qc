@@ -1,12 +1,12 @@
 import { TOKENS, useServices, useTheme } from '@hyperledger/aries-bifold-core'
 import { useDefaultStackOptions } from '@hyperledger/aries-bifold-core/App/navigators/defaultStackOptions'
-import Language from '@hyperledger/aries-bifold-core/App/screens/Language'
 import PINCreate from '@hyperledger/aries-bifold-core/App/screens/PINCreate'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import HelpCenterButton from '../components/Help/HelpCenterButton'
+import Language from '../screens/Language'
 import Settings from '../screens/Settings'
 import Tours from '../screens/Tours'
 
