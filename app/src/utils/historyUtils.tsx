@@ -34,7 +34,7 @@ export const handleDeleteHistory = async (
       const record = await historyManager.findGenericRecordById(itemId || '')
       if (record) {
         const notificationRecord = agent
-          ? await agent.credentials.findById((record.content.correspondenceId || record.id) as string)
+          ? await agent.credentials.findById((record.content.correspondenceId || '') as string)
           : undefined
         await historyManager.removeGenericRecord(record)
         if (notificationRecord?.revocationNotification) {
