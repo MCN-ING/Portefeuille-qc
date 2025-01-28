@@ -67,6 +67,8 @@ const translation = {
     code_en: 'Anglais',
     code_fr: 'Français',
     'code_pt-BR': 'Portugais',
+    Checked: 'sélectionné',
+    NotChecked: 'non sélectionné',
   },
   Date: {
     ShortFormat: 'D MMM',
@@ -121,6 +123,8 @@ const translation = {
     OpenSettings: 'Ourvir Paramètres',
   },
   Biometry: {
+    BiometryHintActivate: 'Tapez pour activer',
+    BiometryHintDeactivate: 'Tapez pour désactiver',
     BiometryDisabled: 'Biométrie non activée',
     SetupBiometricsDesc:
       'Pour utiliser la biométrie, vous devez configurez vos empreintes digitales ou la reconnaissance faciale.\n\nVeuillez suivre les instructions fournies par le fabricant de votre appareil pour les configurer.',
@@ -596,16 +600,15 @@ const translation = {
   },
   ConnectionAlert: {
     AddedContacts: 'Nouveau contact ajouté',
-    WhatAreContacts: 'Que sont les contacts ?',
-    NotificationBodyUpper: 'Vouz pouvez trouver ',
-    NotificationBodyLower: ' dans vos contacts. Gérer vos contacts dans les paramètres.',
-    PopupIntro: "L'ajout d'organisations aux contacts vous permettra d': ",
-    PopupPoint1: 'Obtenir les mises à jour des attestations délivrées par cette organisation.',
-    PopupPoint2: 'Obtenir de nouvelles attestations',
-    PopupPoint3: 'Demandes de preuves accélérées',
-    SettingsLink: 'Paramètres',
-    SettingsInstruction: 'Vous pouvez à tout moment supprimer des contacts dans ',
-    PrivacyMessage: "L'utilisation de vos attestations n'est jamais partagée avec vos contacts.",
+    NotificationBodyUpper: "En acceptant l'attestation, je consens à l'ajout du ",
+    NotificationBodyLower: ' dans mes contacts. Cela est nécessaire pour recevoir les services offerts par ',
+    PopupIntro:
+      " Lorsque vous balayez le code QR d'une organisation, celle-ci devient automatiquement un nouveau contact dans votre application. Cela est nécessaire afin de :",
+    PopupPoint1: 'partager une information',
+    PopupPoint2: 'recevoir une attestation.',
+    SettingsInstruction1: 'Vous pouvez gérer ',
+    ContactsLink: 'vos contacts',
+    SettingsInstruction2: ' dans la section Plus de votre application.',
     PopupExit: "J'ai compris",
   },
   ProofRequest: {
@@ -827,6 +830,7 @@ const translation = {
     AppPreferences: "À propos de l'application : Préférences ",
     AboutApp: "À propos de l'application",
     Language: "Langue d'affichage",
+    LanguageHint: 'Tapez pour sélectionner',
     AppSettings: "Paramètres de l'application",
     WhatAreContacts: 'Qu’est-ce qu’un contact?',
     Developer: 'Fonctionnalité développeur',

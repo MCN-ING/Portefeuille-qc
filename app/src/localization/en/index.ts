@@ -67,6 +67,8 @@ const translation = {
     code_en: 'English',
     code_fr: 'French',
     'code_pt-BR': 'Portuguese',
+    Checked: 'selected',
+    NotChecked: 'not selected',
   },
   Date: {
     ShortFormat: 'MMM D',
@@ -120,6 +122,8 @@ const translation = {
     OpenSettings: 'Open settings',
   },
   Biometry: {
+    BiometryHintActivate: 'Tap to activate',
+    BiometryHintDeactivate: 'Tap to deactivate',
     BiometryDisabled: 'Biometry disabled',
     SetupBiometricsDesc:
       "To use biometrics, you need to set up your fingerprints or facial recognition.\n\nPlease follow the instructions provided by your device's manufacturer to set them up.",
@@ -646,19 +650,19 @@ const translation = {
       "Don't recongize the organization? Check your Contact list. you only recieve notifications from contacts you've initiated.",
   },
   ConnectionAlert: {
-    AddedContacts: 'Added to Contacts',
-    WhatAreContacts: 'What are Contacts?',
-    NotificationBodyUpper: 'You can find ',
-    NotificationBodyLower: ' in your Contacts. Manage your Contacts in Settings',
-    PopupIntro: 'Adding organizations as a contact will allow you to:',
-    PopupPoint1: 'Get updates to credentials issued by this organization',
-    PopupPoint2: 'Get offered new credentials',
-    PopupPoint3: 'Fast-track proof requests',
-    SettingsLink: 'Settings',
-    SettingsInstruction: 'You can always remove contacts at anytime in ',
-    PrivacyMessage: 'Use of your credentials is never shared with your contacts.',
+    AddedContacts: 'New contact added',
+    NotificationBodyUpper: 'By accepting the credential, I consent to the addition of ',
+    NotificationBodyLower: ' to my contacts. This is necessary to receive the services provided by ',
+    PopupIntro:
+      'When you scan the QR code of an organization, it automatically becomes a new contact in your application. This is necessary in order to:',
+    PopupPoint1: 'share information',
+    PopupPoint2: 'receive a credential.',
+    SettingsInstruction1: 'You can manage ',
+    ContactsLink: 'your contacts',
+    SettingsInstruction2: ' in the More section of your application.',
     PopupExit: 'Got it',
   },
+
   ProofRequest: {
     FromYourWallet: 'From your wallet',
     MissingCredentials: 'Missing credentials',
@@ -819,6 +823,7 @@ const translation = {
     AppPreferences: 'App Preferences',
     AboutApp: 'About App',
     Language: 'Display Language',
+    LanguageHint: 'Tap to select',
     AppSettings: 'App Settings',
     AppGuides: 'App guides',
     Build: 'Build',

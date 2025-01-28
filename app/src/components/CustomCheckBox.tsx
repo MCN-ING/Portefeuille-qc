@@ -10,6 +10,7 @@ const CustomCheckBox = ({ selected, setSelected }: CustomCheckBoxProps) => {
   const { ColorPallet } = useTheme()
   return (
     <CheckBox
+      onStartShouldSetResponder={() => true}
       boxType={'square'}
       value={selected}
       onValueChange={setSelected}
