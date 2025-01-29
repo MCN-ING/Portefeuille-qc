@@ -651,8 +651,10 @@ const translation = {
   },
   ConnectionAlert: {
     AddedContacts: 'New contact added',
-    NotificationBodyUpper: 'By accepting the credential, I consent to the addition of ',
-    NotificationBodyLower: ' to my contacts. This is necessary to receive the services provided by ',
+    NotificationBodyWithIssuer:
+      'By accepting the credential, I consent to the addition of {{issuerName}} to my contacts. This is necessary to receive the services provided by {{issuerName}}.',
+    NotificationBodyWithoutIssuer:
+      'By accepting the credential, I consent to the addition of a new contact to my contacts. This is necessary to receive the services provided by the new contact.',
     PopupIntro:
       'When you scan the QR code of an organization, it automatically becomes a new contact in your application. This is necessary in order to:',
     PopupPoint1: 'share information',
