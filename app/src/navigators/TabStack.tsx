@@ -348,7 +348,7 @@ const TabStack: React.FC = () => {
           options={{
             title: t('TabStack.Home'),
             tabBarAccessibilityLabel: t('TabStack.Home'),
-            tabBarTestID: testIdWithKey(t('TabStack.Home')),
+            tabBarTestID: testIdWithKey('TabStack.Home'),
             tabBarIcon: ({ focused }) =>
               renderTabBarIcon(
                 HomeTabIcon,
@@ -366,7 +366,7 @@ const TabStack: React.FC = () => {
           options={{
             title: t('TabStack.Activities'),
             tabBarAccessibilityLabel: `${t('TabStack.Activities')} ${notifications.length ?? 0}`,
-            tabBarTestID: testIdWithKey(t('TabStack.Activities')),
+            tabBarTestID: testIdWithKey('TabStack.Activities'),
             tabBarBadge: notifications.length ?? undefined,
             tabBarIcon: ({ focused }) =>
               renderTabBarIcon(
@@ -381,7 +381,7 @@ const TabStack: React.FC = () => {
           options={{
             title: t('TabStack.Credentials'),
             tabBarAccessibilityLabel: t('TabStack.Credentials'),
-            tabBarTestID: testIdWithKey(t('TabStack.Credentials')),
+            tabBarTestID: testIdWithKey('TabStack.Credentials'),
             tabBarIcon: ({ focused }) =>
               renderTabBarIcon(
                 AtestationTabIcon,
@@ -399,7 +399,7 @@ const TabStack: React.FC = () => {
           options={{
             title: t('TabStack.OptionsPlus'),
             tabBarAccessibilityLabel: t('TabStack.OptionsPlus'),
-            tabBarTestID: testIdWithKey(t('TabStack.OptionsPlus')),
+            tabBarTestID: testIdWithKey('TabStack.OptionsPlus'),
             tabBarIcon: ({ focused }) =>
               renderTabBarIcon(
                 PlusTabIcon,
