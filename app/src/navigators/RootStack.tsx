@@ -21,16 +21,18 @@ import {
   useStore,
   useTheme,
 } from '@hyperledger/aries-bifold-core'
-import HistoryStack from '@hyperledger/aries-bifold-core/App/modules/history/navigation/HistoryStack'
+import OpenIdCredentialDetails from '@hyperledger/aries-bifold-core/App/modules/openid/screens/OpenIDCredentialDetails'
 import Chat from '@hyperledger/aries-bifold-core/App/screens/Chat'
+import CredentialDetails from '@hyperledger/aries-bifold-core/App/screens/CredentialDetails'
 import { ProofCustomMetadata, ProofMetadata } from '@hyperledger/aries-bifold-verifier'
-import { CardStyleInterpolators, StackCardStyleInterpolator, createStackNavigator } from '@react-navigation/stack'
+import { CardStyleInterpolators, createStackNavigator, StackCardStyleInterpolator } from '@react-navigation/stack'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DeviceEventEmitter } from 'react-native'
 
 import AboutStack from './AboutStack'
 import HelpCenterStack from './HelpCenterStack'
+import HistoryStack from './HistoryStack'
 import SettingStack from './SettingStack'
 import TabStack from './TabStack'
 import { RootStackParams, Stacks } from './navigators'
@@ -41,9 +43,10 @@ const RootStack: React.FC = () => {
   const { t } = useTranslation()
   const theme = useTheme()
   const defaultStackOptions = useDefaultStackOptions(theme)
-  const [splash, OnboardingStack, loadState] = useServices([
+  const [splash, OnboardingStack, ScreenOptionsDictionary, loadState] = useServices([
     TOKENS.SCREEN_SPLASH,
     TOKENS.STACK_ONBOARDING,
+    TOKENS.OBJECT_SCREEN_CONFIG,
     TOKENS.LOAD_STATE,
   ])
 
@@ -119,7 +122,7 @@ const RootStack: React.FC = () => {
         />
         <Stack.Screen name={Bifoldstacks.ProofRequestsStack} component={ProofRequestStack} />
         <Stack.Screen
-          name={Bifoldstacks.HistoryStack}
+          name={Stacks.HistoryStack}
           component={HistoryStack}
           options={{
             cardStyleInterpolator: forFade,
@@ -128,6 +131,22 @@ const RootStack: React.FC = () => {
         <Stack.Screen name={Stacks.SettingsStack} component={SettingStack} />
         <Stack.Screen name={Stacks.HelpCenterStack} component={HelpCenterStack} />
         <Stack.Screen name={Stacks.AboutStack} component={AboutStack} />
+        <Stack.Screen
+          name={Screens.CredentialDetails}
+          component={CredentialDetails}
+          options={{
+            title: t('Screens.CredentialDetails'),
+            ...ScreenOptionsDictionary[Screens.CredentialDetails],
+          }}
+        />
+        <Stack.Screen
+          name={Screens.OpenIDCredentialDetails}
+          component={OpenIdCredentialDetails}
+          options={{
+            title: t('Screens.CredentialDetails'),
+            ...ScreenOptionsDictionary[Screens.OpenIDCredentialDetails],
+          }}
+        />
       </Stack.Navigator>
     )
   }

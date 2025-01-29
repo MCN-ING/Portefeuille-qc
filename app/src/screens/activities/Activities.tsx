@@ -1,10 +1,7 @@
 import { useTheme } from '@hyperledger/aries-bifold-core'
-import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
-
-import { ActivitiesStackParams } from '../../navigators/navigators'
 
 import HistoryList from './HistoryList'
 import NotificationsList from './NotificationsList'
@@ -12,11 +9,7 @@ import NotificationsList from './NotificationsList'
 const NotificationTab = 'Notifications'
 const HistoryTab = 'Historique'
 
-export type ActivitiesProps = {
-  navigation: StackNavigationProp<ActivitiesStackParams>
-}
-
-const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
+const Activities: React.FC = () => {
   const [openSwipeableId, setOpenSwipeableId] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState(NotificationTab)
   const { t } = useTranslation()
@@ -92,11 +85,7 @@ const Activities: React.FC<ActivitiesProps> = ({ navigation }) => {
       {activeTab === NotificationTab ? (
         <NotificationsList openSwipeableId={openSwipeableId} handleOpenSwipeable={setOpenSwipeableId} />
       ) : (
-        <HistoryList
-          openSwipeableId={openSwipeableId}
-          handleOpenSwipeable={setOpenSwipeableId}
-          navigation={navigation}
-        />
+        <HistoryList openSwipeableId={openSwipeableId} handleOpenSwipeable={setOpenSwipeableId} />
       )}
     </View>
   )

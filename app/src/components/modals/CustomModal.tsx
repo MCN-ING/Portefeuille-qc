@@ -76,7 +76,7 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
   })
 
   return (
-    <Modal transparent accessibilityViewIsModal>
+    <Modal transparent accessibilityViewIsModal testID={testIdWithKey('CustomModal')}>
       <TouchableOpacity onPress={onDismissPressed} accessible={false}>
         <View style={styles.modalCenter}>
           <TouchableWithoutFeedback accessible={false}>
@@ -95,9 +95,7 @@ export const CustomModal = ({ title, description, primary, secondary, onDismissP
               </View>
               <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollViewStyle}>
                 <View onStartShouldSetResponder={() => true}>
-                  <Text style={styles.bodyText} testID={testIdWithKey('BodyText')}>
-                    {description}
-                  </Text>
+                  {typeof description == 'string' ? <Text style={styles.bodyText}>{description}</Text> : description}
                 </View>
               </ScrollView>
               <View style={styles.ActionContainer}>

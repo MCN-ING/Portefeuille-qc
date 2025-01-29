@@ -12,7 +12,6 @@ import {
   HomeStackParams,
   ProofRequestsStackParams,
 } from '@hyperledger/aries-bifold-core/App/types/navigators'
-import { HistoryStackParams } from '@hyperledger/aries-bifold-core/lib/typescript/App/types/navigators'
 import { NavigatorScreenParams } from '@react-navigation/native'
 import { ImageSourcePropType } from 'react-native'
 
@@ -44,6 +43,7 @@ export enum Stacks {
   HelpCenterStack = 'Help Center Stack',
   AboutStack = 'About Stack',
   ActivitiesStack = 'Activities Stack',
+  HistoryStack = 'History Stack',
 }
 
 export enum TabStacks {
@@ -62,10 +62,12 @@ export type RootStackParams = {
   [BifoldStacks.ContactStack]: NavigatorScreenParams<ContactStackParams>
   [BifoldStacks.ProofRequestsStack]: NavigatorScreenParams<ProofRequestsStackParams>
   [BifoldStacks.NotificationStack]: NavigatorScreenParams<NotificationStackParams>
-  [BifoldStacks.HistoryStack]: NavigatorScreenParams<HistoryStackParams>
+  [Stacks.HistoryStack]: NavigatorScreenParams<HistoryStackParams>
   [Stacks.SettingsStack]: NavigatorScreenParams<SettingStackParams>
   [Stacks.HelpCenterStack]: NavigatorScreenParams<HelpCenterStackParams>
   [Stacks.AboutStack]: NavigatorScreenParams<AboutStackParams>
+  [BifoldScreens.CredentialDetails]: { credentialId: string }
+  [BifoldScreens.OpenIDCredentialDetails]: { credentialId: string }
 }
 
 export type TabStackParams = {
@@ -87,6 +89,15 @@ export type SettingStackParams = {
   [Screens.CreatePIN]: { updatePIN?: boolean }
   [Screens.UseBiometry]: undefined
 }
+
+export type HistoryStackParams = {
+  [Screens.PinChangeDetails]: { recordId: string; item: CustomRecord }
+  [Screens.BiometricChangeDetails]: { recordId: string; operation: string; item: CustomRecord }
+  [Screens.CardHistoryDetails]: { recordId: string; operation: string; item: CustomRecord }
+  [Screens.ContactHistoryDetails]: { recordId: string; operation: string; item: CustomRecord }
+  [Screens.ProofHistoryDetails]: { recordId: string; operation: string; item: CustomRecord }
+}
+
 type ContentType = {
   title?: string
   text?: string
@@ -110,11 +121,6 @@ export type AboutStackParams = {
 
 export type ActivitiesStackParams = {
   [Screens.Activities]: undefined
-  [Screens.PinChangeDetails]: { recordId: string; item: CustomRecord }
-  [Screens.BiometricChangeDetails]: { recordId: string; operation: string; item: CustomRecord }
-  [Screens.CardHistoryDetails]: { recordId: string; operation: string; item: CustomRecord }
-  [Screens.ContactHistoryDetails]: { recordId: string; operation: string; item: CustomRecord }
-  [Screens.ProofHistoryDetails]: { recordId: string; operation: string; item: CustomRecord }
 }
 export type OptionsPlusStackParams = {
   [Screens.OptionsPlus]: undefined

@@ -4,6 +4,7 @@ exports[`DismissibleCustomModal Component Renders correctly with primary call to
 <Modal
   accessibilityViewIsModal={true}
   hardwareAccelerated={false}
+  testID="com.ariesbifold:id/CustomModal"
   transparent={true}
   visible={true}
 >
@@ -213,7 +214,6 @@ exports[`DismissibleCustomModal Component Renders correctly with primary call to
                     "paddingVertical": 16,
                   }
                 }
-                testID="com.ariesbifold:id/BodyText"
               >
                 Lorem ipsum sit dolar amet
               </Text>
@@ -306,6 +306,7 @@ exports[`DismissibleCustomModal Component Renders correctly without call to acti
 <Modal
   accessibilityViewIsModal={true}
   hardwareAccelerated={false}
+  testID="com.ariesbifold:id/CustomModal"
   transparent={true}
   visible={true}
 >
@@ -515,7 +516,6 @@ exports[`DismissibleCustomModal Component Renders correctly without call to acti
                     "paddingVertical": 16,
                   }
                 }
-                testID="com.ariesbifold:id/BodyText"
               >
                 Lorem ipsum sit dolar amet
               </Text>

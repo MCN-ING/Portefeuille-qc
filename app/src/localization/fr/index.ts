@@ -600,8 +600,10 @@ const translation = {
   },
   ConnectionAlert: {
     AddedContacts: 'Nouveau contact ajouté',
-    NotificationBodyUpper: "En acceptant l'attestation, je consens à l'ajout du ",
-    NotificationBodyLower: ' dans mes contacts. Cela est nécessaire pour recevoir les services offerts par ',
+    NotificationBodyWithIssuer:
+      "En acceptant l'attestation, je consens à l'ajout de {{issuerName}} dans mes contacts. Cela est nécessaire pour recevoir les services offerts par {{issuerName}}.",
+    NotificationBodyWithoutIssuer:
+      "En acceptant l'attestation, je consens à l'ajout d'un nouveau contact. Cela est nécessaire pour recevoir les services offerts par celui-ci.",
     PopupIntro:
       " Lorsque vous balayez le code QR d'une organisation, celle-ci devient automatiquement un nouveau contact dans votre application. Cela est nécessaire afin de :",
     PopupPoint1: 'partager une information',

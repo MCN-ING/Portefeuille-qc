@@ -23,12 +23,12 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
-import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
+import { HistoryStackParams, Screens } from '../../navigators/navigators'
 import { ColorPallet } from '../../theme'
 import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 import { startCaseUnicode } from '../../utils/stringUtils'
 
-type CardHistorydDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.CardHistoryDetails>
+type CardHistorydDetailsProp = StackScreenProps<HistoryStackParams, Screens.CardHistoryDetails>
 
 const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigation }) => {
   const { TextTheme } = useTheme()
@@ -119,7 +119,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
             <View style={styles.headerStyle}>
               <HeaderText
                 title={t('History.CardDescription.CardChanged', {
-                  cardName: itemContent?.message ? startCaseUnicode(itemContent.correspondenceName || '') : '',
+                  cardName: itemContent?.message ? startCaseUnicode(itemContent.correspondenceName ?? '') : '',
                   operation: operation,
                   interpolation: { escapeValue: false },
                 })}
@@ -141,7 +141,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id ?? '', agent, loadHistory, t, navigation)}
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >
