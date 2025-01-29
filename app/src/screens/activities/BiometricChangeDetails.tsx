@@ -10,10 +10,10 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 import HeaderText from '../../components/HeaderText'
 import useHistoryDetailPageStyles from '../../hooks/useHistoryDetailPageStyles'
-import { ActivitiesStackParams, Screens } from '../../navigators/navigators'
+import { HistoryStackParams, Screens } from '../../navigators/navigators'
 import { handleDeleteHistoryWithConfirmation } from '../../utils/historyUtils'
 
-type BiometricChangeDetailsProp = StackScreenProps<ActivitiesStackParams, Screens.BiometricChangeDetails>
+type BiometricChangeDetailsProp = StackScreenProps<HistoryStackParams, Screens.BiometricChangeDetails>
 
 const BiometricChangeDetails: React.FC<BiometricChangeDetailsProp> = ({ route, navigation }) => {
   const { TextTheme } = useTheme()
@@ -43,7 +43,7 @@ const BiometricChangeDetails: React.FC<BiometricChangeDetailsProp> = ({ route, n
 
       <TouchableOpacity
         style={styles.deleteContainer}
-        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id || '', agent, loadHistory, t, navigation)}
+        onPress={() => handleDeleteHistoryWithConfirmation(item.content.id ?? '', agent, loadHistory, t, navigation)}
         accessibilityLabel={t('History.Button.DeleteHistory')}
         accessibilityRole="button"
       >
