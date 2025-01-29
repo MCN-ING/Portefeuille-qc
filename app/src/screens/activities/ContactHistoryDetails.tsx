@@ -26,7 +26,7 @@ const ContactHistoryDetails: React.FC<ContactHistoryDetailsProp> = ({ route, nav
   const itemContent = item?.content as HistoryRecord
   const styles = useHistoryDetailPageStyles()
   const modifiedDate = itemContent.createdAt
-    ? formatTime(itemContent.createdAt, { shortMonth: true, trim: true })
+    ? formatTime(itemContent.createdAt, { includeHour: true })
     : t('Record.InvalidDate')
 
   const iconSize = 24

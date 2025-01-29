@@ -98,7 +98,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
   }, [recordId])
 
   const operationDate = itemContent?.createdAt
-    ? formatTime(new Date(itemContent?.createdAt), { shortMonth: true, trim: true })
+    ? formatTime(itemContent?.createdAt, { includeHour: true })
     : t('Record.InvalidDate')
 
   if (isLoading) {
