@@ -176,7 +176,7 @@ const UseBiometry: React.FC = () => {
     if (Platform.OS === 'ios') {
       await Linking.openURL('App-Prefs:')
     } else if (Platform.OS === 'android') {
-      await Linking.sendIntent('android.settings.SETTINGS')
+      await Linking.sendIntent('android.settings.SECURITY_SETTINGS')
     }
     onOpenSettingsDismissed()
   }
