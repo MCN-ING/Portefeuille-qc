@@ -213,9 +213,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
           resolve({
             title: t('Home.NewMessage'),
             body: theirLabel ? `${theirLabel} ${t('Home.SentMessage')}` : t('Home.ReceivedMessage'),
-            eventTime: connection?.createdAt
-              ? formatTime(connection.createdAt, { shortMonth: true, includeHour: true })
-              : '',
+            eventTime: connection?.createdAt ? formatTime(connection.createdAt, { includeHour: true }) : '',
           })
           break
         case NotificationTypeEnum.CredentialOffer: {
@@ -224,7 +222,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
             resolve({
               title: t('CredentialOffer.NewCredentialOffer'),
               body: theirLabel,
-              eventTime: cred?.createdAt ? formatTime(cred.createdAt, { chatFormat: true, includeHour: true }) : '',
+              eventTime: cred?.createdAt ? formatTime(cred.createdAt, { includeHour: true }) : '',
             })
           })
           break
@@ -235,7 +233,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
             resolve({
               title: t('ProofRequest.NewProofRequest'),
               body: theirLabel,
-              eventTime: proof?.createdAt ? formatTime(proof.createdAt, { chatFormat: true, includeHour: true }) : '',
+              eventTime: proof?.createdAt ? formatTime(proof.createdAt, { includeHour: true }) : '',
             })
           })
           break
@@ -247,7 +245,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
             resolve({
               title: t('CredentialDetails.NewRevoked'),
               body: theirLabel,
-              eventTime: revocationDate ? formatTime(revocationDate, { chatFormat: true, includeHour: true }) : '',
+              eventTime: revocationDate ? formatTime(revocationDate, { includeHour: true }) : '',
             })
           })
           break
@@ -256,7 +254,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
           resolve({
             title: t(customNotification?.title as string),
             body: t(customNotification?.description as string),
-            eventTime: formatTime(notification.createdAt, { chatFormat: true, includeHour: true }),
+            eventTime: formatTime(notification.createdAt, { includeHour: true }),
           })
           break
         default:

@@ -76,9 +76,9 @@ const translation = {
     MinuteAgo: 'Il y a une minute',
     MinutesAgo: 'Il y a quelques minutes',
     JustNow: 'À l’instant',
-    ModifiedOn: 'Modifié :',
-    AcceptedOn: 'Accepté :',
-    DeclinedOn: 'Refusé :',
+    ModifiedOn: 'Modifié le',
+    AcceptedOn: 'Accepté le',
+    DeclinedOn: 'Refusé le',
     MonthLong: {
       January: 'janvier',
       February: 'février',
@@ -1095,7 +1095,7 @@ const translation = {
       PostalCode: 'Code postal',
     },
     Date: {
-      changedOn: '{{operation}} :',
+      changedOn: '{{operation}} le',
     },
     Operations: {
       Accepted: 'acceptée',
