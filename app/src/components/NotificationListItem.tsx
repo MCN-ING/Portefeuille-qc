@@ -247,9 +247,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
             resolve({
               title: t('CredentialDetails.NewRevoked'),
               body: theirLabel,
-              eventTime: revocationDate
-                ? formatTime(new Date(revocationDate), { chatFormat: true, includeHour: true })
-                : '',
+              eventTime: revocationDate ? formatTime(revocationDate, { chatFormat: true, includeHour: true }) : '',
             })
           })
           break
