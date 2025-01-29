@@ -4,6 +4,7 @@ exports[`DismissibleCustomModal Component Renders correctly with primary call to
 <Modal
   accessibilityViewIsModal={true}
   hardwareAccelerated={false}
+  testID="com.ariesbifold:id/CustomModal"
   transparent={true}
   visible={true}
 >
@@ -305,6 +306,7 @@ exports[`DismissibleCustomModal Component Renders correctly without call to acti
 <Modal
   accessibilityViewIsModal={true}
   hardwareAccelerated={false}
+  testID="com.ariesbifold:id/CustomModal"
   transparent={true}
   visible={true}
 >

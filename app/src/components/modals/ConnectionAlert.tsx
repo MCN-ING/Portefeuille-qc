@@ -91,10 +91,9 @@ const ConnectionAlert: React.FC<ConnectionAlertProps> = ({ connectionID }) => {
         />
       )}
       <Text style={styles.notifyText}>
-        {t('ConnectionAlert.NotificationBodyUpper') +
-          (connectionID || t('ContactDetails.AContact').toLowerCase()) +
-          t('ConnectionAlert.NotificationBodyLower') +
-          (connectionID || t('ContactDetails.AContact').toLowerCase())}
+        {connectionID
+          ? t('ConnectionAlert.NotificationBodyWithIssuer', { issuerName: connectionID })
+          : t('ConnectionAlert.NotificationBodyWithoutIssuer')}
       </Text>
     </View>
   )
