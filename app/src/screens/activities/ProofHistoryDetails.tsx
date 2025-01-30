@@ -47,7 +47,7 @@ const ProofHistoryDetails: React.FC<ProofHistoryDetailsProp> = ({ route, navigat
   }, [])
 
   const operationDate = itemContent?.createdAt
-    ? formatTime(itemContent?.createdAt, { shortMonth: true, trim: true })
+    ? formatTime(itemContent?.createdAt, { includeHour: true })
     : t('Record.InvalidDate')
 
   if (isLoading) {
