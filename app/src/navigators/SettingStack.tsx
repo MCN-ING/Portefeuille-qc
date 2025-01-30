@@ -32,7 +32,7 @@ const SettingsStack: React.FC = () => {
         name={Screens.Language}
         component={Language}
         options={{
-          title: t('Screens.Language'),
+          title: t('Settings.Language'),
           ...ScreenOptionsDictionary[Screens.Language],
         }}
       />

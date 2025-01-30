@@ -23,53 +23,36 @@ exports[`Developer Screen screen renders correctly 1`] = `
     }
   >
     <View>
-      <View
+      <Text
         style={
           [
             {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
+              "color": "#FFFFFF",
+              "fontSize": 26,
+              "fontWeight": "bold",
             },
             {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "marginTop": 8,
-              "paddingBottom": 0,
+              "flexShrink": 1,
             },
           ]
         }
       >
-        <Text
-          style={
-            [
-              {
-                "color": "#FFFFFF",
-                "fontSize": 26,
-                "fontWeight": "bold",
-              },
-              {
-                "flexShrink": 1,
-              },
-            ]
-          }
-        >
-          Settings.Developer
-        </Text>
-      </View>
+        Settings.Developer
+      </Text>
       <View
         style={
-          [
-            {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
+          {
+            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomWidth": 1,
+          }
         }
       >
         <View
           style={
             {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -117,13 +100,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/ToggleDeveloper"
           >
             <RCTSwitch
@@ -154,36 +130,17 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "backgroundColor": "#313132",
+            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            [
-              {
-                "borderBottomColor": "#FFFFFFFF",
-                "borderBottomWidth": 1,
-                "marginTop": 10,
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          [
             {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -231,13 +188,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/ToggleManagedEnvironmentSwitch"
           >
             <RCTSwitch
@@ -268,36 +218,17 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "backgroundColor": "#313132",
+            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            [
-              {
-                "borderBottomColor": "#FFFFFFFF",
-                "borderBottomWidth": 1,
-                "marginTop": 10,
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          [
             {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -345,13 +276,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/ToggleVerifierCapability"
           >
             <RCTSwitch
@@ -382,36 +306,17 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "backgroundColor": "#313132",
+            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            [
-              {
-                "borderBottomColor": "#FFFFFFFF",
-                "borderBottomWidth": 1,
-                "marginTop": 10,
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          [
             {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -459,13 +364,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/ToggleAcceptDevCredentials"
           >
             <RCTSwitch
@@ -496,36 +394,17 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "backgroundColor": "#313132",
+            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            [
-              {
-                "borderBottomColor": "#FFFFFFFF",
-                "borderBottomWidth": 1,
-                "marginTop": 10,
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          [
             {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -573,13 +452,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/ToggleConnectionInviterCapabilitySwitch"
           >
             <RCTSwitch
@@ -610,36 +482,17 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "backgroundColor": "#313132",
+            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            [
-              {
-                "borderBottomColor": "#FFFFFFFF",
-                "borderBottomWidth": 1,
-                "marginTop": 10,
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          [
             {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -687,13 +540,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/ToggleDevVerifierTemplatesSwitch"
           >
             <RCTSwitch
@@ -724,36 +570,17 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "backgroundColor": "#313132",
+            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            [
-              {
-                "borderBottomColor": "#FFFFFFFF",
-                "borderBottomWidth": 1,
-                "marginTop": 10,
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          [
             {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -801,13 +628,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/ToggleWalletNamingSwitch"
           >
             <RCTSwitch
@@ -838,36 +658,17 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "backgroundColor": "#313132",
+            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            [
-              {
-                "borderBottomColor": "#FFFFFFFF",
-                "borderBottomWidth": 1,
-                "marginTop": 10,
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          [
             {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -915,13 +716,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/TogglePreventAutoLockSwitch"
           >
             <RCTSwitch
@@ -949,39 +743,13 @@ exports[`Developer Screen screen renders correctly 1`] = `
           </View>
         </View>
       </View>
-      <View
-        style={
-          {
-            "backgroundColor": "#313132",
-          }
-        }
-      >
-        <View
-          style={
-            [
-              {
-                "borderBottomColor": "#FFFFFFFF",
-                "borderBottomWidth": 1,
-                "marginTop": 10,
-              },
-            ]
-          }
-        />
-      </View>
-      <View
-        style={
-          [
-            {
-              "backgroundColor": "#313132",
-              "paddingTop": 24,
-            },
-          ]
-        }
-      >
+      <View>
         <View
           style={
             {
+              "alignItems": "center",
               "flexDirection": "row",
+              "paddingVertical": 12,
             }
           }
         >
@@ -1029,13 +797,6 @@ exports[`Developer Screen screen renders correctly 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-              }
-            }
             testID="com.ariesbifold:id/ToggleForcedUpdatesSwitch"
           >
             <RCTSwitch

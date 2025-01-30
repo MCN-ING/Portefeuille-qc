@@ -9,7 +9,7 @@ import { BCState, PreferencesQCDispatchAction } from '../store'
 const Settings: React.FC = () => {
   const { t } = useTranslation()
   const [store, dispatch] = useStore<BCState>()
-  const { SettingsTheme, TextTheme, ColorPallet } = useTheme()
+  const { TextTheme, ColorPallet } = useTheme()
   const [devMode, setDevMode] = useState<boolean>(true)
   const [useAppForcedUpdate, setUseAppForcedUpdate] = useState<boolean>(!!store.preferences.useForcedAppUpdate)
   const [useManageEnvironment, setUseManageEnvironment] = useState<boolean>(!!store.preferences.useManageEnvironment)
@@ -34,23 +34,11 @@ const Settings: React.FC = () => {
     innerContainer: {
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
-    section: {
-      backgroundColor: SettingsTheme.groupBackground,
-      paddingTop: 24,
-    },
-    sectionHeader: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      marginTop: 8,
-      paddingBottom: 0,
-    },
-    sectionSeparator: {
-      marginBottom: 10,
-    },
     sectionRow: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
+      paddingVertical: 12,
     },
     rowTitle: {
       ...TextTheme.headingFour,
@@ -61,23 +49,11 @@ const Settings: React.FC = () => {
     rowSeparator: {
       borderBottomWidth: 1,
       borderBottomColor: ColorPallet.brand.secondary,
-      marginTop: 10,
-    },
-    logo: {
-      height: 64,
-      width: '50%',
-      marginVertical: 16,
-    },
-    footer: {
-      marginVertical: 25,
-      alignItems: 'center',
     },
   })
 
   const SectionHeader = ({ title }: { title: string }): JSX.Element => (
-    <View style={[styles.section, styles.sectionHeader]}>
-      <Text style={[TextTheme.headingThree, { flexShrink: 1 }]}>{title}</Text>
-    </View>
+    <Text style={[TextTheme.headingThree, { flexShrink: 1 }]}>{title}</Text>
   )
 
   interface SectionRowProps {
@@ -98,28 +74,15 @@ const Settings: React.FC = () => {
     showRowSeparator,
     subContent,
   }: SectionRowProps) => (
-    <>
-      <View style={[styles.section]}>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={styles.rowTitle}>{title}</Text>
-          <Pressable
-            onPress={onPress}
-            accessible={true}
-            accessibilityLabel={accessibilityLabel}
-            testID={testID}
-            style={styles.sectionRow}
-          >
-            {children}
-          </Pressable>
-        </View>
-        {subContent}
+    <View style={showRowSeparator && styles.rowSeparator}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12 }}>
+        <Text style={styles.rowTitle}>{title}</Text>
+        <Pressable onPress={onPress} accessible={true} accessibilityLabel={accessibilityLabel} testID={testID}>
+          {children}
+        </Pressable>
       </View>
-      {showRowSeparator && (
-        <View style={{ backgroundColor: SettingsTheme.groupBackground }}>
-          <View style={[styles.rowSeparator]}></View>
-        </View>
-      )}
-    </>
+      {subContent}
+    </View>
   )
 
   const toggleSwitch = () => {

@@ -69,6 +69,7 @@ const translation = {
     'code_pt-BR': 'Portugais',
     Checked: 'sélectionné',
     NotChecked: 'non sélectionné',
+    Title: "Changer la langue d'affichage",
   },
   Date: {
     ShortFormat: 'D MMM',

@@ -50,7 +50,7 @@ const HelpRowSection = ({
   const styles = StyleSheet.create({
     section: {
       backgroundColor: SettingsTheme.groupBackground,
-      paddingTop: 24,
+      //paddingTop: 24,
     },
     rowTitle: {
       ...TextTheme.headingFour,
@@ -61,8 +61,6 @@ const HelpRowSection = ({
     sectionHeader: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginTop: 8,
-      paddingBottom: 0,
     },
     sectionHeaderText: {
       flexShrink: 1,
@@ -74,14 +72,15 @@ const HelpRowSection = ({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
+      paddingVertical: 12,
     },
     sectionSeparator: {
       marginBottom: 10,
     },
     rowSeparator: {
       borderBottomWidth: 1,
-      borderBottomColor: ColorPallet.brand.secondary,
-      marginTop: 10,
+      borderBottomColor: ColorPallet.grayscale.lightGrey,
+      //marginTop: 10,
     },
   })
 
@@ -96,7 +95,7 @@ const HelpRowSection = ({
       )}
       {itemSection.map((item, index) => (
         <View key={index}>
-          <View style={[styles.section]}>
+          <View style={[styles.section, showRowSeparator && index !== itemSection.length - 1 && styles.rowSeparator]}>
             <Pressable
               onPress={() =>
                 navigation.navigate(Screens.HelpCenterPage, { selectedSection: itemSection, sectionNo: index })
@@ -105,7 +104,7 @@ const HelpRowSection = ({
               accessibilityLabel={item.title}
               testID={testIdWithKey(item.title)}
             >
-              <View style={styles.sectionRow}>
+              <View style={[styles.sectionRow, index === itemSection.length - 1 && { marginBottom: 32 }]}>
                 <Text style={styles.rowTitle}>{item.title}</Text>
                 <Text style={[TextTheme.headingFour, styles.sectionText]}>{children}</Text>
                 {showArrowIcon && arrowIcon}
@@ -113,14 +112,8 @@ const HelpRowSection = ({
             </Pressable>
             {subContent}
           </View>
-          {showRowSeparator && index < itemSection.length - 1 && (
-            <View style={{ backgroundColor: SettingsTheme.groupBackground }}>
-              <View style={[styles.rowSeparator]}></View>
-            </View>
-          )}
         </View>
       ))}
-      <View style={[styles.sectionSeparator]}></View>
     </>
   )
 }
