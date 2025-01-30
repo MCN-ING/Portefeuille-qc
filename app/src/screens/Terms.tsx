@@ -1,4 +1,5 @@
 import {
+  Button,
   ButtonType,
   CheckBoxRow,
   DispatchAction,
@@ -8,7 +9,6 @@ import {
   useTheme,
   useStore,
 } from '@hyperledger/aries-bifold-core'
-import Button from '@hyperledger/aries-bifold-core/App/components/buttons/Button'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useEffect, useState } from 'react'
