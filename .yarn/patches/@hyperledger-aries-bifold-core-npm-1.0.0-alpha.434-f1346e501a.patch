@@ -21,7 +21,7 @@ index ce791235318e3b773a7f97580f9e205ad9995ded..1bc8109123f4e793dd994dccaa84e3cf
    const navigation = useNavigation<StackNavigationProp<HomeStackParams>>()
    const [store, dispatch] = useStore()
 diff --git a/App/screens/Home.tsx b/App/screens/Home.tsx
-index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..760c7a538b25212cb0e8a293731600ef60cb0041 100644
+index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..cad23deeaecba2faebdffe1f1f297f70f408482c 100644
 --- a/App/screens/Home.tsx
 +++ b/App/screens/Home.tsx
 @@ -40,6 +40,8 @@ const Home: React.FC<HomeProps> = () => {
@@ -33,7 +33,7 @@ index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..760c7a538b25212cb0e8a293731600ef
    const styles = StyleSheet.create({
      flatlist: {
        marginBottom: 35,
-@@ -49,26 +51,47 @@ const Home: React.FC<HomeProps> = () => {
+@@ -49,26 +51,48 @@ const Home: React.FC<HomeProps> = () => {
    const DisplayListItemType = useCallback((item: any): React.ReactNode => {
      let component: React.ReactNode
      if (item.type === 'BasicMessageRecord') {
@@ -56,7 +56,8 @@ index ad946ed3ee1af79bbdc90fa70e30eefd6782128c..760c7a538b25212cb0e8a293731600ef
 +          openSwipeableId={notificationItemId}
 +          onOpenSwipeable={setNotificationItemId}
 +          notificationType={notificationType}
-+          notification={item} />
++          notification={item}
++        />
 +      )
      } else if (item.type === 'CustomNotification' && customNotification) {
        component = (
