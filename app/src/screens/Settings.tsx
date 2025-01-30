@@ -3,11 +3,13 @@ import { i18n, Locales } from '@hyperledger/aries-bifold-core/App/localization'
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity, Modal, StyleProp, ViewStyle } from 'react-native'
+import { ScrollView, StyleSheet, Text, Modal } from 'react-native'
 import { getBuildNumber, getVersion } from 'react-native-device-info'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
+import SettingHeader from '../components/settings/SettingHeader'
+import SettingRow from '../components/settings/SettingRow'
 import { Screens, SettingStackParams, Stacks } from '../navigators/navigators'
 import { BCState } from '../store'
 
@@ -82,40 +84,9 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
     rowSeparator: {
       borderBottomWidth: 1,
       borderBottomColor: ColorPallet.grayscale.lightGrey,
-      //marginTop: 10,
     },
   })
-  const SectionHeader = ({ title }: { title: string }): JSX.Element => (
-    <View style={[styles.section, styles.sectionHeader]}>
-      <Text style={[TextTheme.headingThree, { flexShrink: 1 }]} accessibilityRole="header">
-        {title}
-      </Text>
-    </View>
-  )
-  interface SectionRowProps {
-    title: string
-    testID?: string
-    children?: JSX.Element
-    showRowSeparator?: boolean
-    onPress?: () => void
-    rowIcon?: JSX.Element
-    style?: StyleProp<ViewStyle>
-  }
-  const SectionRow = ({ title, testID, onPress, children, showRowSeparator, rowIcon, style }: SectionRowProps) => (
-    <View style={showRowSeparator && styles.rowSeparator}>
-      <TouchableOpacity testID={testID} onPress={onPress} accessibilityRole={'button'}>
-        <View style={[styles.section, { paddingVertical: 12 }, style]}>
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={styles.rowTitle}>{title}</Text>
 
-            {children}
-
-            {rowIcon}
-          </View>
-        </View>
-      </TouchableOpacity>
-    </View>
-  )
   const arrowIcon = (
     <MaterialIcon name={'keyboard-arrow-right'} size={iconSize} accessible={false} accessibilityLabel="" />
   )
@@ -132,8 +103,8 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
         <IASEnvironment shouldDismissModal={shouldDismissModal} />
       </Modal>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <SectionHeader title={t('Settings.Preference')} />
-        <SectionRow
+        <SettingHeader title={t('Settings.Preference')} />
+        <SettingRow
           title={t('Settings.Language')}
           testID={testIdWithKey('Language')}
           onPress={() => navigation.navigate(Screens.Language)}
@@ -141,8 +112,8 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           rowIcon={arrowIcon}
         >
           <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>{currentLanguage}</Text>
-        </SectionRow>
-        <SectionRow
+        </SettingRow>
+        <SettingRow
           title={t('Settings.Tours')}
           testID={testIdWithKey('Tours')}
           onPress={() => navigation.navigate(Screens.Tours)}
@@ -152,9 +123,9 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>
             {store.tours.enableTours ? t('Settings.ToursActive') : t('Settings.ToursDisabled')}
           </Text>
-        </SectionRow>
-        <SectionHeader title={t('Settings.Security')} />
-        <SectionRow
+        </SettingRow>
+        <SettingHeader title={t('Settings.Security')} />
+        <SettingRow
           title={t('Settings.MyPin')}
           testID={testIdWithKey('MyPin')}
           onPress={() =>
@@ -166,8 +137,8 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           rowIcon={arrowIcon}
         >
           <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>{t('Settings.ChangePin')}</Text>
-        </SectionRow>
-        <SectionRow
+        </SettingRow>
+        <SettingRow
           title={t('Settings.Biometrics')}
           testID={testIdWithKey('Biometrics')}
           onPress={() => navigation.navigate(Screens.UseBiometry)}
@@ -177,9 +148,9 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           <Text style={[TextTheme.headingFour, { fontWeight: 'normal' }]}>
             {store.preferences.useBiometry ? t('Settings.BiometricActive') : t('Settings.BiometricDisabled')}
           </Text>
-        </SectionRow>
+        </SettingRow>
         {store.preferences.useManageEnvironment && (
-          <SectionRow
+          <SettingRow
             title={t('Developer.Environment')}
             testID={testIdWithKey('Environment')}
             showRowSeparator
@@ -192,9 +163,9 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
             >
               {Object.keys(store.developer.environment)[0]}
             </Text>
-          </SectionRow>
+          </SettingRow>
         )}
-        <SectionRow
+        <SettingRow
           title={t('Settings.Version')}
           testID={testIdWithKey('Version')}
           onPress={() => {
@@ -205,7 +176,7 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
           <Text style={[TextTheme.normal, { alignSelf: 'center' }]}>
             {getVersion()} {`(${getBuildNumber()})`}
           </Text>
-        </SectionRow>
+        </SettingRow>
 
         {store.preferences.developerModeEnabled && <Developer />}
       </ScrollView>
