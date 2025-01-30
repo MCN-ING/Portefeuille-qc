@@ -946,6 +946,9 @@ const translation = {
     TermsOfService: 'Terms of Service',
     IAgree: 'I Agree',
     Attestation: 'I have read, understand and accept the terms and conditions.',
+    HintDisabled:
+      "To access the button, you must have checked the box 'I have read and accept the terms and conditions'.",
+    HintEnabled: 'Press to confirm that you accept the terms and conditions.',
   },
   Verifier: {
     UseVerifierCapability: 'Use Verifier capability?',
