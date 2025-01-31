@@ -1044,6 +1044,7 @@ const translation = {
   AddCredentialSlider: {
     Choose: 'Choisir',
     ScanQRCode: 'Lire un code QR',
+    Title: 'Ajouté une attestation',
   },
   HelpCenter: {
     Help: 'Aide',
