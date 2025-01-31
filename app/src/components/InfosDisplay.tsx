@@ -2,6 +2,8 @@ import { useTheme } from '@hyperledger/aries-bifold-core'
 import React from 'react'
 import { Image, StyleSheet, Text, View, ImageSourcePropType } from 'react-native'
 
+import { ShadowTheme } from '../theme'
+
 type InfosDisplayProps = {
   title?: string
   screen?: Array<string>
@@ -48,13 +50,7 @@ const InfosDisplay: React.FC<InfosDisplayProps> = ({ title, detail, visual, ques
       marginBottom: 32,
       height: 240,
       borderRadius: 16,
-      shadowColor: ColorPallet.notification.infoText,
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      elevation: 4,
-      shadowOpacity: 0.24,
+      ...ShadowTheme.elevationOne,
     },
   })
   return (

@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 
 import HomeImg from '../assets/img/HomeImg.svg'
+import { ShadowTheme } from '../theme'
 
 import HeaderText from './HeaderText'
 
@@ -34,15 +35,8 @@ const HomeHeader = () => {
       marginVertical: 16,
       height: 250,
       width: '100%',
-      borderRadius: 10,
-      shadowColor: ColorPallet.grayscale.darkGrey,
-      shadowOffset: {
-        width: 6,
-        height: 6,
-      },
-      elevation: 6,
-      shadowOpacity: 0.6,
-      shadowRadius: 10,
+      borderRadius: 8,
+      ...ShadowTheme.elevationOne,
     },
     ScanQrCodeInnerContainer: {
       borderRadius: 10,

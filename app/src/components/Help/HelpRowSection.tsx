@@ -2,7 +2,6 @@ import { testIdWithKey, useTheme } from '@hyperledger/aries-bifold-core'
 import { NavigationProp } from '@react-navigation/native'
 import React from 'react'
 import { StyleSheet, Text, View, Pressable, ImageSourcePropType } from 'react-native'
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
 import { HelpCenterStackParams, Screens } from '../../navigators/navigators'
 
@@ -44,13 +43,16 @@ const HelpRowSection = ({
   showArrowIcon,
   navigation,
 }: HelpRowSectionProps) => {
-  const { SettingsTheme, TextTheme, ColorPallet } = useTheme()
-  const iconSize = 30
-  const arrowIcon = <MaterialIcon style={{ paddingLeft: 10 }} name={'keyboard-arrow-right'} size={iconSize} />
+  const { SettingsTheme, TextTheme, ColorPallet, Assets } = useTheme()
+  const iconStyles = {
+    color: ColorPallet.grayscale.darkGrey,
+    width: 30,
+    height: 30,
+  }
+  const arrowIcon = <Assets.svg.iconChevronRight {...iconStyles} />
   const styles = StyleSheet.create({
     section: {
       backgroundColor: SettingsTheme.groupBackground,
-      //paddingTop: 24,
     },
     rowTitle: {
       ...TextTheme.headingFour,
@@ -80,7 +82,6 @@ const HelpRowSection = ({
     rowSeparator: {
       borderBottomWidth: 1,
       borderBottomColor: ColorPallet.grayscale.lightGrey,
-      //marginTop: 10,
     },
   })
 

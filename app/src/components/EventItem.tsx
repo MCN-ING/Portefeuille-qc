@@ -1,18 +1,14 @@
 import { GenericFn, testIdWithKey, ToastType, useStore, useTheme } from '@hyperledger/aries-bifold-core'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 import { ToastShowParams } from 'react-native-toast-message'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
 import { hitSlop } from '../constants'
 import { useToast } from '../hooks/toast'
 import { BCDispatchAction, BCState } from '../store'
-
-const iconSize = 20
-
 interface EventItemProps {
   action?: GenericFn
   handleDelete?: () => Promise<void>
@@ -45,12 +41,18 @@ const EventItem = ({
   deleteMessage,
 }: EventItemProps): React.JSX.Element => {
   const { t } = useTranslation()
-  const { ColorPallet, TextTheme } = useTheme()
+  const { ColorPallet, TextTheme, Assets } = useTheme()
   const hasCanceledRef = useRef(false)
   const [toastEnabled, setToastEnabled] = useState(false)
   const [toastOptions, setToastOptions] = useState<ToastShowParams>({})
   const [, dispatch] = useStore<BCState>()
   useToast({ enabled: toastEnabled, options: toastOptions })
+
+  const arrowIconStyles = {
+    color: ColorPallet.grayscale.darkGrey,
+    width: 30,
+    height: 30,
+  }
 
   const styles = StyleSheet.create({
     container: {
@@ -158,7 +160,7 @@ const EventItem = ({
           </Text>
         </View>
         <View style={styles.arrowContainer}>
-          <MaterialIcon name={'keyboard-arrow-right'} size={iconSize} />
+          <Assets.svg.iconChevronRight {...arrowIconStyles} />
         </View>
       </View>
     </Pressable>

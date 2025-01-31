@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 import { ScrollView, StyleSheet, Text, Modal } from 'react-native'
 import { getBuildNumber, getVersion } from 'react-native-device-info'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
 import SettingHeader from '../components/settings/SettingHeader'
 import SettingRow from '../components/settings/SettingRow'
@@ -19,7 +18,7 @@ import IASEnvironment from './IASEnvironment'
 type SettingsProps = StackScreenProps<SettingStackParams>
 
 const Settings: React.FC<SettingsProps> = ({ navigation }) => {
-  const { SettingsTheme, TextTheme, ColorPallet } = useTheme()
+  const { TextTheme, ColorPallet, Assets } = useTheme()
   const [store, dispatch] = useStore<BCState>()
   const currentLanguage = i18n.t('Language.code', { context: i18n.language as Locales })
   const developerOptionCount = useRef(0)
@@ -27,7 +26,6 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
   const { t } = useTranslation()
 
   const touchCountToEnableBiometrics = 9
-  const iconSize = 30
 
   const shouldDismissModal = () => {
     setEnvironmentModalVisible(false)
@@ -53,43 +51,17 @@ const Settings: React.FC<SettingsProps> = ({ navigation }) => {
       padding: 16,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
-    mainSection: {
-      flex: 5,
-    },
-    textHeaderTitle: {
-      ...TextTheme.headingThree,
-      flexShrink: 1,
-      color: TextTheme.headingThree.color,
-      paddingTop: 8,
-      paddingBottom: 8,
-    },
-    section: {
-      backgroundColor: SettingsTheme.groupBackground,
-      alignItems: 'center',
-    },
-    sectionHeader: {
-      backgroundColor: SettingsTheme.groupBackground,
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
     scroll: {
       flexGrow: 1,
     },
-    rowTitle: {
-      ...TextTheme.headingFour,
-      flex: 1,
-      fontWeight: 'normal',
-      flexWrap: 'wrap',
-    },
-    rowSeparator: {
-      borderBottomWidth: 1,
-      borderBottomColor: ColorPallet.grayscale.lightGrey,
-    },
   })
+  const icon = {
+    color: ColorPallet.grayscale.darkGrey,
+    width: 30,
+    height: 30,
+  }
 
-  const arrowIcon = (
-    <MaterialIcon name={'keyboard-arrow-right'} size={iconSize} accessible={false} accessibilityLabel="" />
-  )
+  const arrowIcon = <Assets.svg.iconChevronRight accessible={false} {...icon} />
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <Modal
