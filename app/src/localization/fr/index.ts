@@ -980,6 +980,9 @@ const translation = {
     TermsOfService: "Conditions d'utilisation",
     IAgree: "J'accepte",
     Attestation: "J'ai lu, je comprends et j'accepte les conditions.",
+    HintDisabled:
+      "Pour accéder au bouton, vous devez avoir sélectionné la case 'J'ai lu et j'accepte les conditions d'utilisation'.",
+    HintEnabled: "Appuyez pour confirmer que vous acceptez les conditions d'utilisation.",
   },
   Verifier: {
     UseVerifierCapability: 'Utiliser la fonctionnalité de vérification?',
