@@ -23,86 +23,84 @@ exports[`Developer Screen screen renders correctly 1`] = `
     }
   >
     <View>
-      <Text
+      <View
         style={
           [
             {
-              "color": "#FFFFFF",
-              "fontSize": 26,
-              "fontWeight": "bold",
+              "alignItems": "center",
+              "backgroundColor": "#313132",
             },
             {
-              "flexShrink": 1,
+              "alignItems": "center",
+              "backgroundColor": "#313132",
+              "flexDirection": "row",
             },
           ]
         }
       >
-        Settings.Developer
-      </Text>
+        <Text
+          accessibilityRole="header"
+          style={
+            [
+              {
+                "color": "#FFFFFF",
+                "fontSize": 26,
+                "fontWeight": "bold",
+              },
+              {
+                "flexShrink": 1,
+              },
+            ]
+          }
+        >
+          Settings.Developer
+        </Text>
+      </View>
       <View
         style={
           {
-            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomColor": "#D3D3D3",
             "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            Developer.DeveloperMode
-          </Text>
-          <View
-            accessibilityLabel="Developer.Toggle"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/ToggleDeveloper"
-          >
+            >
+              Developer.DeveloperMode
+            </Text>
             <RCTSwitch
+              accessibilityLabel="Developer.Toggle"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
@@ -130,67 +128,48 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomColor": "#D3D3D3",
             "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            Settings.ManageEnvironment
-          </Text>
-          <View
-            accessibilityLabel="Settings.ToggleManageEnvironment"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/ToggleManagedEnvironmentSwitch"
-          >
+            >
+              Settings.ManageEnvironment
+            </Text>
             <RCTSwitch
+              accessibilityLabel="Settings.ToggleManageEnvironment"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
@@ -218,67 +197,48 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomColor": "#D3D3D3",
             "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            Verifier.UseVerifierCapability
-          </Text>
-          <View
-            accessibilityLabel="Verifier.Toggle"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/ToggleVerifierCapability"
-          >
+            >
+              Verifier.UseVerifierCapability
+            </Text>
             <RCTSwitch
+              accessibilityLabel="Verifier.Toggle"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
@@ -306,67 +266,48 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomColor": "#D3D3D3",
             "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            Verifier.AcceptDevCredentials
-          </Text>
-          <View
-            accessibilityLabel="Verifier.Toggle"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/ToggleAcceptDevCredentials"
-          >
+            >
+              Verifier.AcceptDevCredentials
+            </Text>
             <RCTSwitch
+              accessibilityLabel="Verifier.Toggle"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
@@ -394,67 +335,48 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomColor": "#D3D3D3",
             "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            Connection.UseConnectionInviterCapability
-          </Text>
-          <View
-            accessibilityLabel="Connection.Toggle"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/ToggleConnectionInviterCapabilitySwitch"
-          >
+            >
+              Connection.UseConnectionInviterCapability
+            </Text>
             <RCTSwitch
+              accessibilityLabel="Connection.Toggle"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
@@ -482,67 +404,48 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomColor": "#D3D3D3",
             "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            Verifier.UseDevVerifierTemplates
-          </Text>
-          <View
-            accessibilityLabel="Verifier.ToggleDevTemplates"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/ToggleDevVerifierTemplatesSwitch"
-          >
+            >
+              Verifier.UseDevVerifierTemplates
+            </Text>
             <RCTSwitch
+              accessibilityLabel="Verifier.ToggleDevTemplates"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
@@ -570,67 +473,48 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomColor": "#D3D3D3",
             "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            NameWallet.EnableWalletNaming
-          </Text>
-          <View
-            accessibilityLabel="NameWallet.ToggleWalletNaming"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/ToggleWalletNamingSwitch"
-          >
+            >
+              NameWallet.EnableWalletNaming
+            </Text>
             <RCTSwitch
+              accessibilityLabel="NameWallet.ToggleWalletNaming"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
@@ -658,67 +542,48 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View
         style={
           {
-            "borderBottomColor": "#FFFFFFFF",
+            "borderBottomColor": "#D3D3D3",
             "borderBottomWidth": 1,
           }
         }
       >
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            Settings.PreventAutoLock
-          </Text>
-          <View
-            accessibilityLabel="Settings.TogglePreventAutoLock"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/TogglePreventAutoLockSwitch"
-          >
+            >
+              Settings.PreventAutoLock
+            </Text>
             <RCTSwitch
+              accessibilityLabel="Settings.TogglePreventAutoLock"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
@@ -746,60 +611,41 @@ exports[`Developer Screen screen renders correctly 1`] = `
       <View>
         <View
           style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "paddingVertical": 12,
-            }
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#313132",
+              },
+              {
+                "paddingVertical": 12,
+              },
+              undefined,
+            ]
           }
         >
-          <Text
+          <View
             style={
               {
-                "color": "#FFFFFF",
-                "flex": 1,
-                "flexWrap": "wrap",
-                "fontSize": 21,
-                "fontWeight": "normal",
+                "alignItems": "center",
+                "flexDirection": "row",
               }
             }
           >
-            Settings.ForcedUpdates
-          </Text>
-          <View
-            accessibilityLabel="Settings.ToggleForcedUpdates"
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 21,
+                  "fontWeight": "normal",
+                }
               }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="com.ariesbifold:id/ToggleForcedUpdatesSwitch"
-          >
+            >
+              Settings.ForcedUpdates
+            </Text>
             <RCTSwitch
+              accessibilityLabel="Settings.ToggleForcedUpdates"
               accessibilityRole="switch"
               onChange={[Function]}
               onResponderTerminationRequest={[Function]}
