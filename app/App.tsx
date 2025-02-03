@@ -14,6 +14,7 @@ import {
   ContainerProvider,
   ActivityProvider,
   Container,
+  Locales,
 } from '@hyperledger/aries-bifold-core'
 import { OpenIDCredentialRecordProvider } from '@hyperledger/aries-bifold-core/App/modules/openid/context/OpenIDCredentialRecordProvider'
 import React, { useEffect, useMemo, useState } from 'react'
@@ -37,7 +38,7 @@ import { BCState, getInitialState, reducer } from './src/store'
 const { theme, localization } = qcwallet
 
 const App = (system: Container): React.FC => {
-  initLanguages(localization)
+  initLanguages(localization, Locales.fr)
 
   const AppComponent = () => {
     useMemo(() => {
