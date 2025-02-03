@@ -37,7 +37,7 @@ const HelpCenter: React.FC = () => {
   }
   const arrowIcon = <Assets.svg.iconChevronRight accessible={false} {...icon} />
 
-  const notImplemented = () => Alert.alert('External Link', 'Not Implemented')
+  const notImplemented = () => Alert.alert('Lien Externe', 'En construction')
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <SettingRow
