@@ -1,4 +1,4 @@
-import { useTheme } from '@hyperledger/aries-bifold-core'
+import { testIdWithKey, useTheme } from '@hyperledger/aries-bifold-core'
 import { getDefaultHeaderHeight } from '@react-navigation/elements'
 import { useRoute } from '@react-navigation/native'
 import React, { useCallback } from 'react'
@@ -39,6 +39,7 @@ const HelpCenterButton = () => {
       onPress={activateSlider}
       accessibilityHint={t('HelpCenter.OptionsList')}
       accessibilityRole="button"
+      testID={testIdWithKey('HelpCenterButton')}
     >
       <Text style={styles.text}>{t('HelpCenter.Help')}</Text>
     </TouchableOpacity>

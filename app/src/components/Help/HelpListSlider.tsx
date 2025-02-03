@@ -1,4 +1,4 @@
-import { useTheme } from '@hyperledger/aries-bifold-core'
+import { testIdWithKey, useTheme } from '@hyperledger/aries-bifold-core'
 import { i18n } from '@hyperledger/aries-bifold-core/App/localization'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -163,6 +163,7 @@ const HelpListSlider: React.FC = () => {
           <TouchableOpacity
             style={styles.drawerRow}
             accessibilityRole="button"
+            testID={testIdWithKey('ConsultHelpCenter')}
             onPress={() => {
               deactivateSlider()
               navigation.navigate(Stacks.HelpCenterStack, { screen: Screens.HelpCenter })

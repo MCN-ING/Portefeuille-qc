@@ -1,4 +1,4 @@
-import { TOKENS, useServices, useTheme } from '@hyperledger/aries-bifold-core'
+import { testIdWithKey, TOKENS, useServices, useTheme } from '@hyperledger/aries-bifold-core'
 import { useDefaultStackOptions } from '@hyperledger/aries-bifold-core/App/navigators/defaultStackOptions'
 import PINCreate from '@hyperledger/aries-bifold-core/App/screens/PINCreate'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -20,7 +20,10 @@ const SettingsStack: React.FC = () => {
   const { t } = useTranslation()
 
   return (
-    <StackSettings.Navigator initialRouteName={Screens.Settings} screenOptions={{ ...defaultStackOptions }}>
+    <StackSettings.Navigator
+      initialRouteName={Screens.Settings}
+      screenOptions={{ ...defaultStackOptions, headerBackTestID: testIdWithKey('Back') }}
+    >
       <StackSettings.Screen
         name={Screens.Settings}
         component={Settings}

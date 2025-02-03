@@ -1,4 +1,4 @@
-import { useTheme } from '@hyperledger/aries-bifold-core'
+import { testIdWithKey, useTheme } from '@hyperledger/aries-bifold-core'
 import { useDefaultStackOptions } from '@hyperledger/aries-bifold-core/App/navigators/defaultStackOptions'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
@@ -19,7 +19,9 @@ const HistoryStack: React.FC = () => {
   const { t } = useTranslation()
 
   return (
-    <StackHistory.Navigator screenOptions={{ ...defaultStackOptions, headerShown: true }}>
+    <StackHistory.Navigator
+      screenOptions={{ ...defaultStackOptions, headerShown: true, headerBackTestID: testIdWithKey('Back') }}
+    >
       <StackHistory.Screen
         name={Screens.PinChangeDetails}
         component={PinChangeDetails}
