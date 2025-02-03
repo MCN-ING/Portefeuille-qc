@@ -19,7 +19,6 @@ const InfosDisplay: React.FC<InfosDisplayProps> = ({ title, detail, visual, ques
   const styles = StyleSheet.create({
     section: {
       backgroundColor: SettingsTheme.groupBackground,
-      //paddingTop: 24,
     },
     sectionHeader: {
       flexDirection: 'row',
@@ -30,8 +29,6 @@ const InfosDisplay: React.FC<InfosDisplayProps> = ({ title, detail, visual, ques
     },
     sectionText: {
       fontWeight: 'normal',
-      // paddingTop: 16,
-      // marginBottom: 14,
     },
     ImgRow: {
       width: '100%',

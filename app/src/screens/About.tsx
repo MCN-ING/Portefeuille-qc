@@ -1,7 +1,7 @@
 import { useTheme, testIdWithKey } from '@hyperledger/aries-bifold-core'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import SettingRow from '../components/settings/SettingRow'
@@ -37,6 +37,7 @@ const HelpCenter: React.FC = () => {
   }
   const arrowIcon = <Assets.svg.iconChevronRight accessible={false} {...icon} />
 
+  const notImplemented = () => Alert.alert('External Link', 'Not Implemented')
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
       <SettingRow
@@ -45,7 +46,7 @@ const HelpCenter: React.FC = () => {
         testID={testIdWithKey('Accessibility')}
         accessibilityRole="link"
         rowIcon={arrowIcon}
-        onPress={() => {}}
+        onPress={notImplemented}
       />
       <SettingRow
         title={t('About.TermsOfUse')}
@@ -53,14 +54,14 @@ const HelpCenter: React.FC = () => {
         testID={testIdWithKey('TermsOfUse')}
         accessibilityRole="link"
         rowIcon={arrowIcon}
-        onPress={() => {}}
+        onPress={notImplemented}
       />
       <SettingRow
         title={t('About.PrivacyPolicy')}
         testID={testIdWithKey('PrivacyPolicy')}
         accessibilityRole="link"
         rowIcon={arrowIcon}
-        onPress={() => {}}
+        onPress={notImplemented}
       />
       <View style={[styles.sectionCopyright]}>
         <Text style={styles.sectionCopyrightText}> {t('OptionsPlus.Copyright')}</Text>
