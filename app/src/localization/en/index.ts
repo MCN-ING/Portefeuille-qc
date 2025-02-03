@@ -69,6 +69,7 @@ const translation = {
     'code_pt-BR': 'Portuguese',
     Checked: 'selected',
     NotChecked: 'not selected',
+    Title: 'Change Display Language',
   },
   Date: {
     ShortFormat: 'MMM D',

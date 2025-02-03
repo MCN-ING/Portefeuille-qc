@@ -749,6 +749,92 @@ const InputInlineMessage: IInlineInputMessage = {
   InlineWarningIcon: EmptyIcon,
 }
 
+interface IShadowTheme {
+  elevationOne: {
+    shadowColor: string
+    shadowOffset: {
+      width: number
+      height: number
+    }
+    shadowOpacity: number
+    shadowRadius: number
+    elevation: number
+  }
+  elevationTwo: {
+    shadowColor: string
+    shadowOffset: {
+      width: number
+      height: number
+    }
+    shadowOpacity: number
+    shadowRadius: number
+    elevation: number
+  }
+  elevationThree: {
+    shadowColor: string
+    shadowOffset: {
+      width: number
+      height: number
+    }
+    shadowOpacity: number
+    shadowRadius: number
+    elevation: number
+  }
+  elevationFour: {
+    shadowColor: string
+    shadowOffset: {
+      width: number
+      height: number
+    }
+    shadowOpacity: number
+    shadowRadius: number
+    elevation: number
+  }
+}
+
+export const ShadowTheme: IShadowTheme = {
+  elevationOne: {
+    shadowColor: ColorPallet.notification.infoText,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.24,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  elevationTwo: {
+    shadowColor: ColorPallet.notification.infoText,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.24,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  elevationThree: {
+    shadowColor: ColorPallet.notification.infoText,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.24,
+    shadowRadius: 16,
+    elevation: 8,
+  },
+  elevationFour: {
+    shadowColor: ColorPallet.notification.infoText,
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.24,
+    shadowRadius: 24,
+    elevation: 12,
+  },
+}
+
 export const defaultTheme: ITheme = {
   ColorPallet,
   TextTheme,

@@ -36,7 +36,7 @@ type HelpCenterProps = {
 }
 
 const HelpCenterPage: React.FC<HelpCenterProps> = ({ route, navigation }) => {
-  const { TextTheme, ColorPallet } = useTheme()
+  const { ColorPallet } = useTheme()
   const { t } = useTranslation()
   const { selectedSection, sectionNo, titleParam } = route.params
   const content = selectedSection[sectionNo].content
@@ -48,24 +48,11 @@ const HelpCenterPage: React.FC<HelpCenterProps> = ({ route, navigation }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 2,
+      padding: 16,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
     scroll: {
       flexGrow: 1,
-      paddingHorizontal: 20,
-    },
-    sectionCopyright: {
-      flex: 1,
-      justifyContent: 'flex-end',
-      ...TextTheme.headingOne,
-      margin: 10,
-    },
-    sectionCopyrightText: {
-      ...TextTheme.caption,
-      color: TextTheme.normal.color,
-      textAlign: 'left',
-      textDecorationLine: 'none',
-      marginLeft: 10,
     },
     button: {
       margin: 20,
@@ -104,7 +91,7 @@ const HelpCenterPage: React.FC<HelpCenterProps> = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
-      <ScrollView contentContainerStyle={styles.scroll} ref={scrollViewRef}>
+      <ScrollView contentContainerStyle={styles.scroll} ref={scrollViewRef} showsVerticalScrollIndicator={false}>
         {content.map((item, index) => (
           <View key={index} ref={(el) => (itemRefs.current[index] = el)} style={{ marginBottom: 20 }}>
             <InfosDisplay

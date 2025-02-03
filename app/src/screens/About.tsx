@@ -1,19 +1,19 @@
 import { useTheme, testIdWithKey } from '@hyperledger/aries-bifold-core'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import RowSection from '../components/RowSection'
+import SettingRow from '../components/settings/SettingRow'
 
 const HelpCenter: React.FC = () => {
-  const { TextTheme, ColorPallet } = useTheme()
+  const { TextTheme, ColorPallet, Assets } = useTheme()
   const { t } = useTranslation()
 
   const styles = StyleSheet.create({
     container: {
       flex: 2,
-      paddingHorizontal: 20,
+      paddingHorizontal: 16,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
     sectionCopyright: {
@@ -29,30 +29,39 @@ const HelpCenter: React.FC = () => {
       textDecorationLine: 'none',
     },
   })
+
+  const icon = {
+    color: ColorPallet.grayscale.darkGrey,
+    width: 30,
+    height: 30,
+  }
+  const arrowIcon = <Assets.svg.iconChevronRight accessible={false} {...icon} />
+
+  const notImplemented = () => Alert.alert('Lien Externe', 'En construction')
   return (
     <SafeAreaView style={styles.container} edges={['left', 'right']}>
-      <RowSection
+      <SettingRow
         title={t('About.Accessibility')}
-        accessibilityLabel={t('About.Accessibility')}
-        testID={testIdWithKey(t('About.Accessibility').toLowerCase())}
         showRowSeparator
-        showArrowIcon={true}
-        showSectionSeparator
+        testID={testIdWithKey('Accessibility')}
+        accessibilityRole="link"
+        rowIcon={arrowIcon}
+        onPress={notImplemented}
       />
-      <RowSection
+      <SettingRow
         title={t('About.TermsOfUse')}
-        accessibilityLabel={t('About.TermsOfUse')}
-        testID={testIdWithKey(t('About.TermsOfUse').toLowerCase())}
         showRowSeparator
-        showArrowIcon={true}
-        showSectionSeparator
+        testID={testIdWithKey('TermsOfUse')}
+        accessibilityRole="link"
+        rowIcon={arrowIcon}
+        onPress={notImplemented}
       />
-      <RowSection
+      <SettingRow
         title={t('About.PrivacyPolicy')}
-        accessibilityLabel={t('About.PrivacyPolicy')}
-        testID={testIdWithKey(t('About.PrivacyPolicy').toLowerCase())}
-        showArrowIcon={true}
-        showSectionSeparator
+        testID={testIdWithKey('PrivacyPolicy')}
+        accessibilityRole="link"
+        rowIcon={arrowIcon}
+        onPress={notImplemented}
       />
       <View style={[styles.sectionCopyright]}>
         <Text style={styles.sectionCopyrightText}> {t('OptionsPlus.Copyright')}</Text>

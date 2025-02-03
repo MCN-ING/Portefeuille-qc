@@ -26,12 +26,12 @@ const Language = () => {
 
   const styles = StyleSheet.create({
     container: {
-      padding: 20,
+      padding: 16,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
     section: {
       backgroundColor: SettingsTheme.groupBackground,
-      paddingVertical: 16,
+      paddingVertical: 8,
     },
     sectionRow: {
       flexDirection: 'row',
@@ -40,8 +40,7 @@ const Language = () => {
     },
     itemSeparator: {
       borderBottomWidth: 1,
-      borderBottomColor: ColorPallet.brand.primaryBackground,
-      marginHorizontal: 25,
+      borderBottomColor: ColorPallet.grayscale.lightGrey,
     },
   })
 
@@ -58,43 +57,41 @@ const Language = () => {
 
   return (
     <SafeAreaView edges={['left', 'right', 'bottom']} style={styles.container}>
-      <HeaderText title={t('Settings.Language')} />
-      <FlatList
-        data={languages}
-        renderItem={({ item: language }) => {
-          const { id, value }: Language = language
-          return (
-            <TouchableOpacity
-              style={[styles.section, styles.sectionRow]}
-              onPress={async () => await handleLanguageChange(language)}
-              testID={testIdWithKey(id.toLocaleLowerCase())}
-              accessibilityRole="radio"
-              accessibilityLabel={`${
-                id === i18n.language ? value + ' ' + t('Language.Checked') : value + ' ' + t('Language.NotChecked')
-              }`} // add on voice over the text checked / not checked after the text from value above
-              accessibilityHint={id !== i18n.language ? t('Settings.LanguageHint') : ''}
-            >
-              <Text style={TextTheme.title}>{value}</Text>
-              <BouncyCheckbox
-                disableText
-                fillColor={ColorPallet.brand.secondaryBackground}
-                unfillColor={ColorPallet.brand.secondaryBackground}
-                size={36}
-                innerIconStyle={{ borderColor: ColorPallet.brand.primary, borderWidth: 2 }}
-                ImageComponent={() => <Icon name="circle" size={18} color={ColorPallet.brand.primary}></Icon>}
+      <View style={{ rowGap: 24 }}>
+        <HeaderText title={t('Language.Title')} />
+        <FlatList
+          data={languages}
+          renderItem={({ item: language }) => {
+            const { id, value }: Language = language
+            return (
+              <TouchableOpacity
+                style={[styles.section, styles.sectionRow]}
                 onPress={async () => await handleLanguageChange(language)}
-                isChecked={id === i18n.language}
-                disableBuiltInState
-              />
-            </TouchableOpacity>
-          )
-        }}
-        ItemSeparatorComponent={() => (
-          <View style={{ backgroundColor: SettingsTheme.groupBackground }}>
-            <View style={styles.itemSeparator}></View>
-          </View>
-        )}
-      />
+                testID={testIdWithKey(id.toLocaleLowerCase())}
+                accessibilityRole="radio"
+                accessibilityLabel={`${
+                  id === i18n.language ? value + ' ' + t('Language.Checked') : value + ' ' + t('Language.NotChecked')
+                }`} // add on voice over the text checked / not checked after the text from value above
+                accessibilityHint={id !== i18n.language ? t('Settings.LanguageHint') : ''}
+              >
+                <Text style={[TextTheme.title, { fontWeight: '400' }]}>{value}</Text>
+                <BouncyCheckbox
+                  disableText
+                  fillColor={ColorPallet.brand.secondaryBackground}
+                  unfillColor={ColorPallet.brand.secondaryBackground}
+                  size={36}
+                  innerIconStyle={{ borderColor: ColorPallet.brand.primary, borderWidth: 2 }}
+                  ImageComponent={() => <Icon name="circle" size={18} color={ColorPallet.brand.primary}></Icon>}
+                  onPress={async () => await handleLanguageChange(language)}
+                  isChecked={id === i18n.language}
+                  disableBuiltInState
+                />
+              </TouchableOpacity>
+            )
+          }}
+          ItemSeparatorComponent={() => <View style={styles.itemSeparator}></View>}
+        />
+      </View>
     </SafeAreaView>
   )
 }

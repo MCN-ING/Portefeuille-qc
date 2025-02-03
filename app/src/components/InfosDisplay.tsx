@@ -2,6 +2,8 @@ import { useTheme } from '@hyperledger/aries-bifold-core'
 import React from 'react'
 import { Image, StyleSheet, Text, View, ImageSourcePropType } from 'react-native'
 
+import { ShadowTheme } from '../theme'
+
 type InfosDisplayProps = {
   title?: string
   screen?: Array<string>
@@ -17,27 +19,16 @@ const InfosDisplay: React.FC<InfosDisplayProps> = ({ title, detail, visual, ques
   const styles = StyleSheet.create({
     section: {
       backgroundColor: SettingsTheme.groupBackground,
-      paddingTop: 24,
     },
     sectionHeader: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginTop: 8,
-      paddingBottom: 0,
     },
     sectionHeaderText: {
-      marginTop: 16,
       flexShrink: 1,
     },
     sectionText: {
       fontWeight: 'normal',
-      paddingTop: 16,
-      marginBottom: 14,
-    },
-    sectionRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
     },
     ImgRow: {
       width: '100%',
@@ -53,27 +44,24 @@ const InfosDisplay: React.FC<InfosDisplayProps> = ({ title, detail, visual, ques
       alignItems: 'center',
     },
     sectionContainer: {
-      marginVertical: 16,
+      marginBottom: 32,
       height: 240,
-      width: '100%',
-      borderRadius: 10,
-      shadowColor: ColorPallet.grayscale.darkGrey,
-      shadowOffset: {
-        width: 6,
-        height: 6,
-      },
-      elevation: 6,
-      shadowOpacity: 0.6,
-      shadowRadius: 10,
+      borderRadius: 16,
+      ...ShadowTheme.elevationOne,
     },
   })
   return (
     <View style={[styles.section]}>
       <View>
-        <Text style={[TextTheme.headingThree, styles.sectionHeaderText]} accessibilityRole="header">
+        <Text
+          style={[TextTheme.headingThree, styles.sectionHeaderText, { paddingBottom: 24 }]}
+          accessibilityRole="header"
+        >
           {title ? title : question}
         </Text>
-        <Text style={[TextTheme.headingFour, styles.sectionText]}>{detail ? detail : answer}</Text>
+        <Text style={[TextTheme.headingFour, styles.sectionText, { paddingBottom: 24 }]}>
+          {detail ? detail : answer}
+        </Text>
       </View>
       {visual && (
         <View style={styles.sectionContainer}>

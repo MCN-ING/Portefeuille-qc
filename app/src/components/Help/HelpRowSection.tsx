@@ -2,7 +2,6 @@ import { testIdWithKey, useTheme } from '@hyperledger/aries-bifold-core'
 import { NavigationProp } from '@react-navigation/native'
 import React from 'react'
 import { StyleSheet, Text, View, Pressable, ImageSourcePropType } from 'react-native'
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 
 import { HelpCenterStackParams, Screens } from '../../navigators/navigators'
 
@@ -44,13 +43,16 @@ const HelpRowSection = ({
   showArrowIcon,
   navigation,
 }: HelpRowSectionProps) => {
-  const { SettingsTheme, TextTheme, ColorPallet } = useTheme()
-  const iconSize = 30
-  const arrowIcon = <MaterialIcon style={{ paddingLeft: 10 }} name={'keyboard-arrow-right'} size={iconSize} />
+  const { SettingsTheme, TextTheme, ColorPallet, Assets } = useTheme()
+  const iconStyles = {
+    color: ColorPallet.grayscale.darkGrey,
+    width: 30,
+    height: 30,
+  }
+  const arrowIcon = <Assets.svg.iconChevronRight {...iconStyles} />
   const styles = StyleSheet.create({
     section: {
       backgroundColor: SettingsTheme.groupBackground,
-      paddingTop: 24,
     },
     rowTitle: {
       ...TextTheme.headingFour,
@@ -61,8 +63,6 @@ const HelpRowSection = ({
     sectionHeader: {
       flexDirection: 'row',
       alignItems: 'center',
-      marginTop: 8,
-      paddingBottom: 0,
     },
     sectionHeaderText: {
       flexShrink: 1,
@@ -74,14 +74,14 @@ const HelpRowSection = ({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
+      paddingVertical: 12,
     },
     sectionSeparator: {
       marginBottom: 10,
     },
     rowSeparator: {
       borderBottomWidth: 1,
-      borderBottomColor: ColorPallet.brand.secondary,
-      marginTop: 10,
+      borderBottomColor: ColorPallet.grayscale.lightGrey,
     },
   })
 
@@ -96,7 +96,7 @@ const HelpRowSection = ({
       )}
       {itemSection.map((item, index) => (
         <View key={index}>
-          <View style={[styles.section]}>
+          <View style={[styles.section, showRowSeparator && index !== itemSection.length - 1 && styles.rowSeparator]}>
             <Pressable
               onPress={() =>
                 navigation.navigate(Screens.HelpCenterPage, { selectedSection: itemSection, sectionNo: index })
@@ -105,7 +105,7 @@ const HelpRowSection = ({
               accessibilityLabel={item.title}
               testID={testIdWithKey(item.title)}
             >
-              <View style={styles.sectionRow}>
+              <View style={[styles.sectionRow, index === itemSection.length - 1 && { marginBottom: 32 }]}>
                 <Text style={styles.rowTitle}>{item.title}</Text>
                 <Text style={[TextTheme.headingFour, styles.sectionText]}>{children}</Text>
                 {showArrowIcon && arrowIcon}
@@ -113,14 +113,8 @@ const HelpRowSection = ({
             </Pressable>
             {subContent}
           </View>
-          {showRowSeparator && index < itemSection.length - 1 && (
-            <View style={{ backgroundColor: SettingsTheme.groupBackground }}>
-              <View style={[styles.rowSeparator]}></View>
-            </View>
-          )}
         </View>
       ))}
-      <View style={[styles.sectionSeparator]}></View>
     </>
   )
 }

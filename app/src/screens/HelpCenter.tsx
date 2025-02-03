@@ -22,11 +22,11 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ navigation }) => {
   const styles = StyleSheet.create({
     container: {
       flex: 2,
+      padding: 16,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
     scroll: {
       flexGrow: 1,
-      paddingHorizontal: 20,
     },
     sectionCopyright: {
       flex: 1,
