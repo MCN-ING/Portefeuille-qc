@@ -99,6 +99,8 @@ const Terms = () => {
     }
   }, [dispatch, agreedToPreviousTerms, navigation, store.onboarding.postAuthScreens])
 
+  const continueButtonHint = checked ? t('Terms.HintEnabled') : t('Terms.HintDisabled')
+
   return (
     <View style={[style.container]}>
       {((!agreedToPreviousTerms && !agreesToCurrentTerms) || !didAuthenticate) && (
@@ -163,6 +165,7 @@ const Terms = () => {
                 <Button
                   title={t('Global.Continue')}
                   accessibilityLabel={t('Global.Continue')}
+                  accessibilityHint={continueButtonHint}
                   testID={testIdWithKey('Continue')}
                   disabled={!checked}
                   onPress={onSubmitPressed}
