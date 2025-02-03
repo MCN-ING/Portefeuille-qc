@@ -11,18 +11,14 @@ import {
   ToursState,
   OnboardingState,
   DispatchAction,
-  Screens,
   defaultConfig as bifoldDefaultConfig,
 } from '@hyperledger/aries-bifold-core'
 import { Locales } from '@hyperledger/aries-bifold-core/App/localization'
-import { DefaultScreenOptionsDictionary } from '@hyperledger/aries-bifold-core/App/navigators/defaultStackOptions'
 import { Config as BifoldConfig } from '@hyperledger/aries-bifold-core/App/types/config'
 import { InlineErrorPosition } from '@hyperledger/aries-bifold-core/App/types/error'
 import { getProofRequestTemplates } from '@hyperledger/aries-bifold-verifier'
 import { BrandingOverlayType, RemoteOCABundleResolver } from '@hyperledger/aries-oca/build/legacy'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { StackNavigationOptions } from '@react-navigation/stack'
-import { Platform } from 'react-native'
 import { Config } from 'react-native-config'
 import { DependencyContainer } from 'tsyringe'
 
@@ -30,7 +26,6 @@ import ledgers from './config/ledgers'
 import AddCredentialButton from './src/components/AddCredentialButton'
 import AddCredentialSlider from './src/components/AddCredentialSlider'
 import EmptyList from './src/components/EmptyList'
-import HelpCenterButton from './src/components/Help/HelpCenterButton'
 import HomeEmptyList from './src/components/HomeEmptyList'
 import HomeFooter from './src/components/HomeFooter'
 import HomeHeader from './src/components/HomeHeader'
@@ -40,6 +35,7 @@ import ConnectionAlert from './src/components/modals/ConnectionAlert'
 import { PINValidationRules } from './src/constants'
 import { useNotifications } from './src/hooks/notifications'
 import TermsStack from './src/navigators/TermsStack'
+import { getScreenOptions } from './src/navigators/screen-options'
 import DefaultNotification from './src/screens/DefaultNotification'
 import Developer from './src/screens/Developer'
 import { pages } from './src/screens/OnboardingPages'
@@ -105,68 +101,7 @@ export class AppContainer implements Container {
     const indyLedgers = this._container.resolve(TOKENS.UTIL_LEDGERS) satisfies IndyVdrPoolConfig[]
     const allLedgers = [...qcLedgers, ...indyLedgers]
 
-    const defaultScreenOptionsDict = DefaultScreenOptionsDictionary
-
-    const onboardingScreenOptions: StackNavigationOptions = {
-      headerShown: Platform.OS == 'ios',
-      headerTitle: '',
-      headerStyle: {
-        height: 50,
-      },
-    }
-
-    defaultScreenOptionsDict[Screens.Home] = {
-      ...defaultScreenOptionsDict[Screens.Home],
-      headerLeft: undefined,
-      headerRight: HelpCenterButton,
-    }
-    defaultScreenOptionsDict[Screens.Connection] = {
-      ...defaultScreenOptionsDict[Screens.Connection],
-      headerLeft: undefined,
-      headerRight: HelpCenterButton,
-    }
-    defaultScreenOptionsDict[Screens.CredentialDetails] = {
-      ...defaultScreenOptionsDict[Screens.CredentialDetails],
-      headerShown: true,
-      headerLeft: undefined,
-      headerRight: HelpCenterButton,
-    }
-
-    defaultScreenOptionsDict[Screens.OpenIDCredentialDetails] = {
-      ...defaultScreenOptionsDict[Screens.OpenIDCredentialDetails],
-      headerShown: true,
-      headerLeft: undefined,
-      headerRight: HelpCenterButton,
-    }
-
-    defaultScreenOptionsDict[Screens.Credentials] = {
-      ...defaultScreenOptionsDict[Screens.Credentials],
-      headerLeft: undefined,
-      headerRight: HelpCenterButton,
-    }
-    defaultScreenOptionsDict[Screens.Language] = {
-      ...defaultScreenOptionsDict[Screens.Language],
-      headerRight: HelpCenterButton,
-    }
-    defaultScreenOptionsDict[Screens.Scan] = {
-      ...defaultScreenOptionsDict[Screens.Scan],
-      headerRight: HelpCenterButton,
-    }
-
-    defaultScreenOptionsDict[Screens.UseBiometry] = {
-      ...defaultScreenOptionsDict[Screens.UseBiometry],
-      ...onboardingScreenOptions,
-    }
-
-    defaultScreenOptionsDict[Screens.CreatePIN] = {
-      ...defaultScreenOptionsDict[Screens.CreatePIN],
-      ...onboardingScreenOptions,
-      gestureEnabled: true,
-    }
-    defaultScreenOptionsDict[Screens.Terms] = {
-      ...defaultScreenOptionsDict[Screens.Terms],
-      ...onboardingScreenOptions,
-    }
+    const defaultScreenOptionsDict = getScreenOptions()
 
     // Here you can register any component to override components in core package
     // Example: Replacing button in core with custom button

@@ -1,4 +1,4 @@
-import { useTheme } from '@hyperledger/aries-bifold-core'
+import { testIdWithKey, useTheme } from '@hyperledger/aries-bifold-core'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native'
@@ -62,6 +62,7 @@ const Activities: React.FC = () => {
         <TouchableOpacity
           accessibilityState={{ selected: activeTab === NotificationTab }}
           accessibilityRole="tab"
+          testID={testIdWithKey('Activities.NotificationsTab')}
           style={[styles.tab, activeTab === NotificationTab && styles.activeTab]}
           onPress={() => setActiveTab(NotificationTab)}
         >
@@ -75,6 +76,7 @@ const Activities: React.FC = () => {
         <TouchableOpacity
           accessibilityState={{ selected: activeTab === HistoryTab }}
           accessibilityRole="tab"
+          testID={testIdWithKey('Activities.HistoryTab')}
           style={[styles.tab, activeTab === HistoryTab && styles.activeTab]}
           onPress={() => setActiveTab(HistoryTab)}
         >

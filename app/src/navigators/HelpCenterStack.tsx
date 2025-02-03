@@ -1,4 +1,4 @@
-import { useTheme } from '@hyperledger/aries-bifold-core'
+import { testIdWithKey, useTheme } from '@hyperledger/aries-bifold-core'
 import { useDefaultStackOptions } from '@hyperledger/aries-bifold-core/App/navigators/defaultStackOptions'
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
@@ -18,7 +18,7 @@ const HelpCenterStack: React.FC = () => {
   return (
     <StackHelp.Navigator
       initialRouteName={Screens.HelpCenter}
-      screenOptions={{ ...defaultStackOptions, headerShown: true }}
+      screenOptions={{ ...defaultStackOptions, headerShown: true, headerBackTestID: testIdWithKey('Back') }}
     >
       <StackHelp.Screen
         name={Screens.HelpCenter}
