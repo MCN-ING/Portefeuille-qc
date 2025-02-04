@@ -34,7 +34,7 @@ const BiometricChangeDetails: React.FC<BiometricChangeDetailsProp> = ({ route, n
       <ScrollView contentContainerStyle={[styles.contentContainer, styles.headerStyle]}>
         <HeaderText title={t('History.CardDescription.BiometricUpdated', { operation })} />
         <View style={{ marginTop: 20 }} />
-        <Text style={[TextTheme.normal, styles.subTitle]}>
+        <Text style={styles.date}>
           {t('Date.ModifiedOn')} {modifiedDate}
         </Text>
       </ScrollView>
@@ -47,13 +47,7 @@ const BiometricChangeDetails: React.FC<BiometricChangeDetailsProp> = ({ route, n
         accessibilityLabel={t('History.Button.DeleteHistory')}
         accessibilityRole="button"
       >
-        <MaterialCommunityIcon
-          name={'trash-can-outline'}
-          size={iconSize}
-          style={styles.trashIcon}
-          accessibilityLabel={t('History.Icon.Delete')}
-          accessibilityRole="image"
-        />
+        <MaterialCommunityIcon name={'trash-can-outline'} size={iconSize} style={styles.trashIcon} />
         <Text style={[TextTheme.normal, styles.deleteText]}>{t('History.Button.DeleteHistory')}</Text>
       </TouchableOpacity>
     </SafeAreaView>

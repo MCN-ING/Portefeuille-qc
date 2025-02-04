@@ -4,8 +4,9 @@ import { formatTime } from '@hyperledger/aries-bifold-core/App/utils/helpers'
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import HeaderText from '../../components/HeaderText'
@@ -30,8 +31,8 @@ const PinChangeDetails: React.FC<PinChangeDetailsProp> = ({ route, navigation })
   const iconSize = 24
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={[styles.contentContainer, styles.headerStyle]}>
+    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+      <ScrollView contentContainerStyle={[styles.contentContainer]} showsVerticalScrollIndicator={false}>
         <HeaderText title={t('History.CardDescription.WalletPinUpdated')} />
         <View style={{ marginTop: 20 }} />
         <Text style={styles.date}>
@@ -47,13 +48,7 @@ const PinChangeDetails: React.FC<PinChangeDetailsProp> = ({ route, navigation })
         accessibilityRole="button"
         accessibilityLabel={t('History.Button.DeleteHistory')}
       >
-        <MaterialCommunityIcon
-          name={'trash-can-outline'}
-          size={iconSize}
-          style={styles.trashIcon}
-          accessibilityRole="image"
-          accessibilityLabel={t('History.Icon.Delete')}
-        />
+        <MaterialCommunityIcon name={'trash-can-outline'} size={iconSize} style={styles.trashIcon} />
         <Text style={[TextTheme.normal, styles.deleteText]}>{t('History.Button.DeleteHistory')}</Text>
       </TouchableOpacity>
     </SafeAreaView>

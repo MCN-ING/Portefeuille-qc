@@ -130,7 +130,7 @@ export class AppContainer implements Container {
     })
 
     const resolver = new RemoteOCABundleResolver(Config.OCA_URL ?? '', {
-      brandingOverlayType: BrandingOverlayType.Branding10,
+      brandingOverlayType: BrandingOverlayType.Branding11,
     })
 
     this._container.registerInstance(TOKENS.NOTIFICATIONS, {
