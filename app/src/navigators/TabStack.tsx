@@ -117,14 +117,18 @@ const TabStack: React.FC = () => {
     async (deepLink: string) => {
       logger.info(`Handling deeplink: ${deepLink}`)
 
-      // If it's just the general link with no params, set link inactive and do nothing
-      if (deepLink.search(/oob=|c_i=|d_m=|url=/) < 0) {
-        dispatch({
-          type: DispatchAction.ACTIVE_DEEP_LINK,
-          payload: [undefined],
-        })
-        return
-      }
+      /*
+        deeplink + shortened URL get stock here:
+
+        // If it's just the general link with no params, set link inactive and do nothing
+        if (deepLink.search(/oob=|c_i=|d_m=|url=/) < 0) {
+          dispatch({
+            type: DispatchAction.ACTIVE_DEEP_LINK,
+            payload: [undefined],
+          })
+          return
+        }
+      */
 
       try {
         await connectFromScanOrDeepLink(

@@ -1055,7 +1055,7 @@ const translation = {
     CardDescription: {
       Proof: 'Proof request {{operation}}',
       CardChanged: 'Card {{cardName}} {{operation}}',
-      ContactUpdated: '{{contactName}} has been {{operation}}.',
+      ContactUpdated: ' has been {{operation}}.',
       WalletPinUpdated: 'New PIN set',
       BiometricUpdated: 'Biometrics has been {{operation}}',
     },
