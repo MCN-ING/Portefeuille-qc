@@ -13,16 +13,6 @@ const useHistoryDetailPageStyles = () => {
       padding: 16,
       backgroundColor: ColorPallet.brand.primaryBackground,
     },
-    // container: {
-    //   flex: 1,
-    //   backgroundColor: ColorPallet.brand.primaryBackground,
-    //   padding: 20,
-    // },
-    // contentContainer: {
-    //   flex: 1,
-    //   paddingHorizontal: 20,
-    //   backgroundColor: ColorPallet.brand.primaryBackground,
-    // },
     headerStyle: {
       paddingTop: 20,
     },
