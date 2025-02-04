@@ -3318,9 +3318,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hyperledger/aries-bifold-core@patch:@hyperledger/aries-bifold-core@npm%3A1.0.0-alpha.438#~/.yarn/patches/@hyperledger-aries-bifold-core-npm-1.0.0-alpha.438-31ea1fddec.patch":
-  version: 1.0.0-alpha.438
-  resolution: "@hyperledger/aries-bifold-core@patch:@hyperledger/aries-bifold-core@npm%3A1.0.0-alpha.438#~/.yarn/patches/@hyperledger-aries-bifold-core-npm-1.0.0-alpha.438-31ea1fddec.patch::version=1.0.0-alpha.438&hash=52c62b"
+"@hyperledger/aries-bifold-core@npm:^1.0.0-alpha.438+f9009bd8":
+  version: 1.0.0-alpha.439
+  resolution: "@hyperledger/aries-bifold-core@npm:1.0.0-alpha.439"
   peerDependencies:
     "@credo-ts/anoncreds": 0.5.11
     "@credo-ts/askar": 0.5.11
@@ -3396,7 +3396,89 @@ __metadata:
     uuid: ^9.0.0
   bin:
     bifold: bin/bifold
-  checksum: 73d0bee52953831bca64adf764a08240f704f7a7e0b8bb85baba0392484aac380d629c4dea23e666ba871d8bfd92297eb10cdfe8625c78d1d44a946dde56396a
+  checksum: 205334aacca708bf8f1f65277576d10871202c9c46eb7e6c8e9b778c7ef963c2cc21520f56fa0df3c55376cb31ae530be6e290be3abd7c396a03fe4c5a52c5ca
+  languageName: node
+  linkType: hard
+
+"@hyperledger/aries-bifold-core@patch:@hyperledger/aries-bifold-core@npm%3A1.0.0-alpha.438#~/.yarn/patches/@hyperledger-aries-bifold-core-npm-1.0.0-alpha.438-31ea1fddec.patch":
+  version: 1.0.0-alpha.438
+  resolution: "@hyperledger/aries-bifold-core@patch:@hyperledger/aries-bifold-core@npm%3A1.0.0-alpha.438#~/.yarn/patches/@hyperledger-aries-bifold-core-npm-1.0.0-alpha.438-31ea1fddec.patch::version=1.0.0-alpha.438&hash=1caca3"
+  peerDependencies:
+    "@credo-ts/anoncreds": 0.5.11
+    "@credo-ts/askar": 0.5.11
+    "@credo-ts/core": 0.5.11
+    "@credo-ts/indy-sdk-to-askar-migration": 0.5.11
+    "@credo-ts/indy-vdr": 0.5.11
+    "@credo-ts/openid4vc": 0.5.11
+    "@credo-ts/push-notifications": ^0.7.0
+    "@credo-ts/question-answer": 0.5.11
+    "@credo-ts/react-hooks": ^0.6.0
+    "@credo-ts/react-native": 0.5.11
+    "@formatjs/intl-datetimeformat": 4.2.4
+    "@formatjs/intl-displaynames": 5.2.4
+    "@formatjs/intl-getcanonicallocales": 1.7.3
+    "@formatjs/intl-listformat": 6.3.4
+    "@formatjs/intl-locale": 2.4.38
+    "@formatjs/intl-numberformat": 7.2.4
+    "@formatjs/intl-pluralrules": 4.1.4
+    "@formatjs/intl-relativetimeformat": 9.3.1
+    "@hyperledger/anoncreds-react-native": 0.2.4
+    "@hyperledger/aries-askar-react-native": 0.2.3
+    "@hyperledger/aries-bifold-verifier": ^1.0.0
+    "@hyperledger/aries-oca": ^1.0.0
+    "@hyperledger/indy-vdr-react-native": 0.2.2
+    "@hyperledger/indy-vdr-shared": 0.2.2
+    "@react-native-async-storage/async-storage": 1.15.11
+    "@react-native-community/masked-view": 0.1.11
+    "@react-native-community/netinfo": ^9.3.0
+    "@react-navigation/bottom-tabs": 6.0.9
+    "@react-navigation/core": 6.1.0
+    "@react-navigation/devtools": ^6.0.8
+    "@react-navigation/native": 6.0.6
+    "@react-navigation/stack": 6.0.11
+    axios: ^1.4.0
+    base-64: ^1.0.0
+    i18next: ^21.4.0
+    lodash.flatten: ^4.4.0
+    lodash.startcase: ^4.4.0
+    moment: ^2.29.4
+    query-string: ^7.0.1
+    react: ^18.2.0
+    react-i18next: 11.13.0
+    react-native: "*"
+    react-native-animated-pagination-dots: ^0.1.72
+    react-native-argon2: ^2.0.1
+    react-native-bouncy-checkbox: ^3.0.5
+    react-native-collapsible: ^1.6.1
+    react-native-config: ^1.4.2
+    react-native-confirmation-code-field: ^7.3.0
+    react-native-device-info: ^8.4.9
+    react-native-encrypted-storage: ^4.0.2
+    react-native-fs: ^2.16.6
+    react-native-gesture-handler: ^1.10.3
+    react-native-get-random-values: ^1.7.0
+    react-native-gifted-chat: 2.4.0
+    react-native-keychain: ^8.1.1
+    react-native-localize: ^2.2.4
+    react-native-logs: ^5.1.0
+    react-native-orientation-locker: "*"
+    react-native-permissions: ^4.0.1
+    react-native-qrcode-svg: 6.2.0
+    react-native-reanimated: 3.4.2
+    react-native-safe-area-context: ^3.2.0
+    react-native-screens: ^3.24.0
+    react-native-splash-screen: ^3.3.0
+    react-native-svg: ^12.1.1
+    react-native-tcp-socket: ^6.0.6
+    react-native-toast-message: ^2.1.6
+    react-native-uuid: ^2.0.1
+    react-native-vector-icons: ^10.0.0
+    react-native-vision-camera: "*"
+    tsyringe: ^4.7.0
+    uuid: ^9.0.0
+  bin:
+    bifold: bin/bifold
+  checksum: f47a315c84f8622315bb0f217eb9d27d84d11a4a609a066d0d8f8f941a78c59da6ecb66a5453e185873ac0a1550c2de44a38d3783efe3f24972bae5b4293ea45
   languageName: node
   linkType: hard
 
@@ -20136,7 +20218,7 @@ __metadata:
     "@formatjs/intl-relativetimeformat": "npm:9.3.1"
     "@hyperledger/anoncreds-react-native": "npm:0.2.4"
     "@hyperledger/aries-askar-react-native": "npm:0.2.3"
-    "@hyperledger/aries-bifold-core": "npm:1.0.0-alpha.438"
+    "@hyperledger/aries-bifold-core": "patch:@hyperledger/aries-bifold-core@npm%3A1.0.0-alpha.438#~/.yarn/patches/@hyperledger-aries-bifold-core-npm-1.0.0-alpha.438-31ea1fddec.patch"
     "@hyperledger/aries-bifold-remote-logs": "npm:1.0.0-alpha.438"
     "@hyperledger/aries-bifold-verifier": "npm:1.0.0-alpha.438"
     "@hyperledger/aries-oca": "npm:1.0.0-alpha.438"

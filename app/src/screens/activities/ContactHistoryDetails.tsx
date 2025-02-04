@@ -36,10 +36,12 @@ const ContactHistoryDetails: React.FC<ContactHistoryDetailsProp> = ({ route, nav
     <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
       <ScrollView contentContainerStyle={[styles.contentContainer]} showsVerticalScrollIndicator={false}>
         <HeaderText
-          title={t('History.CardDescription.ContactUpdated', {
-            contactName: itemContent.correspondenceName ? startCaseUnicode(itemContent.correspondenceName) : '',
-            operation: operation,
-          })}
+          title={
+            (itemContent.correspondenceName ? startCaseUnicode(itemContent.correspondenceName) : '') +
+            t('History.CardDescription.ContactUpdated', {
+              operation: operation,
+            })
+          }
         />
 
         <View style={{ marginTop: 20 }} />
