@@ -18,7 +18,8 @@ import { Attribute, CredentialOverlay } from '@hyperledger/aries-oca/build/legac
 import { StackScreenProps } from '@react-navigation/stack'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SafeAreaView, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import HeaderText from '../../components/HeaderText'
@@ -111,9 +112,10 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.contentContainer}>
+    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+      <View style={[styles.contentContainer, { paddingTop: 0, flex: 1 }]}>
         <Record
+          hideFieldValues
           fields={overlay.presentationFields || []}
           header={() => (
             <View style={styles.headerStyle}>

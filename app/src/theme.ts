@@ -12,7 +12,7 @@ import {
 } from '@hyperledger/aries-bifold-core'
 import { IInlineInputMessage } from '@hyperledger/aries-bifold-core/App/theme'
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ViewStyle } from 'react-native'
 
 import EmptyIcon from './assets/img/icons/empty_icon.svg'
 import Logo from './assets/img/logo-with-text.svg'
@@ -382,7 +382,8 @@ export const ListItems = StyleSheet.create({
     backgroundColor: ColorPallet.brand.secondaryBackground,
   },
   recordBorder: {
-    borderBottomColor: ColorPallet.brand.primaryBackground,
+    borderBottomWidth: 1,
+    borderBottomColor: ColorPallet.grayscale.lightGrey,
   },
   recordLink: {
     color: ColorPallet.brand.link,
@@ -835,6 +836,23 @@ export const ShadowTheme: IShadowTheme = {
   },
 }
 
+const CredentialCardShadowTheme = {
+  shadowColor: ColorPallet.notification.infoText,
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.24,
+  shadowRadius: 4,
+  elevation: 2,
+} satisfies ViewStyle
+
+const SelectedCredTheme = {
+  borderWidth: 5,
+  borderRadius: 15,
+  borderColor: ColorPallet.semantic.focus,
+} satisfies ViewStyle
+
 export const defaultTheme: ITheme = {
   ColorPallet,
   TextTheme,
@@ -856,4 +874,6 @@ export const defaultTheme: ITheme = {
   PINInputTheme,
   Assets,
   InputInlineMessage,
+  CredentialCardShadowTheme,
+  SelectedCredTheme,
 }
