@@ -94,10 +94,13 @@ Then once your PR is merged and the packages have been published, make a PR in b
 
 ## Configuration
 
-In the `./app/` directory copy the .env.sample `cp .env.sample .env`
+In the `./app/` directory copy the .env.example `cp .env.sample .env`
 
 ```
 MEDIATOR_URL=<url>
+MEDIATOR_URL_DEV=<url>
+OCA_URL=<url>
+ENVIRONMENT=INTEGRATION
 ```
 
 ### Adding ledger configurations
