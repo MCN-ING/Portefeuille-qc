@@ -302,7 +302,7 @@ const UseBiometry: React.FC = () => {
         if (!biometryAvailable) {
           setSettingsPopupConfig({
             title: t('Biometry.BiometryDisabled'),
-            description: t('Biometry.SetupBiometricsDesc'),
+            description: t('Biometry.AllowBiometricsDesc'),
             primary: { label: t('Global.GoToSettings'), action: onOpenRootSettingsTouch },
             secondary: { label: t('Global.Close'), action: onOpenSettingsDismissed },
             onDismissPressed: onOpenSettingsDismissed,
