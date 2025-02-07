@@ -117,9 +117,9 @@ const translation = {
   CameraDisclosure: {
     AllowCameraUse: "Autoriser l'utilisation de l'appareil photo",
     CameraDisclosure:
-      "L'appareil photo est utilisée pour balayer les codes QR. Aucune information sur les images n'est enregistrée, utilisée à des fins d'analyse ou partagée.",
+      "L'appareil photo est utilisée pour balayer les codes QR. Aucune information sur les images n'est enregistrée, utilisée à des fins d'analyse ni partagée.",
     ToContinueUsing:
-      "Pour continuer à utiliser la fonction de balayage du portefeuille numérique, veuillez autoriser l'utilisation de l'appareil photo.",
+      "Pour continuer à utiliser la fonction de balayage de l'application mobile gouvernementale d'identité, veuillez autoriser l'utilisation de l'appareil photo.",
     Allow: 'Autoriser',
     OpenSettings: 'Ourvir Paramètres',
   },
@@ -136,16 +136,17 @@ const translation = {
     Off: 'Biométrie désactivée',
     Toggle: 'Activer la biométrie',
     EnabledText1:
-      'Déverrouillez votre portefeuille avec la biométrie de votre appareil au lieu d’utiliser le NIP du portefeuille.',
+      "Déverrouillez votre application mobile gouvernementale d'identité avec la biométrie de votre appareil au lieu d'utiliser le NIP de l'application mobile gouvernementale d'identité.",
     EnabledText1Bold:
       'Notez qu’en activant la biométrie, toute personne dont les données biométriques sont enregistrées sur votre appareil pourra déverrouiller votre portefeuille et avoir accès à vos attestations.',
     EnabledText2:
-      'Cela signifie que toutes les empreintes digitales et les données faciales ajoutées sur cet appareil peuvent être utilisées pour accéder à votre portefeuille QC.',
+      "Cela signifie que toutes les empreintes digitales et les données faciales ajoutées sur cet appareil peuvent être utilisées afin d'accéder à votre application mobile gouvernementale d'identité.",
     EnabledText3:
       "Toute personne pouvant accéder à votre téléphone à l'aide de la biométrie peut accéder à votre portefeuille numérique.",
-    EnabledText3Bold: 'Assurez-vous que vous seul avez accès à votre portefeuille.',
-    Warning: '\n\nAssurez-vous que vous seul avez accès à votre portefeuille.',
-    UseToUnlock: 'Souhaitez-vous utiliser la biométrie pour déverrouiller votre portefeuille?',
+    EnabledText3Bold: "Assurez-vous que vous seul avez accès à votre application mobile gouvernementale d'identité.",
+    Warning: "\n\nAssurez-vous que vous seul avez accès à votre application mobile gouvernementale d'identité.",
+    UseToUnlock:
+      "Souhaitez-vous utiliser la biométrie pour déverrouiller votre application mobile gouvernementale d'identité?",
     NotEnabledText1: "La biométrie n'est pas configurée sur cet appareil. Elle ne peut donc pas être activée.",
     NotEnabledText2:
       "Si vous souhaitez activer cette fonctionnalité, activez la biométrie dans les paramètres de l'appareil, puis revenez à cet écran.",
@@ -155,6 +156,8 @@ const translation = {
     NoBiometricsErrorMessage: "La biométrie n'est pas activée sur cet appareil.",
     NoBiometricsErrorDetails: 'Pour résoudre ce problème, activez la biométrie dans les paramètres de votre appareil.',
     ProgressBarText: '3. Activer la biométrie',
+    AllowBiometricsDesc:
+      "Pour déverrouiller l'application mobile gouvernementale d'identité avec votre biométrie, vous devez la configurer dans les paramètres de votre appareil. Ensuite, vous pourrez l'activer dans les paramètres de l'application.",
   },
   Error: {
     ReportThisProblem: 'Signaler ce problème',
@@ -255,7 +258,7 @@ const translation = {
     StartProcess: 'Start the process (FR)',
   },
   DefaultNotification: {
-    PageTitle: 'Accueil',
+    PageTitle: "Attestation d'authentification",
     Title: "Demander votre attestation numérique d'attestation gouvernementale",
     Description: 'Ministère de la Cybersécurité et du Numérique',
     ButtonTitle: 'Démarrer',
@@ -265,10 +268,10 @@ const translation = {
     Description:
       'L’Attestation d’authentification est une attestation qui vous permettra de vous identifier plus rapidement auprès des services gouvernementaux utilisant le Service d’authentification gouvernementale.',
     SAGConnexion: 'Étape 1 - Connexion au Service d’authentication gouvernementale',
-    SAGConnexionDescription: 'Vous devez vous authentifier auprès du service.',
+    SAGConnexionDescription: "Vous devez vous authentifier auprès du service d'authentification gouvernementale.",
     ANIGRequest: 'Étape 2 - Demander l’attestation',
     ANIGAcceptDescription:
-      'Depuis la gestion de compte, vous devrez balayer le code QR qui vous sera présenté.\r\n\r\nVous devrez ensuite accepter l’offre d’attestation qui vous sera proposée.',
+      "Depuis la gestion de compte, balayez le code QR qui vous sera présenté.\r\n\r\nAcceptez ensuite l'offre d'attestation qui vous sera proposée.",
     ButtonTitle: 'Recevoir mon attestation',
   },
   OptionsPlus: {
@@ -349,12 +352,13 @@ const translation = {
     EnterPINTitle: 'Veuillez saisir un NIP à 6 chiffres',
     EnterPIN: 'Veuillez saisir un NIP à 6 chiffres',
     ReenterPIN: 'Veuillez saisir à nouveau votre NIP',
-    CreatePIN: 'Veuillez créer un NIP à 6 chiffres',
+    CreatePIN: 'Continuer',
     ReenterPINTitle: 'Veuillez saisir à nouveau votre NIP',
     RememberPIN: "Ne pas oublier votre numéro d'identification personnel (NIP).",
-    Warning: "Il n'y a aucun moyen de le récupérer. Si vous l'oubliez, vous devrez :",
-    BulletPoint1: 'Configurer votre portefeuille à nouveau',
-    BulletPoint2: 'Demander de nouveau les attestations déjà émises dans votre portefeuille',
+    Warning: "Il n'y a aucun moyen de récupérer votre NIP. Si vous l'oubliez, vous devrez :",
+    BulletPoint1: "Configurer votre application mobile gouvernementale d'identité à nouveau;",
+    BulletPoint2:
+      "Demander de nouveau les attestations déjà émises dans votre application mobile gouvernementale d'identité.",
     MoreInformation: 'En savoir plus sur le NIP.',
     PINDisclaimer:
       'Si vous oubliez votre NIP, vous devrez configurer votre application et ajouter vos cartes à nouveau.',
@@ -393,10 +397,10 @@ const translation = {
       PINTooShortValidation: 'Votre NIP doit contenir 6 chiffres.',
       PINTooLongValidation: 'Votre NIP doit contenir 6 chiffres.',
     },
-    ProgressBarText: '2. Sécuriser le portefeuille',
+    ProgressBarText: "2. Sécuriser l'application mobile gouvernementale d'identité",
   },
   AttemptLockout: {
-    Title: 'Votre portefeuille est temporairement verrouillé ',
+    Title: "Votre application mobile gouvernementale d'identité est temporairement verrouillé",
     Description: "Trop d'essais ont été tentés lors de la saisie de votre NIP ",
     TryAgain: 'Vous pouvez réessayer dans :',
     Hours: 'heures',
@@ -542,7 +546,7 @@ const translation = {
     WhereToUseLink: 'Découvrez où vous pouvez utiliser le portefeuille',
     BadQRCode: 'QR Code non reconnu',
     BadQRCodeDescription:
-      "Le QR code scanné ne fonctionne pas avec le portefeuille. Le portefeuille ne fonctionne qu'avec les services participants.\n\nIl ne peut actuellement pas ajouter des attestations numériques en prenant des photos de cartes physiques.",
+      "Assurez-vous que le code QR soit lisible et bien éclairé avant de le balayer.\n\nSeuls les code QR compatibles avec l'application mobile gouvernementale d'identité peuvent être balayer depuis l'application.",
     WillScanAutomatically: 'Un code QR valide sera scanné automatiquement.',
     ScanQRCode: 'Scanner le code QR',
     MyQRCode: 'Mon code QR',
@@ -866,8 +870,9 @@ const translation = {
     TourActivateButton: 'Relancer les conseils',
   },
   Tour: {
-    GuideTitle: 'Bienvenue au Portefeuille numérique',
-    WouldYouLike: "Souhaitez-vous obtenir des conseils sur la façon d'utiliser le Portefeuille numérique?",
+    GuideTitle: "Bienvenue à l'application mobile gouvernementale d'identité",
+    WouldYouLike:
+      "Souhaitez-vous obtenir des conseils sur la façon d'utiliser l'application mobile gouvernementale d'identité?",
     UseAppGuides: 'Utiliser les conseils',
     DoNotUseAppGuides: 'Ne pas utiliser les conseils',
     AddAndShare: 'Ajouter et partager des attestations',
@@ -895,20 +900,22 @@ const translation = {
   Tips: {
     Header: 'Conseils',
     GettingReady: 'Préparez votre portefeuille...',
-    Tip1: "Par souci de sécurité, l'application du portefeuille numérique du Québec se verrouille après 5 minutes d'inactivité.",
-    Tip2: 'Contrairement à la présentation de cartes physiques, vous ne partagez que ce qui est nécessaire à partir de vos justificatifs',
-    Tip3: 'Vos justificatifs sont stockés uniquement sur ce téléphone, nulle part ailleurs',
-    Tip4: "Les informations sont envoyées et reçues par l'entremise d'une connexion cryptée intraçable.",
-    Tip5: "N'oubliez pas votre NIP. Si vous l'oubliez, vous devrez réinstaller et rajouter vos attestations",
-    Tip6: "Ignorez le code NIP et déverrouillez votre portefeuille à l'aide de vos données biométriques pour une navigation plus rapide.",
+    Tip1: "Par souci de sécurité, l'application mobile gouvernementale d'identité se verrouille après 5 minutes d'inactivité.",
+    Tip2: 'Contrairement à la présentation de cartes physiques, seulement les informations nécessaires sont partagées à partir de vos justificatifs',
+    Tip3: 'Vos justificatifs sont stockés uniquement sur ce téléphone',
+    Tip4: "Les informations sont envoyées et reçues par l'entremise d'une connexion sécuritaire cryptée et intraçable.",
+    Tip5: "Utilisez un NIP robuste mais facile à retenir pour vous. Si vous l'oubliez, vous devrez réinstaller votre application mobile gouvernementale d'identité et rajouter à nouveau vos attestations",
+    Tip6: "Ignorez le code NIP et déverrouillez votre application mobile gouvernementale d'identité à l'aide de vos données biométriques pour une navigation plus rapide.",
     Tip7: 'Vos attestations les plus récemment ajoutées sont placés en haut de la liste.',
-    Tip8: "Supprimez les attestations de votre portefeuille à partir de l'écran des attestations.",
+    Tip8: "Supprimez les attestations de votre application mobile gouvernementale d'identité à partir de l'écran « Attestations ».",
     Tip9: "Vous pouvez ignorer les notifications sans les ouvrir en cliquant sur le bouton  'X' dans le coin supérieur droit.",
-    Tip10: "Besoin d'aide? Trouvez des réponses dans la section d'aide du bouton '☰' dans le coin supérieur gauche",
-    Tip11: "Vous pouvez activer le flash de l'appareil photo en cas de problème de lecture du code QR .",
-    Tip12: "Si le code QR ne se balaie pas, essayez d'augmenter la luminosité de l'écran.",
+    Tip10:
+      "Besoin d'aide? Accédez à la section à la section « Aide » située en haut de l'écran à droite afin de découvrir les fonctionnalités de l'application et trouvez des réponses à vos questions.",
+    Tip11:
+      "En cas de problème lors de la lecture du code QR, vous pouvez activer le flash de l'appareil photo pour faciliter la lecture.",
+    Tip12: "Si le code QR ne se balaie pas, essayez d'augmenter la luminosité de votre écran.",
     Tip13:
-      "Les informations envoyées par l'intermédiaire de votre portefeuille sont fiables pour vous et pour les contacts avec lesquels vous communiquez.",
+      "Les informations envoyées par l'intermédiaire de votre application mobile gouvernementale d'identité sont fiables pour vous et pour les contacts avec lesquels vous communiquez.",
     Tip14:
       "Même les attestations d'identité révoquées ou expirées peuvent être utilisées si l'organisation n'en fait pas la demande.",
   },
@@ -955,7 +962,7 @@ const translation = {
     GiveFeedback: 'Donnez votre avis',
   },
   PINEnter: {
-    Title: 'Portefeuille numérique du Québec',
+    Title: "Aplication mobile gouvernementale d'identité",
     EnterPIN: 'Veuiller saisir votre NIP',
     Unlock: 'Déverrouiller',
     Or: 'Ou',
@@ -968,14 +975,17 @@ const translation = {
     EnableBiometrics: 'Vous devez activer la biométrie pour utiliser le portefeuille.',
     BiometricsNotProvided: 'La biométrie est indisponible. Veuillez saisir le NIP du portefeuille.',
     BiometricsError: 'Échec de la biométrie.',
-    BiometricsErrorEnterPIN: 'Veuillez saisir le NIP du portefeuille.',
-    LockedOut: "Votre portefeuille a été verrouillé après {{ time }} minute(s) d'inactivité.",
+    BiometricsErrorEnterPIN: "Veuillez saisir le NIP de l'aplication mobile gouvernementale d'identité.",
+    LockedOut:
+      "Votre application mobile gouvernementale d'identité a été verrouillé après {{ time }} minute(s) d'inactivité.",
     ReEnterPIN: 'Saisissez à nouveau votre NIP.',
     BiometricsChangedEnterPIN: 'Veuillez saisir le NIP du portefeuille.',
     RepeatPIN: 'Essayez votre NIP à nouveau',
+    IncorrectPINTries:
+      "NIP erroné. Vous avez {{tries}} tentatives restantes avant de verrouiller votre application mobile gouvernementale d'identité",
     LoggedOut: 'Vous avez été déconnecté du portefeuille.',
     BiometricsChanged:
-      'Le déverrouillage avec la biométrie a été désactivé, car les données biométriques de votre appareil ont changé.',
+      'Le déverrouillage avec la biométrie a été désactivé, puisque les données biométriques de votre appareil ont changé.',
   },
   Terms: {
     TermsOfService: "Conditions d'utilisation",
