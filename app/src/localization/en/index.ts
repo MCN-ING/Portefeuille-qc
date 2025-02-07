@@ -149,7 +149,7 @@ const translation = {
     UnlockPromptDescription: 'Use biometrics to unlock your wallet',
     ProgressBarText: '3. Using Biometrics',
     AllowBiometricsDesc:
-      "To unlock BC Wallet with your biometrics, please allow biometrics use within your device's settings. Then you can activate it in the application settings.",
+      "To unlock your wallet with your biometrics, please set up your biometrics in your device's settings. Then you can activate it in the application settings.",
   },
   Credentials: {
     AddCredential: 'Add Credential',
