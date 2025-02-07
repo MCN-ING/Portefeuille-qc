@@ -601,8 +601,8 @@ const translation = {
   },
   ConnectionAlert: {
     AddedContacts: 'Nouveau contact ajouté',
-    NotificationBodyWithIssuer:
-      "En acceptant l'attestation, je consens à l'ajout de {{issuerName}} dans mes contacts. Cela est nécessaire pour recevoir les services offerts par {{issuerName}}.",
+    NotificationBody1: "En acceptant l'attestation, je consens à l'ajout de ",
+    NotificationBody2: ' dans mes contacts. Cela est nécessaire pour recevoir les services offerts par ',
     NotificationBodyWithoutIssuer:
       "En acceptant l'attestation, je consens à l'ajout d'un nouveau contact. Cela est nécessaire pour recevoir les services offerts par celui-ci.",
     PopupIntro:
