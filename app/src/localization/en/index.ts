@@ -652,8 +652,8 @@ const translation = {
   },
   ConnectionAlert: {
     AddedContacts: 'New contact added',
-    NotificationBodyWithIssuer:
-      'By accepting the credential, I consent to the addition of {{issuerName}} to my contacts. This is necessary to receive the services provided by {{issuerName}}.',
+    NotificationBody1: 'By accepting the credential, I consent to the addition of ',
+    NotificationBody2: ' to my contacts. This is necessary to receive the services provided by the ',
     NotificationBodyWithoutIssuer:
       'By accepting the credential, I consent to the addition of a new contact to my contacts. This is necessary to receive the services provided by the new contact.',
     PopupIntro:
