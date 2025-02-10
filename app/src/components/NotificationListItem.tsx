@@ -245,7 +245,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
             resolve({
               title: t('CredentialDetails.NewRevoked'),
               body: theirLabel,
-              eventTime: revocationDate ? formatTime(revocationDate, { includeHour: true }) : '',
+              eventTime: revocationDate ? formatTime(new Date(revocationDate), { includeHour: true }) : '',
             })
           })
           break
@@ -345,7 +345,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
       setDetails(details)
     }
     detailsPromise()
-  }, [notificationType, t])
+  }, [notificationType, t, connection])
 
   const removeCurrentNotification = async () => {
     await removeNotification()
