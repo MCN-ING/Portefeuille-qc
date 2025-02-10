@@ -115,7 +115,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
     <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
       <View style={[styles.contentContainer, { paddingTop: 0, flex: 1 }]}>
         <Record
-          hideFieldValues
+          hideFieldValues={overlay.presentationFields?.length !== 0}
           fields={overlay.presentationFields || []}
           header={() => (
             <View style={styles.headerStyle}>
