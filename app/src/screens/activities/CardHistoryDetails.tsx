@@ -121,7 +121,7 @@ const CardHistorydDetails: React.FC<CardHistorydDetailsProp> = ({ route, navigat
             <View style={styles.headerStyle}>
               <HeaderText
                 title={t('History.CardDescription.CardChanged', {
-                  cardName: itemContent?.message ? startCaseUnicode(itemContent.correspondenceName ?? '') : '',
+                  cardName: overlay.metaOverlay?.name ?? startCaseUnicode(itemContent.message ?? ''),
                   operation: operation,
                   interpolation: { escapeValue: false },
                 })}
